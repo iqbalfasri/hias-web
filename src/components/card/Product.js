@@ -56,12 +56,12 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { category, title, price, id } = this.props
+    const { category, title, price, id, thumbnail } = this.props
     return (
         <div className="product-card">
           <Link to={`/products/detail/${id}`}>
             <div className="product-card-image">
-              <img src="https://via.placeholder.com/600x600" alt=""/>
+              <img src={thumbnail} alt=""/>
             </div>
           </Link>
           <div className="fx justify-content-between product-card-footer">

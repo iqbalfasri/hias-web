@@ -15,12 +15,16 @@ class Signup extends Component {
       email: '',
       username: '',
       password: '',
-      phone: ''
+      phone: '',
+      isSigningUp: false
     }
   }
 
   onSignUp (e) {
     e.preventDefault()
+    this.setState({
+      isSigningUp: true
+    })
     const {
       name,
       email,
@@ -44,6 +48,14 @@ class Signup extends Component {
           localStorage.setItem('token', res.data.data.register.token)
           localStorage.setItem('userId', res.data.data.register.user.id)
           window.location.href = '/thank-you'
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+        .finally(() => {
+          this.setState({
+            isSigningUp: false
+          })
         })
     }
   }
@@ -91,8 +103,8 @@ class Signup extends Component {
               <div className="row justify-content-center">
                 <div className="col-md-5">
                   <div className="mb--2">
-                    <div className="img--center">
-                      <img src="https://via.placeholder.com/150" alt=""/>
+                    <div className="img--center logo">
+                      <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
                     </div>
                   </div>
                   <div>
@@ -119,7 +131,7 @@ class Signup extends Component {
                         <Checkbox text="I agree the terms and conditions from HIAS house." />
                       </div>
                       <div className="form--group">
-                        <button type="submit" className="btn btn--full btn--blue">Next Step</button>
+                        <button type="submit" className="btn btn--full btn--blue">{ this.state.isSigningUp ? 'Creating Account' : 'Next Step' }</button>
                       </div>
                     </form>
                   </div>

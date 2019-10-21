@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faHeart, faShoppingCart, faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
@@ -18,6 +18,20 @@ class Header extends Component {
     //     </div>
     //   </Link>
     // )
+  }
+
+  onLogout () {
+    localStorage.removeItem('userId')
+    localStorage.removeItem('token')
+    window.location.href = '/'
+  }
+
+  onClickCartIcon () {
+    if (isLogin()) {
+      this.props.history.push('/cart')
+    } else {
+      this.props.context.setIsModalSigninPopupOpen(true)
+    }
   }
 
   renderTopIcon () {
@@ -40,7 +54,7 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-top-icon">
-            <div className="header-top-icon--image">
+            <div className="header-top-icon--image" onClick={() => this.onClickCartIcon()}>
               <img src={require('../../assets/img/Cart.svg')} alt=""/>
             </div>
           </div>
@@ -66,7 +80,7 @@ class Header extends Component {
               <Link to="/wallet">Wallet</Link>
               </div>
               <div className="divider"></div>
-              <div className="hd--item">
+              <div className="hd--item" onClick={() => this.onLogout()}>
                 <span>Logout</span>
               </div>
             </div>
@@ -104,7 +118,7 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-top-icon">
-            <div className="header-top-icon--image">
+            <div className="header-top-icon--image" onClick={() => this.onClickCartIcon()}>
               <img src={require('../../assets/img/Cart.svg')} alt=""/>
             </div>
           </div>
@@ -165,97 +179,97 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/living"><span>Furniture</span></Link>
+                              <Link to="/products/living"><span>Furniture</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Sofa</span></Link>
+                              <Link to="/products/living"><span>Sofa</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Sleeper Sofa</span></Link>
+                              <Link to="/products/living"><span>Sleeper Sofa</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Sectional Sofa</span></Link>
+                              <Link to="/products/living"><span>Sectional Sofa</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Chair</span></Link>
+                              <Link to="/products/living"><span>Chair</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Recliner</span></Link>
+                              <Link to="/products/living"><span>Recliner</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Table</span></Link>
+                              <Link to="/products/living"><span>Table</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>TV Stand</span></Link>
+                              <Link to="/products/living"><span>TV Stand</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Storage</span></Link>
+                              <Link to="/products/living"><span>Storage</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Outdoor</span></Link>
+                              <Link to="/products/living"><span>Outdoor</span></Link>
                             </div>
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/living"><span>Decoration</span></Link>
+                              <Link to="/products/living"><span>Decoration</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Home Decoration</span></Link>
+                              <Link to="/products/living"><span>Home Decoration</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Clock</span></Link>
+                              <Link to="/products/living"><span>Clock</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Vase</span></Link>
+                              <Link to="/products/living"><span>Vase</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Frame</span></Link>
+                              <Link to="/products/living"><span>Frame</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Accessories</span></Link>
+                              <Link to="/products/living"><span>Accessories</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Candles</span></Link>
+                              <Link to="/products/living"><span>Candles</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Mirror</span></Link>
+                              <Link to="/products/living"><span>Mirror</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Flower</span></Link>
+                              <Link to="/products/living"><span>Flower</span></Link>
                             </div>  
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/living"><span>Linear</span></Link>
+                              <Link to="/products/living"><span>Linear</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Cushion</span></Link>
+                              <Link to="/products/living"><span>Cushion</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Insert</span></Link>
+                              <Link to="/products/living"><span>Insert</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Carpet</span></Link>
+                              <Link to="/products/living"><span>Carpet</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Mat</span></Link>
+                              <Link to="/products/living"><span>Mat</span></Link>
                             </div>
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/living"><span>Linear</span></Link>
+                              <Link to="/products/living"><span>Linear</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Cushion</span></Link>
+                              <Link to="/products/living"><span>Cushion</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Insert</span></Link>
+                              <Link to="/products/living"><span>Insert</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Carpet</span></Link>
+                              <Link to="/products/living"><span>Carpet</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/living"><span>Mat</span></Link>
+                              <Link to="/products/living"><span>Mat</span></Link>
                             </div>
                           </div>
                         </div>
@@ -377,4 +391,4 @@ class Header extends Component {
   }
 }
 
-export default withContext(Header)
+export default withContext(withRouter(Header))

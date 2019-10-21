@@ -12,12 +12,16 @@ class Signin extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      logging: false
     }
   }
 
   onLogin (e) {
     e.preventDefault()
+    this.setState({
+      logging: true
+    })
     const { username, password } = this.state
     if (!username || !password) {
       alert('Fill the field')
@@ -29,6 +33,14 @@ class Signin extends Component {
           localStorage.setItem('token', res.data.data.login.token)
           localStorage.setItem('userId', res.data.data.login.user.id)
           window.location.href = '/'
+        })
+        .catch((err) => {
+
+        })
+        .finally(() => {
+          this.setState({
+            logging: false
+          })
         })
     }
   }
@@ -50,8 +62,10 @@ class Signin extends Component {
   render () {
     return (
       <div>
-        <div className="mb--2 img--center">
-          <img src="https://via.placeholder.com/150x80" alt=""/>
+        <div className="mb--2">
+          <div className="logo img--center">
+            <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
+          </div>
         </div>
         <form onSubmit={(e) => this.onLogin(e)}>
           <div className="form--group">
@@ -71,7 +85,7 @@ class Signin extends Component {
             </div>
           </div>
           <div className="form--group mt--2">
-            <button type="submit" className="btn btn--full btn--blue">Log in</button>
+            <button type="submit" className="btn btn--full btn--blue">{ this.state.logging ? 'Logging in ...' : 'Log in' }</button>
           </div>
         </form>
         <div className="divider-with-text mt--2 mb--2">

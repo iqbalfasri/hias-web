@@ -5,16 +5,61 @@ import { faAngleDown, faAngleUp, faMinusSquare, faPlusSquare, faArrowRight } fro
 
 import ProductCard from '../../components/card/Product'
 import Checkbox from '../../components/form/Checkbox'
+import { fetchHotProduct, fetchWishList } from '../../api'
+import { withContext } from '../../context/withContext'
+import { isLogin } from '../../utils/auth'
 
 class Category extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      wishListItems: []
+    }
+  }
+
+  isProductWishlisted (id) {
+    const { wishListItems } = this.state
+    let result = false
+    for (let i = 0; i < wishListItems.length; i++) {
+      if (wishListItems[i].id === id) {
+        result = true
+        break;
+      }
+    }
+    return result
+  }
+
   renderProduct() {
-    // return this.props.products.map((product) => {
-    //   return (
-    //     <div className="col-md-4" key={`product-${product.id}`}>
-    //       <ProductCard id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
-    //     </div>
-    //   )
-    // })
+    const hotProducts = this.props.context.hotProducts
+    if (hotProducts.length !== 0) {
+      return hotProducts.map((product) => {
+        return (
+          <div className="col-md-3" key={`product-${product.id}`}>
+            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+          </div>
+        )
+      })
+    }
+  }
+
+  componentDidMount () {
+    fetchHotProduct()
+      .then((res) => {
+        this.props.context.setHotProducts(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+    if (isLogin()) {
+      fetchWishList(localStorage.getItem('userId'))
+        .then((res) => {
+          this.setState({
+            wishListItems: res.data
+          })
+        })
+    }
   }
   
   render () {
@@ -180,4 +225,4 @@ class Category extends Component {
   }
 }
 
-export default Category
+export default withContext(Category)

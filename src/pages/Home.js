@@ -8,6 +8,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import ProductCard from '../components/card/Product'
 import InputText from '../components/form/InputText'
 import Checkbox from '../components/form/Checkbox'
+import ColorSelector from '../components/ColorSelector'
 import { withContext } from '../context/withContext'
 import { fetchBestSellerProduct, fetchHotProduct, fetchWishList } from '../api'
 import { isLogin } from '../utils/auth'
@@ -92,7 +93,7 @@ class Home extends Component {
       return hotProducts.map((product) => {
         return (
           <div className="col-md-3" key={`product-${product.id}`}>
-            <ProductCard loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
           </div>
         )
       })
@@ -108,7 +109,7 @@ class Home extends Component {
             return (
               <div key={product.id}>
                 <div className="product-slide-with-number">
-                  <img src="https://via.placeholder.com/550x550" alt=""/>
+                  <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/>
                   <div className="product-slide-with-number-wrapper">
                     <div className="fx fx-no-wrap align-items-center">
                       <div className="product-number">
@@ -170,6 +171,9 @@ class Home extends Component {
                           <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
                           </p>
+                          <div>
+                            <ColorSelector />
+                          </div>
                         </div>
                       </div>              
                     </div>

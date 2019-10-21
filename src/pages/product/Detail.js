@@ -6,8 +6,10 @@ import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 import StarRatings from 'react-star-ratings'
 
 import ProductCard from '../../components/card/Product'
-import { fetchProductById, fetchWishList, addToCart } from '../../api'
+import ColorSelector from '../../components/ColorSelector'
+import { fetchProductById, fetchWishList, addToCart, fetchHotProduct } from '../../api'
 import { formatMoneyWithoutSymbol } from '../../utils/money'
+import { withContext } from '../../context/withContext'
 import { isLogin } from '../../utils/auth'
 
 class Detail extends Component {
@@ -30,6 +32,14 @@ class Detail extends Component {
           product: res.data[0]
         })
       })
+
+    fetchHotProduct()
+      .then((res) => {
+        this.props.context.setHotProducts(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     
     if (isLogin()) {
       fetchWishList(localStorage.getItem('userId'))
@@ -45,7 +55,7 @@ class Detail extends Component {
     const { wishListItems } = this.state
     let result = false
     for (let i = 0; i < wishListItems.length; i++) {
-      if (wishListItems[i].id === parseInt(id)) {
+      if (wishListItems[i].id === id) {
         result = true
         break;
       }
@@ -53,20 +63,39 @@ class Detail extends Component {
     return result
   }
 
+  renderRelatedProduct () {
+    const hotProducts = this.props.context.hotProducts
+    const products = []
+    if (hotProducts.length !== 0) {
+      for (let i = 0;i < 4;i++) {
+        products.push((
+          <div className="col-md-3" key={`product-${hotProducts[i]}`}>
+            <ProductCard thumbnail={hotProducts[i].thumbnail ? hotProducts[i].thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(hotProducts[i].id)} id={hotProducts[i].id} title={hotProducts[i].productName} price={hotProducts[i].price} category={hotProducts[i].categoryName} />
+          </div>
+        ))
+      }
+    }
+    return products
+  }
+
   onClickAddToCart (product) {
-    addToCart({
-      productId : product.id,
-      userId : localStorage.getItem('userId'),
-      discussion : ''
-    })
-      .then((res) => {
-        this.setState({
-          addToCartClicked: true
+    if (isLogin()) {
+      addToCart({
+        productId: product.id,
+        userId: localStorage.getItem('userId'),
+        amount: 2
+      })
+        .then((res) => {
+          this.setState({
+            addToCartClicked: true
+          })
         })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+        .catch((err) => {
+          console.log(err)
+        })
+    } else {
+      this.props.context.setIsModalSigninPopupOpen(true)
+    }
   }
 
   renderAddToCartButton () {
@@ -131,20 +160,23 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-                        <img src="https://via.placeholder.com/1400x700" alt=""/>
+                        <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
                       </div>
-                      <div className="fx fx-no-wrap">
+                      <div className="fx fx-no-wrap align-items-center">
                         <div className="img-detail-thumbnail">
-                          <img src="https://via.placeholder.com/1400x700" alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src="https://via.placeholder.com/1400x700" alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src="https://via.placeholder.com/1400x700" alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src="https://via.placeholder.com/1400x700" alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                        </div>
+                        <div>
+                          <ColorSelector />
                         </div>
                       </div>
                     </div>
@@ -212,18 +244,7 @@ class Detail extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-3">
-                  <ProductCard />
-                </div>
-                <div className="col-md-3">
-                  <ProductCard />
-                </div>
-                <div className="col-md-3">
-                  <ProductCard />
-                </div>
-                <div className="col-md-3">
-                  <ProductCard />
-                </div>
+                { this.renderRelatedProduct() }
               </div>
             </div>
           </section>
@@ -325,4 +346,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail
+export default withContext(Detail)
