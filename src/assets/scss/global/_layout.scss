@@ -1,0 +1,112 @@
+.fx {
+  display: flex;
+  flex-wrap: wrap;
+
+  &.fx-no-wrap {
+    flex-wrap: nowrap;
+  }
+}
+
+.mb--1 {
+  margin-bottom: 1em;
+}
+
+.mb--2 {
+  margin-bottom: 2em;
+}
+
+.mt--2 {
+  margin-top: 2em;
+}
+
+.mr--1 {
+  margin-right: 1em;
+}
+
+.mr--2 {
+  margin-right: 2em;
+}
+
+.ml--1 {
+  margin-left: 1em;
+}
+
+.mb--0 {
+  margin-bottom: 0;
+}
+
+.pt--1 {
+  padding-top: 1em;
+}
+
+.pl--0 {
+  padding-left: 0;
+}
+
+.pb--1 {
+  padding-bottom: 1em;
+}
+
+.divider {
+  margin: 1em 0;
+  height: 1px;
+  background-color: rgba($color: $grayColor, $alpha: .2);
+}
+
+.section-page {
+  padding: 2em 0;
+}
+
+.section-bg-dark {
+  background-color: rgb(50, 50, 50);
+  color: #fff;
+}
+
+.bg--gray {
+  background-color: $grayColor;
+  color: #fff;
+}
+
+.section-title {
+  font-size: 2.3em;
+}
+
+.fx-1 {
+  flex: 1;
+}
+
+.fx-2 {
+  flex: 2;
+}
+
+.img--cover {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.img--center {
+  margin: 0 auto;
+  > img {
+    margin: 0 auto;
+  }
+}
+
+.img--rounded {
+  > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+}
+
+.line-divider {
+  width: 60%;
+  height: 2px;
+  background-color: #fff;
+  margin: 1em 0;
+
+  &.ld--blue {
+    background-color: $mainColor;
+  }
+}

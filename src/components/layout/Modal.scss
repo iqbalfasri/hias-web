@@ -1,0 +1,27 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: .6);
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background-color: #fff;
+  padding: 2em;
+  position: relative;
+  border-radius: 10px;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+}

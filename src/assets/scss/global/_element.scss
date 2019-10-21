@@ -1,0 +1,21 @@
+body {
+  font-size: 14px;
+  font-family: 'Gotham', sans-serif;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  display: table;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}

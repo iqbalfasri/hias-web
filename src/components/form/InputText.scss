@@ -1,0 +1,27 @@
+.form--group {
+  margin-bottom: 10px;
+}
+
+.form--input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  outline: none;
+  font-weight: 400;
+  height: 38px;
+  font-size: 14px;
+}
+
+.input--icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.input-wrapper {
+  position: relative;
+}

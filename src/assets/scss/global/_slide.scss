@@ -1,0 +1,51 @@
+.swiper-pagination {
+  position: relative;
+  margin-top: 2.5em;
+}
+
+.swiper-container {
+  padding: 1em 0;
+}
+
+.slide-product-active {
+  transform: scale(1.1);
+}
+
+.swiper-pagination-bullet {
+  border-radius: 10px;
+  width: 16px;
+  background: #999;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  width: 48px;
+}
+
+.slide-container-home {
+  max-height: 550px;
+  position: relative;
+}
+
+.slide-hero-cta {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $mainColor;
+  color: #fff;
+}
+
+.shc {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.sch--text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

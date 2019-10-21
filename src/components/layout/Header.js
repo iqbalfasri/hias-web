@@ -1,0 +1,380 @@
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faHeart, faShoppingCart, faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+import { isLogin } from '../../utils/auth'
+import { withContext } from '../../context/withContext'
+import './Header.scss'
+
+class Header extends Component {
+  renderCart () {
+    // const cartLength = this.props.cart.length
+    // return (
+    //   <Link to="/cart">
+    //     <div className="header-top-icon">
+    //       <FontAwesomeIcon icon={faShoppingCart} color="#ccc" />
+    //       <span className="cart-total">{ cartLength }</span>
+    //     </div>
+    //   </Link>
+    // )
+  }
+
+  renderTopIcon () {
+    return isLogin() ? (
+      <div className="fx align-items-center justify-content-end">
+        <div className="fx mr--1">
+          <div className="mr--1">
+            <Link to="/" className="btn btn--transparent">
+              <strong>Home</strong>
+            </Link>
+          </div>
+          <div className="mr--1">
+            <button className="btn btn--transparent"><strong>About Us</strong></button>
+          </div>
+        </div>
+        <div className="fx align-items-center">
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/Wishlist.svg')} alt=""/>
+            </div>
+          </div>
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/Cart.svg')} alt=""/>
+            </div>
+          </div>
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/OrderStatus.svg')} alt=""/>
+            </div>
+          </div>
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/Inbox.svg')} alt=""/>
+            </div>
+          </div>
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/DefaultAvatar.svg')} alt=""/>
+            </div>
+            <div className="header--dropdown">
+              <div className="hd--item">
+                <Link to="/">Account</Link>
+              </div>
+              <div className="hd--item">
+              <Link to="/wallet">Wallet</Link>
+              </div>
+              <div className="divider"></div>
+              <div className="hd--item">
+                <span>Logout</span>
+              </div>
+            </div>
+          </div>
+          { this.renderCart() }
+          <div className="header-top-icon header-top-icon--flag">
+            <img src={require('../../assets/img/indonesia.png')} alt=""/>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div className="fx align-items-center justify-content-end">
+        <div className="fx mr--1">
+          <div className="mr--1">
+            <Link to="/" className="btn btn--transparent">
+              <strong>Home</strong>
+            </Link>
+          </div>
+          <div className="mr--1">
+            <button className="btn btn--transparent"><strong>About Us</strong></button>
+          </div>
+          <div className="mr--1">
+            <button className="btn btn--transparent" onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}>Log in</button>
+          </div>
+          <div>
+            <Link to="/signup">
+              <button className="btn btn--primary">Sign up</button>
+            </Link>
+          </div>
+        </div>
+        <div className="fx fx align-items-center">
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/Wishlist.svg')} alt=""/>
+            </div>
+          </div>
+          <div className="header-top-icon">
+            <div className="header-top-icon--image">
+              <img src={require('../../assets/img/Cart.svg')} alt=""/>
+            </div>
+          </div>
+          { this.renderCart() }
+          <div className="header-top-icon header-top-icon--flag">
+            <img src={require('../../assets/img/indonesia.png')} alt=""/>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <header>
+        <div className="container-fluid">
+          <div className="top-header">
+            <div className="row align-items-center">
+              <div className="col-md-2">
+                <div className="logo">
+                  <Link to="/">
+                    <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
+                  </Link>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="search-input-container">
+                  <input type="text" className="form--input" placeholder="Search for Products" />
+                  <div className="search-icon">
+                    <FontAwesomeIcon icon={faSearch} color="#ccc" />
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                { this.renderTopIcon() }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="menu-header">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col">
+                <nav>
+                  <ul>
+                    <li className="has-sub">
+                      <Link to="/products/living">Living</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">LIVING</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                          <div>
+                            <span>25478 items</span>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content fx fx-no-wrap">
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/living"><span>Furniture</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Sleeper Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Sectional Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Chair</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Recliner</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Table</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>TV Stand</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Storage</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Outdoor</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/living"><span>Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Home Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Clock</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Vase</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Frame</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Accessories</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Candles</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Mirror</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Flower</span></Link>
+                            </div>  
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li><Link to="/bed">Bed</Link></li>
+                    <li><Link to="/bath">Bath</Link></li>
+                    <li><Link to="/dining">Dining</Link></li>
+                    <li><Link to="/kitchen">Kitchen</Link></li>
+                    <li className="menu-header-border has-sub hs--right-edge">
+                      <Link to="/">Inspiration</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">Inspiration</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content fx fx-no-wrap">
+                          <div className="mr--2">
+                            <div className="mb--1 inspiration-menu-image">
+                              <img src="https://via.placeholder.com/700x550" alt=""/>
+                            </div>
+                            <div>
+                              <p>Inspiration &amp; Ideas</p>
+                              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis totam fugiat reiciendis, magnam tempora blanditiis ea recusandae dignissimos. Asperiores minus earum omnis quaerat harum repudiandae officia possimus saepe odit necessitatibus!</p>
+                            </div>
+                          </div>
+                          <div>
+                            <div className="mb--1 inspiration-menu-image">
+                              <img src="https://via.placeholder.com/700x550" alt=""/>
+                            </div>
+                            <div>
+                              <p>Inspiration &amp; Ideas</p>
+                              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis totam fugiat reiciendis, magnam tempora blanditiis ea recusandae dignissimos. Asperiores minus earum omnis quaerat harum repudiandae officia possimus saepe odit necessitatibus!</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="menu-header-border has-sub hs--right-edge">
+                      <Link to="/">HIAS Business Unit</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">HIAS Business Unit</h3>
+                            <p className="mb--0">Lorem ipsum dolor sit amet</p>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content">
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2"><span className="text--color-blue">HIAS</span> Make Over</span>
+                            <span className="text--size-12">Learn More</span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="menu-header-border has-sub hs--right-edge">
+                      <Link to="/">What's on</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">Inspiration</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content">
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2">About us</span>
+                            <span className="text--size-12">3 new events</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2">Event</span>
+                            <span className="text--size-12">3 new events</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2">News</span>
+                            <span className="text--size-12">3 new events</span>
+                          </div>
+                          <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
+                            <span className="mr--2">Bazaar</span>
+                            <span className="text--size-12">3 new events</span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    )    
+  }
+}
+
+export default withContext(Header)
