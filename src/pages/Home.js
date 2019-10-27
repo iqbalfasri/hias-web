@@ -109,7 +109,8 @@ class Home extends Component {
             return (
               <div key={product.id}>
                 <div className="product-slide-with-number">
-                  <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/>
+                  {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/> */}
+                  <img src={require('../assets/img/Banner-SignIn.png')} alt=""/>
                   <div className="product-slide-with-number-wrapper">
                     <div className="fx fx-no-wrap align-items-center">
                       <div className="product-number">

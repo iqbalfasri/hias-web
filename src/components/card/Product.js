@@ -61,7 +61,8 @@ class ProductCard extends Component {
         <div className="product-card">
           <Link to={`/products/detail/${id}`}>
             <div className="product-card-image">
-              <img src={thumbnail} alt=""/>
+              {/* <img src={thumbnail} alt=""/> */}
+              <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
             </div>
           </Link>
           <div className="fx justify-content-between product-card-footer">

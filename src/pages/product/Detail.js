@@ -69,7 +69,7 @@ class Detail extends Component {
     if (hotProducts.length !== 0) {
       for (let i = 0;i < 4;i++) {
         products.push((
-          <div className="col-md-3" key={`product-${hotProducts[i]}`}>
+          <div className="col-md-3" key={`product-${hotProducts[i]}`} key={`related-${i}`}>
             <ProductCard thumbnail={hotProducts[i].thumbnail ? hotProducts[i].thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(hotProducts[i].id)} id={hotProducts[i].id} title={hotProducts[i].productName} price={hotProducts[i].price} category={hotProducts[i].categoryName} />
           </div>
         ))
@@ -160,20 +160,25 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-                        <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                        {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
+                        <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
                       </div>
                       <div className="fx fx-no-wrap align-items-center">
                         <div className="img-detail-thumbnail">
-                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
+                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
+                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
+                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
+                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
                         </div>
                         <div>
                           <ColorSelector />

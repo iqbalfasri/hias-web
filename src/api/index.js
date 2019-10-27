@@ -28,7 +28,7 @@ export const updateWishList = (value) => {
 
 export const fetchWishList = (id) => {
   return axios
-          .get(`${BASE_URL}/product/wishList/${id}`)
+          .get(`${BASE_URL}/product/wishList/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
           .then((res) => {
             return res.data
           })
