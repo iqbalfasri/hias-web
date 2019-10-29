@@ -275,10 +275,450 @@ class Header extends Component {
                         </div>
                       </div>
                     </li>
-                    <li><Link to="/bed">Bed</Link></li>
-                    <li><Link to="/bath">Bath</Link></li>
-                    <li><Link to="/dining">Dining</Link></li>
-                    <li><Link to="/kitchen">Kitchen</Link></li>
+                    <li className="has-sub">
+                      <Link to="/bed">Bed</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">LIVING</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                          <div>
+                            <span>25478 items</span>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content fx fx-no-wrap">
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Furniture</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sleeper Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sectional Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Chair</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Recliner</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Table</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>TV Stand</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Storage</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Outdoor</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Home Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Clock</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Vase</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Frame</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Accessories</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Candles</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mirror</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Flower</span></Link>
+                            </div>  
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="has-sub">
+                      <Link to="/bath">Bath</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">LIVING</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                          <div>
+                            <span>25478 items</span>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content fx fx-no-wrap">
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Furniture</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sleeper Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sectional Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Chair</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Recliner</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Table</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>TV Stand</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Storage</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Outdoor</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Home Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Clock</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Vase</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Frame</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Accessories</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Candles</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mirror</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Flower</span></Link>
+                            </div>  
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="has-sub">
+                      <Link to="/dining">Dining</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">LIVING</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                          <div>
+                            <span>25478 items</span>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content fx fx-no-wrap">
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Furniture</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sleeper Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sectional Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Chair</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Recliner</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Table</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>TV Stand</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Storage</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Outdoor</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Home Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Clock</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Vase</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Frame</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Accessories</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Candles</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mirror</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Flower</span></Link>
+                            </div>  
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="has-sub">
+                      <Link to="/kitchen">Kitchen</Link>
+                      <div className="sub-menu-container">
+                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                          <div>
+                            <h3 className="mb--0">LIVING</h3>
+                            <p className="mb--0">Create &amp; live your unique style</p>
+                          </div>
+                          <div>
+                            <span>25478 items</span>
+                          </div>
+                        </div>
+                        <div className="sub-menu-content fx fx-no-wrap">
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Furniture</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sleeper Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Sectional Sofa</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Chair</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Recliner</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Table</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>TV Stand</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Storage</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Outdoor</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Home Decoration</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Clock</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Vase</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Frame</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Accessories</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Candles</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mirror</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Flower</span></Link>
+                            </div>  
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                          <div className="sub-menu-column">
+                            <div className="sub-menu-item smi--parent">
+                              <Link to="/products/living"><span>Linear</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Cushion</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Insert</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Carpet</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Mat</span></Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
                     <li className="menu-header-border has-sub hs--right-edge">
                       <Link to="/">Inspiration</Link>
                       <div className="sub-menu-container">

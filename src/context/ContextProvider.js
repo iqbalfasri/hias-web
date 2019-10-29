@@ -16,6 +16,8 @@ export default class ContextProvider extends Component {
       setWishList: this.setWishList,
       user: null,
       setUser: this.setUser,
+      isLoading: false,
+      setIsLoading: this.setIsLoading
     }
   }
 
@@ -37,6 +39,10 @@ export default class ContextProvider extends Component {
 
   setUser = (user) => {
     this.setState({ user })
+  }
+
+  setIsLoading = (isLoading) => {
+    this.setState({ isLoading })
   }
 
   render () {

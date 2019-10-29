@@ -7,7 +7,7 @@ import { faChevronRight, faHeart as fasHeart } from '@fortawesome/free-solid-svg
 import { isLogin } from '../../utils/auth'
 import { formatMoneyWithoutSymbol } from '../../utils/money'
 import { withContext } from '../../context/withContext'
-import { updateWishList } from '../../api'
+import { updateWishList, removeWishlist } from '../../api'
 
 import './Product.scss'
 
@@ -22,20 +22,39 @@ class ProductCard extends Component {
 
   addToWishList(id) {
     if (isLogin()) {
+      this.props.context.setIsLoading(true)
       const value = {
         productId: id,
         userId: localStorage.getItem('userId')
       }
-      updateWishList(value)
-        .then((res) => {
-          this.props.context.setWishList(value)
-          this.setState({
-            isLoved: true
+      if (this.props.loved) {
+        removeWishlist(id)
+          .then((res) => {
+            this.setState({
+              isLoved: false
+            })
           })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+          .catch((err) => {
+            console.log(err)
+          })
+          .finally(() => {
+            this.props.context.setIsLoading(false)
+          })
+      } else {
+        updateWishList(value)
+          .then((res) => {
+            this.props.context.setWishList(value)
+            this.setState({
+              isLoved: true
+            })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+          .finally(() => {
+            this.props.context.setIsLoading(false)
+          })
+      }
     } else {
       this.props.context.setIsModalSigninPopupOpen(true)
     }
@@ -44,14 +63,10 @@ class ProductCard extends Component {
   renderLovedIcon () {
     const { loved, id } = this.props
     const { isLoved } = this.state
-    return loved || isLoved ? (
-      <div className="product-wish-list">
-        <span className="text--size-1-5"><FontAwesomeIcon icon={fasHeart} /></span>
-      </div>  
-    ) : (
+    return (
       <div className="product-wish-list" onClick={() => this.addToWishList(id)}>
-        <span className="text--size-1-5"><FontAwesomeIcon icon={faHeart} /></span>
-      </div>  
+        <span className="text--size-1-5"><FontAwesomeIcon icon={loved || isLoved ? fasHeart : faHeart} /></span>
+      </div> 
     )
   }
 

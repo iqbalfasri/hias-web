@@ -4,7 +4,123 @@ import { Link } from 'react-router-dom'
 
 import InputText from '../../components/form/InputText'
 
+import { getCart, removeProductOnCart, onPlaceOrder } from '../../api'
+import { isLogin } from '../../utils/auth'
+import { formatMoneyWithoutSymbol } from '../../utils/money'
+import { withContext } from '../../context/withContext'
+
 class Cart extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      carts: [],
+      cartsQuantity: []
+    }
+  }
+
+  componentDidMount () {
+    const userId = localStorage.getItem('userId')
+    if (!isLogin()) {
+      this.props.history.push('/login')
+    }
+    getCart(userId)
+      .then((res) => {
+        if (res.data.listItems) {
+          this.setState({
+            carts: res.data.listItems
+          })
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  onChangeQuantity (e, index) {
+    const value = e.target.value
+    const quantity = this.state.cartsQuantity
+    quantity[index] = value
+    this.setState({
+      cartsQuantity: quantity
+    })
+  }
+
+  onRemoveCart (index, productId) {
+    this.props.context.setIsLoading(true)
+    removeProductOnCart(productId)
+      .then((res) => {
+        console.log(res)
+        const newList = this.state.carts
+        newList.splice(index, 1)
+        this.setState({
+          carts: newList
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        this.props.context.setIsLoading(false)
+      })
+  }
+
+  renderCart () {
+    if (this.state.carts.length !== 0) {
+      return this.state.carts.map((cart, index) => {
+        const quantity = this.state.cartsQuantity[index] || 1
+        return (
+          <tr key={`${cart.idItems}-${index}`}>
+            <th scope="row">
+              <div className="table-product-image-wrapper align-items-center">
+                <div style={{ cursor: 'pointer' }} onClick={() => this.onRemoveCart(index, cart.idProduct)}>
+                  X
+                </div>
+                <div className="table-product-image">
+                  {/* <img src="https://via.placeholder.com/550x550" alt=""/> */}
+                  <img src={cart.thumbnail} alt=""/>
+                </div>
+                <div>
+                  <span>{ cart.name }</span>
+                </div>
+              </div>
+            </th>
+            <td>
+              <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
+            </td>
+            <td>
+              <input style={{ width: '50px' }} onChange={(e) => this.onChangeQuantity(e, index)} value={quantity} type="number" name="quantity" className="form--input" min="1" />
+            </td>
+            <td>
+              <span><strong>IDR {formatMoneyWithoutSymbol(quantity * cart.price)}</strong></span>
+            </td>
+          </tr>
+        )
+      })
+    }
+  }
+
+  getTotalCartPrice () {
+    const { cartsQuantity, carts } = this.state
+    let total = 0
+    for (let i = 0; i < carts.length; i++) {
+      const itemAmount = cartsQuantity[i] || 1
+      total = total + ( itemAmount * carts[i].price)
+    }
+    return total
+  }
+
+  onCheckout () {
+    onPlaceOrder({
+      cartId: localStorage.getItem('userId'),
+      subTotal: this.getTotalCartPrice(),
+      status : ""
+    })
+    .then((res) => {
+      this.props.history.push('/checkout')
+    })
+  }
+
   render () {
     return (
       <div className="content">
@@ -30,54 +146,7 @@ class Cart extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">
-                            <div className="table-product-image-wrapper align-items-center">
-                              <div>
-                                X
-                              </div>
-                              <div className="table-product-image">
-                                <img src="https://via.placeholder.com/550x550" alt=""/>
-                              </div>
-                              <div>
-                                <span>Product name here</span>
-                              </div>
-                            </div>
-                          </th>
-                          <td>
-                            <span>IDR 300.000</span>
-                          </td>
-                          <td>
-                            <input type="number" name="quantity" className="form--input" min="1" />
-                          </td>
-                          <td>
-                            <span><strong>IDR 300.000</strong></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">
-                            <div className="table-product-image-wrapper align-items-center">
-                              <div>
-                                X
-                              </div>
-                              <div className="table-product-image">
-                                <img src="https://via.placeholder.com/550x550" alt=""/>
-                              </div>
-                              <div>
-                                <span>Product name here</span>
-                              </div>
-                            </div>
-                          </th>
-                          <td>
-                            <span>IDR 300.000</span>
-                          </td>
-                          <td>
-                            <input type="number" name="quantity" className="form--input" min="1" />
-                          </td>
-                          <td>
-                            <span><strong>IDR 300.000</strong></span>
-                          </td>
-                        </tr>
+                        { this.renderCart() }
                       </tbody>
                     </table>
                   </div>
@@ -93,7 +162,7 @@ class Cart extends Component {
                     <div>
                       <div className="fx justify-content-between">
                         <h2 className="mr--1">Subtotal</h2>
-                        <h2>IDR 1.000.000</h2>
+                        <h2>IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h2>
                       </div>
                       <div className="fx justify-content-between">
                         <h2 className="mr--1">Shipping</h2>
@@ -104,10 +173,10 @@ class Cart extends Component {
                   <div className="total-card-cart-wrapper">
                     <div className="total-card-cart">
                       <div>
-                        <h2>Total amount IDR 1.000.000</h2>
+                        <h2>Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h2>
                       </div>
                       <div>
-                        <Link className="btn btn--blue btn--full" to="/checkout">Proceed to Checkout</Link>
+                        <button onClick={() => this.onCheckout()} className="btn btn--blue btn--full">Proceed to Checkout</button>
                       </div>
                     </div>
                   </div>
@@ -121,4 +190,4 @@ class Cart extends Component {
   }
 }
 
-export default Cart
+export default withContext(Cart)

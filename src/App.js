@@ -23,7 +23,7 @@ import { withContext } from './context/withContext'
 
 class App extends Component {
   render () {
-    const { isModalSigninPopupOpen, setIsModalSigninPopupOpen } = this.props.context
+    const { isModalSigninPopupOpen, setIsModalSigninPopupOpen, isLoading } = this.props.context
     return (
       <div className="App">
         <Header />
@@ -45,6 +45,11 @@ class App extends Component {
         <Footer />
         <Modal isOpen={isModalSigninPopupOpen} onCloseModal={() => setIsModalSigninPopupOpen(false)}>
           <Signin />
+        </Modal>
+        <Modal isOpen={isLoading}>
+          <h1 className="text--center mb--0">
+            PROCESSING...
+          </h1>
         </Modal>
       </div>
     )

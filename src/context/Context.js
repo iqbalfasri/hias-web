@@ -13,6 +13,8 @@ export const Context = createContext(
       setWishList: () => {},
       user: null,
       setUser: () => {},
+      isLoading: false,
+      setIsLoading: () => {}
     }
   }
 )

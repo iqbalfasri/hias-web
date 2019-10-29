@@ -41,10 +41,95 @@ export const fetchProductById = (id) => {
             return res.data
           })
 }
-
-export const addToCart = (value) => {
+export const getCart = (userId) => {
   return axios
-          .post(`${BASE_URL}/product/addToCart`, value)
+          .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          .then((res) => {
+            return res.data
+          })
+}
+
+export const removeProductOnCart = (productId) => {
+  return axios
+          .delete(`${BASE_URL}/product/${productId}/addToCart`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          .then((res) => {
+            return res.data
+          })
+}
+
+export const removeWishlist = (wishListId) => {
+  return axios
+          .delete(`${BASE_URL}/product/wishList/${wishListId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          .then((res) => {
+            return res.data
+          })
+}
+
+export const addToCart = async (value) => {
+  axios
+    .post(`${BASE_URL}/product/addToCart`, { userId: localStorage.getItem('userId')  }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      axios
+        .post(`${BASE_URL}/product/addItemToCart`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+          return res.data
+        })
+    })
+}
+
+export const onPlaceOrder = (value) => {
+  return axios
+          .post(`${BASE_URL}/product/order`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          .then((res) => {
+            return res.data
+          })
+}
+
+export const addUserAddress = (value) => {
+  return axios
+          .post(`${BASE_URL}/product/userAddress`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          .then((res) => {
+            return res.data
+          })
+}
+
+
+
+export const getUserAddress = (userId) => {
+  return axios
+          .get(`${BASE_URL}/product/${userId}/getUserAddressByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+          .then((res) => {
+            return res.data
+          })
+}
+
+export const getVANumberBNI = (price) => {
+  return axios
+          .post('https://my.ipaymu.com/api/getbniva', {
+            key: '2BC703E2-DD4C-46F4-B9A5-67295C86AB71',
+            price,
+            uniqid: 2019337001001,
+            notify_url: 'http://websiteanda.com/notify.php'
+          })
+          .then((res) => {
+            return res.data
+          })
+}
+
+export const getVANumberCIMB = (price) => {
+  return axios
+          .post('https://my.ipaymu.com/api/getva', {
+            key: '2BC703E2-DD4C-46F4-B9A5-67295C86AB71',
+            price,
+            uniqid: 201933700100,
+            notify_url: 'http://websiteanda.com/notify.php'
+          })
           .then((res) => {
             return res.data
           })

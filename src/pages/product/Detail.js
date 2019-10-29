@@ -82,8 +82,8 @@ class Detail extends Component {
     if (isLogin()) {
       addToCart({
         productId: product.id,
-        userId: localStorage.getItem('userId'),
-        amount: 2
+        cartId: localStorage.getItem('userId'),
+        amount: 1
       })
         .then((res) => {
           this.setState({

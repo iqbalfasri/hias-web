@@ -79,7 +79,7 @@ class Home extends Component {
     const { wishListItems } = this.state
     let result = false
     for (let i = 0; i < wishListItems.length; i++) {
-      if (wishListItems[i].id === id) {
+      if (wishListItems[i].idProduct === id) {
         result = true
         break;
       }
@@ -148,13 +148,13 @@ class Home extends Component {
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
                         <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/700x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
                         </div>
                         <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/550x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F2.png?alt=media&token=d56a3de3-a8a3-4f59-b7f4-ab11fd5e6461" alt=""/>
                         </div>
                         <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/550x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F3.png?alt=media&token=f8dbb7a7-28f8-412c-a44c-0c628aeffa07" alt=""/>
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
@@ -181,10 +181,10 @@ class Home extends Component {
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
                         <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/550x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F1.png?alt=media&token=5784d4ce-c8e2-4691-b5d8-05b667718a13" alt=""/>
                         </div>
                         <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/700x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F2.png?alt=media&token=0008c412-d415-49ca-8e62-f5e942d09a4b" alt=""/>
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
@@ -211,7 +211,7 @@ class Home extends Component {
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
                         <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/550x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F1.png?alt=media&token=764c675a-a72d-4cb2-b1ed-c40528263369" alt=""/>
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
@@ -224,10 +224,10 @@ class Home extends Component {
                           </div>
                         </div>
                         <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/700x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F2.png?alt=media&token=3638831f-166b-40c4-931d-05a14a1637ba" alt=""/>
                         </div>
                         <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/550x550" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F3.png?alt=media&token=fd667c13-54f4-45ad-b316-be5a29d68ac0" alt=""/>
                         </div>
                         <div className="sch--text">
                           <h3><i>New Collection</i></h3>
