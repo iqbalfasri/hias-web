@@ -111,7 +111,7 @@ export const getUserAddress = (userId) => {
 
 export const getVANumberBNI = (price) => {
   return axios
-          .post('https://my.ipaymu.com/api/getbniva', {
+          .post('http://my.ipaymu.com/api/getbniva', {
             key: '2BC703E2-DD4C-46F4-B9A5-67295C86AB71',
             price,
             uniqid: 2019337001001,
@@ -124,7 +124,7 @@ export const getVANumberBNI = (price) => {
 
 export const getVANumberCIMB = (price) => {
   return axios
-          .post('https://my.ipaymu.com/api/getva', {
+          .post('http://my.ipaymu.com/api/getva', {
             key: '2BC703E2-DD4C-46F4-B9A5-67295C86AB71',
             price,
             uniqid: 201933700100,

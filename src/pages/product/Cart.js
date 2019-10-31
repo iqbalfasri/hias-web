@@ -161,19 +161,19 @@ class Cart extends Component {
                     </div>
                     <div>
                       <div className="fx justify-content-between">
-                        <h2 className="mr--1">Subtotal</h2>
-                        <h2>IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h2>
+                        <h3 className="mr--1">Subtotal</h3>
+                        <h3>IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h3>
                       </div>
                       <div className="fx justify-content-between">
-                        <h2 className="mr--1">Shipping</h2>
-                        <h2>Free</h2>
+                        <h3 className="mr--1">Shipping</h3>
+                        <h3>Free</h3>
                       </div>
                     </div>
                   </div>
                   <div className="total-card-cart-wrapper">
                     <div className="total-card-cart">
                       <div>
-                        <h2>Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h2>
+                        <h3>Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h3>
                       </div>
                       <div>
                         <button onClick={() => this.onCheckout()} className="btn btn--blue btn--full">Proceed to Checkout</button>

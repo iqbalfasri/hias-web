@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 import StarRatings from 'react-star-ratings'
+import ShowMoreText from 'react-show-more-text'
 
 import ProductCard from '../../components/card/Product'
 import ColorSelector from '../../components/ColorSelector'
@@ -20,7 +21,8 @@ class Detail extends Component {
       activeDetailTab: 1,
       addToCartClicked: false,
       product: null,
-      wishListItems: []
+      wishListItems: [],
+      showAll: false
     }
   }
 
@@ -117,19 +119,131 @@ class Detail extends Component {
       case 1:
         return (
           <div>
-            <p>{ product.overview }</p>
+            {/* <p>{ product.overview }</p> */}
+            {/* <ReadMoreReact text={""}
+              min={300}
+              ideal={300}
+              max={300}
+              readMoreText="read more"/> */}
+            <ShowMoreText
+                lines={8}
+                more='Show more'
+                less='Show less'
+                anchorClass=''
+                onClick={this.executeOnClick}
+                expanded={false}
+            >
+                Di dalam ruang makan, pastinya tidak hanya sajian favorit yang kamu tata rapi untuk menggugah selera, tapi furniturnya juga tidak kalah penting untuk menambah suasana nyaman. Cecile Chair mengusung desain mid-century, namun materialnya mengikuti konsep urban sehingga cocok untuk melengkapi gaya hidup minimalis kaum urban. Kursi ini kokoh karena dilengkapi empat kaki bermaterial plywood. Walau begitu, kenyamananya tetap terjaga selama berjam-jam karena dudukannya yang terbuat dari busa. Busa tersebut dilapisi kulit sehingga mudah dibersihkan. Pastikan Cecile Chair menjadi pilihan pertama untuk mengisi ruang makanmu.
+            </ShowMoreText>
           </div>
         )
       case 2:
         return (
           <div>
-            <p>{ product.descriptiom }</p>
+            {/* <p>{ product.descriptiom }</p> */}
+            <div className="row">
+              <div className="col-md-5">
+                <p>
+                  <b>SKU</b>
+                </p>
+                <p>
+                  <b>Ukuran</b>
+                </p>
+                <p>
+                  <b>Material</b>
+                </p>
+                <p>
+                  <b>Material Dudukan</b>
+                </p>
+                <p>
+                  <b>Gaya</b>
+                </p>
+                <p>
+                  <b>Cara Perawatan</b>
+                </p>
+              </div>
+              <div className="col-md-1">
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+              </div>
+              <div className="col-md-6">
+                <p>
+                  <b>P046264</b>
+                </p>
+                <p>
+                46cm x 53cm x 46cm
+                </p>
+                <p>
+                Plywood
+                </p>
+                <p>
+                Busa
+                </p>
+                <p>
+                Urban Elegan
+                </p>
+                <p>
+                Bersihkan dengan lap kering untuk bagian kayu, dan lap basah untuk bagian kulit.
+                </p>
+              </div>
+            </div>
           </div>
         )
       case 3:
         return (
           <div>
-            <p>{ product.courier }</p>
+           <div className="row margin-bottom-list">
+             <div className="col-md-4">
+             <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+              </div>
+             </div>
+             <div className="col-md-8 vertical-align">
+              <p>
+                <b>Aegle Sofa 4 seated</b>
+              </p>
+             </div>
+           </div>
+           <div className="row margin-bottom-list">
+             <div className="col-md-4">
+             <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+              </div>
+             </div>
+             <div className="col-md-8 vertical-align">
+              <p>
+                <b>Aegle Sofa 3 seated</b>
+              </p>
+             </div>
+           </div>
+           <div className="row">
+             <div className="col-md-4">
+             <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+              </div>
+             </div>
+             <div className="col-md-8 vertical-align">
+              <p>
+                <b>Aegle Sofa 2 seated</b>
+              </p>
+             </div>
+           </div>
           </div>
         )
       default:
@@ -227,7 +341,7 @@ class Detail extends Component {
                           <span>Details</span>
                         </div>
                         <div className={`pdt--tab-item ${this.state.activeDetailTab === 3 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 3 })}>
-                          <span>Courier</span>
+                          <span>Variant</span>
                         </div>
                       </div>
                       <div className="pdt--tab-content">

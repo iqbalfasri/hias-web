@@ -1,7 +1,7 @@
 @import '../assets/scss/global/var';
 
 .newletter-section {
-  padding: 2em 1em;
+  padding: 3em 3em;
 }
 
 .product-card {
@@ -200,4 +200,13 @@
 
 .home-app-store-img {
   max-width: 150px;
+}
+
+.download-section {
+  padding: 5em 0 !important;
+  margin: 0 5em 5em 5em !important;
+}
+
+.button-margin {
+  margin-top: 3em;
 }

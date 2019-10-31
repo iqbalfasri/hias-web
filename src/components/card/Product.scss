@@ -92,6 +92,15 @@
   color: #fff;
 }
 
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.margin-bottom-list {
+  margin-bottom: 20px;
+}
+
 .slide-product-active {
   .product-slide-with-number-wrapper {
     display: block;
