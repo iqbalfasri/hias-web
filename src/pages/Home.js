@@ -94,6 +94,7 @@ class Home extends Component {
         return (
           <div className="col-md-3" key={`product-${product.id}`}>
             <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+            {/* <ProductCard thumbnail='https://via.placeholder.com/600x600' loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
           </div>
         )
       })
@@ -109,8 +110,8 @@ class Home extends Component {
             return (
               <div key={product.id}>
                 <div className="product-slide-with-number">
-                  {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/> */}
-                  <img src={require('../assets/img/Banner-SignIn.png')} alt=""/>
+                  <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/>
+                  {/* <img src='https://via.placeholder.com/600x600' alt=""/> */}
                   <div className="product-slide-with-number-wrapper">
                     <div className="fx fx-no-wrap align-items-center">
                       <div className="product-number">
@@ -172,6 +173,36 @@ class Home extends Component {
                           <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
                           </p>
+                        </div>
+                      </div>              
+                    </div>                    
+                    <div className="slide-wrapper-home">
+                      <div className="fx slide-container-hero">
+                        <div className="fx-1 slide-container-home">
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F1.png?alt=media&token=764c675a-a72d-4cb2-b1ed-c40528263369" alt=""/>
+                        </div>
+                        <div className="fx-1 slide-container-home">
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F2.png?alt=media&token=3638831f-166b-40c4-931d-05a14a1637ba" alt=""/>
+                          <div className="slide-hero-cta">
+                            <div className="shc">
+                              <div>
+                                ADD TO CART
+                              </div>
+                              <div>
+                                <span><FontAwesomeIcon icon={faArrowRight} /></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="fx-2 slide-container-home">
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F3.png?alt=media&token=fd667c13-54f4-45ad-b316-be5a29d68ac0" alt=""/>
+                        </div>
+                        <div className="sch--text">
+                          <h3 className="text--color-orange">IDR 130.000</h3>
+                          <h2>Simple Fiber Chair</h2>
+                          <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
+                          </p>
                           <div>
                             <ColorSelector />
                           </div>
@@ -183,55 +214,25 @@ class Home extends Component {
                         <div className="fx-1 slide-container-home">
                           <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F1.png?alt=media&token=5784d4ce-c8e2-4691-b5d8-05b667718a13" alt=""/>
                         </div>
-                        <div className="fx-2 slide-container-home">
+                        <div className="fx-1 slide-container-home">
                           <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F2.png?alt=media&token=0008c412-d415-49ca-8e62-f5e942d09a4b" alt=""/>
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
-                                SHOP NOW
+                                EXPLORE ALL
                               </div>
                               <div>
                                 <span><FontAwesomeIcon icon={faArrowRight} /></span>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://via.placeholder.com/550x550" alt=""/>
-                        </div>
-                        <div className="sch--text">
-                          <h3><i>New Collection</i></h3>
-                          <h2>Chairs &amp; Stools</h2>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
-                          </p>
-                        </div>
-                      </div>              
-                    </div>
-                    <div className="slide-wrapper-home">
-                      <div className="fx slide-container-hero">
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F1.png?alt=media&token=764c675a-a72d-4cb2-b1ed-c40528263369" alt=""/>
-                          <div className="slide-hero-cta">
-                            <div className="shc">
-                              <div>
-                                SHOP NOW
-                              </div>
-                              <div>
-                                <span><FontAwesomeIcon icon={faArrowRight} /></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F2.png?alt=media&token=3638831f-166b-40c4-931d-05a14a1637ba" alt=""/>
                         </div>
                         <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F3.png?alt=media&token=fd667c13-54f4-45ad-b316-be5a29d68ac0" alt=""/>
+                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F2.png?alt=media&token=0008c412-d415-49ca-8e62-f5e942d09a4b" alt=""/>
                         </div>
-                        <div className="sch--text">
-                          <h3><i>New Collection</i></h3>
-                          <h2>Chairs &amp; Stools</h2>
+                        <div className="sch--text" style={{ padding: '2em' }}>
+                          <h3 className="text--color-orange">SALE OFF</h3>
+                          <h2>Clasy Bedroom Stuff</h2>
                           <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
                           </p>
@@ -366,11 +367,11 @@ class Home extends Component {
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     </div>
                   </div>
-                  <div className="fx justify-content-around">
-                    <div className="home-app-store-img">
+                  <div className="fx justify-content-center">
+                    <div className="home-app-store-img" style={{ marginRight: '5px' }}>
                       <img src={require('../assets/img/Download-Android.png')} alt=""/>
                     </div>
-                    <div className="home-app-store-img">
+                    <div className="home-app-store-img" style={{ marginLeft: '5px' }}>
                       <img src={require('../assets/img/Download-aPPSTORE.png')} alt=""/>
                     </div>
                   </div>

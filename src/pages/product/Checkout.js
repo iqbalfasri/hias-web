@@ -27,7 +27,8 @@ class Checkout extends Component {
       cart: [],
       subTotal: 0,
       vaBNI: null,
-      vaCIMB: null
+      vaCIMB: null,
+      paymentMethodMode: 1
     }
   }
 
@@ -44,13 +45,11 @@ class Checkout extends Component {
   onProcessTab2 () {
     this.props.context.setIsLoading(true)
     Promise.all([
-      getVANumberBNI(this.state.subTotal)
-        .then((res) => {
-          console.log(res)
-        }),
       getVANumberCIMB(this.state.subTotal)
         .then((res) => {
-          console.log(res)
+          this.setState({
+            vaCIMB: res.va
+          })
         })
       ])
       .then(() => {
@@ -86,6 +85,64 @@ class Checkout extends Component {
     .catch((err) => {
       console.log(err)
     })
+  }
+
+  renderPaymentMethod () {
+    if (this.state.paymentMethodMode === 1) {
+      return (
+        <div className="fx justify-content-between align-items-center">
+          <div>
+            <img width="150px" src={require('../../assets/img/cimb.png')} alt=""/>
+          </div>
+          <div>
+            <span><strong>{ this.state.vaCIMB }</strong></span>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <div className="row">
+            <div className="col">
+              <div className="form--group">
+                <label htmlFor="">Name on Card</label>
+                <InputText type="text" placeholder="Name on Card" />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div className="form--group">
+                <label htmlFor="">Card Number</label>
+                <InputText type="text" placeholder="Card Number" />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form--group">
+                <label htmlFor="">Valid Through</label>
+                <InputText type="text" placeholder="Valid Through" />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="form--group">
+                <label htmlFor="">CVV</label>
+                <InputText type="text" placeholder="CVV" />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div className="form--group">
+                <label htmlFor="">Email Address</label>
+                <InputText type="text" placeholder="Email Address" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
   }
 
   renderCartDetail () {
@@ -259,117 +316,52 @@ class Checkout extends Component {
           <div className="checkout-form-wrapper">
             <div className="row">
               <div className="col-md-8">
-                <div className="row justify-content-end">
+                <div className="row justify-content-end mb--2">
                   <div className="col-6">
-                    <span className="text--color-green">Your Order</span>
+                    <span className="mb--1 text--color-green">Your Order</span>
                   </div>
                   <div className="col-6"></div>
                 </div>
                 <div className="row align-items-center">
                   <div className="col-6">
-                    <div className="checkout-image-container">
-                      <div className="checkout-image">
-                        <img src="https://via.placeholder.com/250" alt=""/>
-                      </div>
-                      <div>
-                        Product Name Here
-                      </div>
-                    </div>
+                    <p>Total Price</p>
                   </div>
                   <div className="col-6">
-                    <div className="fx align-items-center">
-                      <div className="quantity-input">
-                        <input type="number" name="quantity" className="form--input form--w-content" min="1" />
-                      </div>
-                      <div>
-                        <span>IDR 300.000</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row align-items-center">
-                  <div className="col-6">
-                    <div className="checkout-image-container">
-                      <div className="checkout-image">
-                        <img src="https://via.placeholder.com/250" alt=""/>
-                      </div>
-                      <div>
-                        Product Name Here
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-6">
-                    <div className="fx align-items-center">
-                      <div className="quantity-input">
-                        <input type="number" name="quantity" className="form--input form--w-content" min="1" />
-                      </div>
-                      <div>
-                        <span>IDR 300.000</span>
-                      </div>
-                    </div>
+                    <p>IDR {formatMoneyWithoutSymbol(this.state.subTotal)}</p>
                   </div>
                 </div>
                 <div className="row justify-content-end">
                   <div className="col-6">
-                    <span>Shipping Charge</span>
+                    <p className="mb--1 text--color-green">Shipping Address</p>
+                    <div>
+                      <p>First Name: {this.state.userAddress.firstName}</p>
+                      <p>Last Name: {this.state.userAddress.lastName}</p>
+                      <p>Email: {this.state.userAddress.email}</p>
+                      <p>Company: {this.state.userAddress.company}</p>
+                      <p>Address: {this.state.userAddress.address}</p>
+                      <p>City: {this.state.userAddress.city}</p>
+                    </div>
                   </div>
-                  <div className="col-6"><span><strong>FREE</strong></span></div>
+                  <div className="col-6"></div>
                 </div>
               </div>
               <div className="col-md-4">
                 <div>
                   <div className="cat--items">
                     <div>
-                      <span className="mr--1"><input type="radio" name="sort" id="paymu" /></span>
+                      <span className="mr--1"><input checked={this.state.paymentMethodMode === 1} onChange={() => this.setState({ paymentMethodMode: 1 })} type="radio" name="sort" id="paymu" /></span>
                       <label htmlFor="paymu">iPaymu Wallet</label>
                     </div>
                   </div>
                   <div className="cat--items">
                     <div>
-                      <span className="mr--1"><input type="radio" name="sort" id="az" /></span>
+                      <span className="mr--1"><input checked={this.state.paymentMethodMode === 2} onChange={() => this.setState({ paymentMethodMode: 2 })} type="radio" name="sort" id="az" /></span>
                       <label htmlFor="az">Credit Card / Debit Card</label>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="form--group">
-                        <label htmlFor="">First Name</label>
-                        <InputText type="text" placeholder="First Name" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="form--group">
-                        <label htmlFor="">First Name</label>
-                        <InputText type="text" placeholder="First Name" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form--group">
-                        <label htmlFor="">First Name</label>
-                        <InputText type="text" placeholder="First Name" />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form--group">
-                        <label htmlFor="">First Name</label>
-                        <InputText type="text" placeholder="First Name" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="form--group">
-                        <label htmlFor="">First Name</label>
-                        <InputText type="text" placeholder="First Name" />
-                      </div>
-                    </div>
-                  </div>
+                  { this.renderPaymentMethod() }
                 </div>
               </div>
             </div>
@@ -381,7 +373,7 @@ class Checkout extends Component {
               </div>
               <div className="col">
                 <div className="text--right">
-                  <button className="btn btn--blue" onClick={() => this.setState({ activeSteps: 4 })}>Pay IDR 1.000.0000</button>
+                  <button className="btn btn--blue" onClick={() => this.setState({ activeSteps: 4 })}>Pay IDR {formatMoneyWithoutSymbol(this.state.subTotal)}</button>
                 </div>
               </div>
             </div>
