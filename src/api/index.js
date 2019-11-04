@@ -134,3 +134,11 @@ export const getVANumberCIMB = (price) => {
             return res.data
           })
 }
+
+export const searchByName = (productName) => {
+  return axios
+          .post(`${BASE_URL}/product/searchName/${productName}`)
+          .then((res) => {
+            return res.data
+          })
+}

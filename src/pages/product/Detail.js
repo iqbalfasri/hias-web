@@ -207,43 +207,22 @@ class Detail extends Component {
         )
       case 3:
         return (
-          <div>
-           <div className="row margin-bottom-list">
-             <div className="col-md-4">
-             <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+          <div className="row">
+            <div className="col-md-4">
+            <div className="img-detail-thumbnail">
+              <img src={require('../../assets/img/jne.jpg')} alt=""/>
+            </div>
+            </div>
+            <div className="col-md-4">
+            <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/jnt.png')} alt=""/>
               </div>
-             </div>
-             <div className="col-md-8 vertical-align">
-              <p>
-                <b>Aegle Sofa 4 seated</b>
-              </p>
-             </div>
-           </div>
-           <div className="row margin-bottom-list">
-             <div className="col-md-4">
-             <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+            </div>
+            <div className="col-md-4">
+              <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/dhl.png')} alt=""/>
               </div>
-             </div>
-             <div className="col-md-8 vertical-align">
-              <p>
-                <b>Aegle Sofa 3 seated</b>
-              </p>
-             </div>
-           </div>
-           <div className="row">
-             <div className="col-md-4">
-             <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
-              </div>
-             </div>
-             <div className="col-md-8 vertical-align">
-              <p>
-                <b>Aegle Sofa 2 seated</b>
-              </p>
-             </div>
-           </div>
+            </div>
           </div>
         )
       default:
@@ -274,28 +253,25 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-                        {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
-                        <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+                        <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                        {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                       </div>
                       <div className="fx fx-no-wrap align-items-center">
                         <div className="img-detail-thumbnail">
-                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
-                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
-                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
-                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/> */}
-                          <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/>
-                        </div>
-                        <div>
-                          <ColorSelector />
+                          <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                       </div>
                     </div>
@@ -341,13 +317,54 @@ class Detail extends Component {
                           <span>Details</span>
                         </div>
                         <div className={`pdt--tab-item ${this.state.activeDetailTab === 3 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 3 })}>
-                          <span>Variant</span>
+                          <span>Courier</span>
                         </div>
                       </div>
                       <div className="pdt--tab-content">
                         { this.renderTabContent() }
                       </div>
                     </div>
+                    <div className="product-detail-variant">
+                      <h3>Other Variant</h3>
+                      <div className="row">
+                        <div className="col-md-4">
+                          <div className="img-detail-thumbnail">
+                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          </div>
+                          <p>4 Seated</p>
+                        </div>
+                        <div className="col-md-4">
+                          <div className="img-detail-thumbnail">
+                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          </div>
+                          <p>3 Seated</p>
+                        </div>
+                        <div className="col-md-4">
+                          <div className="img-detail-thumbnail">
+                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          </div>
+                          <p>2 Seated</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <dov className="col-md-6">
+                      <div className="product-detail-variant">
+                        <h3>Color Options</h3>
+                        <div>
+                          <ColorSelector />
+                        </div>
+                      </div>
+                    </dov>
+                    <dov className="col-md-6">
+                      <div className="product-detail-variant">
+                        <h3>Tone Options</h3>
+                        <div>
+                          <ColorSelector />
+                        </div>
+                      </div>
+                    </dov>
                   </div>
                 </div>
               </div>

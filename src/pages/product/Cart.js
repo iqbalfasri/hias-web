@@ -159,7 +159,7 @@ class Cart extends Component {
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div style={{marginRight:"3em"}}>
                       <div className="fx justify-content-between">
                         <h3 className="mr--1">Subtotal</h3>
                         <h3>IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h3>

@@ -195,7 +195,7 @@ class Category extends Component {
                     <div className="col">
                       <div className="mb--2">
                         <div className="cat-product-hero">
-                          <img src="https://via.placeholder.com/1400x550" alt=""/>
+                          <img src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt=""/>
                           <div className="cat-product-hero-text">
                             <div>
                               <h3 className="text--color-orange">SPECIAL FOR YOU</h3>

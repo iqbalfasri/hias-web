@@ -8,6 +8,14 @@ import { withContext } from '../../context/withContext'
 import './Header.scss'
 
 class Header extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      keyword: ''
+    }
+  }
+
   renderCart () {
     // const cartLength = this.props.cart.length
     // return (
@@ -31,6 +39,16 @@ class Header extends Component {
       this.props.history.push('/cart')
     } else {
       this.props.context.setIsModalSigninPopupOpen(true)
+    }
+  }
+
+  onSearch (e) {
+    e.preventDefault()
+    const { keyword } = this.state
+    if (keyword) {
+      this.props.history.push(`/products/search?keyword=${keyword}`)
+    } else {
+      return false
     }
   }
 
@@ -146,10 +164,12 @@ class Header extends Component {
               </div>
               <div className="col-md-4">
                 <div className="search-input-container">
-                  <input type="text" className="form--input" placeholder="Search for Products" />
-                  <div className="search-icon">
-                    <FontAwesomeIcon icon={faSearch} color="#ccc" />
-                  </div>
+                  <form onSubmit={(e) => this.onSearch(e)}>
+                    <input onChange={(e) => this.setState({ keyword: e.target.value })} type="text" className="form--input" placeholder="Search for Products" />
+                    <div className="search-icon">
+                      <FontAwesomeIcon icon={faSearch} color="#ccc" />
+                    </div>
+                  </form>
                 </div>
               </div>
               <div className="col-md-6">

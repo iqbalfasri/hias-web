@@ -94,6 +94,7 @@ class Home extends Component {
         return (
           <div className="col-md-3" key={`product-${product.id}`}>
             <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+            {/* <ProductCard thumbnail='https://via.placeholder.com/600x600' loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
           </div>
         )
       })
@@ -109,8 +110,8 @@ class Home extends Component {
             return (
               <div key={product.id}>
                 <div className="product-slide-with-number">
-                  {/* <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/> */}
-                  <img src={require('../assets/img/Banner-SignIn.png')} alt=""/>
+                  <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/>
+                  {/* <img src='https://via.placeholder.com/600x600' alt=""/> */}
                   <div className="product-slide-with-number-wrapper">
                     <div className="fx fx-no-wrap align-items-center">
                       <div className="product-number">
@@ -174,7 +175,7 @@ class Home extends Component {
                           </p>
                         </div>
                       </div>              
-                    </div>
+                    </div>                    
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
                         <div className="fx-1 slide-container-home">
@@ -184,7 +185,7 @@ class Home extends Component {
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
-                                SHOP NOW
+                                ADD TO CART
                               </div>
                               <div>
                                 <span><FontAwesomeIcon icon={faArrowRight} /></span>
@@ -217,7 +218,7 @@ class Home extends Component {
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
-                                SHOP NOW
+                                EXPLORE ALL
                               </div>
                               <div>
                                 <span><FontAwesomeIcon icon={faArrowRight} /></span>
@@ -366,7 +367,7 @@ class Home extends Component {
                     <div className="home-app-store-img">
                       <img src={require('../assets/img/Download-Android.png')} alt=""/>
                     </div>
-                    <div className="home-app-store-img">
+                    <div className="home-app-store-img" style={{ marginLeft: '5px' }}>
                       <img src={require('../assets/img/Download-aPPSTORE.png')} alt=""/>
                     </div>
                   </div>

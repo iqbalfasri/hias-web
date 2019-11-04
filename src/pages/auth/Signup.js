@@ -140,12 +140,12 @@ class Signup extends Component {
                   </div>
                   <div className="mt--2 mb--2">
                     <p className="text--center">Sign in with</p>
-                    <div className="fx justify-content-center">
+                    <div className="fx justify-content-center align-items-center">
                       <div className="mr--1">
-                        <img src="https://via.placeholder.com/50" alt=""/>
+                        <img width="50px" src={require('../../assets/img/fb.png')} alt=""/>
                       </div>
                       <div className="ml--1">
-                        <img src="https://via.placeholder.com/50" alt=""/>
+                        <img width="50px" src={require('../../assets/img/gmail.png')} alt=""/>
                       </div>
                     </div>
                   </div>
