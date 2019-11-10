@@ -17,6 +17,7 @@ import Search from './pages/Search'
 import Wishlist from './pages/Wishlist'
 import NotFound from './pages/NotFound'
 import AboutUs from "./pages/Articles/AboutUs"
+import FAQ from './pages/Articles/FAQ'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -37,6 +38,7 @@ class App extends Component {
           <Route path="/cart" component={Cart}/>
           <Route path="/checkout" component={Checkout}/>
           <Route path="/about" component={AboutUs}/>
+          <Route path="/faq" component={FAQ}/>
           <Route path="/thank-you" component={ThankYou}/> 
           <Route path="/wallet" component={Wallet} exact={true} /> 
           <Route path="/wishlist" component={Wishlist} />

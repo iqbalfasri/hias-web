@@ -62,13 +62,17 @@ class Header extends Component {
             </Link>
           </div>
           <div className="mr--1">
-            <button className="btn btn--transparent"><strong>About Us</strong></button>
+            <Link to="/about" className="btn btn--transparent">
+              <strong>About Us</strong>
+            </Link>
           </div>
         </div>
         <div className="fx align-items-center">
           <div className="header-top-icon">
             <div className="header-top-icon--image">
-              <img src={require('../../assets/img/Wishlist.svg')} alt=""/>
+            <Link to="/wishlist">
+            <img src={require('../../assets/img/Wishlist.svg')} alt=""/>
+            </Link>
             </div>
           </div>
           <div className="header-top-icon">
@@ -274,19 +278,13 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Lighting</span></Link>
+                              <Link to="/products/living"><span>Table & desk lamp</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Cushion</span></Link>
+                              <Link to="/products/living"><span>Floor lamp</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Insert</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Carpet</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Mat</span></Link>
+                              <Link to="/products/living"><span>Pendant lamp</span></Link>
                             </div>
                           </div>
                         </div>
@@ -546,7 +544,7 @@ class Header extends Component {
                         </div>
                       </div>
                     </li>
-                    <li className="menu-header-border has-sub hs--right-edge">
+                    {/* <li className="menu-header-border has-sub hs--right-edge">
                       <Link to="/">HIAS Business Unit</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
@@ -586,7 +584,7 @@ class Header extends Component {
                           </div>
                         </div>
                       </div>
-                    </li>
+                    </li> */}
                     <li className="menu-header-border has-sub hs--right-edge">
                       <Link to="/">What's on</Link>
                       <div className="sub-menu-container">

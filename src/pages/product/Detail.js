@@ -133,7 +133,7 @@ class Detail extends Component {
                 onClick={this.executeOnClick}
                 expanded={false}
             >
-                Di dalam ruang makan, pastinya tidak hanya sajian favorit yang kamu tata rapi untuk menggugah selera, tapi furniturnya juga tidak kalah penting untuk menambah suasana nyaman. Cecile Chair mengusung desain mid-century, namun materialnya mengikuti konsep urban sehingga cocok untuk melengkapi gaya hidup minimalis kaum urban. Kursi ini kokoh karena dilengkapi empat kaki bermaterial plywood. Walau begitu, kenyamananya tetap terjaga selama berjam-jam karena dudukannya yang terbuat dari busa. Busa tersebut dilapisi kulit sehingga mudah dibersihkan. Pastikan Cecile Chair menjadi pilihan pertama untuk mengisi ruang makanmu.
+                <p>{ product.overview }</p>
             </ShowMoreText>
           </div>
         )

@@ -73,7 +73,7 @@ class Cart extends Component {
           <tr key={`${cart.idItems}-${index}`}>
             <th scope="row">
               <div className="table-product-image-wrapper align-items-center">
-                <div style={{ cursor: 'pointer' }} onClick={() => this.onRemoveCart(index, cart.idProduct)}>
+                <div style={{ cursor: 'pointer' }} onClick={() => this.onRemoveCart(index, cart.productId)}>
                   X
                 </div>
                 <div className="table-product-image">

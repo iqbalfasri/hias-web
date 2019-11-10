@@ -26,7 +26,7 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Get to Know Us</h3>
                 <ul>
-                  <li><Link to="/">About Us</Link></li>
+                  <li><Link to="/about">About Us</Link></li>
                   <li><Link to="/">Contact Us</Link></li>
                   <li><Link to="/">Policies</Link></li>
                   <li><Link to="/">Carreers</Link></li>
