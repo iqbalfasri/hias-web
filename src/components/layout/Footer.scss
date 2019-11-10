@@ -18,14 +18,22 @@ footer {
   }
 
   li {
+    margin-top: 5px;
     a {
       color: $mainTextColor;
+      font-weight: 600;
     }
   }
 }
 
 .footer-link-title {
   margin-bottom: 1.5em;
+}
+
+.footer-default-link {
+  color: blue !important;
+  font-size: 12px !important;
+  margin-left: 20px;
 }
 
 .footer-download {

@@ -167,11 +167,11 @@ class Home extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="sch--text">
-                          <h3><i>New Collection</i></h3>
-                          <h2>Chairs &amp; Stools</h2>
+                        <div className="sch--text-1">
+                          <h2><i>New Collection</i></h2>
+                          <h1>Chairs &amp; Stools</h1>
                           <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
+                            Lorem, ipsum dolor sit amet consectetur <br/>Voluptates harum ill facilis nam
                           </p>
                         </div>
                       </div>              
@@ -182,7 +182,6 @@ class Home extends Component {
                           <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F1.png?alt=media&token=764c675a-a72d-4cb2-b1ed-c40528263369" alt=""/>
                         </div>
                         <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F2.png?alt=media&token=3638831f-166b-40c4-931d-05a14a1637ba" alt=""/>
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
@@ -194,28 +193,28 @@ class Home extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="fx-2 slide-container-home">
+                        <div className="fx-1 slide-container-home">
                           <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F3.png?alt=media&token=fd667c13-54f4-45ad-b316-be5a29d68ac0" alt=""/>
                         </div>
-                        <div className="sch--text">
-                          <h3 className="text--color-orange">IDR 130.000</h3>
-                          <h2>Simple Fiber Chair</h2>
+                        <div className="sch--text-2">
+                        <h2><i>IDR 399.000</i></h2>
+                          <h1>Simple Fiber <br/>Chair.</h1>
                           <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
+                            Lorem, ipsum dolor sit amet consectetur.<br/> Voluptates harum illo facilis nam quisquam
                           </p>
                           <div>
-                            <ColorSelector />
+                          <ColorSelector />
                           </div>
                         </div>
                       </div>              
                     </div>
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
-                        <div className="fx-1 slide-container-home">
+                        <div className="fx-2 slide-container-home">
                           <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F1.png?alt=media&token=5784d4ce-c8e2-4691-b5d8-05b667718a13" alt=""/>
                         </div>
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F2.png?alt=media&token=0008c412-d415-49ca-8e62-f5e942d09a4b" alt=""/>
+                        <div className="fx-2 slide-container-home">
+                          <img className="img-cover" src={require('../../src/assets/img/bed-banner.png')} alt=""/>
                           <div className="slide-hero-cta">
                             <div className="shc">
                               <div>
@@ -227,14 +226,11 @@ class Home extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F2.png?alt=media&token=0008c412-d415-49ca-8e62-f5e942d09a4b" alt=""/>
-                        </div>
-                        <div className="sch--text" style={{ padding: '2em' }}>
-                          <h3 className="text--color-orange">SALE OFF</h3>
-                          <h2>Clasy Bedroom Stuff</h2>
+                        <div className="sch--text-3">
+                          <h2><i>SALE OFF</i></h2>
+                          <h1>Classy Bedroom<br/>Stuff</h1>
                           <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum illo, facilis nam quisquam laborum qui cupiditate nulla commodi ab libero id recusandae exercitationem. Placeat facilis nesciunt maiores omnis est!
+                            Lorem, ipsum dolor sit amet consectetur.<br/> Voluptates harum illo facilis nam quisquam
                           </p>
                         </div>
                       </div>              
@@ -287,7 +283,7 @@ class Home extends Component {
           <section className="section-page section-bg-gray">
             <div className="container">
               <div className="row">
-                <div className="col-md-5 bg--gray">
+                <div className="col-md-5 bg--gray vertical-align">
                   <div className="newletter-section">
                     <div>
                       <p className="mb--0"><strong>Special Offer</strong></p>
@@ -357,18 +353,18 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          <section className="section-page section-bg-dark">
+          <section className="section-page section-bg-dark download-section">
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-8">
+                <div className="col-md-6">
                   <div className="text--center">
                     <div className="text--size-2 mb--1">Download <strong>Hias House</strong> Apps</div>
                     <div>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
                     </div>
                   </div>
-                  <div className="fx justify-content-center">
-                    <div className="home-app-store-img" style={{ marginRight: '5px' }}>
+                  <div className="fx justify-content-around button-margin">
+                    <div className="home-app-store-img">
                       <img src={require('../assets/img/Download-Android.png')} alt=""/>
                     </div>
                     <div className="home-app-store-img" style={{ marginLeft: '5px' }}>

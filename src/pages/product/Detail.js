@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 import StarRatings from 'react-star-ratings'
+import ShowMoreText from 'react-show-more-text'
 
 import ProductCard from '../../components/card/Product'
 import ColorSelector from '../../components/ColorSelector'
@@ -20,7 +21,8 @@ class Detail extends Component {
       activeDetailTab: 1,
       addToCartClicked: false,
       product: null,
-      wishListItems: []
+      wishListItems: [],
+      showAll: false
     }
   }
 
@@ -117,19 +119,110 @@ class Detail extends Component {
       case 1:
         return (
           <div>
-            <p>{ product.overview }</p>
+            {/* <p>{ product.overview }</p> */}
+            {/* <ReadMoreReact text={""}
+              min={300}
+              ideal={300}
+              max={300}
+              readMoreText="read more"/> */}
+            <ShowMoreText
+                lines={8}
+                more='Show more'
+                less='Show less'
+                anchorClass=''
+                onClick={this.executeOnClick}
+                expanded={false}
+            >
+                <p>{ product.overview }</p>
+            </ShowMoreText>
           </div>
         )
       case 2:
         return (
           <div>
-            <p>{ product.descriptiom }</p>
+            {/* <p>{ product.descriptiom }</p> */}
+            <div className="row">
+              <div className="col-md-5">
+                <p>
+                  <b>SKU</b>
+                </p>
+                <p>
+                  <b>Ukuran</b>
+                </p>
+                <p>
+                  <b>Material</b>
+                </p>
+                <p>
+                  <b>Material Dudukan</b>
+                </p>
+                <p>
+                  <b>Gaya</b>
+                </p>
+                <p>
+                  <b>Cara Perawatan</b>
+                </p>
+              </div>
+              <div className="col-md-1">
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+                <p>
+                  <b>:</b>
+                </p>
+              </div>
+              <div className="col-md-6">
+                <p>
+                  <b>P046264</b>
+                </p>
+                <p>
+                46cm x 53cm x 46cm
+                </p>
+                <p>
+                Plywood
+                </p>
+                <p>
+                Busa
+                </p>
+                <p>
+                Urban Elegan
+                </p>
+                <p>
+                Bersihkan dengan lap kering untuk bagian kayu, dan lap basah untuk bagian kulit.
+                </p>
+              </div>
+            </div>
           </div>
         )
       case 3:
         return (
-          <div>
-            <p>{ product.courier }</p>
+          <div className="row">
+            <div className="col-md-4">
+            <div className="img-detail-thumbnail">
+              <img src={require('../../assets/img/jne.jpg')} alt=""/>
+            </div>
+            </div>
+            <div className="col-md-4">
+            <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/jnt.png')} alt=""/>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/dhl.png')} alt=""/>
+              </div>
+            </div>
           </div>
         )
       default:
@@ -179,9 +272,6 @@ class Detail extends Component {
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                        </div>
-                        <div>
-                          <ColorSelector />
                         </div>
                       </div>
                     </div>
@@ -234,6 +324,47 @@ class Detail extends Component {
                         { this.renderTabContent() }
                       </div>
                     </div>
+                    <div className="product-detail-variant">
+                      <h3>Other Variant</h3>
+                      <div className="row">
+                        <div className="col-md-4">
+                          <div className="img-detail-thumbnail">
+                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          </div>
+                          <p>4 Seated</p>
+                        </div>
+                        <div className="col-md-4">
+                          <div className="img-detail-thumbnail">
+                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          </div>
+                          <p>3 Seated</p>
+                        </div>
+                        <div className="col-md-4">
+                          <div className="img-detail-thumbnail">
+                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                          </div>
+                          <p>2 Seated</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <dov className="col-md-6">
+                      <div className="product-detail-variant">
+                        <h3>Color Options</h3>
+                        <div>
+                          <ColorSelector />
+                        </div>
+                      </div>
+                    </dov>
+                    <dov className="col-md-6">
+                      <div className="product-detail-variant">
+                        <h3>Tone Options</h3>
+                        <div>
+                          <ColorSelector />
+                        </div>
+                      </div>
+                    </dov>
                   </div>
                 </div>
               </div>
