@@ -74,7 +74,7 @@ class Checkout extends Component {
     })
     .then((res) => {
       getUserAddress(localStorage.getItem('userId'))
-      .then((res) => {
+      .then((res) => { 
         this.setState({
           userAddress: res.data[0]
         })
@@ -153,7 +153,7 @@ class Checkout extends Component {
             <div className="col-4">
               <div className="checkout-image-container">
                 <div className="checkout-image">
-                <img src={c.thumbnail} alt=""/>
+                <img style={{maxHeight: 70, minWidth:70}} src={c.thumbnail} alt=""/>
                 </div>
                 <div>
                   { c.name }

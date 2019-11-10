@@ -73,7 +73,7 @@ class Cart extends Component {
           <tr key={`${cart.idItems}-${index}`}>
             <th scope="row">
               <div className="table-product-image-wrapper align-items-center">
-                <div style={{ cursor: 'pointer' }} onClick={() => this.onRemoveCart(index, cart.idProduct)}>
+                <div style={{ cursor: 'pointer' }} onClick={() => this.onRemoveCart(index, cart.productId)}>
                   X
                 </div>
                 <div className="table-product-image">
@@ -159,21 +159,21 @@ class Cart extends Component {
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div style={{marginRight:"3em"}}>
                       <div className="fx justify-content-between">
-                        <h2 className="mr--1">Subtotal</h2>
-                        <h2>IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h2>
+                        <h3 className="mr--1">Subtotal</h3>
+                        <h3>IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h3>
                       </div>
                       <div className="fx justify-content-between">
-                        <h2 className="mr--1">Shipping</h2>
-                        <h2>Free</h2>
+                        <h3 className="mr--1">Shipping</h3>
+                        <h3>Free</h3>
                       </div>
                     </div>
                   </div>
                   <div className="total-card-cart-wrapper">
                     <div className="total-card-cart">
                       <div>
-                        <h2>Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h2>
+                        <h3>Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}</h3>
                       </div>
                       <div>
                         <button onClick={() => this.onCheckout()} className="btn btn--blue btn--full">Proceed to Checkout</button>
