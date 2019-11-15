@@ -327,44 +327,38 @@ class Detail extends Component {
                     <div className="product-detail-variant">
                       <h3>Other Variant</h3>
                       <div className="row">
-                        <div className="col-md-4">
-                          <div className="img-detail-thumbnail">
-                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
-                          </div>
-                          <p>4 Seated</p>
-                        </div>
-                        <div className="col-md-4">
-                          <div className="img-detail-thumbnail">
-                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
-                          </div>
-                          <p>3 Seated</p>
-                        </div>
-                        <div className="col-md-4">
-                          <div className="img-detail-thumbnail">
-                            <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
-                          </div>
-                          <p>2 Seated</p>
-                        </div>
+                        { this.state.product !== null ? (
+                          this.state.product.variant.map((p, index) => {
+                            return (
+                              <div className="col-md-4" key={`variant-${index}`}>
+                                <div className="img-detail-thumbnail">
+                                  <img src={p.thumbnail ? p.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
+                                </div>
+                                <p>{ p.productName }</p>
+                              </div>
+                            )
+                          })
+                        ) : null }
                       </div>
                     </div>
                   </div>
                   <div className="row">
-                    <dov className="col-md-6">
+                    <div className="col-md-6">
                       <div className="product-detail-variant">
                         <h3>Color Options</h3>
                         <div>
                           <ColorSelector />
                         </div>
                       </div>
-                    </dov>
-                    <dov className="col-md-6">
+                    </div>
+                    <div className="col-md-6">
                       <div className="product-detail-variant">
                         <h3>Tone Options</h3>
                         <div>
                           <ColorSelector />
                         </div>
                       </div>
-                    </dov>
+                    </div>
                   </div>
                 </div>
               </div>
