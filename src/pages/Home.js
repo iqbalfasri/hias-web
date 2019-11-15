@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Swiper from 'react-id-swiper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
 
 import ProductCard from '../components/card/Product'
 import InputText from '../components/form/InputText'
@@ -36,6 +36,17 @@ const swiperHome = {
   },
   slidesPerGroup: 1,
   slidesPerView: 1,
+  loop: true
+}
+
+const swiperInspiration = {
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true
+  },
+  slidesPerGroup: 4,
+  slidesPerView: 4,
   loop: true
 }
 
@@ -123,6 +134,28 @@ class Home extends Component {
                     </div>
                   </div>
                 </div>
+              </div>
+            )
+          }) }
+        </Swiper>
+      )
+    }
+  }
+
+  renderInspiration() {
+    const bestProducts = this.props.context.bestProducts
+    if (bestProducts.length !== 0) {
+      return (
+        <Swiper {...swiperInspiration}>
+          { bestProducts.map((product, index) => {
+            return (
+              <div className="text--center" key={product.id}>
+                  {/* <img src='https://via.placeholder.com/600x600' alt="" /> */}
+                  <img style={{maxWidth:"80%", display:"inline"}} src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
+                  <div className="inspiration-title">
+                    <p className="mb--0">Inspiration by: Hias Team</p>
+                    Lorem Ipsum Dolor Sit Amet.
+                  </div>
               </div>
             )
           }) }
@@ -280,36 +313,23 @@ class Home extends Component {
               </div>
             </div>
           </section>
-          <section className="section-page section-bg-gray">
+          <section className="section-page">
             <div className="container">
-              <div className="row">
-                <div className="col-md-5 bg--gray vertical-align">
-                  <div className="newletter-section">
-                    <div>
-                      <p className="mb--0"><strong>Special Offer</strong></p>
-                      <h2>Subscribe Newsletter</h2>
-                    </div>
-                    <div className="line-divider"></div>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium, in dolor neque facere dolores mollitia repellat quis, quam, minus officia enim ad facilis sint. Omnis, autem magni?
-                    </p>
-                    <div className="mt--2">
-                      <div className="form--group">
-                        <InputText type="text" className="form--input" placeholder="Enter email address" />
-                      </div>
-                      <div className="form--group">
-                        <Checkbox id="check" text="I agree the terms and conditions from HIAS house." textStyle={{ color: '#fff' }} />
-                      </div>
-                      <div className="form--group">
-                        <button className="btn btn--full btn--blue">Next Step</button>
-                      </div>
-                    </div>
+              <div className="row align-items-center mb--2">
+                <div className="col">
+                  <div>
+                    <h1 className="section-title mb--0"><span className="text--color-blue">HIAS HOUSE</span> Inspiration</h1>
                   </div>
                 </div>
-                <div className="col-md-7 pl--0">
-                  <div>
-                    <img src={require('../assets/img/Banner-SignIn.png')} alt=""/>
+                <div className="col">
+                  <div className="text--right">
+                    <Link className="text--size-12" to="/">View All</Link>
                   </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  { this.renderInspiration() }
                 </div>
               </div>
             </div>
@@ -317,11 +337,16 @@ class Home extends Component {
           <div className="section-page">
             <div className="container">
               <div className="row align-items-center">
-                <div className="col-md-4">
+                <div className="col-md-6">
+                  <div>
+                    <img src={require('../assets/img/0-percent.jpg')} alt=""/>
+                  </div>
+                </div>
+                <div className="col-md-6">
                   <div className="newletter-section">
                     <div>
-                      <p className="mb--0"><strong>News</strong></p>
-                      <h2>Beatiful Living</h2>
+                      <p className="mb--0"><strong>Eksklusif dari HIAS HOUSE</strong></p>
+                      <h2>Metode Pembayaran dengan <span style={{color:"orange"}}>Cicilan 0%</span></h2>
                     </div>
                     <div className="line-divider ld--blue"></div>
                     <p>
@@ -329,25 +354,9 @@ class Home extends Component {
                     </p>
                     <div className="mt--2">                      
                       <div className="form--group">
-                        <button className="btn btn--full btn--blue">Explore All Articles</button>
+                        <button className="btn btn--full btn--blue">Learn More</button>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div>
-                    <img src={require('../assets/img/Banner-Newsletter.png')} alt=""/>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="newletter-section">
-                    <div>
-                      <h2>Living room and lighting ideas that will inspire you this year</h2>
-                    </div>
-                    <div className="line-divider ld--blue"></div>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium, in dolor neque facere dolores mollitia repellat quis, quam, minus officia enim ad facilis sint. Omnis, autem magni?
-                    </p>
                   </div>
                 </div>
               </div>

@@ -514,7 +514,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="menu-header-border has-sub hs--right-edge">
-                      <Link to="/">Inspiration</Link>
+                      <Link to="/" >Inspiration</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -528,7 +528,7 @@ class Header extends Component {
                               <img src={require('../../assets/img/image-1.png')} alt=""/>
                             </div>
                             <div>
-                              <p>Inspiration &amp; Ideas</p>
+                            <Link to="/inspiration" className="btn btn--transparent">Inspiration &amp; Ideas</Link>
                               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                           </div>

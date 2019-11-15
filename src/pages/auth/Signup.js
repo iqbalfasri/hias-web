@@ -104,7 +104,6 @@ class Signup extends Component {
                 <div className="col-md-5">
                   <div className="mb--2">
                     <div className="img--center logo">
-                      <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
                     </div>
                   </div>
                   <div>
@@ -128,7 +127,10 @@ class Signup extends Component {
                         <input type="password" className="form--input" placeholder="re-type your password" />
                       </div>
                       <div className="form--group">
-                        <Checkbox text="I agree the terms and conditions from HIAS house." />
+                        <div className="row" style={{marginLeft:5}}>
+                          <Checkbox />
+                          <span style={{marginLeft:5}}>I agree the <Link>terms and conditions</Link> from HIAS house.</span>
+                        </div>
                       </div>
                       <div className="form--group">
                         <button type="submit" className="btn btn--full btn--blue">{ this.state.isSigningUp ? 'Creating Account' : 'Next Step' }</button>
