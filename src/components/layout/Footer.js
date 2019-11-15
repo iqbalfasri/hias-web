@@ -13,34 +13,39 @@ class Footer extends Component {
           <div className="row">
             <div className="col-md-3">
               <div className="footer-link">
-                <h3 className="footer-link-title">Helpful Links</h3>
+                <div className="footer-logo">
+                  <Link to="/">
+                    <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
+                  </Link>
+                </div>
                 <ul>
+                  <li><Link to="/">Tentang Kami</Link></li>
+                  <li><Link to="/">Inspiration & Ideas</Link></li>
+                  <li><Link to="/">Katalog</Link></li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="footer-link">
+                <h3 className="footer-link-title">Kontak Kami</h3>
+                <ul>
+                  <li><Link to="/about">Whatsapp<br/><span className="footer-sub-link">+62 0859 7893 2728</span></Link></li>
+                  <li><Link to="/">Telephone<br/><span className="footer-sub-link">(021) 8923 777</span></Link></li>
+                  <li><Link to="/">Email<br/><span className="footer-sub-link">halo@hias.com</span></Link></li>
+                  <li><Link to="/">Hari & Jam Kerja<br/><span className="footer-sub-link">Senin - Minggu / 10:00 - 18:00</span></Link></li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="footer-link">
+                <h3 className="footer-link-title">Layanan Pelanggan</h3>
+                <ul>
+                  <li><Link to="/">Hubungi Kami</Link></li>
                   <li><Link to="/">FAQ</Link></li>
-                  <li><Link to="/">Interior Designers</Link></li>
-                  <li><Link to="/">Wholesalers / Importers</Link></li>
-                  <li><Link to="/">Artisans</Link></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="footer-link">
-                <h3 className="footer-link-title">Get to Know Us</h3>
-                <ul>
-                  <li><Link to="/about">About Us</Link></li>
-                  <li><Link to="/">Contact Us</Link></li>
-                  <li><Link to="/">Policies</Link></li>
-                  <li><Link to="/">Carreers</Link></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="footer-link">
-                <h3 className="footer-link-title">Store Locator</h3>
-                <ul>
-                  <li><Link to="/">📍Fanda’s Senopati</Link></li>
-                  <li><Link to="/">📍Pondok Indah</Link></li>
-                  <li><Link to="/">📍Kelapa Gading</Link></li>
-                  <li><Link to="/"><div className="footer-default-link">See More Locations</div></Link></li>
+                  <li><Link to="/">Kebijakan & Privasi</Link></li>
+                  <li><Link to="/">Syarat & Ketentuan</Link></li>
+                  <li><Link to="/">Kebijakan Pengiriman</Link></li>
+                  <li><Link to="/">Kebijakan Pengembalian</Link></li>
                 </ul>
               </div>
             </div>

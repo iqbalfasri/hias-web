@@ -5,6 +5,11 @@ footer {
   padding-top: 1em;
 }
 
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 2em;
+}
+
 .footer-link-container {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -24,6 +29,11 @@ footer {
       font-weight: 600;
     }
   }
+}
+
+.footer-sub-link {
+  font-size: 14px !important;
+  color: $grayColor !important;
 }
 
 .footer-link-title {
