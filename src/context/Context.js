@@ -14,7 +14,9 @@ export const Context = createContext(
       user: null,
       setUser: () => {},
       isLoading: false,
-      setIsLoading: () => {}
+      setIsLoading: () => {},
+      isModalPromo: false,
+      setIsModalPromo: () => {}
     }
   }
 )

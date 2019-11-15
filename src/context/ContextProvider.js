@@ -17,7 +17,9 @@ export default class ContextProvider extends Component {
       user: null,
       setUser: this.setUser,
       isLoading: false,
-      setIsLoading: this.setIsLoading
+      setIsLoading: this.setIsLoading,
+      isModalPromo: false,
+      setIsModalPromo: this.setIsModalPromo
     }
   }
 
@@ -43,6 +45,10 @@ export default class ContextProvider extends Component {
 
   setIsLoading = (isLoading) => {
     this.setState({ isLoading })
+  }
+
+  setIsModalPromo = (isModalPromo) => {
+    this.setState({ isModalPromo })
   }
 
   render () {

@@ -4,6 +4,14 @@
   padding: 3em 3em;
 }
 
+.promo-section {
+  padding: 0 2em;
+}
+
+.news-section {
+  padding: 0 0;
+}
+
 .product-card {
   overflow: hidden;
   margin-bottom: 1.5em;
@@ -87,6 +95,38 @@
   padding: 10px;
   background-color: rgba($color: $mainColor, $alpha: .7);
   min-width: 85%;
+}
+
+.inspiration-slide-with-number {
+  position: relative;
+}
+
+.inspiration-slide-with-number-wrapper {
+  display: none;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.inspiration-number {
+  background-color: $mainColor;
+  padding: 10px;
+  margin-right: 10px;
+  color: #fff;
+  font-weight: 900;
+}
+
+.inspiration-title {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #000 !important;
+  padding: 10px 10px 0 10px;
+  max-width: 85%;
+  p {
+    font-size: 12px;
+    font-weight: normal;
+  }
 }
 
 .slide-product-active {
