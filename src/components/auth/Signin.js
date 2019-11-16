@@ -26,33 +26,34 @@ class Signin extends Component {
       this.setState({
         logging: true
       })
+
       const { username, password } = this.state
 
       if (!username || !password) {
         alert('Fill the field')
-      } else {
-        const response = await axios
-          .post(`${process.env.REACT_APP_BASE_URL}/authenticate/login`, { username, password })
+      }
+      const response = await axios
+        .post(`${process.env.REACT_APP_BASE_URL}/authenticate/login`, { username, password })
 
-        const { data } = response
-        if (data.success) {
-          this.props.context.setUser(data.data)
-          localStorage.setItem('token', data.data.login.token)
-          localStorage.setItem('userId', data.data.login.user.id)
-          window.location.href = '/'
-        }
+      const { data } = response
 
-        // if email and password doesn't match
-        if (data.error.errorCode == 500) {
-          this.setState({
-            showModal: true
-          })
-        }
+      if (data.success) {
+        this.props.context.setUser(data.data)
+        localStorage.setItem('token', data.data.login.token)
+        localStorage.setItem('userId', data.data.login.user.id)
+        window.location.href = '/'
+      }
 
+      // if email and password doesn't match
+      if (data.error.errorCode == 500) {
         this.setState({
-          logging: false
+          showModal: true
         })
       }
+
+      this.setState({
+        logging: false
+      })
     } catch (error) {
       console.log(error)
     }
