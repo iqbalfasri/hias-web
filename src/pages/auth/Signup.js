@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 
+import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
 class Signup extends Component {
@@ -16,47 +17,58 @@ class Signup extends Component {
       username: '',
       password: '',
       phone: '',
-      isSigningUp: false
+      isSigningUp: false,
+      showModal: false,
+      checkBoxChecked: false
     }
   }
 
-  onSignUp (e) {
+  async onSignUp(e) {
     e.preventDefault()
-    this.setState({
-      isSigningUp: true
-    })
-    const {
-      name,
-      email,
-      phone,
-      password
-    } = this.state
+    try {
+      this.setState({
+        isSigningUp: true
+      })
 
+      const {
+        name,
+        email,
+        phone,
+        password
+      } = this.state;
 
-    if (!phone || !password || !email || !name) {
-      alert('Fill the field')
-    } else {
-      return axios
-        .post('https://afternoon-coast-09606.herokuapp.com/register', {
+      if (!phone || !password || !email || !name) {
+        alert('Fill the field')
+      }
+      const response = await axios
+        .post(`${process.env.REACT_APP_BASE_URL}/register`, {
           name,
           email,
           username: name,
           password: password,
-          telp : phone
+          telp: phone
+        });
+
+      const { data } = response
+
+      if (data.success) {
+        localStorage.setItem('token', data.data.register.token)
+        localStorage.setItem('userId', data.data.register.user.id)
+        window.location.href = '/thank-you'
+      }
+
+      // if email is exist
+      if (data.error.errorCode == 500) {
+        this.setState({
+          showModal: true
         })
-        .then((res) => {
-          localStorage.setItem('token', res.data.data.register.token)
-          localStorage.setItem('userId', res.data.data.register.user.id)
-          window.location.href = '/thank-you'
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => {
-          this.setState({
-            isSigningUp: false
-          })
-        })
+      }
+
+      this.setState({
+        isSigningUp: false
+      })
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -128,12 +140,16 @@ class Signup extends Component {
                       </div>
                       <div className="form--group">
                         <div className="row" style={{marginLeft:5}}>
-                          <Checkbox />
+                          <Checkbox
+                            onChange={() => {
+                              this.setState({ checkBoxChecked: !this.state.checkBoxChecked })
+                            }}
+                            isChecked={this.state.checkBoxChecked} />
                           <span style={{marginLeft:5}}>I agree the <Link>terms and conditions</Link> from HIAS house.</span>
                         </div>
                       </div>
                       <div className="form--group">
-                        <button type="submit" className="btn btn--full btn--blue">{ this.state.isSigningUp ? 'Creating Account' : 'Next Step' }</button>
+                        <button disabled={!this.state.checkBoxChecked} type="submit" className="btn btn--full btn--blue">{ this.state.isSigningUp ? 'Creating Account' : 'Next Step' }</button>
                       </div>
                     </form>
                   </div>
@@ -166,6 +182,9 @@ class Signup extends Component {
             </div>
           </section>
         </div>
+        <Modal onCloseModal={() => this.setState({ showModal: false })} isOpen={this.state.showModal}>
+          <h3 style={{ textAlign: 'center', color: "#DD4B39" }}>Username or Email already exist.</h3>
+        </Modal>
       </div>
     )
   }
