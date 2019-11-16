@@ -4,11 +4,11 @@ import './CheckBox.scss'
 
 class Checkbox extends Component {
   render() {
-    const { text, id, name } = this.props
+    const { text, id, name, isChecked, onChange } = this.props
     return (
       <div className="fx align-items-center">
         <div className="checkbox-input-wrapper">
-          <input type="checkbox" id={id} name={name} className="form--checkbox" />
+          <input onChange={onChange} checked={isChecked} type="checkbox" id={id} name={name} className="form--checkbox" />
           <div className="form--checkbox-fake"></div>
         </div>
         <div>
