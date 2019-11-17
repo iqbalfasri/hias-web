@@ -37,19 +37,11 @@ class Signup extends Component {
         password
       } = this.state;
 
-<<<<<<< HEAD
-    if (!phone || !password || !email || !name) {
-      alert('Fill the field')
-    } else {
-      return axios
-        .post('https://api-core-hias.herokuapp/register', {
-=======
       if (!phone || !password || !email || !name) {
         alert('Fill the field')
       }
       const response = await axios
         .post(`${process.env.REACT_APP_BASE_URL}/register`, {
->>>>>>> 96dc13c8e646ed5bbc65e2ad22b95f658d9b5631
           name,
           email,
           username: name,
