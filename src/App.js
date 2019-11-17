@@ -18,6 +18,9 @@ import Wishlist from './pages/Wishlist'
 import NotFound from './pages/NotFound'
 import AboutUs from "./pages/Articles/AboutUs"
 import FAQ from './pages/Articles/FAQ'
+import Promo from './pages/Articles/Promo'
+import Event from './pages/Articles/Event'
+import News from './pages/Articles/News'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -82,6 +85,9 @@ class App extends Component {
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route path="/products/:category" component={Category} exact={true} />
           <Route path="/products/:category/:subCategory" component={SubCategory} />
+          <Route path="/promo" component={Promo} />
+          <Route path="/news" component={News} />
+          <Route path="/event" component={Event} />
           <Route component={NotFound}/>
         </Switch>
         <Footer />

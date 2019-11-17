@@ -598,16 +598,13 @@ class Header extends Component {
                         </div>
                         <div className="sub-menu-content">
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <span className="mr--2">Promo</span>
-                            <span className="text--size-12">3 new events</span>
+                            <Link to="/promo"><span className="mr--2">Promo</span></Link>
                           </div>
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <span className="mr--2">Berita</span>
-                            <span className="text--size-12">3 new events</span>
+                            <Link to='/news'><span className="mr--2">Berita</span></Link>
                           </div>
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <span className="mr--2">Acara</span>
-                            <span className="text--size-12">3 new events</span>
+                            <Link to='/event'><span className="mr--2">Acara</span></Link>
                           </div>
                         </div>
                       </div>
