@@ -1,84 +1,91 @@
-import React, { Component } from 'react'
-import { Helmet } from 'react-helmet'
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 
-// import '../../assets/scss/inspiration.scss'
+import "./About.scss";
 
 class AboutUs extends Component {
-
-  render () {
+  render() {
     return (
-      <div>
-      <Helmet key={Math.random()}>
-        <title>Inspiration</title>
-        <meta property="og:title" content="Hias Homepage" />
-        <meta name="description" content="Hias" />
-        <meta name="robots" content="index, nofollow" />
-      </Helmet>
-      <div className="content">
-        <div className="section-page">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8">
-                <div>
-                  <h1>About <span style={{color:"#46C5E2"}}>Hias House</span></h1>
-                  <p style={{color:"#8b8b8b", marginBottom:20}} className="mb--0">Lorem ipsum dolor sit amet consectetur.</p>
-                  <p style={{textAlign:"justify"}}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, rerum? Consectetur, commodi labore? Sint corrupti dignissimos dolore optio vero minima accusantium nostrum nam, quia esse, quos ipsa autem fugiat quaerat.
-                  </p>
-                  <img style={{marginTop: "0,5em", marginBottom: "1em"}} src={require('../../assets/img/Banner-Newsletter.png')} alt=""/>
-                  <h2 style={{marginBottom:20}}><i>"Lorem ipsum dolor sit amet consectetur adipisicing elit."</i></h2>
-                  <div className="row" style={{textAlign:"justify"}}>
-                    <div className="col-md-6">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, rerum? Consectetur, commodi labore? Sint corrupti dignissimos dolore optio vero minima accusantium nostrum nam, quia esse, quos ipsa autem fugiat quaerat.
-                      </p>
-                    </div>
-                    <div className="col-md-6">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, rerum? Consectetur, commodi labore? Sint corrupti dignissimos dolore optio vero minima accusantium nostrum nam, quia esse, quos ipsa autem fugiat quaerat.
-                      </p>
-                    </div>
-                  </div>
+      <>
+        <Helmet key={Math.random()}>
+          <title>Inspiration</title>
+          <meta property="og:title" content="Hias Homepage" />
+          <meta name="description" content="Hias" />
+          <meta name="robots" content="index, nofollow" />
+        </Helmet>
+
+        <>
+          <div className="about-header">
+            <h1>Tentang Hias House</h1>
+          </div>
+
+          <div className="about-content">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-4 about-sidebar">
+                  <ul>
+                    <li>
+                      <h3 style={{ color: "#4ec5e0" }}>Tentang Kami</h3>
+                    </li>
+                    <li>
+                      <h3>Ide dan Inspirasi</h3>
+                    </li>
+                    <li>
+                      <h3>Catalog</h3>
+                    </li>
+                    <li>
+                      <h3>Hubungi Kami</h3>
+                    </li>
+                    <li>
+                      <h3>FAQ</h3>
+                    </li>
+                    <li>
+                      <h3>Kebijakan &amp; Privasi</h3>
+                    </li>
+                    <li>
+                      <h3>Syarat &amp; Ketentuan</h3>
+                    </li>
+                    <li>
+                      <h3>Kebijakan Pengiriman</h3>
+                    </li>
+                    <li>
+                      <h3>Kebijakan Pengiriman</h3>
+                    </li>
+                    <li>
+                      <h3>Kebijakan Pengembalian</h3>
+                    </li>
+                    <li>
+                      <h3>Lokasi Kami</h3>
+                    </li>
+                  </ul>
                 </div>
-                <div className="divider"></div>
-              </div>
-              <div className="col-md-4">
-                <div>
-                  <div className="mb--1" style={{marginBottom:30}}>
-                    <div className="fx fx-no-wrap">
-                      <div>
-                        <div className="inspiration-number">
-                          01
-                        </div>
-                      </div>
-                      <div className="ml--1">
-                        <h1>Vision</h1>
-                        <p className="mb--0">Lorem ipsum dolor sit amet consectetur.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mb--1">
-                    <div className="fx fx-no-wrap">
-                      <div>
-                        <div className="inspiration-number">
-                          02
-                        </div>
-                      </div>
-                      <div className="ml--1">
-                        <h1>Mission</h1>
-                        <p className="mb--0">Lorem ipsum dolor sit amet consectetur</p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="col-md-8">
+                  <p>
+                    Hias House menyediakan berbagai pilihan furniture, dekorasi,
+                    dan perlengkapan rumah dengan mengedepankan konsep Modern
+                    dan Stylish yang cocok untuk keluarga masa kini yang dinamis
+                    dan modern juga generasi muda yang trendi dan semua kalangan
+                    urban.
+                    <br />
+                    <br />
+                    Kami ingin membantu Anda mewujudkan rumah impian yang
+                    estetik dan dapat menjadikan kami sebagai teman stylist
+                    anda. Hias House menyediakan varian produk furnitur yang
+                    unik, dekorasi dan perlengkapan rumah yang telah melewati
+                    proses kurasi dari Home Stylist profesional. Kami
+                    menyelaraskan warna, gaya dan desain untuk menciptakan
+                    harmonisasi ruang dan kenyamanan Anda. HIAS House membagi
+                    kategori produk menjadi 5 departemen yaitu living, bedroom,
+                    bathroom, dining dan kitchen.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>  
-    )
+        </>
+      </>
+    );
   }
 }
 
-export default AboutUs
+export default AboutUs;

@@ -1,0 +1,32 @@
+.about-header {
+  background: #f7f7f7;
+  min-height: 100px;
+
+  margin-bottom: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    color: #444;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+
+.about-content {
+  padding: 20px;
+  p {
+    padding-inline-start: 20px;
+    line-height: 24px;
+  }
+}
+
+.about-sidebar {
+  ul {
+    list-style: none;
+  }
+
+  border-right: 1px solid #ddd;
+}
