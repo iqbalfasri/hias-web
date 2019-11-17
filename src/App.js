@@ -53,7 +53,15 @@ class App extends Component {
   }
 
   render () {
-    const { isModalSigninPopupOpen, setIsModalSigninPopupOpen, isLoading, isModalPromo } = this.props.context
+    const {
+      isModalSigninPopupOpen,
+      setIsModalSigninPopupOpen,
+      isModalSignupPopupOpen,
+      setIsModalSignupPopupOpen,
+      isLoading,
+      isModalPromo
+    } = this.props.context
+
     return (
       <div className="App">
         <Header/>
@@ -65,11 +73,11 @@ class App extends Component {
           <Route path="/checkout" component={Checkout}/>
           <Route path="/about" component={AboutUs}/>
           <Route path="/faq" component={FAQ}/>
-          <Route path="/thank-you" component={ThankYou}/> 
-          <Route path="/wallet" component={Wallet} exact={true} /> 
+          <Route path="/thank-you" component={ThankYou}/>
+          <Route path="/wallet" component={Wallet} exact={true} />
           <Route path="/wishlist" component={Wishlist} />
           <Route path="/inspiration" component={Inspiration} />
-          <Route path="/wallet/dashboard" component={DashboardWallet}/>          
+          <Route path="/wallet/dashboard" component={DashboardWallet}/>
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route path="/products/:category" component={Category} exact={true} />
@@ -78,7 +86,12 @@ class App extends Component {
         </Switch>
         <Footer />
         <Modal isOpen={isModalSigninPopupOpen} onCloseModal={() => setIsModalSigninPopupOpen(false)}>
-          <Signin />
+          <div style={{ padding: '3em' }}>
+            <Signin />
+          </div>
+        </Modal>
+        <Modal isOpen={isModalSignupPopupOpen} onCloseModal={() => setIsModalSignupPopupOpen(false)}>
+          <Signup />
         </Modal>
         <Modal isOpen={isLoading}>
           <h1 className="text--center mb--0">
@@ -136,7 +149,7 @@ class App extends Component {
                 <div>
                   <img src={require('./assets/img/Banner-Newsletter.png')} alt=""/>
                 </div>
-                <div className="mt--2">                      
+                <div className="mt--2">
                   <div className="form--group">
                     <button className="btn btn--full btn--blue">Shop Now</button>
                   </div>
@@ -152,7 +165,7 @@ class App extends Component {
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium.
               </p>
-              <div className="mt--2 mb--2">                      
+              <div className="mt--2 mb--2">
                 <div className="form--group">
                   <button className="btn btn--full btn--blue">Explore All Articles</button>
                 </div>
