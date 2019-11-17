@@ -104,9 +104,9 @@ class Home extends Component {
       return hotProducts.map((product) => {
         return (
           <div className="col-md-3" key={`product-${product.productId}`}>
-            {/* <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
+            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
             {/* <ProductCard thumbnail='https://via.placeholder.com/600x600' loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
-            <ProductCard thumbnail={require('../../src/assets/img/TES-ITEM-4.jpg')} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
+            {/* <ProductCard thumbnail={require('../../src/assets/img/TES-ITEM-4.jpg')} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
           </div>
         )
       })
@@ -172,62 +172,13 @@ class Home extends Component {
                       </div>
                     </div>
                     <div className="slide-wrapper-home">
-                      <div className="fx slide-container-hero">
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F1.png?alt=media&token=764c675a-a72d-4cb2-b1ed-c40528263369" alt=""/>
-                        </div>
-                        <div className="fx-1 slide-container-home">
-                          <div className="slide-hero-cta">
-                            <div className="shc">
-                              <div>
-                                ADD TO CART
-                              </div>
-                              <div>
-                                <span><FontAwesomeIcon icon={faArrowRight} /></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%202%2F3.png?alt=media&token=fd667c13-54f4-45ad-b316-be5a29d68ac0" alt=""/>
-                        </div>
-                        <div className="sch--text-2">
-                        <h2><i>IDR 399.000</i></h2>
-                          <h1>Simple Fiber <br/>Chair.</h1>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur.<br/> Voluptates harum illo facilis nam quisquam
-                          </p>
-                          <div>
-                          <ColorSelector />
-                          </div>
-                        </div>
+                      <div className="fx slide-container-home">
+                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
                       </div>
                     </div>
                     <div className="slide-wrapper-home">
-                      <div className="fx slide-container-hero">
-                        <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%203%2F1.png?alt=media&token=5784d4ce-c8e2-4691-b5d8-05b667718a13" alt=""/>
-                        </div>
-                        <div className="fx-2 slide-container-home">
-                          <img className="img-cover" src={require('../../src/assets/img/bed-banner.png')} alt=""/>
-                          <div className="slide-hero-cta">
-                            <div className="shc">
-                              <div>
-                                EXPLORE ALL
-                              </div>
-                              <div>
-                                <span><FontAwesomeIcon icon={faArrowRight} /></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="sch--text-3">
-                          <h2><i>SALE OFF</i></h2>
-                          <h1>Classy Bedroom<br/>Stuff</h1>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur.<br/> Voluptates harum illo facilis nam quisquam
-                          </p>
-                        </div>
+                      <div className="fx slide-container-home">
+                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
                       </div>
                     </div>
                   </Swiper>

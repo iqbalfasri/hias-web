@@ -193,23 +193,7 @@ class Category extends Component {
                 <div className="col-md-9">
                   <div className="row">
                     <div className="col">
-                      <div className="mb--2">
-                        <div className="cat-product-hero">
-                          <img src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt=""/>
-                          <div className="cat-product-hero-text">
-                            <div>
-                              <h3 className="text--color-orange">SPECIAL FOR YOU</h3>
-                              <h1>Living Collection 2019</h1>
-                              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                            <div>
-                              <div className="fx">
-                                <button className="btn btn--blue text--size-12"><span className="mr--1">SEE COLLECTION</span><span><FontAwesomeIcon icon={faArrowRight} /></span></button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <h3 className="text--size-12">Menampilkan 10 Produk untuk Sofa</h3>
                     </div>
                   </div>
                   <div className="row">
