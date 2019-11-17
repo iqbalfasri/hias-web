@@ -125,11 +125,11 @@ class Header extends Component {
           <div className="mr--1 align-items-center">
             <button className="btn btn--transparent text--size-12" onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}>Masuk</button>
           </div>
-          <div>
-            <Link to="/signup">
-              <button className="btn btn--primary"><span>Daftar</span></button>
-            </Link>
-          </div>
+            <div>
+              <button className="btn btn--primary" onClick={() => this.props.context.setIsModalSignupPopupOpen(true)}>
+                <span>Daftar</span>
+              </button>
+            </div>
         </div>
         <div className="fx fx align-items-center">
           <div className="header-top-icon">
@@ -255,7 +255,7 @@ class Header extends Component {
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/living"><span>Flower</span></Link>
-                            </div>  
+                            </div>
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
@@ -618,7 +618,7 @@ class Header extends Component {
           </div>
         </div>
       </header>
-    )    
+    )
   }
 }
 

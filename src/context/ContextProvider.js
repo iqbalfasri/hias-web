@@ -12,6 +12,8 @@ export default class ContextProvider extends Component {
       setHotProducts: this.setHotProducts,
       isModalSigninPopupOpen: false,
       setIsModalSigninPopupOpen: this.setIsModalSigninPopupOpen,
+      isModalSignupPopupOpen: false,
+      setIsModalSignupPopupOpen: this.setIsModalSignupPopupOpen,
       wishList: [],
       setWishList: this.setWishList,
       user: null,
@@ -33,6 +35,10 @@ export default class ContextProvider extends Component {
 
   setIsModalSigninPopupOpen = (value) => {
     this.setState({ isModalSigninPopupOpen: value })
+  }
+
+  setIsModalSignupPopupOpen = (value) => {
+    this.setState({ isModalSignupPopupOpen: value })
   }
 
   setWishList = (wishList) => {
