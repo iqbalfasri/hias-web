@@ -31,6 +31,7 @@ class Header extends Component {
   onLogout () {
     localStorage.removeItem('userId')
     localStorage.removeItem('token')
+    localStorage.removeItem('promo')
     window.location.href = '/'
   }
 
