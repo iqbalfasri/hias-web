@@ -1,6 +1,6 @@
 .swiper-pagination {
   position: relative;
-  margin-top: 2.5em;
+  margin-top: 2em;
 }
 
 .swiper-container {
@@ -23,9 +23,10 @@
 }
 
 .slide-container-home {
-  max-height: 400px;
-  min-height: 400px;
+  max-height: 420px;
+  min-height: 420px;
   position: relative;
+  overflow: hidden;
 }
 
 .slide-hero-cta {

@@ -76,11 +76,13 @@ class Signin extends Component {
   render () {
     return (
       <div>
-        <div className="mb--2">
+        <div className="mb--1">
           <div className="logo img--center">
             <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
           </div>
         </div>
+        <h3 className="text--center">Silahkan Masuk ke Akun Anda</h3>
+        <p className="text--size-10 text--center">Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran<br/> dengan data pribadi Anda</p>
         <form onSubmit={(e) => this.onLogin(e)}>
           <div className="form--group">
             <InputText onChange={(e) => this.onChangeUsername(e)} value={this.state.username} type="text" placeholder="Alamat Email" />
@@ -99,20 +101,20 @@ class Signin extends Component {
             </div>
           </div>
           <div className="form--group mt--2">
-            <button type="submit" className="btn btn--full btn--blue">{ this.state.logging ? 'Logging in ...' : 'Log in' }</button>
+            <button type="submit" className="btn btn--full btn--blue">{ this.state.logging ? 'Mohon Tunggu ...' : 'Masuk' }</button>
           </div>
         </form>
         <div className="divider-with-text mt--2 mb--2">
-          <span className="text--size-14">Atau</span>
+          <span className="text--size-12">Atau</span>
         </div>
         <div className="mt--2 mb--2">
-          <p className="text--center">Masuk Dengan</p>
+          <h3 className="text--center text--size-12">Masuk Dengan</h3>
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
-              <img width="50px" src={require('../../assets/img/fb.png')} alt=""/>
+              <img width="30px" src={require('../../assets/img/fb.png')} alt=""/>
             </div>
             <div className="ml--1">
-              <img width="50px" src={require('../../assets/img/gmail.png')} alt=""/>
+              <img width="30px" src={require('../../assets/img/gmail.png')} alt=""/>
             </div>
           </div>
         </div>

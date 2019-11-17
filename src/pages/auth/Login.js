@@ -16,15 +16,6 @@ class Login extends Component {
         <div className="content">
           <section className="section-page">
             <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-md-6">
-                  <div className="mb--2">
-                    <div className="img--center">
-                      <img src="https://via.placeholder.com/100x50" alt=""/>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className="row align-items-center">
                 <div className="col-md-8">
                   <div>
@@ -32,9 +23,6 @@ class Login extends Component {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <div>
-                    <h1 className="text--center">SIGN IN</h1>
-                  </div>
                   <Signin />
                 </div>
               </div>
