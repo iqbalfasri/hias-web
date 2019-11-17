@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 import './Footer.scss'
 
@@ -11,11 +11,11 @@ class Footer extends Component {
       <footer>
         <div className="container footer-link-container">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-3" style={{maxWidth:"20%"}}>
               <div className="footer-link">
                 <div className="footer-logo">
                   <Link to="/">
-                    <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
+                    <img src={require('../../assets/img/footer-logo-08.png')} alt=""/>
                   </Link>
                 </div>
                 <ul>
@@ -25,7 +25,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3" style={{maxWidth:"20%"}}>
               <div className="footer-link">
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
@@ -36,7 +36,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3" style={{maxWidth:"20%"}}>
               <div className="footer-link">
                 <h3 className="footer-link-title">Layanan Pelanggan</h3>
                 <ul>
@@ -65,15 +65,46 @@ class Footer extends Component {
                 </div>
               </div>
             </div> */}
-            <div className="col-md-3">
+            {/* <div className="col-md-3">
               <div className="footer-link">
-                <h3 className="footer-link-title">Subscribe Newsletter</h3>
+                <h3 className="footer-link-title">Langganan Berita</h3>
                 <div>
                   <div className="form--group">
-                    <input type="text" placeholder="Your email address" className="form--input" />
+                    <input type="text" placeholder="Alamat Email" className="form--input" />
                   </div>
                   <div>
-                    <button className="btn btn--full btn--blue">Subscribe</button>
+                    <button className="btn btn--full btn--blue">Langganan</button>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+            <div className="col-md-3" style={{minWidth:"40%"}}>
+              <div className="footer-link">
+                <h3 className="footer-link-title">Lokasi Kami</h3>
+                <div className="row">
+                  <div className="col-md-4">
+                    <div>
+                      <ul>
+                        <li><Link to="/">Jakarta<br/><span className="footer-sub-link">Fanda’s Senopati 66 lt. 3 SCBD</span></Link></li>
+                        <li><Link to="/">Jakarta<br/><span className="footer-sub-link">Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167</span></Link></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div>
+                      <ul>
+                        <li><Link to="/">Jakarta<br/><span className="footer-sub-link">Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A</span></Link></li>
+                        <li><Link to="/">Tangerang<br/><span className="footer-sub-link">Supermall Karawaci UG Floor JL. Boulevard Diponegoro 105 Karawaci</span></Link></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div>
+                      <ul>
+                        <li><Link to="/">Bogor<br/><span className="footer-sub-link">Botani Square LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
+                        <li><Link to="/">Bali<br/><span className="footer-sub-link">Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</span></Link></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -86,7 +117,7 @@ class Footer extends Component {
               <div className="col-md-6">
                 <div className="fx align-items-center">
                   <div className="mr--1">
-                    <p className="mb--0 text--color-gray text--size-14">DOWNLOAD HIAS HOUSE APP</p>
+                    <p className="mb--0 text--size-14">Unduh Aplikasi HIAS House</p>
                   </div>
                   <div className="fx">
                     <span className="mr--1 app-store-icon"><img src={require('../../assets/img/Download-Android.png')} alt=""/></span>
@@ -96,9 +127,10 @@ class Footer extends Component {
               </div>
               <div className="col-md-6">
                 <div className="footer-download-icon fx justify-content-end">
-                  <div><FontAwesomeIcon icon={faFacebookF} color="#fff" /></div>
-                  <div><FontAwesomeIcon icon={faTwitter} color="#fff" /></div>
-                  <div><FontAwesomeIcon icon={faInstagram} color="#fff" /></div>
+                  <p className="mr--1 mb--0 text--size-14">Social Media Kami</p>
+                  <div className="mb--1"><FontAwesomeIcon icon={faFacebookF} color="#fff" /></div>
+                  <div className="mb--1"><FontAwesomeIcon icon={faInstagram} color="#fff" /></div>
+                  <div className="mb--1"><FontAwesomeIcon icon={faYoutube} color="#fff" /></div>
                 </div>
               </div>
             </div>
@@ -108,7 +140,7 @@ class Footer extends Component {
           <div className="row">
             <div className="col">
               <div className="pt--1 pb--1">
-                <div className="text--size-12 text--center text--color-gray">&copy;2019 PT Hias House Indonesia . Terms and Conditions . Privacy</div>
+                <div className="text--size-12 text--center text--color-white">&copy;2019 PT Hias Ritel Indonesia</div>
               </div>
             </div>
           </div>

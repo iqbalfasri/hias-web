@@ -91,7 +91,7 @@ class ProductCard extends Component {
                 { this.renderLovedIcon() }
               </div>
               <Link to={`/products/detail/${id}`}>
-                <p className="text--color-orange mb--0"><strong>IDR{ formatMoneyWithoutSymbol(price) }</strong></p>
+                <p className="text--color-orange mb--0"><strong>IDR { formatMoneyWithoutSymbol(price) }</strong></p>
               </Link>
             </div>
           </div>

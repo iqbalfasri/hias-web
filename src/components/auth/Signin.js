@@ -83,18 +83,18 @@ class Signin extends Component {
         </div>
         <form onSubmit={(e) => this.onLogin(e)}>
           <div className="form--group">
-            <InputText onChange={(e) => this.onChangeUsername(e)} value={this.state.username} type="text" placeholder="Email Address" />
+            <InputText onChange={(e) => this.onChangeUsername(e)} value={this.state.username} type="text" placeholder="Alamat Email" />
           </div>
           <div className="form--group">
-            <InputText onChange={(e) => this.onChangePassword(e)} value={this.state.password} type="password" placeholder="Password" />
+            <InputText onChange={(e) => this.onChangePassword(e)} value={this.state.password} type="password" placeholder="Kata Sandi" />
           </div>
           <div className="form--group">
             <div className="fx justify-content-between">
               <div>
-                <Checkbox text="Keep me Logged in" name="logged" id="keepLogged" />
+                <Checkbox text="Ingat Saya" name="logged" id="keepLogged" />
               </div>
               <div>
-                <span className="text--size-12 text--color-gray">Forgot Password?</span>
+                <span className="text--size-12 text--color-gray">Lupa Password?</span>
               </div>
             </div>
           </div>
@@ -103,10 +103,10 @@ class Signin extends Component {
           </div>
         </form>
         <div className="divider-with-text mt--2 mb--2">
-          <span className="text--size-14">or</span>
+          <span className="text--size-14">Atau</span>
         </div>
         <div className="mt--2 mb--2">
-          <p className="text--center">Sign in with</p>
+          <p className="text--center">Masuk Dengan</p>
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
               <img width="50px" src={require('../../assets/img/fb.png')} alt=""/>
@@ -119,10 +119,10 @@ class Signin extends Component {
         <div className="mt--2">
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
-              <p className="mb--0 text--color-gray">Not have an Account?</p>
+              <p className="mb--0 text--color-gray">Belum punya akun?</p>
             </div>
             <div>
-              <Link to="/signup" onClick={() => this.props.setModalPopupSignup({ isSignupModalOpen: false })} className="btn btn--primary">Register</Link>
+              <Link to="/signup" onClick={() => this.props.setModalPopupSignup({ isSignupModalOpen: false })} className="btn btn--primary">Daftar</Link>
             </div>
           </div>
         </div>

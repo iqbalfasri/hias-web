@@ -3,6 +3,8 @@
 footer {
   border-top: 1px solid rgba($color: $grayColor, $alpha: .5);
   padding-top: 1em;
+  background-color: #6d6e70;
+  color: #fff;
 }
 
 .footer-logo {
@@ -25,15 +27,16 @@ footer {
   li {
     margin-top: 5px;
     a {
-      color: $mainTextColor;
+      color: #fff;
       font-weight: 600;
+      font-size: 10px;
     }
   }
 }
 
 .footer-sub-link {
-  font-size: 14px !important;
-  color: $grayColor !important;
+  font-size: 10px !important;
+  color: #dadada !important;
 }
 
 .footer-link-title {
