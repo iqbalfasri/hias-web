@@ -56,7 +56,7 @@ class App extends Component {
     const { isModalSigninPopupOpen, setIsModalSigninPopupOpen, isLoading, isModalPromo } = this.props.context
     return (
       <div className="App">
-        <Header />
+        <Header/>
         <Switch>
           <Route path="/" component={Home} exact={true} />
           <Route path="/login" component={Login}/>

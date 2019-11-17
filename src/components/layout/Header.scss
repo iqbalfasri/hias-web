@@ -1,11 +1,12 @@
 @import '../../assets/scss/global/var';
 
 header {
-  padding: 1em 0;
+  padding: 0 0;
 }
 
 .logo {
-  max-width: 200px;
+  max-width: 150px;
+  margin: 7px 0
 }
 
 .search-input-container {
@@ -43,7 +44,7 @@ header {
     justify-content: space-between;
 
     li {
-      padding: 1em;
+      padding: 0.5em;
       margin: 0 10px;
       width: 100%;
       text-align: center;
@@ -59,6 +60,7 @@ header {
       font-weight: 700;
       color: $mainTextColor;
       white-space: nowrap;
+      font-size: 12px;
     }
   }
 }

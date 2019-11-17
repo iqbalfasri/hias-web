@@ -37,7 +37,7 @@ class Signup extends Component {
       alert('Fill the field')
     } else {
       return axios
-        .post('https://afternoon-coast-09606.herokuapp.com/register', {
+        .post('https://api-core-hias.herokuapp/register', {
           name,
           email,
           username: name,

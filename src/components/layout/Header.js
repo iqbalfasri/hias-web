@@ -55,16 +55,14 @@ class Header extends Component {
   renderTopIcon () {
     return isLogin() ? (
       <div className="fx align-items-center justify-content-end">
-        <div className="fx mr--1">
+        <div className="fx mr--1 align-items-center">
           <div className="mr--1">
             <Link to="/" className="btn btn--transparent">
-              <strong>Home</strong>
+              <span className="text--size-12">Beranda</span>
             </Link>
           </div>
-          <div className="mr--1">
-            <Link to="/about" className="btn btn--transparent">
-              <strong>About Us</strong>
-            </Link>
+          <div>
+            <button className="btn btn--transparent text--size-12">Tentang Kami</button>
           </div>
         </div>
         <div className="fx align-items-center">
@@ -115,21 +113,21 @@ class Header extends Component {
       </div>
     ) : (
       <div className="fx align-items-center justify-content-end">
-        <div className="fx mr--1">
+        <div className="fx mr--1 align-items-center">
           <div className="mr--1">
             <Link to="/" className="btn btn--transparent">
-              <strong>Home</strong>
+              <span className="text--size-12">Beranda</span>
             </Link>
           </div>
           <div className="mr--1">
-            <button className="btn btn--transparent"><strong>About Us</strong></button>
+            <button className="btn btn--transparent text--size-12">Tentang Kami</button>
           </div>
-          <div className="mr--1">
-            <button className="btn btn--transparent" onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}>Log in</button>
+          <div className="mr--1 align-items-center">
+            <button className="btn btn--transparent text--size-12" onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}>Masuk</button>
           </div>
           <div>
             <Link to="/signup">
-              <button className="btn btn--primary">Sign up</button>
+              <button className="btn btn--primary"><span>Daftar</span></button>
             </Link>
           </div>
         </div>
@@ -169,7 +167,7 @@ class Header extends Component {
               <div className="col-md-4">
                 <div className="search-input-container">
                   <form onSubmit={(e) => this.onSearch(e)}>
-                    <input onChange={(e) => this.setState({ keyword: e.target.value })} type="text" className="form--input" placeholder="Search for Products" />
+                    <input onChange={(e) => this.setState({ keyword: e.target.value })} type="text" className="form--input" placeholder="Cari Produk Favorit Anda" />
                     <div className="search-icon">
                       <FontAwesomeIcon icon={faSearch} color="#ccc" />
                     </div>
@@ -189,7 +187,7 @@ class Header extends Component {
                 <nav>
                   <ul>
                     <li className="has-sub">
-                      <Link to="/products/living">Living</Link>
+                      <Link to="/products/living">RUANG TAMU</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -278,7 +276,10 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Table & desk lamp</span></Link>
+                              <Link to="/products/living"><span>Lighting</span></Link>
+                            </div>
+                            <div className="sub-menu-item">
+                              <Link to="/products/living"><span>Table & Desk Lamp</span></Link>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/living"><span>Floor lamp</span></Link>
@@ -291,7 +292,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="has-sub">
-                      <Link to="/bed">Bed</Link>
+                      <Link to="/bed">KAMAR TIDUR</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -351,7 +352,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="has-sub">
-                      <Link to="/bath">Bath</Link>
+                      <Link to="/bath">KAMAR MANDI</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -395,7 +396,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="has-sub">
-                      <Link to="/dining">Dining</Link>
+                      <Link to="/dining">RUANG MAKAN</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -456,7 +457,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="has-sub">
-                      <Link to="/kitchen">Kitchen</Link>
+                      <Link to="/kitchen">PERALATAN DAPUR</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -514,7 +515,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="menu-header-border has-sub hs--right-edge">
-                      <Link to="/" >Inspiration</Link>
+                      <Link to="/">INSPIRASI</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -528,7 +529,7 @@ class Header extends Component {
                               <img src={require('../../assets/img/image-1.png')} alt=""/>
                             </div>
                             <div>
-                            <Link to="/inspiration" className="btn btn--transparent">Inspiration &amp; Ideas</Link>
+                            <p>Inspiration &amp; Ideas</p>
                               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                           </div>
@@ -544,9 +545,9 @@ class Header extends Component {
                         </div>
                       </div>
                     </li>
-                    {/* <li className="menu-header-border has-sub hs--right-edge">
-                      <Link to="/">HIAS Business Unit</Link>
-                      <div className="sub-menu-container">
+                    <li className="menu-header-border has-sub hs--right-edge">
+                      <Link to="#">UNIT BISNIS HIAS</Link>
+                      {/* <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
                             <h3 className="mb--0">HIAS Business Unit</h3>
@@ -583,10 +584,10 @@ class Header extends Component {
                             <span className="text--size-12">Learn More</span>
                           </div>
                         </div>
-                      </div>
-                    </li> */}
+                      </div> */}
+                    </li>
                     <li className="menu-header-border has-sub hs--right-edge">
-                      <Link to="/">What's on</Link>
+                      <Link to="/">BERITA & ACARA</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>

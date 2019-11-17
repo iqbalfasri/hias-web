@@ -104,8 +104,9 @@ class Home extends Component {
       return hotProducts.map((product) => {
         return (
           <div className="col-md-3" key={`product-${product.productId}`}>
-            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
+            {/* <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
             {/* <ProductCard thumbnail='https://via.placeholder.com/600x600' loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
+            <ProductCard thumbnail={require('../../src/assets/img/TES-ITEM-4.jpg')} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
           </div>
         )
       })
@@ -113,13 +114,13 @@ class Home extends Component {
   }
 
   renderBestProduct() {
-    const bestProducts = this.props.context.bestProducts
+    const bestProducts = this.props.context.hotProducts
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...params}>
           { bestProducts.map((product, index) => {
             return (
-              <div key={product.id}>
+              <div key={`product-${product.productId}`}>
                 <div className="product-slide-with-number">
                   <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/>
                   {/* <img src='https://via.placeholder.com/600x600' alt=""/> */}
@@ -153,7 +154,6 @@ class Home extends Component {
                   {/* <img src='https://via.placeholder.com/600x600' alt="" /> */}
                   <img style={{maxWidth:"80%", display:"inline"}} src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
                   <div className="inspiration-title">
-                    <p className="mb--0">Inspiration by: Hias Team</p>
                     Lorem Ipsum Dolor Sit Amet.
                   </div>
               </div>
@@ -177,36 +177,11 @@ class Home extends Component {
           <section>
             <div className="container-fluid">
               <div className="row">
-                <div className="col">
+                <div className="col" style={{paddingRight:0, paddingLeft:0}}>
                   <Swiper {...swiperHome}>
                     <div className="slide-wrapper-home">
-                      <div className="fx slide-container-hero">
-                        <div className="fx-2 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
-                        </div>
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F2.png?alt=media&token=d56a3de3-a8a3-4f59-b7f4-ab11fd5e6461" alt=""/>
-                        </div>
-                        <div className="fx-1 slide-container-home">
-                          <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F3.png?alt=media&token=f8dbb7a7-28f8-412c-a44c-0c628aeffa07" alt=""/>
-                          <div className="slide-hero-cta">
-                            <div className="shc">
-                              <div>
-                                SHOP NOW
-                              </div>
-                              <div>
-                                <span><FontAwesomeIcon icon={faArrowRight} /></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="sch--text-1">
-                          <h2><i>New Collection</i></h2>
-                          <h1>Chairs &amp; Stools</h1>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur <br/>Voluptates harum ill facilis nam
-                          </p>
-                        </div>
+                      <div className="fx slide-container-home">
+                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
                       </div>              
                     </div>                    
                     <div className="slide-wrapper-home">
@@ -278,7 +253,7 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h1 className="section-title mb--0"><span className="text--color-orange">Hot</span> Items</h1>
+                    <h3 className="section-title mb--0">Produk <span className="text--color-orange">Pilihan</span></h3>
                   </div>
                 </div>
                 <div className="col">
@@ -297,7 +272,7 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h1 className="section-title mb--0"><span className="text--color-orange">Best</span> Seller</h1>
+                    <h3 className="section-title mb--0">Produk <span className="text--color-orange">Terlaris</span></h3>
                   </div>
                 </div>
                 <div className="col">
@@ -318,7 +293,7 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h1 className="section-title mb--0"><span className="text--color-blue">HIAS HOUSE</span> Inspiration</h1>
+                    <h3 className="section-title mb--0">Inspirasi <span className="text--color-blue">HIAS House</span></h3>
                   </div>
                 </div>
                 <div className="col">
@@ -362,7 +337,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          <section className="section-page section-bg-dark download-section">
+          {/* <section className="section-page section-bg-dark download-section">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-md-6">
@@ -383,7 +358,7 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     )
