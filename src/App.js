@@ -83,7 +83,7 @@ class App extends Component {
           <Route path="/wallet/dashboard" component={DashboardWallet}/>
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
-          <Route path="/products/:category" component={Category} exact={true} />
+          <Route path="/products/:category" component={Category} exact={false} />
           <Route path="/products/:category/:subCategory" component={SubCategory} />
           <Route path="/promo" component={Promo} />
           <Route path="/news" component={News} />

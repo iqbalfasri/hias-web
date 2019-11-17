@@ -188,7 +188,7 @@ class Header extends Component {
                 <nav>
                   <ul>
                     <li className="has-sub">
-                      <Link to="/products/living">RUANG TAMU</Link>
+                      <Link to="/products/1">RUANG TAMU</Link>
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
@@ -199,22 +199,22 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Furniture</span></Link>
+                              <Link to="/products/1"><span>Furniture</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Sofa</span></Link>
+                              <Link to="/products/1"><span>Sofa</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Sleeper Sofa</span></Link>
+                              <Link to="/products/2"><span>Sleeper Sofa</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Sectional Sofa</span></Link>
+                              <Link to="/products/3"><span>Sectional Sofa</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Chair</span></Link>
+                              <Link to="/products/4"><span>Chair</span></Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Recliner</span></Link>
+                              <Link to="/products/5"><span>Recliner</span></Link>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/living"><span>Table</span></Link>

@@ -42,7 +42,7 @@ class Detail extends Component {
       .catch((err) => {
         console.log(err)
       })
-    
+
     if (isLogin()) {
       fetchWishList(localStorage.getItem('userId'))
         .then((res) => {
