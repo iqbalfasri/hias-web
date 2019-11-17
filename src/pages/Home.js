@@ -114,27 +114,14 @@ class Home extends Component {
   }
 
   renderBestProduct() {
-    const bestProducts = this.props.context.hotProducts
+    const bestProducts = this.props.context.bestProducts
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...params}>
           { bestProducts.map((product, index) => {
             return (
-              <div key={`product-${product.productId}`}>
-                <div className="product-slide-with-number">
-                  <img src={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} alt=""/>
-                  {/* <img src='https://via.placeholder.com/600x600' alt=""/> */}
-                  <div className="product-slide-with-number-wrapper">
-                    <div className="fx fx-no-wrap align-items-center">
-                      <div className="product-number">
-                        { index + 1 }
-                      </div>
-                      <div className="product-title">
-                        { product.productName }
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="product-slide-with-number">
+                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
               </div>
             )
           }) }
@@ -182,8 +169,8 @@ class Home extends Component {
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-home">
                         <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
-                      </div>              
-                    </div>                    
+                      </div>
+                    </div>
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
                         <div className="fx-1 slide-container-home">
@@ -214,7 +201,7 @@ class Home extends Component {
                           <ColorSelector />
                           </div>
                         </div>
-                      </div>              
+                      </div>
                     </div>
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-hero">
@@ -241,7 +228,7 @@ class Home extends Component {
                             Lorem, ipsum dolor sit amet consectetur.<br/> Voluptates harum illo facilis nam quisquam
                           </p>
                         </div>
-                      </div>              
+                      </div>
                     </div>
                   </Swiper>
                 </div>
@@ -327,7 +314,7 @@ class Home extends Component {
                     <p>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium, in dolor neque facere dolores mollitia repellat quis, quam, minus officia enim ad facilis sint. Omnis, autem magni?
                     </p>
-                    <div className="mt--2">                      
+                    <div className="mt--2">
                       <div className="form--group">
                         <button className="btn btn--full btn--blue">Learn More</button>
                       </div>
