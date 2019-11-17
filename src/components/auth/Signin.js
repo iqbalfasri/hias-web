@@ -21,25 +21,6 @@ class Signin extends Component {
 
   async onLogin (e) {
     e.preventDefault()
-<<<<<<< HEAD
-    this.setState({
-      logging: true
-    })
-    const { username, password } = this.state
-    if (!username || !password) {
-      alert('Fill the field')
-    } else {
-      return axios
-        .post('https://api-core-hias.herokuapp.com/authenticate/login', { username, password })
-        .then((res) => {
-          this.props.context.setUser(res.data.data)
-          localStorage.setItem('token', res.data.data.login.token)
-          localStorage.setItem('userId', res.data.data.login.user.id)
-          window.location.href = '/'
-        })
-        .catch((err) => {
-=======
->>>>>>> 96dc13c8e646ed5bbc65e2ad22b95f658d9b5631
 
     try {
       this.setState({
