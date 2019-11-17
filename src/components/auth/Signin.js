@@ -5,6 +5,7 @@ import axios from 'axios'
 import { withContext } from '../../context/withContext'
 import InputText from '../form/InputText'
 import Checkbox from '../form/Checkbox'
+import Modal from '../../components/layout/Modal'
 
 class Signin extends Component {
   constructor(props) {
@@ -13,12 +14,14 @@ class Signin extends Component {
     this.state = {
       username: '',
       password: '',
-      logging: false
+      logging: false,
+      showModal: false
     }
   }
 
-  onLogin (e) {
+  async onLogin (e) {
     e.preventDefault()
+<<<<<<< HEAD
     this.setState({
       logging: true
     })
@@ -35,13 +38,43 @@ class Signin extends Component {
           window.location.href = '/'
         })
         .catch((err) => {
+=======
+>>>>>>> 96dc13c8e646ed5bbc65e2ad22b95f658d9b5631
 
+    try {
+      this.setState({
+        logging: true
+      })
+
+      const { username, password } = this.state
+
+      if (!username || !password) {
+        alert('Fill the field')
+      }
+      const response = await axios
+        .post(`${process.env.REACT_APP_BASE_URL}/authenticate/login`, { username, password })
+
+      const { data } = response
+
+      if (data.success) {
+        this.props.context.setUser(data.data)
+        localStorage.setItem('token', data.data.login.token)
+        localStorage.setItem('userId', data.data.login.user.id)
+        window.location.href = '/'
+      }
+
+      // if email and password doesn't match
+      if (data.error.errorCode == 500) {
+        this.setState({
+          showModal: true
         })
-        .finally(() => {
-          this.setState({
-            logging: false
-          })
-        })
+      }
+
+      this.setState({
+        logging: false
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -112,6 +145,9 @@ class Signin extends Component {
             </div>
           </div>
         </div>
+        <Modal onCloseModal={() => this.setState({ showModal: false })} isOpen={this.state.showModal}>
+          <h3 style={{ textAlign: 'center', color: "#DD4B39" }}>Email and Password doesn't match.</h3>
+        </Modal>
       </div>
     )
   }
