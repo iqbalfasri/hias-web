@@ -10,7 +10,7 @@ import InputText from '../components/form/InputText'
 import Checkbox from '../components/form/Checkbox'
 import ColorSelector from '../components/ColorSelector'
 import { withContext } from '../context/withContext'
-import { fetchBestSellerProduct, fetchHotProduct, fetchWishList } from '../api'
+import { fetchBestSellerProduct, fetchHotProduct, fetchWishList, fetchBanner } from '../api'
 import { isLogin } from '../utils/auth'
 import './Home.scss'
 
@@ -55,11 +55,12 @@ class Home extends Component {
     super(props)
 
     this.state = {
-      wishListItems: []
+      wishListItems: [],
+      banner: []
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetchBestSellerProduct()
       .then((res) => {
         this.props.context.setBestProducts(res.data)
@@ -76,6 +77,18 @@ class Home extends Component {
         console.log(err)
       })
 
+    /*
+  fetchBanner()
+    .then((res) => {
+      this.setState({
+        banner: res.data.banner
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    */
+
     if (isLogin()) {
       fetchWishList(localStorage.getItem('userId'))
         .then((res) => {
@@ -86,7 +99,7 @@ class Home extends Component {
     }
   }
 
-  isProductWishlisted (id) {
+  isProductWishlisted(id) {
     const { wishListItems } = this.state
     let result = false
     for (let i = 0; i < wishListItems.length; i++) {
@@ -98,6 +111,7 @@ class Home extends Component {
     return result
   }
 
+
   renderProduct() {
     const hotProducts = this.props.context.hotProducts
     if (hotProducts.length !== 0) {
@@ -107,7 +121,7 @@ class Home extends Component {
             <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
             {/* <ProductCard thumbnail='https://via.placeholder.com/600x600' loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
             {/* <ProductCard thumbnail={require('../../src/assets/img/TES-ITEM-4.jpg')} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
-          </div>
+          </div >
         )
       })
     }
@@ -118,40 +132,35 @@ class Home extends Component {
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...params}>
-          { bestProducts.map((product, index) => {
-            return (
-              <div className="product-slide-with-number">
-                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
-              </div>
-            )
-          }) }
+
         </Swiper>
       )
     }
   }
 
   renderInspiration() {
-    const bestProducts = this.props.context.bestProducts
+    const bestProducts = this.props.context.bestProducts;
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...swiperInspiration}>
-          { bestProducts.map((product, index) => {
+          {bestProducts.map((product, index) => {
             return (
               <div className="text--center" key={product.id}>
-                  {/* <img src='https://via.placeholder.com/600x600' alt="" /> */}
-                  <img style={{maxWidth:"80%", display:"inline"}} src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
-                  <div className="inspiration-title">
-                    Lorem Ipsum Dolor Sit Amet.
+                {/* <img src='https://via.placeholder.com/600x600' alt="" /> */}
+                <img style={{ maxWidth: "80%", display: "inline" }} src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
+                <div className="inspiration-title">
+                  Lorem Ipsum Dolor Sit Amet.
                   </div>
               </div>
             )
-          }) }
+          })}
         </Swiper>
       )
     }
   }
 
   render() {
+    const { banner } = this.state;
     return (
       <div>
         <Helmet key={Math.random()}>
@@ -164,23 +173,34 @@ class Home extends Component {
           <section>
             <div className="container-fluid">
               <div className="row">
-                <div className="col" style={{paddingRight:0, paddingLeft:0}}>
+                <div className="col" style={{ paddingRight: 0, paddingLeft: 0 }}>
                   <Swiper {...swiperHome}>
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-home">
-                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
+                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
                       </div>
                     </div>
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-home">
-                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
+                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
                       </div>
                     </div>
                     <div className="slide-wrapper-home">
                       <div className="fx slide-container-home">
-                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt=""/>
+                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
                       </div>
                     </div>
+                    {/*banner.length > 0 && banner.map((b, i) => {
+                      return (
+                        <div className="slide-wrapper-home" key={i}>
+                          <div className="fx slide-container-home">
+                            <img className="img--cover" src={b.imgUrl} alt="" />
+                          </div>
+                        </div>
+                      )
+                    })*/}
+
+
                   </Swiper>
                 </div>
               </div>
@@ -201,7 +221,7 @@ class Home extends Component {
                 </div>
               </div>
               <div className="row">
-                { this.renderProduct() }
+                {this.renderProduct()}
               </div>
             </div>
           </section>
@@ -221,7 +241,7 @@ class Home extends Component {
               </div>
               <div className="row">
                 <div className="col">
-                  { this.renderBestProduct() }
+                  {this.renderBestProduct()}
                 </div>
               </div>
             </div>
@@ -242,7 +262,7 @@ class Home extends Component {
               </div>
               <div className="row">
                 <div className="col">
-                  { this.renderInspiration() }
+                  {this.renderInspiration()}
                 </div>
               </div>
             </div>
@@ -252,14 +272,14 @@ class Home extends Component {
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <div>
-                    <img src={require('../assets/img/0-percent.jpg')} alt=""/>
+                    <img src={require('../assets/img/0-percent.jpg')} alt="" />
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="newletter-section">
                     <div>
                       <p className="mb--0"><strong>Eksklusif dari HIAS HOUSE</strong></p>
-                      <h2>Metode Pembayaran dengan <span style={{color:"orange"}}>Cicilan 0%</span></h2>
+                      <h2>Metode Pembayaran dengan <span style={{ color: "orange" }}>Cicilan 0%</span></h2>
                     </div>
                     <div className="line-divider ld--blue"></div>
                     <p>

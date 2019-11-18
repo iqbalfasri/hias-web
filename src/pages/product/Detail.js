@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +9,7 @@ import ShowMoreText from 'react-show-more-text'
 
 import ProductCard from '../../components/card/Product'
 import ColorSelector from '../../components/ColorSelector'
-import { fetchProductById, fetchWishList, addToCart, fetchHotProduct } from '../../api'
+import { fetchProductById, fetchWishList, addToCart, fetchHotProduct, fetchVariantById } from '../../api'
 import { formatMoneyWithoutSymbol } from '../../utils/money'
 import { withContext } from '../../context/withContext'
 import { isLogin } from '../../utils/auth'
@@ -21,6 +22,7 @@ class Detail extends Component {
       activeDetailTab: 1,
       addToCartClicked: false,
       product: null,
+      variant: null,
       wishListItems: [],
       showAll: false
     }
@@ -33,6 +35,15 @@ class Detail extends Component {
         this.setState({
           product: res.data[0]
         })
+      })
+
+    fetchVariantById(id)
+      .then((res) => {
+        if (res.data.length !== 0) {
+          this.setState({
+            variant: res.data
+          })
+        }
       })
 
     fetchHotProduct()
@@ -53,7 +64,7 @@ class Detail extends Component {
     }
   }
 
-  isProductWishlisted (id) {
+  isProductWishlisted(id) {
     const { wishListItems } = this.state
     let result = false
     for (let i = 0; i < wishListItems.length; i++) {
@@ -65,14 +76,18 @@ class Detail extends Component {
     return result
   }
 
-  renderRelatedProduct () {
-    const hotProducts = this.props.context.hotProducts
+  renderRelatedProduct() {
+    const hotProducts = this.props.context.hotProducts;
     const products = []
     if (hotProducts.length !== 0) {
-      for (let i = 0;i < 4;i++) {
+      for (let i = 0; i < 4; i++) {
         products.push((
           <div className="col-md-3" key={`product-${hotProducts[i]}`} key={`related-${i}`}>
-            <ProductCard thumbnail={hotProducts[i].thumbnail ? hotProducts[i].thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(hotProducts[i].id)} id={hotProducts[i].id} title={hotProducts[i].productName} price={hotProducts[i].price} category={hotProducts[i].categoryName} />
+            <ProductCard
+              thumbnail={hotProducts[i].thumbnail ? hotProducts[i].thumbnail : 'https://via.placeholder.com/600x600'}
+              loved={this.isProductWishlisted(hotProducts[i].productId)}
+              id={hotProducts[i].productId} title={hotProducts[i].productName}
+              price={hotProducts[i].price} category={hotProducts[i].categoryName} />
           </div>
         ))
       }
@@ -80,7 +95,7 @@ class Detail extends Component {
     return products
   }
 
-  onClickAddToCart (product) {
+  onClickAddToCart(product) {
     if (isLogin()) {
       addToCart({
         productId: product.id,
@@ -100,22 +115,22 @@ class Detail extends Component {
     }
   }
 
-  renderAddToCartButton () {
+  renderAddToCartButton() {
     const { product } = this.state
     return this.state.addToCartClicked ? (
       <div className="pda--items">
         <button className="btn btn--blue">Added to Cart</button>
       </div>
     ) : (
-      <div className="pda--items">
-        <button className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Add to Cart</button>
-      </div>
-    )
+        <div className="pda--items">
+          <button className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Add to Cart</button>
+        </div>
+      )
   }
 
-  renderTabContent () {
+  renderTabContent() {
     const { activeDetailTab, product } = this.state
-    switch(activeDetailTab) {
+    switch (activeDetailTab) {
       case 1:
         return (
           <div>
@@ -126,14 +141,14 @@ class Detail extends Component {
               max={300}
               readMoreText="read more"/> */}
             <ShowMoreText
-                lines={8}
-                more='Show more'
-                less='Show less'
-                anchorClass=''
-                onClick={this.executeOnClick}
-                expanded={false}
+              lines={8}
+              more='Show more'
+              less='Show less'
+              anchorClass=''
+              onClick={this.executeOnClick}
+              expanded={false}
             >
-                <p>{ product.overview }</p>
+              <p>{product.overview}</p>
             </ShowMoreText>
           </div>
         )
@@ -187,19 +202,19 @@ class Detail extends Component {
                   <b>P046264</b>
                 </p>
                 <p>
-                46cm x 53cm x 46cm
+                  46cm x 53cm x 46cm
                 </p>
                 <p>
-                Plywood
+                  Plywood
                 </p>
                 <p>
-                Busa
+                  Busa
                 </p>
                 <p>
-                Urban Elegan
+                  Urban Elegan
                 </p>
                 <p>
-                Bersihkan dengan lap kering untuk bagian kayu, dan lap basah untuk bagian kulit.
+                  Bersihkan dengan lap kering untuk bagian kayu, dan lap basah untuk bagian kulit.
                 </p>
               </div>
             </div>
@@ -209,18 +224,18 @@ class Detail extends Component {
         return (
           <div className="row">
             <div className="col-md-4">
-            <div className="img-detail-thumbnail">
-              <img src={require('../../assets/img/jne.jpg')} alt=""/>
-            </div>
-            </div>
-            <div className="col-md-4">
-            <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/jnt.png')} alt=""/>
+              <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/jne.jpg')} alt="" />
               </div>
             </div>
             <div className="col-md-4">
               <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/dhl.png')} alt=""/>
+                <img src={require('../../assets/img/jnt.png')} alt="" />
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="img-detail-thumbnail">
+                <img src={require('../../assets/img/dhl.png')} alt="" />
               </div>
             </div>
           </div>
@@ -230,9 +245,10 @@ class Detail extends Component {
     }
   }
 
-  render () {
-    const { product } = this.state
-    const { id } = this.props.match.params
+  render() {
+    const { product } = this.state;
+    console.log(this.state);
+    const { id } = this.props.match.params;
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
@@ -248,29 +264,29 @@ class Detail extends Component {
                 <div className="col-md-8">
                   <div>
                     <div>
-                      <h1>{ product.productName }</h1>
+                      <h1>{product.productName}</h1>
                       <h2 className="text--color-orange">IDR {formatMoneyWithoutSymbol(product.price)} / each</h2>
                     </div>
                     <div>
                       <div className="mb--1">
-                        <img style={{width:'100%'}} src={require('../../assets/img/TES-ITEM-4.jpg')} alt=""/>
+                        <img style={{ width: '100%' }} src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
                         {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                       </div>
                       <div className="fx fx-no-wrap align-items-center">
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt=""/>
+                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt=""/>
+                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt=""/>
+                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt=""/>
+                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                       </div>
@@ -280,19 +296,19 @@ class Detail extends Component {
                 <div className="col-md-4">
                   <div>
                     <div className="product-detail-actions">
-                      { this.isProductWishlisted(id) ? (
+                      {this.isProductWishlisted(id) ? (
                         <div className="pda--items">
                           <span className="text--size-1-5"><FontAwesomeIcon icon={fasHeart} /></span>
                         </div>
                       ) : (
-                        <div className="pda--items">
-                          <span className="text--size-1-5"><FontAwesomeIcon icon={faHeart} /></span>
-                        </div>
-                      ) }
+                          <div className="pda--items">
+                            <span className="text--size-1-5"><FontAwesomeIcon icon={faHeart} /></span>
+                          </div>
+                        )}
                       {/* <div className="pda--items">
                         <button className="btn btn--gray">Add to Registry</button>
                       </div> */}
-                      { this.renderAddToCartButton() }
+                      {this.renderAddToCartButton()}
                     </div>
                     <div className="rating-container">
                       <div className="mr--1">
@@ -321,24 +337,26 @@ class Detail extends Component {
                         </div>
                       </div>
                       <div className="pdt--tab-content">
-                        { this.renderTabContent() }
+                        {this.renderTabContent()}
                       </div>
                     </div>
                     <div className="product-detail-variant">
                       <h3>Other Variant</h3>
                       <div className="row">
-                        { this.state.product !== null ? (
-                          this.state.product.variant.map((p, index) => {
+                        {this.state.variant !== null ? (
+                          this.state.variant.map((p, index) => {
                             return (
-                              <div className="col-md-4" key={`variant-${index}`}>
-                                <div className="img-detail-thumbnail">
-                                  <img src={p.thumbnail ? p.thumbnail : 'https://via.placeholder.com/1400x700'} alt=""/>
-                                </div>
-                                <p>{ p.productName }</p>
+                              <div className="col-md-4 variant-item" key={`variant-${index}`} onClick={() => { { window.location.reload() } }}>
+                                <Link to={`/products/detail/${p.id}`}>
+                                  <div className="img-detail-thumbnail">
+                                    <img src={p.thumbnail ? p.thumbnail : 'https://via.placeholder.com/1400x700'} alt="" />
+                                  </div>
+                                  <p>{p.productName.substring(p.productName.length - 8, p.productName.length)}</p>
+                                </Link>
                               </div>
                             )
                           })
-                        ) : null }
+                        ) : "Tidak ditemukan"}
                       </div>
                     </div>
                   </div>
@@ -351,14 +369,14 @@ class Detail extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
+                    {/*                   <div className="col-md-6">
                       <div className="product-detail-variant">
                         <h3>Tone Options</h3>
                         <div>
                           <ColorSelector />
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -374,11 +392,11 @@ class Detail extends Component {
                 </div>
               </div>
               <div className="row">
-                { this.renderRelatedProduct() }
+                {this.renderRelatedProduct()}
               </div>
             </div>
           </section>
-          <section className="section-page">
+          {/* <section className="section-page">
             <div className="container">
               <div className="row align-items-center mb--2">
                 <div className="col">
@@ -465,11 +483,12 @@ class Detail extends Component {
                         </div>
                       </div>
                     </div>
+            
                   </div>
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     ) : null
