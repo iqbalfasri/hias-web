@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom'
 import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
+import { registUserToCart } from '../../api'
+
 class Signup extends Component {
   constructor (props) {
     super(props)
@@ -24,8 +26,8 @@ class Signup extends Component {
   }
 
   async onSignUp(e) {
-    e.preventDefault()
     try {
+      e.preventDefault()
       this.setState({
         isSigningUp: true
       })
@@ -40,6 +42,7 @@ class Signup extends Component {
       if (!phone || !password || !email || !name) {
         alert('Fill the field')
       }
+
       const response = await axios
         .post(`${process.env.REACT_APP_BASE_URL}/register`, {
           name,
@@ -49,12 +52,20 @@ class Signup extends Component {
           telp: phone
         });
 
-      const { data } = response
+      const { data } = await response;
+
+      localStorage.setItem('token', data.data.register.token)
+      localStorage.setItem('userId', data.data.register.user.id)
 
       if (data.success) {
-        localStorage.setItem('token', data.data.register.token)
-        localStorage.setItem('userId', data.data.register.user.id)
-        window.location.href = '/thank-you'
+        registUserToCart(localStorage.getItem('userId'))
+          .then(res => {
+            if (res.success) {
+              window.location.href = '/thank-you'
+            }
+          }).catch(error => {
+            console.error(error)
+          })
       }
 
       // if email is exist

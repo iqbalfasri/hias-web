@@ -83,7 +83,7 @@ class Detail extends Component {
   onClickAddToCart (product) {
     if (isLogin()) {
       addToCart({
-        productId: product.id,
+        productId: product.productId,
         cartId: localStorage.getItem('userId'),
         amount: 1
       })
