@@ -120,8 +120,8 @@ class Home extends Component {
         <Swiper {...params}>
           { bestProducts.map((product, index) => {
             return (
-              <div className="product-slide-with-number">
-                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
+              <div key={index} className="product-slide-with-number">
+                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId || product.id} title={product.productName} price={product.price} category={product.categoryName} />
               </div>
             )
           }) }

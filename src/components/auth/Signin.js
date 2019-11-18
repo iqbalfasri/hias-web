@@ -1,95 +1,115 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-import { withContext } from '../../context/withContext'
-import InputText from '../form/InputText'
-import Checkbox from '../form/Checkbox'
-import Modal from '../../components/layout/Modal'
+import { withContext } from "../../context/withContext";
+import InputText from "../form/InputText";
+import Checkbox from "../form/Checkbox";
+import Modal from "../../components/layout/Modal";
 
 class Signin extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       logging: false,
       showModal: false
-    }
+    };
   }
 
-  async onLogin (e) {
-    e.preventDefault()
+  async onLogin(e) {
+    e.preventDefault();
 
     try {
       this.setState({
         logging: true
-      })
+      });
 
-      const { username, password } = this.state
+      const { username, password } = this.state;
 
       if (!username || !password) {
-        alert('Fill the field')
+        alert("Fill the field");
       } else {
-        const response = await axios
-        .post(`${process.env.REACT_APP_BASE_URL}/authenticate/login`, { username, password })
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/authenticate/login`,
+          { username, password },
+          { headers: { "Content-Type": "application/json" } }
+        );
 
-        const { data } = response
+        const { data } = response;
 
         if (data.success) {
-          this.props.context.setUser(data.data)
-          localStorage.setItem('token', data.data.login.token)
-          localStorage.setItem('userId', data.data.login.user.id)
-          window.location.href = '/'
+          this.props.context.setUser(data.data);
+          localStorage.setItem("token", data.data.login.token);
+          localStorage.setItem("userId", data.data.login.user.id);
+          window.location.href = "/";
         }
 
         // if email and password doesn't match
         if (data.error.errorCode == 500) {
           this.setState({
             showModal: true
-          })
+          });
         }
       }
 
       this.setState({
         logging: false
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  onChangeUsername (e) {
-    const username = e.target.value
+  onChangeUsername(e) {
+    const username = e.target.value;
     this.setState({
       username
-    })
+    });
   }
 
-  onChangePassword (e) {
-    const password = e.target.value
+  onChangePassword(e) {
+    const password = e.target.value;
     this.setState({
       password
-    })
+    });
   }
 
-  render () {
+  render() {
+    console.log(this.state.username, this.state.password)
     return (
       <div>
         <div className="mb--1">
           <div className="logo img--center">
-            <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
+            <img
+              src={require("../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png")}
+              alt=""
+            />
           </div>
         </div>
         <h3 className="text--center">Silahkan Masuk ke Akun Anda</h3>
-        <p className="text--size-10 text--center">Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran<br/> dengan data pribadi Anda</p>
-        <form onSubmit={(e) => this.onLogin(e)}>
+        <p className="text--size-10 text--center">
+          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran
+          <br /> dengan data pribadi Anda
+        </p>
+        <form onSubmit={e => this.onLogin(e)}>
           <div className="form--group">
-            <InputText onChange={(e) => this.onChangeUsername(e)} value={this.state.username} type="text" placeholder="Alamat Email" />
+            <InputText
+              onChange={e => this.onChangeUsername(e)}
+              value={this.state.username}
+              type="text"
+              placeholder="Alamat Email"
+            />
           </div>
           <div className="form--group">
-            <InputText onChange={(e) => this.onChangePassword(e)} value={this.state.password} type="password" placeholder="Kata Sandi" />
+            <InputText
+              onChange={e => this.onChangePassword(e)}
+              value={this.state.password}
+              type="password"
+              placeholder="Kata Sandi"
+            />
           </div>
           <div className="form--group">
             <div className="fx justify-content-between">
@@ -97,12 +117,16 @@ class Signin extends Component {
                 <Checkbox text="Ingat Saya" name="logged" id="keepLogged" />
               </div>
               <div>
-                <span className="text--size-12 text--color-gray">Lupa Password?</span>
+                <span className="text--size-12 text--color-gray">
+                  Lupa Password?
+                </span>
               </div>
             </div>
           </div>
           <div className="form--group mt--2">
-            <button type="submit" className="btn btn--full btn--blue">{ this.state.logging ? 'Mohon Tunggu ...' : 'Masuk' }</button>
+            <button type="submit" className="btn btn--full btn--blue">
+              {this.state.logging ? "Mohon Tunggu ..." : "Masuk"}
+            </button>
           </div>
         </form>
         <div className="divider-with-text mt--2 mb--2">
@@ -112,10 +136,18 @@ class Signin extends Component {
           <h3 className="text--center text--size-12">Masuk Dengan</h3>
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
-              <img width="30px" src={require('../../assets/img/fb.png')} alt=""/>
+              <img
+                width="30px"
+                src={require("../../assets/img/fb.png")}
+                alt=""
+              />
             </div>
             <div className="ml--1">
-              <img width="30px" src={require('../../assets/img/gmail.png')} alt=""/>
+              <img
+                width="30px"
+                src={require("../../assets/img/gmail.png")}
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -125,16 +157,29 @@ class Signin extends Component {
               <p className="mb--0 text--color-gray">Belum punya akun?</p>
             </div>
             <div>
-              <Link to="/signup" onClick={() => this.props.setModalPopupSignup({ isSignupModalOpen: false })} className="btn btn--primary">Daftar</Link>
+              <Link
+                to="/signup"
+                onClick={() =>
+                  this.props.setModalPopupSignup({ isSignupModalOpen: false })
+                }
+                className="btn btn--primary"
+              >
+                Daftar
+              </Link>
             </div>
           </div>
         </div>
-        <Modal onCloseModal={() => this.setState({ showModal: false })} isOpen={this.state.showModal}>
-          <h3 style={{ textAlign: 'center', color: "#DD4B39" }}>Email and Password doesn't match.</h3>
+        <Modal
+          onCloseModal={() => this.setState({ showModal: false })}
+          isOpen={this.state.showModal}
+        >
+          <h3 style={{ textAlign: "center", color: "#DD4B39" }}>
+            Email and Password doesn't match.
+          </h3>
         </Modal>
       </div>
-    )
+    );
   }
 }
 
-export default withContext(Signin)
+export default withContext(Signin);

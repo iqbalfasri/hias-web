@@ -66,7 +66,7 @@ class ProductCard extends Component {
     return (
       <div className="product-wish-list" onClick={() => this.addToWishList(id)}>
         <span className="text--size-1-5"><FontAwesomeIcon icon={loved || isLoved ? fasHeart : faHeart} /></span>
-      </div> 
+      </div>
     )
   }
 
