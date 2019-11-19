@@ -12,7 +12,31 @@ class Header extends Component {
     super(props)
 
     this.state = {
-      keyword: ''
+      keyword: '',
+      isSticky: false
+    }
+
+    this.handleSticky = this.handleSticky.bind(this)
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleSticky);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleSticky);
+  }
+
+  handleSticky() {
+    if (window.scrollY > 0) {
+      this.setState({
+        isSticky: true
+      })
+      console.log('Scroll udah lebih dari 100')
+    } else if (window.scrollY === 0) {
+      this.setState({
+        isSticky: false
+      })
     }
   }
 
@@ -154,7 +178,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="sticky-header">
+      <header className={this.state.isSticky ? 'sticky-header' : null}>
         <div className="container-fluid">
           <div className="top-header">
             <div className="row align-items-center">
