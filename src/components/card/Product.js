@@ -76,7 +76,7 @@ class ProductCard extends Component {
       <div className="product-card" onClick={() => { { window.location.reload() } }}>
         <Link to={`/products/detail/${id}`}>
           <div className="product-card-image">
-            <img src={thumbnail} alt="" />
+            <img style={{ objectFit: 'contain' }} src={thumbnail} alt={title} />
           </div>
         </Link>
         <div className="fx justify-content-between product-card-footer">
