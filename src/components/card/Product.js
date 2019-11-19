@@ -12,7 +12,7 @@ import { updateWishList, removeWishlist } from '../../api'
 import './Product.scss'
 
 class ProductCard extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -60,42 +60,42 @@ class ProductCard extends Component {
     }
   }
 
-  renderLovedIcon () {
+  renderLovedIcon() {
     const { loved, id } = this.props
     const { isLoved } = this.state
     return (
       <div className="product-wish-list" onClick={() => this.addToWishList(id)}>
         <span className="text--size-1-5"><FontAwesomeIcon icon={loved || isLoved ? fasHeart : faHeart} /></span>
-      </div> 
+      </div>
     )
   }
 
   render() {
     const { category, title, price, id, thumbnail } = this.props
     return (
-        <div className="product-card">
-          <Link to={`/products/detail/${id}`}>
-            <div className="product-card-image">
-              <img src={thumbnail} alt=""/>
-            </div>
-          </Link>
-          <div className="fx justify-content-between product-card-footer">
-            <div className="product-card-wrapper">
-              <div className="fx justify-content-between fx-no-wrap">
-                <Link to={`/products/detail/${id}`}>
-                  <div>
-                    <p className="mb--0 text--color-gray">{ category }</p>
-                    <p className="mb--0 text--color-black"><strong>{ title }</strong></p>
-                  </div>
-                </Link>
-                { this.renderLovedIcon() }
-              </div>
+      <div className="product-card" onClick={() => { { window.location.reload() } }}>
+        <Link to={`/products/detail/${id}`}>
+          <div className="product-card-image">
+            <img src={thumbnail} alt="" />
+          </div>
+        </Link>
+        <div className="fx justify-content-between product-card-footer">
+          <div className="product-card-wrapper">
+            <div className="fx justify-content-between fx-no-wrap">
               <Link to={`/products/detail/${id}`}>
-                <p className="text--color-orange mb--0"><strong>IDR { formatMoneyWithoutSymbol(price) }</strong></p>
+                <div>
+                  <p className="mb--0 text--color-gray">{category}</p>
+                  <p className="mb--0 text--color-black"><strong>{title}</strong></p>
+                </div>
               </Link>
+              {this.renderLovedIcon()}
             </div>
+            <Link to={`/products/detail/${id}`}>
+              <p className="text--color-orange mb--0"><strong>IDR {formatMoneyWithoutSymbol(price)}</strong></p>
+            </Link>
           </div>
         </div>
+      </div>
     )
   }
 }

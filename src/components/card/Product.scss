@@ -200,6 +200,14 @@
   p {
     text-align: center;
     font-weight: bold;
+    color:black;
+  }
+  .variant-item {
+    margin-left: 1em;
+    border: 1px solid $grayColor;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px;
   }
 }
 

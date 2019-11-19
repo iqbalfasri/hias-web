@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import './ColorSelector.scss'
 
 class ColorSelector extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -11,20 +12,27 @@ class ColorSelector extends Component {
     }
   }
 
-  onColorSelected (index) {
+  onColorSelected(index) {
     this.setState({
       colorSelectedIndex: index
     })
   }
 
-  render () {
-    const { colorSelectedIndex } = this.state
+  render() {
+    const { colorSelectedIndex } = this.state;
+    const { colors } = this.props;
     return (
       <div className="color-container">
-        <div onClick={() => this.onColorSelected(1)} className={`cc-wrapper color--blue ${colorSelectedIndex === 1 ? 'cc-wrapper--selected' : ''}`}></div>
-        <div onClick={() => this.onColorSelected(2)} className={`cc-wrapper color--black ${colorSelectedIndex === 2 ? 'cc-wrapper--selected' : ''}`}></div>
-        <div onClick={() => this.onColorSelected(3)} className={`cc-wrapper color--green ${colorSelectedIndex === 3 ? 'cc-wrapper--selected' : ''}`}></div>
-        <div onClick={() => this.onColorSelected(4)} className={`cc-wrapper color--orange ${colorSelectedIndex === 4 ? 'cc-wrapper--selected' : ''}`}></div>
+        {colors !== null ? colors.map((c, i) => {
+          return <div key={i}
+            style={{ backgroundColor: c.colorName.replace(" ", "").toLowerCase() }}
+            onClick={() => {
+              this.onColorSelected(i);
+              window.open(`/products/detail/${c.id}`, "_self");
+            }}
+            className={`cc-wrapper ${colorSelectedIndex === 1 ? 'cc-wrapper--selected' : ''}`}></div>
+        }) : "warna lain tidak tersedia"
+        }
       </div>
     )
   }
