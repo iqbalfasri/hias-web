@@ -11,19 +11,12 @@ export const fetchBanner = () => {
 }
 
 export const fetchBestSellerProduct = () => {
-<<<<<<< HEAD
-  return axios.get(`${BASE_URL}/product/bestSeller`).then(res => {
-    return res.data;
-  });
-};
-=======
   return axios
     .get(`${BASE_URL}/product/bestSeller`)
     .then((res) => {
       return res.data
     })
 }
->>>>>>> c15ce430ffd577797f15157e0363109cedd3b9c1
 
 export const fetchHotProduct = () => {
   return axios.get(`${BASE_URL}/product/hotItems`).then(res => {
