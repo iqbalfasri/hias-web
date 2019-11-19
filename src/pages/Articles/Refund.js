@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import { Helmet } from "react-helmet";
 
+import InputText from '../../components/form/InputText'
+
 import "./Articles.scss";
 
 class Refund extends Component {
@@ -83,6 +85,51 @@ diterima.</li>
                     <li>Apabila barang telah diverifikasi dan sudah dinyatakan dapat di kembalikan, dana akan
 dikembalikan maksimal 30 hari setelah diverifikasi.</li>
                   </ul>
+                  <div className="row" style={{paddingLeft:40}}>
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">Nama Lengkap</label>
+                        <InputText type="text" placeholder="Nama Lengkap" />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">Nomor Telepon</label>
+                        <InputText type="text" placeholder="Nomor Telepon" />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">Tempat Pembelian</label>
+                        <InputText type="text" placeholder="Tempat Pembelian" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row" style={{paddingLeft:40}}>
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">No. Pembelian</label>
+                        <InputText type="text" placeholder="No. Pembelian" />
+                      </div>
+                    </div>
+                    <div className="col-md-8">
+                      <div className="form--group">
+                        <label htmlFor="">Alamat Email</label>
+                        <InputText type="text" placeholder="Alamat Email" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row" style={{paddingLeft:40}}>
+                    <div className="col">
+                      <div className="form--group">
+                        <label htmlFor="">Alasan Mengajukan Complaint</label>
+                        <textarea className="text--area" type="text" placeholder="Tuliskan Alasan"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{paddingLeft:40}}>
+                    <button className="btn btn--full btn--blue" style={{maxWidth:"100%"}}>Submit</button>
+                  </div>
                 </div>
               </div>
             </div>
