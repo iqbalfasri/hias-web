@@ -26,6 +26,14 @@ export const fetchHotProduct = () => {
     })
 }
 
+export const fetchAllInspiration = () => {
+  return axios
+    .get(`${BASE_URL}/getAllInspiration`)
+    .then((res) => {
+      return res.data
+    })
+}
+
 export const updateWishList = (value) => {
   return axios
     .post(`${BASE_URL}/product/wishList`, value)
@@ -53,6 +61,14 @@ export const fetchProductById = (id) => {
 export const fetchVariantById = (id) => {
   return axios
     .get(`${BASE_URL}/product/detail/${id}/variant`)
+    .then((res) => {
+      return res.data
+    })
+}
+
+export const fetchColorById = (id) => {
+  return axios
+    .get(`${BASE_URL}/product/detail/${id}/color`)
     .then((res) => {
       return res.data
     })

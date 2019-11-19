@@ -10,7 +10,7 @@ import InputText from '../components/form/InputText'
 import Checkbox from '../components/form/Checkbox'
 import ColorSelector from '../components/ColorSelector'
 import { withContext } from '../context/withContext'
-import { fetchBestSellerProduct, fetchHotProduct, fetchWishList, fetchBanner } from '../api'
+import { fetchBestSellerProduct, fetchHotProduct, fetchWishList, fetchBanner, fetchAllInspiration } from '../api'
 import { isLogin } from '../utils/auth'
 import './Home.scss'
 
@@ -25,6 +25,18 @@ const params = {
   slidesPerGroup: 1,
   slidesPerView: 3,
   centeredSlides: true,
+  loop: true
+}
+
+
+const swiperBanner = {
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true
+  },
+  slidesPerGroup: 1,
+  slidesPerView: 1,
   loop: true
 }
 
@@ -45,8 +57,8 @@ const swiperInspiration = {
     type: 'bullets',
     clickable: true
   },
-  slidesPerGroup: 4,
-  slidesPerView: 4,
+  slidesPerGroup: 1,
+  slidesPerView: 1,
   loop: true
 }
 
@@ -56,7 +68,8 @@ class Home extends Component {
 
     this.state = {
       wishListItems: [],
-      banner: []
+      banner: [],
+      inspiration: []
     }
   }
 
@@ -77,17 +90,26 @@ class Home extends Component {
         console.log(err)
       })
 
-    /*
-  fetchBanner()
-    .then((res) => {
-      this.setState({
-        banner: res.data.banner
+
+    fetchBanner()
+      .then((res) => {
+        this.setState({
+          banner: res.data.banner
+        })
       })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    */
+      .catch((err) => {
+        console.log(err)
+      })
+
+    fetchAllInspiration()
+      .then((res) => {
+        this.setState({
+          inspiration: res.data.inspiration
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
     if (isLogin()) {
       fetchWishList(localStorage.getItem('userId'))
@@ -111,6 +133,28 @@ class Home extends Component {
     return result
   }
 
+  renderBanner = () => {
+    const { banner } = this.state;
+    console.log(banner)
+    if (banner.length > 0) {
+      return (
+        <Swiper {...swiperBanner}>
+          {
+            banner.map((b, i) => {
+              return (
+                <div className="slide-wrapper-home" key={i}>
+                  <div className="fx slide-container-home">
+                    <img className="img--cover" src={b.imageUrl} onClick={() => { window.open(b.link, '_blank') }} alt="" />
+                  </div>
+                </div>
+              )
+            })
+          }
+        </Swiper>
+
+      )
+    }
+  }
 
   renderProduct() {
     const hotProducts = this.props.context.hotProducts
@@ -119,8 +163,6 @@ class Home extends Component {
         return (
           <div className="col-md-3" key={`product-${product.productId}`}>
             <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
-            {/* <ProductCard thumbnail='https://via.placeholder.com/600x600' loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
-            {/* <ProductCard thumbnail={require('../../src/assets/img/TES-ITEM-4.jpg')} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
           </div >
         )
       })
@@ -128,39 +170,42 @@ class Home extends Component {
   }
 
   renderBestProduct() {
-    const bestProducts = this.props.context.bestProducts
+    const bestProducts = this.props.context.bestProducts;
     if (bestProducts.length !== 0) {
-      return (
-        <Swiper {...params}>
-
-        </Swiper>
-      )
+      return bestProducts.map((product, i) => {
+        return (
+          <div className="col-md-3" key={i}>
+            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+          </div >
+        )
+      })
     }
   }
 
-  renderInspiration() {
-    const bestProducts = this.props.context.bestProducts;
-    if (bestProducts.length !== 0) {
-      return (
-        <Swiper {...swiperInspiration}>
-          {bestProducts.map((product, index) => {
-            return (
-              <div className="text--center" key={product.id}>
-                {/* <img src='https://via.placeholder.com/600x600' alt="" /> */}
-                <img style={{ maxWidth: "80%", display: "inline" }} src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
-                <div className="inspiration-title">
-                  Lorem Ipsum Dolor Sit Amet.
+  renderInspiration = () => {
+    const { inspiration } = this.state;
+    console.log(inspiration)
+    if (inspiration !== undefined) {
+      if (inspiration.length !== 0) {
+        return (
+          <Swiper {...swiperInspiration}>
+            {inspiration.map((item, i) => {
+              return (
+                <div className="" key={i}>
+                  <img style={{ maxWidth: "20%", display: "inline" }} src="https://via.placeholder.com/600x600" alt="" />
+                  <div className="inspiration-title">
+                    {item.title}
                   </div>
-              </div>
-            )
-          })}
-        </Swiper>
-      )
+                </div>
+              )
+            })}
+          </Swiper>
+        )
+      }
     }
   }
 
   render() {
-    const { banner } = this.state;
     return (
       <div>
         <Helmet key={Math.random()}>
@@ -174,34 +219,7 @@ class Home extends Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col" style={{ paddingRight: 0, paddingLeft: 0 }}>
-                  <Swiper {...swiperHome}>
-                    <div className="slide-wrapper-home">
-                      <div className="fx slide-container-home">
-                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
-                      </div>
-                    </div>
-                    <div className="slide-wrapper-home">
-                      <div className="fx slide-container-home">
-                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
-                      </div>
-                    </div>
-                    <div className="slide-wrapper-home">
-                      <div className="fx slide-container-home">
-                        <img className="img--cover" src="https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/Product%20Banner%2FBanner%20Slide%201%2F1.png?alt=media&token=9c4ae754-5e46-4866-80ee-725e50792895" alt="" />
-                      </div>
-                    </div>
-                    {/*banner.length > 0 && banner.map((b, i) => {
-                      return (
-                        <div className="slide-wrapper-home" key={i}>
-                          <div className="fx slide-container-home">
-                            <img className="img--cover" src={b.imgUrl} alt="" />
-                          </div>
-                        </div>
-                      )
-                    })*/}
-
-
-                  </Swiper>
+                  {this.renderBanner()}
                 </div>
               </div>
             </div>
@@ -240,9 +258,7 @@ class Home extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col">
-                  {this.renderBestProduct()}
-                </div>
+                {this.renderBestProduct()}
               </div>
             </div>
           </section>

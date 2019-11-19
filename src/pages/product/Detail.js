@@ -9,7 +9,7 @@ import ShowMoreText from 'react-show-more-text'
 
 import ProductCard from '../../components/card/Product'
 import ColorSelector from '../../components/ColorSelector'
-import { fetchProductById, fetchWishList, addToCart, fetchHotProduct, fetchVariantById } from '../../api'
+import { fetchProductById, fetchWishList, addToCart, fetchHotProduct, fetchVariantById, fetchColorById } from '../../api'
 import { formatMoneyWithoutSymbol } from '../../utils/money'
 import { withContext } from '../../context/withContext'
 import { isLogin } from '../../utils/auth'
@@ -23,6 +23,7 @@ class Detail extends Component {
       addToCartClicked: false,
       product: null,
       variant: null,
+      colors: null,
       wishListItems: [],
       showAll: false
     }
@@ -42,6 +43,15 @@ class Detail extends Component {
         if (res.data.length !== 0) {
           this.setState({
             variant: res.data
+          })
+        }
+      })
+
+    fetchColorById(id)
+      .then((res) => {
+        if (res.data.length !== 0) {
+          this.setState({
+            colors: res.data
           })
         }
       })
@@ -365,7 +375,7 @@ class Detail extends Component {
                       <div className="product-detail-variant">
                         <h3>Color Options</h3>
                         <div>
-                          <ColorSelector />
+                          <ColorSelector colors={this.state.colors} />
                         </div>
                       </div>
                     </div>
