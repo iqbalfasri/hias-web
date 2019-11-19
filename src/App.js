@@ -35,9 +35,10 @@ import Modal from './components/layout/Modal'
 import Signin from './components/auth/Signin'
 import Checkbox from './components/form/Checkbox'
 import { withContext } from './context/withContext'
+import DetailInspiration from './pages/Inspiration/DetailInspiration'
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -50,19 +51,19 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const promo = localStorage.getItem('promo')
     if (!promo) {
       this.props.context.setIsModalPromo(true)
     }
   }
 
-  onCloseModalPromo () {
+  onCloseModalPromo() {
     localStorage.setItem('promo', 'true')
     this.props.context.setIsModalPromo(false)
   }
 
-  render () {
+  render() {
     const {
       isModalSigninPopupOpen,
       setIsModalSigninPopupOpen,
@@ -74,27 +75,28 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header/>
+        <Header />
         <Switch>
           <Route path="/" component={Home} exact={true} />
-          <Route path="/login" component={Login}/>
-          <Route path="/signup" component={Signup}/>
-          <Route path="/cart" component={Cart}/>
-          <Route path="/checkout" component={Checkout}/>
-          <Route path="/about" component={AboutUs}/>
-          <Route path="/contact" component={ContactUs}/>
-          <Route path="/faq" component={FAQ}/>
-          <Route path="/privacy" component={Privacy}/>
-          <Route path="/terms" component={Terms}/>
-          <Route path="/deliveryterms" component={DeliveryTerms}/>
-          <Route path="/refund" component={Refund}/>
-          <Route path="/newsletter" component={Newsletter}/>
-          <Route path="/storelocation" component={StoreLocation}/>
-          <Route path="/thank-you" component={ThankYou}/>
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/about" component={AboutUs} />
+          <Route path="/contact" component={ContactUs} />
+          <Route path="/faq" component={FAQ} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/deliveryterms" component={DeliveryTerms} />
+          <Route path="/refund" component={Refund} />
+          <Route path="/newsletter" component={Newsletter} />
+          <Route path="/storelocation" component={StoreLocation} />
+          <Route path="/thank-you" component={ThankYou} />
           <Route path="/wallet" component={Wallet} exact={true} />
           <Route path="/wishlist" component={Wishlist} />
-          <Route path="/inspiration" component={Inspiration} />
-          <Route path="/wallet/dashboard" component={DashboardWallet}/>
+          <Route path="/inspiration" component={Inspiration} exact={true} />
+          <Route path="/inspiration/detail/:id" component={DetailInspiration} />
+          <Route path="/wallet/dashboard" component={DashboardWallet} />
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route path="/products/:category" component={Category} exact={false} />
@@ -102,7 +104,7 @@ class App extends Component {
           <Route path="/promo" component={Promo} />
           <Route path="/news" component={News} />
           <Route path="/event" component={Event} />
-          <Route component={NotFound}/>
+          <Route component={NotFound} />
         </Switch>
         <Footer />
         <Modal isOpen={isModalSigninPopupOpen} onCloseModal={() => setIsModalSigninPopupOpen(false)}>
@@ -122,7 +124,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-4">
               <h3 className="mb--1">
-                Daftarkan Akun <span style={{color:"#46C5E2"}}>HIAS House</span> Anda
+                Daftarkan Akun <span style={{ color: "#46C5E2" }}>HIAS House</span> Anda
               </h3>
               <div className="line-divider ld--blue"></div>
               <div className="mb--2">
@@ -165,7 +167,7 @@ class App extends Component {
                 <div className="col">
                   <div className="promo-section">
                     <div>
-                      <img src={require('./assets/img/banner-promo.jpg')} alt=""/>
+                      <img src={require('./assets/img/banner-promo.jpg')} alt="" />
                     </div>
                   </div>
                 </div>
@@ -174,7 +176,7 @@ class App extends Component {
                 <div className="col-md-6">
                   <div className="promo-section">
                     <div>
-                        <img src={require('./assets/img/Banner-SignIn.png')} alt="" style={{width:300}}/>
+                      <img src={require('./assets/img/Banner-SignIn.png')} alt="" style={{ width: 300 }} />
                     </div>
                   </div>
                 </div>
@@ -188,7 +190,7 @@ class App extends Component {
                   </p>
                   <div className="mt--2 mb--2">
                     <div className="form--group">
-                      <button className="btn btn--full btn--blue" style={{maxWidth:"80%"}}>Lihat Semua Artikel</button>
+                      <button className="btn btn--full btn--blue" style={{ maxWidth: "80%" }}>Lihat Semua Artikel</button>
                     </div>
                   </div>
                 </div>
@@ -203,20 +205,21 @@ class App extends Component {
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium.
               </p>
-              <div className="mt--2 mb--2">
-                <div className="form--group">
-                  <button className="btn btn--full btn--blue">Explore All Articles</button>
+                <div className="mt--2 mb--2">
+                  <div className="form--group">
+                    <button className="btn btn--full btn--blue">Explore All Articles</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="footer-link">
-              <h3 className="footer-link-title">Subscribe Newsletter</h3>
-              <div>
-                <div className="form--group">
-                  <input type="text" placeholder="Your email address" className="form--input" />
-                </div>
+              <div className="footer-link">
+                <h3 className="footer-link-title">Subscribe Newsletter</h3>
                 <div>
-                  <button className="btn btn--full btn--blue">Subscribe</button>
+                  <div className="form--group">
+                    <input type="text" placeholder="Your email address" className="form--input" />
+                  </div>
+                  <div>
+                    <button className="btn btn--full btn--blue">Subscribe</button>
+                  </div>
                 </div>
               </div>
             </div>

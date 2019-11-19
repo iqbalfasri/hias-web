@@ -113,9 +113,9 @@ export const fetchColorById = (id) => {
 export const onPlaceOrder = value => {
   return axios
     .post(`${BASE_URL}/product/order`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-      .then((res) => {
-        return res.data
-      })
+    .then((res) => {
+      return res.data
+    })
 }
 
 export const addUserAddress = value => {
@@ -129,9 +129,9 @@ export const addUserAddress = value => {
 export const getUserAddress = userId => {
   return axios
     .get(`${BASE_URL}/product/${userId}/getUserAddressByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-      .then((res) => {
-        return res.data
-      })
+    .then((res) => {
+      return res.data
+    })
 }
 
 export const addToCart = async (value) => {
@@ -189,6 +189,14 @@ export const getVANumberCIMB = (price) => {
 export const searchByName = (productName) => {
   return axios
     .post(`${BASE_URL}/product/searchName/${productName}`)
+    .then((res) => {
+      return res.data
+    })
+}
+
+export const fetchProductByInspirationId = (id) => {
+  return axios
+    .post(`${BASE_URL}/inspration/${id}/product`)
     .then((res) => {
       return res.data
     })
