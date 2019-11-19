@@ -28,6 +28,7 @@ import StoreLocation from './pages/Articles/StoreLocation'
 import Promo from './pages/Articles/Promo'
 import Event from './pages/Articles/Event'
 import News from './pages/Articles/News'
+import Order from './pages/product/Order';
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -101,6 +102,7 @@ class App extends Component {
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route path="/products/:category" component={Category} exact={false} />
           <Route path="/products/:category/:subCategory" component={SubCategory} />
+          <Route path="/order" component={Order} />
           <Route path="/promo" component={Promo} />
           <Route path="/news" component={News} />
           <Route path="/event" component={Event} />

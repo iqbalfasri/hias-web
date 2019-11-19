@@ -67,6 +67,14 @@ class Header extends Component {
     }
   }
 
+  onClickOrderIcon() {
+    if (isLogin()) {
+      this.props.history.push('/order')
+    } else {
+      this.props.context.setIsModalSigninPopupOpen(true)
+    }
+  }
+
   onSearch (e) {
     e.preventDefault()
     const { keyword } = this.state
@@ -104,7 +112,7 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-top-icon">
-            <div className="header-top-icon--image">
+            <div className="header-top-icon--image" onClick={() => this.onClickOrderIcon()}>
               <img src={require('../../assets/img/OrderStatus.svg')} alt=""/>
             </div>
           </div>
