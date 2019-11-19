@@ -125,7 +125,7 @@ class Signin extends Component {
               <p className="mb--0 text--color-gray">Belum punya akun?</p>
             </div>
             <div>
-              <Link to="/signup" onClick={() => this.props.setModalPopupSignup({ isSignupModalOpen: false })} className="btn btn--primary">Daftar</Link>
+              <Link to="/signup" className="btn btn--primary">Daftar</Link>
             </div>
           </div>
         </div>

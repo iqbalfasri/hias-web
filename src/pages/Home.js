@@ -120,7 +120,7 @@ class Home extends Component {
         <Swiper {...params}>
           { bestProducts.map((product, index) => {
             return (
-              <div className="product-slide-with-number">
+              <div className="product-slide-with-number" key={`product-${product.productId}`}>
                 <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
               </div>
             )
@@ -247,34 +247,49 @@ class Home extends Component {
               </div>
             </div>
           </section>
-          <div className="section-page">
+          <section className="section-page">
             <div className="container">
+
               <div className="row align-items-center">
-                <div className="col-md-6">
+                <div className="col">
                   <div>
-                    <img src={require('../assets/img/0-percent.jpg')} alt=""/>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="newletter-section">
-                    <div>
-                      <p className="mb--0"><strong>Eksklusif dari HIAS HOUSE</strong></p>
-                      <h2>Metode Pembayaran dengan <span style={{color:"orange"}}>Cicilan 0%</span></h2>
-                    </div>
-                    <div className="line-divider ld--blue"></div>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium, in dolor neque facere dolores mollitia repellat quis, quam, minus officia enim ad facilis sint. Omnis, autem magni?
-                    </p>
-                    <div className="mt--2">
-                      <div className="form--group">
-                        <button className="btn btn--full btn--blue">Learn More</button>
-                      </div>
-                    </div>
+                    <img src={require('../assets/img/banner-promo.jpg')} alt=""/>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+          <section className="section-page">
+            <div className="container">
+              <div className="row mb--2">
+                <div className="col">
+                  <div>
+                    <h3 className="section-title mb--0 text--center">Kenapa Memilih <span className="text--color-blue">HIAS?</span></h3>
+                  </div>
+                </div>
+              </div>
+              <div className="row text--center benefit-content">
+                <div className="col-md-4">
+                  <div>
+                    <h3>Design Penuh Gaya & Terkini</h3>
+                    <p>Kami menyesuaikan design dengan tren dan perkembangan terkini.</p>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div>
+                    <h3>Produk Berkualitas Terbaik</h3>
+                    <p>Komitmen kami hanya menyediakan produk-produk terbaik baik lokal ataupun import bagi anda.</p>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div>
+                    <h3>Kemudahan dalam Pembayaran</h3>
+                    <p>Tersedia cicilan 0% untuk bank-bank tertentu.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           {/* <section className="section-page section-bg-dark download-section">
             <div className="container">
               <div className="row justify-content-center">

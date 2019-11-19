@@ -16,8 +16,15 @@ import Inspiration from './pages/Inspiration'
 import Search from './pages/Search'
 import Wishlist from './pages/Wishlist'
 import NotFound from './pages/NotFound'
-import AboutUs from "./pages/Articles/AboutUs"
+import AboutUs from './pages/Articles/AboutUs'
+import ContactUs from './pages/Articles/ContactUs'
 import FAQ from './pages/Articles/FAQ'
+import Privacy from './pages/Articles/Privacy'
+import Terms from './pages/Articles/Terms'
+import DeliveryTerms from './pages/Articles/DeliveryTerms'
+import Refund from './pages/Articles/Refund'
+import Newsletter from './pages/Articles/Newsletter'
+import StoreLocation from './pages/Articles/StoreLocation'
 import Promo from './pages/Articles/Promo'
 import Event from './pages/Articles/Event'
 import News from './pages/Articles/News'
@@ -75,7 +82,14 @@ class App extends Component {
           <Route path="/cart" component={Cart}/>
           <Route path="/checkout" component={Checkout}/>
           <Route path="/about" component={AboutUs}/>
+          <Route path="/contact" component={ContactUs}/>
           <Route path="/faq" component={FAQ}/>
+          <Route path="/privacy" component={Privacy}/>
+          <Route path="/terms" component={Terms}/>
+          <Route path="/deliveryterms" component={DeliveryTerms}/>
+          <Route path="/refund" component={Refund}/>
+          <Route path="/newsletter" component={Newsletter}/>
+          <Route path="/storelocation" component={StoreLocation}/>
           <Route path="/thank-you" component={ThankYou}/>
           <Route path="/wallet" component={Wallet} exact={true} />
           <Route path="/wishlist" component={Wishlist} />

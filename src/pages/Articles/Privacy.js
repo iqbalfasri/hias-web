@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import "./Articles.scss";
 
-class AboutUs extends Component {
+class Privacy extends Component {
   render() {
     return (
       <div>
@@ -17,7 +17,7 @@ class AboutUs extends Component {
 
         <div>
           <div className="about-header">
-            <h1>Tentang Kami</h1>
+            <h1>Kebijakan & Privasi</h1>
           </div>
 
           <div className="about-content">
@@ -27,7 +27,7 @@ class AboutUs extends Component {
                   <ul>
                     <li>
                       <Link to="/about">
-                        <h3 style={{ color: "#000" }}>Tentang Kami</h3>
+                        <h3>Tentang Kami</h3>
                       </Link>
                     </li>
                     <li>
@@ -42,7 +42,7 @@ class AboutUs extends Component {
                     </li>
                     <li>
                       <Link to="/privacy">
-                        <h3>Kebijakan &amp; Privasi</h3>
+                        <h3 style={{ color: "#000" }}>Kebijakan &amp; Privasi</h3>
                       </Link>
                     </li>
                     <li>
@@ -115,4 +115,4 @@ class AboutUs extends Component {
   }
 }
 
-export default AboutUs;
+export default Privacy;

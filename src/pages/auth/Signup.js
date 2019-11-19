@@ -44,7 +44,7 @@ class Signup extends Component {
         .post(`${process.env.REACT_APP_BASE_URL}/register`, {
           name,
           email,
-          username: name,
+          username: email,
           password: password,
           telp: phone
         });
