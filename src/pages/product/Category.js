@@ -12,7 +12,7 @@ import {
 
 import ProductCard from "../../components/card/Product";
 import Checkbox from "../../components/form/Checkbox";
-import { fetchHotProduct, fetchWishList } from "../../api";
+import { fetchHotProduct, fetchWishList, BASE_URL } from "../../api";
 import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
@@ -68,7 +68,7 @@ class Category extends Component {
     const categoryId = category;
 
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/product/categoryId/${categoryId}`)
+      .get(`${BASE_URL}/product/categoryId/${categoryId}`)
       .then(res => {
         console.log(res.data.data);
         this.setState({ products: res.data.data });
@@ -85,17 +85,71 @@ class Category extends Component {
     }
   }
 
-
   componentWillReceiveProps(props) {
     axios
       .get(
-        `${process.env.REACT_APP_BASE_URL}/product/categoryId/${props.match.params.category}`
+        `${BASE_URL}/product/categoryId/${props.match.params.category}`
       )
       .then(res => {
         console.log(res.data.data);
         this.setState({ products: res.data.data });
       })
       .catch(error => console.log(error));
+  }
+
+  handleLowToHigh(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/priceLow`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  handleHighToLow(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/priceHigh`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  handleZtoA(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/priceHigh`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  handleLast(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/last`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  handleNewest(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/newest`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -113,60 +167,6 @@ class Category extends Component {
               <div className="row">
                 <div className="col-md-3">
                   <div>
-                    <div>
-                      <h2>LIVING</h2>
-                    </div>
-                    <div className="cat-container">
-                      <div>
-                        <div className="cat-list cl--parent">
-                          <span className="mr--1">
-                            <strong>Furniture</strong>
-                          </span>
-                          <span>
-                            <FontAwesomeIcon icon={faAngleDown} />
-                          </span>
-                        </div>
-                        <div className="cl--child">
-                          <div className="cl--item">Sofa</div>
-                          <div className="cl--item">Sleeper Sofa</div>
-                          <div className="cl--item">Sectional Sofa</div>
-                          <div className="cl--item">Chair</div>
-                          <div className="cl--item">Recliner</div>
-                          <div className="cl--item">Table</div>
-                          <div className="cl--item">TV Stand</div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="cat-list cl--parent">
-                          <span className="mr--1">
-                            <strong>Decoration</strong>
-                          </span>
-                          <span>
-                            <FontAwesomeIcon icon={faAngleDown} />
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="cat-list cl--parent">
-                          <span className="mr--1">
-                            <strong>Lenon</strong>
-                          </span>
-                          <span>
-                            <FontAwesomeIcon icon={faAngleDown} />
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="cat-list cl--parent">
-                          <span className="mr--1">
-                            <strong>Table</strong>
-                          </span>
-                          <span>
-                            <FontAwesomeIcon icon={faAngleDown} />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
                     <div className="cat-container">
                       <div className="cat--title">
                         <span className="text--color-gray">
@@ -235,7 +235,12 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="lth" onClick={() => { }} />
+                              <input
+                                type="radio"
+                                name="sort"
+                                id="lth"
+                                onClick={() => this.handleLowToHigh(this.props)}
+                              />
                             </span>
                             <label htmlFor="lth">Price Low to High</label>
                           </div>
@@ -243,7 +248,12 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="htl" />
+                              <input
+                                type="radio"
+                                name="sort"
+                                id="htl"
+                                onClick={() => this.handleHighToLow(this.props)}
+                              />
                             </span>
                             <label htmlFor="htl">Price High to Low</label>
                           </div>
@@ -259,7 +269,7 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="za" />
+                              <input type="radio" name="sort" id="za" onClick={() => this.handleZtoA(this.props)} />
                             </span>
                             <label htmlFor="za">Z to A</label>
                           </div>
@@ -267,7 +277,7 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="ne" />
+                              <input type="radio" name="sort" id="ne" onClick={() => this.handleLast(this.props)} />
                             </span>
                             <label htmlFor="ne">Newest to Eldest</label>
                           </div>
@@ -275,7 +285,7 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="en" />
+                              <input type="radio" name="sort" id="en" onClick={() => this.handleNewest(this.props)} />
                             </span>
                             <label htmlFor="en">Eldest to Newest</label>
                           </div>
