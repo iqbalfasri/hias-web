@@ -122,8 +122,9 @@ class App extends Component {
           <div className="row">
             <div className="col-md-4">
               <h3 className="mb--1">
-                Regist Your <span style={{color:"#46C5E2"}}>HIAS HOUSE</span> Account
+                Daftarkan Akun <span style={{color:"#46C5E2"}}>HIAS House</span> Anda
               </h3>
+              <div className="line-divider ld--blue"></div>
               <div className="mb--2">
                 <form onSubmit={(e) => this.onSignUp(e)}>
                   <div className="form--group">
@@ -159,24 +160,41 @@ class App extends Component {
                 </form>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="promo-section">
-                <div>
-                  <p className="mb--0" style={{color:"orange"}}><strong>HOT PROMO</strong></p>
-                  <h2>Kitchen Set 2019</h2>
+            <div className="col-md-8">
+              <div className="row">
+                <div className="col">
+                  <div className="promo-section">
+                    <div>
+                      <img src={require('./assets/img/banner-promo.jpg')} alt=""/>
+                    </div>
+                  </div>
                 </div>
-                <div className="line-divider ld--blue"></div>
-                <div>
-                  <img src={require('./assets/img/Banner-Newsletter.png')} alt=""/>
+              </div>
+              <div className="row mt--2">
+                <div className="col-md-6">
+                  <div className="promo-section">
+                    <div>
+                        <img src={require('./assets/img/Banner-SignIn.png')} alt="" style={{width:300}}/>
+                    </div>
+                  </div>
                 </div>
-                <div className="mt--2">
-                  <div className="form--group">
-                    <button className="btn btn--full btn--blue">Shop Now</button>
+                <div className="col-md-6">
+                  <div>
+                    <h2>Beautiful Living</h2>
+                  </div>
+                  <div className="line-divider ld--blue"></div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium. Alias iure eius accusantium.
+                  </p>
+                  <div className="mt--2 mb--2">
+                    <div className="form--group">
+                      <button className="btn btn--full btn--blue" style={{maxWidth:"80%"}}>Lihat Semua Artikel</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
             <div className="news-section">
               <div>
                 <h2>Beatiful Living</h2>
@@ -202,7 +220,7 @@ class App extends Component {
                 </div>
               </div>
             </div>
-            </div>
+            </div> */}
           </div>
         </Modal>
       </div>

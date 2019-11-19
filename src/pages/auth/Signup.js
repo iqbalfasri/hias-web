@@ -113,18 +113,18 @@ class Signup extends Component {
           <section className="section-page">
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-md-5">
+                <div className="col-md-12">
                   <div className="mb--2">
                     <div className="img--center logo">
                     </div>
                   </div>
                   <div>
-                    <h1 className="text--center">SIGN UP YOUR ACCOUNT</h1>
+                    <h3 className="text--center">Daftarkan Akun Anda</h3>
                   </div>
                   <div className="mb--2">
                     <form onSubmit={(e) => this.onSignUp(e)}>
                       <div className="form--group">
-                        <input type="text" value={this.state.name} onChange={(e) => this.onChangeName(e)} className="form--input" placeholder="Full Name" />
+                        <input type="text" value={this.state.name} onChange={(e) => this.onChangeName(e)} className="form--input" placeholder="Nama Lengkap" />
                       </div>
                       <div className="form--group">
                         <input type="email" value={this.state.email} onChange={(e) => this.onChangeEmail(e)} className="form--input" placeholder="Email" />
@@ -133,10 +133,10 @@ class Signup extends Component {
                         <input type="tel" value={this.state.phone} onChange={(e) => this.onChangePhone(e)} className="form--input" placeholder="+62" />
                       </div>
                       <div className="form--group">
-                        <input type="password" value={this.state.password} onChange={(e) => this.onChangePassword(e)} className="form--input" placeholder="Type your password" />
+                        <input type="password" value={this.state.password} onChange={(e) => this.onChangePassword(e)} className="form--input" placeholder="Masukkan Password" />
                       </div>
                       <div className="form--group">
-                        <input type="password" className="form--input" placeholder="re-type your password" />
+                        <input type="password" className="form--input" placeholder="Masukkan Ulang Password" />
                       </div>
                       <div className="form--group">
                         <div className="row" style={{marginLeft:5}}>
@@ -145,27 +145,16 @@ class Signup extends Component {
                               this.setState({ checkBoxChecked: !this.state.checkBoxChecked })
                             }}
                             isChecked={this.state.checkBoxChecked} />
-                          <span style={{marginLeft:5}}>I agree the <Link>terms and conditions</Link> from HIAS house.</span>
+                          <span style={{marginLeft:5}}>Saya setuju dengan <Link>syarat & ketentuan</Link> dari HIAS House</span>
                         </div>
                       </div>
                       <div className="form--group">
-                        <button disabled={!this.state.checkBoxChecked} type="submit" className="btn btn--full btn--blue">{ this.state.isSigningUp ? 'Creating Account' : 'Next Step' }</button>
+                        <button disabled={!this.state.checkBoxChecked} type="submit" className="btn btn--full btn--blue">{ this.state.isSigningUp ? 'Membuat Akun' : 'Daftar' }</button>
                       </div>
                     </form>
                   </div>
                   <div className="divider-with-text mb--2">
-                    <span className="text--size-14">or</span>
-                  </div>
-                  <div className="mt--2 mb--2">
-                    <p className="text--center">Sign in with</p>
-                    <div className="fx justify-content-center align-items-center">
-                      <div className="mr--1">
-                        <img width="50px" src={require('../../assets/img/fb.png')} alt=""/>
-                      </div>
-                      <div className="ml--1">
-                        <img width="50px" src={require('../../assets/img/gmail.png')} alt=""/>
-                      </div>
-                    </div>
+                    <span className="text--size-14">Atau</span>
                   </div>
                   <div className="mt--2">
                     <div className="fx justify-content-center align-items-center">
