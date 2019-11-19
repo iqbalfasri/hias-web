@@ -86,24 +86,24 @@ class Footer extends Component {
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/">Jakarta<br/><span className="footer-sub-link">Fanda’s Senopati 66 lt. 3 SCBD</span></Link></li>
-                        <li><Link to="/">Jakarta<br/><span className="footer-sub-link">Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>JAKARTA</span><br/><span className="footer-sub-link"><span style={{fontWeight:"bold"}}>Fanda’s Senopati 66</span><br/> lt. 3 SCBD</span></Link></li>
+                        <li><Link to="/"><span className="footer-sub-link">Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167</span></Link></li>
+                        <li><Link to="/"><span className="footer-sub-link">Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A</span></Link></li>
                       </ul>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/">Jakarta<br/><span className="footer-sub-link">Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A</span></Link></li>
-                        <li><Link to="/">Tangerang<br/><span className="footer-sub-link">Supermall Karawaci UG Floor JL. Boulevard Diponegoro 105 Karawaci</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>TANGERANG</span><br/><span className="footer-sub-link">Supermall Karawaci<br/> UG Floor JL. Boulevard Diponegoro 105 Karawaci</span></Link></li>
                       </ul>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/">Bogor<br/><span className="footer-sub-link">Botani Square LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
-                        <li><Link to="/">Bali<br/><span className="footer-sub-link">Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BOGOR</span><br/><span className="footer-sub-link">Botani Square<br/> LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BALI</span><br/><span className="footer-sub-link">Level 21 Bali<br/> JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</span></Link></li>
                       </ul>
                     </div>
                   </div>
