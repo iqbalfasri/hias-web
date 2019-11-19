@@ -48,7 +48,7 @@ export const fetchProductById = id => {
 
 export const getCart = userId => {
   return axios
-  .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
     .then((res) => {
       return res.data
     })
@@ -128,10 +128,10 @@ export const addUserAddress = value => {
 
 export const addToCart = async (value) => {
   return axios
-      .post(`${BASE_URL}/product/addItemToCart`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-        .then((res) => {
-          return res.data
-        })
+    .post(`${BASE_URL}/product/addItemToCart`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    .then((res) => {
+      return res.data
+    })
 };
 
 export const getUserAddress = userId => {
@@ -196,7 +196,7 @@ export const searchByName = (productName) => {
 
 export const fetchProductByInspirationId = (id) => {
   return axios
-    .post(`${BASE_URL}/inspration/${id}/product`)
+    .get(`${BASE_URL}/inspration/${id}/product`)
     .then((res) => {
       return res.data
     })

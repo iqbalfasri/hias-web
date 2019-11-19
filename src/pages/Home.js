@@ -135,7 +135,6 @@ class Home extends Component {
 
   renderBanner = () => {
     const { banner } = this.state;
-    console.log(banner)
     if (banner.length > 0) {
       return (
         <Swiper {...swiperBanner}>
@@ -171,7 +170,6 @@ class Home extends Component {
 
   renderBestProduct() {
     const bestProducts = this.props.context.bestProducts;
-    console.log(bestProducts)
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...params}>
@@ -189,18 +187,21 @@ class Home extends Component {
 
   renderInspiration = () => {
     const { inspiration } = this.state;
+    console.log(inspiration)
     if (inspiration !== undefined) {
       if (inspiration.length !== 0) {
         return (
           <Swiper {...swiperInspiration}>
             {inspiration.map((item, i) => {
               return (
-                <div className="" key={i}>
-                  <img style={{ maxWidth: "20%", display: "inline" }} src="https://via.placeholder.com/600x600" alt="" />
-                  <div className="inspiration-title">
-                    {item.title}
+                <Link key={i} to={`/inspiration/detail/${item.id}`}>
+                  <div >
+                    <img style={{ maxWidth: "20%", display: "inline" }} src={item.banner != null ? item.banner : "https://via.placeholder.com/600x600"} alt="" />
+                    <div className="inspiration-title">
+                      {item.title}
+                    </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </Swiper>
