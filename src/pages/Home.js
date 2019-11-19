@@ -171,16 +171,17 @@ class Home extends Component {
 
   renderBestProduct() {
     const bestProducts = this.props.context.bestProducts;
+    console.log(bestProducts)
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...params}>
-          { bestProducts.map((product, index) => {
+          {bestProducts.map((product, index) => {
             return (
-              <div className="product-slide-with-number" key={`product-${product.productId}`}>
-                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
+              <div className="product-slide-with-number" key={index}>
+                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
               </div>
             )
-          }) }
+          })}
         </Swiper>
       )
     }
@@ -260,7 +261,7 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="col">
                 {this.renderBestProduct()}
               </div>
             </div>
@@ -292,7 +293,7 @@ class Home extends Component {
               <div className="row align-items-center">
                 <div className="col">
                   <div>
-                    <img src={require('../assets/img/banner-promo.jpg')} alt=""/>
+                    <img src={require('../assets/img/banner-promo.jpg')} alt="" />
                   </div>
                 </div>
               </div>
