@@ -63,13 +63,13 @@ export const fetchAllInspiration = () => {
 
 export const removeProductOnCart = productId => {
   return axios
-    .post(`${BASE_URL}/product/wishList`, value)
+    .post(`${BASE_URL}/product/wishList`, productId)
     .then((res) => {
       return res.data
     })
 }
 
-export const removeWishlist = wishListId => {
+export const removeWishlist = id => {
   return axios
     .get(`${BASE_URL}/product/wishList/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
     .then((res) => {
@@ -79,7 +79,7 @@ export const removeWishlist = wishListId => {
 
 export const registUserToCart = userId => {
   return axios
-    .get(`${BASE_URL}/product/${id}`)
+    .get(`${BASE_URL}/product/${userId}`)
     .then((res) => {
       return res.data
     })
@@ -101,25 +101,25 @@ export const fetchColorById = (id) => {
     })
 }
 
-export const getCart = (userId) => {
-  return axios
-    .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      return res.data
-    })
-}
+// export const getCart = (userId) => {
+//   return axios
+//     .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+//     .then((res) => {
+//       return res.data
+//     })
+// }
 
 export const onPlaceOrder = value => {
   return axios
-    .delete(`${BASE_URL}/product/${productId}/deleteItemCart`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      return res.data
-    })
+    .post(`${BASE_URL}/product/order`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+      .then((res) => {
+        return res.data
+      })
 }
 
 export const addUserAddress = value => {
   return axios
-    .delete(`${BASE_URL}/product/wishList/${wishListId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    .post(`${BASE_URL}/product/userAddress`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
     .then((res) => {
       return res.data
     })
@@ -141,29 +141,29 @@ export const addToCart = async (value) => {
 
 export const getUserAddress = userId => {
   return axios
-    .post(`${BASE_URL}/product/order`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      return res.data
-    })
-}
-
-export const getVANumberBNI = price => {
-  return axios
-    .post(`${BASE_URL}/product/userAddress`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      return res.data
-    })
-}
-
-
-
-export const getVANumberCIMB = price => {
-  return axios
     .get(`${BASE_URL}/product/${userId}/getUserAddressByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      return res.data
-    })
+      .then((res) => {
+        return res.data
+      })
 }
+
+// export const getVANumberBNI = price => {
+//   return axios
+//     .post(`${BASE_URL}/product/userAddress`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+//     .then((res) => {
+//       return res.data
+//     })
+// }
+
+
+
+// export const getVANumberCIMB = price => {
+//   return axios
+//     .get(`${BASE_URL}/product/${userId}/getUserAddressByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+//     .then((res) => {
+//       return res.data
+//     })
+// }
 
 export const getVANumberBNI = (price) => {
   return axios
