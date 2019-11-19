@@ -28,9 +28,10 @@ import Modal from './components/layout/Modal'
 import Signin from './components/auth/Signin'
 import Checkbox from './components/form/Checkbox'
 import { withContext } from './context/withContext'
+import DetailInspiration from './pages/Inspiration/DetailInspiration'
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -43,19 +44,19 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const promo = localStorage.getItem('promo')
     if (!promo) {
       this.props.context.setIsModalPromo(true)
     }
   }
 
-  onCloseModalPromo () {
+  onCloseModalPromo() {
     localStorage.setItem('promo', 'true')
     this.props.context.setIsModalPromo(false)
   }
 
-  render () {
+  render() {
     const {
       isModalSigninPopupOpen,
       setIsModalSigninPopupOpen,
@@ -67,20 +68,21 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header/>
+        <Header />
         <Switch>
           <Route path="/" component={Home} exact={true} />
-          <Route path="/login" component={Login}/>
-          <Route path="/signup" component={Signup}/>
-          <Route path="/cart" component={Cart}/>
-          <Route path="/checkout" component={Checkout}/>
-          <Route path="/about" component={AboutUs}/>
-          <Route path="/faq" component={FAQ}/>
-          <Route path="/thank-you" component={ThankYou}/>
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/about" component={AboutUs} />
+          <Route path="/faq" component={FAQ} />
+          <Route path="/thank-you" component={ThankYou} />
           <Route path="/wallet" component={Wallet} exact={true} />
           <Route path="/wishlist" component={Wishlist} />
-          <Route path="/inspiration" component={Inspiration} />
-          <Route path="/wallet/dashboard" component={DashboardWallet}/>
+          <Route path="/inspiration" component={Inspiration} exact={true} />
+          <Route path="/inspiration/detail/:id" component={DetailInspiration} />
+          <Route path="/wallet/dashboard" component={DashboardWallet} />
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route path="/products/:category" component={Category} exact={false} />
@@ -88,7 +90,7 @@ class App extends Component {
           <Route path="/promo" component={Promo} />
           <Route path="/news" component={News} />
           <Route path="/event" component={Event} />
-          <Route component={NotFound}/>
+          <Route component={NotFound} />
         </Switch>
         <Footer />
         <Modal isOpen={isModalSigninPopupOpen} onCloseModal={() => setIsModalSigninPopupOpen(false)}>
@@ -108,7 +110,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-4">
               <h3 className="mb--1">
-                Regist Your <span style={{color:"#46C5E2"}}>HIAS HOUSE</span> Account
+                Regist Your <span style={{ color: "#46C5E2" }}>HIAS HOUSE</span> Account
               </h3>
               <div className="mb--2">
                 <form onSubmit={(e) => this.onSignUp(e)}>
@@ -148,12 +150,12 @@ class App extends Component {
             <div className="col-md-4">
               <div className="promo-section">
                 <div>
-                  <p className="mb--0" style={{color:"orange"}}><strong>HOT PROMO</strong></p>
+                  <p className="mb--0" style={{ color: "orange" }}><strong>HOT PROMO</strong></p>
                   <h2>Kitchen Set 2019</h2>
                 </div>
                 <div className="line-divider ld--blue"></div>
                 <div>
-                  <img src={require('./assets/img/Banner-Newsletter.png')} alt=""/>
+                  <img src={require('./assets/img/Banner-Newsletter.png')} alt="" />
                 </div>
                 <div className="mt--2">
                   <div className="form--group">
@@ -163,31 +165,31 @@ class App extends Component {
               </div>
             </div>
             <div className="col-md-4">
-            <div className="news-section">
-              <div>
-                <h2>Beatiful Living</h2>
-              </div>
-              <div className="line-divider ld--blue"></div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium.
-              </p>
-              <div className="mt--2 mb--2">
-                <div className="form--group">
-                  <button className="btn btn--full btn--blue">Explore All Articles</button>
-                </div>
-              </div>
-            </div>
-            <div className="footer-link">
-              <h3 className="footer-link-title">Subscribe Newsletter</h3>
-              <div>
-                <div className="form--group">
-                  <input type="text" placeholder="Your email address" className="form--input" />
-                </div>
+              <div className="news-section">
                 <div>
-                  <button className="btn btn--full btn--blue">Subscribe</button>
+                  <h2>Beatiful Living</h2>
+                </div>
+                <div className="line-divider ld--blue"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure eius accusantium.
+              </p>
+                <div className="mt--2 mb--2">
+                  <div className="form--group">
+                    <button className="btn btn--full btn--blue">Explore All Articles</button>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="footer-link">
+                <h3 className="footer-link-title">Subscribe Newsletter</h3>
+                <div>
+                  <div className="form--group">
+                    <input type="text" placeholder="Your email address" className="form--input" />
+                  </div>
+                  <div>
+                    <button className="btn btn--full btn--blue">Subscribe</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Modal>
