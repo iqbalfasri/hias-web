@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import "./Articles.scss";
 
-class AboutUs extends Component {
+class Terms extends Component {
   render() {
     return (
       <div>
@@ -17,7 +17,7 @@ class AboutUs extends Component {
 
         <div>
           <div className="about-header">
-            <h1>Tentang Kami</h1>
+            <h1>Syarat & Ketentuan</h1>
           </div>
 
           <div className="about-content">
@@ -27,7 +27,7 @@ class AboutUs extends Component {
                   <ul>
                     <li>
                       <Link to="/about">
-                        <h3 style={{ color: "#000" }}>Tentang Kami</h3>
+                        <h3>Tentang Kami</h3>
                       </Link>
                     </li>
                     <li>
@@ -47,7 +47,7 @@ class AboutUs extends Component {
                     </li>
                     <li>
                       <Link to="/terms">
-                        <h3>Syarat &amp; Ketentuan</h3>
+                        <h3 style={{ color: "#000" }}>Syarat &amp; Ketentuan</h3>
                       </Link>
                     </li>
                     <li>
@@ -73,38 +73,19 @@ class AboutUs extends Component {
                   </ul>
                 </div>
                 <div className="col-md-8">
-                  <p>
-                    HIAS House menyediakan berbagai pilihan furniture, dekorasi,
-                    dan perlengkapan rumah dengan mengedepankan konsep Modern
-                    dan Stylish yang cocok untuk keluarga masa kini yang dinamis
-                    dan modern juga generasi muda yang trendi dan semua kalangan
-                    urban.
-                    <br />
-                  </p>
-                  <div className="article-image">
-                    <img src={require('../../assets/img/Banner-Newsletter.png')} alt=""/>
-                  </div>
-                  <p>
-                    <br />
-                    Kami ingin membantu Anda mewujudkan rumah impian yang
-                    estetik dan dapat menjadikan kami sebagai teman stylist
-                    anda. HIAS House menyediakan varian produk furnitur yang
-                    unik, dekorasi dan perlengkapan rumah yang telah melewati
-                    proses kurasi dari Home Stylist profesional. Kami
-                    menyelaraskan warna, gaya dan desain untuk menciptakan
-                    harmonisasi ruang dan kenyamanan Anda. HIAS House membagi
-                    kategori produk menjadi 5 departemen yaitu living, bedroom,
-                    bathroom, dining dan kitchen.
-                  </p>
-                  <h3>
-                    PT Hias Ritel Indonesia
-                  </h3>
-                  <p>
-                    Jl. Raya Boulevard Barat Blok XC No.2A. <br/>
-                    Kelapa Gading, Jakarta 14240 - Indonesia<br/>
-                    P +6221 2245 7333<br/>
-                    F +6221 2245 7334
-                  </p>
+                  <ul>
+                    <li>Kredit toko</li>
+                    <li>Pengembalian , penukaran dan jaminan</li>
+                    <li>Ketetapan foto produk</li>
+                    <li>Tanggung jawab</li>
+                    <li>Proses pembayaran</li>
+                    <li>Hak kekayaan intelektual</li>
+                    <li>Tautan ke website</li>
+                    <li>Privasi dan keamanan</li>
+                    <li>Pengakhiran akun</li>
+                    <li>Hak cipta</li>
+                    <li>Saran dan pertanyaan</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -115,4 +96,4 @@ class AboutUs extends Component {
   }
 }
 
-export default AboutUs;
+export default Terms;

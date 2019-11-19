@@ -19,9 +19,9 @@ class Footer extends Component {
                   </Link>
                 </div>
                 <ul>
-                  <li><Link to="/">Tentang Kami</Link></li>
-                  <li><Link to="/">Inspiration & Ideas</Link></li>
-                  <li><Link to="/">Katalog</Link></li>
+                  <li><Link to="/about">Tentang Kami</Link></li>
+                  <li><Link to="/inspiration">Inspiration & Ideas</Link></li>
+                  <li><Link to="/catalog">Katalog</Link></li>
                 </ul>
               </div>
             </div>
@@ -40,12 +40,13 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Layanan Pelanggan</h3>
                 <ul>
-                  <li><Link to="/">Hubungi Kami</Link></li>
-                  <li><Link to="/">FAQ</Link></li>
-                  <li><Link to="/">Kebijakan & Privasi</Link></li>
-                  <li><Link to="/">Syarat & Ketentuan</Link></li>
-                  <li><Link to="/">Kebijakan Pengiriman</Link></li>
-                  <li><Link to="/">Kebijakan Pengembalian</Link></li>
+                  <li><Link to="/contact">Hubungi Kami</Link></li>
+                  <li><Link to="/faq">FAQ</Link></li>
+                  <li><Link to="/privacy">Kebijakan & Privasi</Link></li>
+                  <li><Link to="/terms">Syarat & Ketentuan</Link></li>
+                  <li><Link to="/deliveryterms">Kebijakan Pengiriman</Link></li>
+                  <li><Link to="/refund">Kebijakan Pengembalian</Link></li>
+                  <li><Link to="/newsletter">Langganan Update & Berita</Link></li>
                 </ul>
               </div>
             </div>
@@ -114,23 +115,37 @@ class Footer extends Component {
         <div className="footer-download">
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="fx align-items-center">
-                  <div className="mr--1">
-                    <p className="mb--0 text--size-14">Unduh Aplikasi HIAS House</p>
-                  </div>
                   <div className="fx">
                     <span className="mr--1 app-store-icon"><img src={require('../../assets/img/Download-Android.png')} alt=""/></span>
                     <span className="app-store-icon"><img src={require('../../assets/img/Download-aPPSTORE.png')} alt=""/></span>
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
-                <div className="footer-download-icon fx justify-content-end">
-                  <p className="mr--1 mb--0 text--size-14">Social Media Kami</p>
-                  <div className="mb--1"><FontAwesomeIcon icon={faFacebookF} color="#fff" /></div>
-                  <div className="mb--1"><FontAwesomeIcon icon={faInstagram} color="#fff" /></div>
-                  <div className="mb--1"><FontAwesomeIcon icon={faYoutube} color="#fff" /></div>
+              <div className="col-md-4">
+                <div className="fx justify-content-center">
+                  <div className="fx align-items-center">
+                    <div className="footer-download-icon fx">
+                      <p className="mr--1 mb--0 text--size-12">Metode Cicilan 0%</p>
+                      <img style={{width:50, marginRight:10}} src={require('../../assets/img/bca.png')} alt=""/>
+                      <img style={{width:70, marginRight:10}} src={require('../../assets/img/cimb.png')} alt=""/>
+                      <img style={{width:30, marginRight:10}} src={require('../../assets/img/mastercard.svg')} alt=""/>
+                      <img style={{width:30}} src={require('../../assets/img/visa.png')} alt=""/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="fx justify-content-end">
+                  <div className="fx align-items-center">
+                    <div className="footer-download-icon fx justify-content-end align-items-center">
+                      <p className="mr--1 mb--0 text--size-12">Temukan Kami</p>
+                      <div><FontAwesomeIcon icon={faFacebookF} color="#fff" /></div>
+                      <div><FontAwesomeIcon icon={faInstagram} color="#fff" /></div>
+                      <div><FontAwesomeIcon icon={faYoutube} color="#fff" /></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

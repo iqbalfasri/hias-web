@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import "./Articles.scss";
 
-class AboutUs extends Component {
+class StoreLocation extends Component {
   render() {
     return (
       <div>
@@ -17,7 +17,7 @@ class AboutUs extends Component {
 
         <div>
           <div className="about-header">
-            <h1>Tentang Kami</h1>
+            <h1>Lokasi Kami</h1>
           </div>
 
           <div className="about-content">
@@ -27,7 +27,7 @@ class AboutUs extends Component {
                   <ul>
                     <li>
                       <Link to="/about">
-                        <h3 style={{ color: "#000" }}>Tentang Kami</h3>
+                        <h3>Tentang Kami</h3>
                       </Link>
                     </li>
                     <li>
@@ -67,44 +67,39 @@ class AboutUs extends Component {
                     </li>
                     <li>
                       <Link to="/storelocation">
-                        <h3>Lokasi Kami</h3>
+                        <h3 style={{ color: "#000" }}>Lokasi Kami</h3>
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <div className="col-md-8">
-                  <p>
-                    HIAS House menyediakan berbagai pilihan furniture, dekorasi,
-                    dan perlengkapan rumah dengan mengedepankan konsep Modern
-                    dan Stylish yang cocok untuk keluarga masa kini yang dinamis
-                    dan modern juga generasi muda yang trendi dan semua kalangan
-                    urban.
-                    <br />
-                  </p>
-                  <div className="article-image">
-                    <img src={require('../../assets/img/Banner-Newsletter.png')} alt=""/>
+                  <h3 className="footer-link-title">Lokasi Kami</h3>
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="store-location">
+                        <ul>
+                          <li className="mb--2">Jakarta<br/>Fanda’s Senopati 66 lt. 3 SCBD</li>
+                          <li>Jakarta<br/>Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div>
+                        <ul>
+                          <li className="mb--2">Jakarta<br/>Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A</li>
+                          <li>Tangerang<br/>Supermall Karawaci UG Floor JL. Boulevard Diponegoro 105 Karawaci</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div>
+                        <ul>
+                          <li className="mb--2">Bogor<br/>Botani Square LG Floor JL. Raya Padjajaran No. 69-71</li>
+                          <li>Bali<br/>Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <p>
-                    <br />
-                    Kami ingin membantu Anda mewujudkan rumah impian yang
-                    estetik dan dapat menjadikan kami sebagai teman stylist
-                    anda. HIAS House menyediakan varian produk furnitur yang
-                    unik, dekorasi dan perlengkapan rumah yang telah melewati
-                    proses kurasi dari Home Stylist profesional. Kami
-                    menyelaraskan warna, gaya dan desain untuk menciptakan
-                    harmonisasi ruang dan kenyamanan Anda. HIAS House membagi
-                    kategori produk menjadi 5 departemen yaitu living, bedroom,
-                    bathroom, dining dan kitchen.
-                  </p>
-                  <h3>
-                    PT Hias Ritel Indonesia
-                  </h3>
-                  <p>
-                    Jl. Raya Boulevard Barat Blok XC No.2A. <br/>
-                    Kelapa Gading, Jakarta 14240 - Indonesia<br/>
-                    P +6221 2245 7333<br/>
-                    F +6221 2245 7334
-                  </p>
                 </div>
               </div>
             </div>
@@ -115,4 +110,4 @@ class AboutUs extends Component {
   }
 }
 
-export default AboutUs;
+export default StoreLocation;

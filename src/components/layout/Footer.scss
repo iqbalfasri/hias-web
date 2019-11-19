@@ -2,9 +2,15 @@
 
 footer {
   border-top: 1px solid rgba($color: $grayColor, $alpha: .5);
-  padding-top: 1em;
+  padding-top: 1.5em;
   background-color: #6d6e70;
   color: #fff;
+}
+
+.top-footer {
+  padding: 0.5em 0;
+  border-top: 1px solid rgba($color: $grayColor, $alpha: .2);
+  border-bottom: 1px solid rgba($color: white, $alpha: .2);
 }
 
 .footer-logo {
@@ -51,8 +57,8 @@ footer {
 
 .footer-download {
   padding: 1em 0;
-  border-top: 1px solid rgba($color: $grayColor, $alpha: .2);
-  border-bottom: 1px solid rgba($color: $grayColor, $alpha: .2);
+  border-top: 1px solid rgba($color: white, $alpha: .2);
+  border-bottom: 1px solid rgba($color: white, $alpha: .2);
 }
 
 .footer-download-icon {
