@@ -158,9 +158,6 @@ class Signin extends Component {
             <div>
               <Link
                 to="/signup"
-                onClick={() =>
-                  this.props.setModalPopupSignup({ isSignupModalOpen: false })
-                }
                 className="btn btn--primary"
               >
                 Daftar
