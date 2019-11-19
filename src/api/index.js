@@ -126,14 +126,6 @@ export const addUserAddress = value => {
     })
 }
 
-export const addToCart = async (value) => {
-  return axios
-    .post(`${BASE_URL}/product/addItemToCart`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      return res.data
-    })
-};
-
 export const getUserAddress = userId => {
   return axios
     .get(`${BASE_URL}/product/${userId}/getUserAddressByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
@@ -141,6 +133,14 @@ export const getUserAddress = userId => {
       return res.data
     })
 }
+
+export const addToCart = async (value) => {
+  return axios
+    .post(`${BASE_URL}/product/addItemToCart`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    .then((res) => {
+      return res.data
+    })
+};
 
 // export const getVANumberBNI = price => {
 //   return axios

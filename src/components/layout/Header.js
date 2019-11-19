@@ -154,7 +154,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header className="sticky-header">
         <div className="container-fluid">
           <div className="top-header">
             <div className="row align-items-center">

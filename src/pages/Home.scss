@@ -1,4 +1,9 @@
-@import '../assets/scss/global/var';
+@import "../assets/scss/global/var";
+
+.content {
+  margin-top: 105px;
+  position: relative;
+}
 
 .newletter-section {
   padding: 3em 3em;
@@ -70,7 +75,7 @@
   text-align: center;
   display: inline-block;
   padding: 1em;
-  border: 1px solid rgba($color: $grayColor, $alpha: .5);
+  border: 1px solid rgba($color: $grayColor, $alpha: 0.5);
   border-radius: 5px;
 }
 
@@ -100,7 +105,7 @@
   color: #fff;
   background-color: $mainColor;
   padding: 10px;
-  background-color: rgba($color: $mainColor, $alpha: .7);
+  background-color: rgba($color: $mainColor, $alpha: 0.7);
   min-width: 85%;
 }
 
@@ -146,7 +151,8 @@
   position: relative;
 }
 
-.cl--parent, .cl--item {
+.cl--parent,
+.cl--item {
   margin-bottom: 10px;
 }
 

@@ -76,46 +76,29 @@ class ContactUs extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="row">
-                    <div className="col-md-4">
-                      <div className="form--group">
-                        <label htmlFor="">Nama Lengkap</label>
-                        <InputText type="text" placeholder="Nama Lengkap" />
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="form--group">
-                        <label htmlFor="">Nomor Telepon</label>
-                        <InputText type="text" placeholder="Nomor Telepon" />
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="form--group">
-                        <label htmlFor="">Tempat Pembelian</label>
-                        <InputText type="text" placeholder="Tempat Pembelian" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-4">
-                      <div className="form--group">
-                        <label htmlFor="">No. Pembelian</label>
-                        <InputText type="text" placeholder="No. Pembelian" />
-                      </div>
-                    </div>
-                    <div className="col-md-8">
+                    <div className="col-md-6">
                       <div className="form--group">
                         <label htmlFor="">Alamat Email</label>
                         <InputText type="text" placeholder="Alamat Email" />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form--group">
+                        <label htmlFor="">Subyek</label>
+                        <InputText type="text" placeholder="Subyek" />
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col">
                       <div className="form--group">
-                        <label htmlFor="">Alasan Mengajukan Complaint</label>
-                        <textarea className="text--area" type="text" placeholder="Tuliskan Alasan"/>
+                        <label htmlFor="">Pesan</label>
+                        <textarea className="text--area" type="text" placeholder="Tuliskan Pesan"/>
                       </div>
                     </div>
+                  </div>
+                  <div>
+                    <button className="btn btn--full btn--blue" style={{maxWidth:"100%"}}>Submit</button>
                   </div>
                 </div>
               </div>
