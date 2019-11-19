@@ -85,7 +85,7 @@ class Category extends Component {
     }
   }
 
-  
+
   componentWillReceiveProps(props) {
     axios
       .get(
@@ -235,7 +235,7 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="lth" />
+                              <input type="radio" name="sort" id="lth" onClick={() => { }} />
                             </span>
                             <label htmlFor="lth">Price Low to High</label>
                           </div>
