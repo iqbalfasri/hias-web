@@ -78,7 +78,6 @@ class Signin extends Component {
   }
 
   render() {
-    console.log(this.state.username, this.state.password)
     return (
       <div>
         <div className="mb--1">
