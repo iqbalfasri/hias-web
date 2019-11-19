@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import { Helmet } from "react-helmet";
 
+import InputText from '../../components/form/InputText'
+
 import "./Articles.scss";
 
-class AboutUs extends Component {
+class ContactUs extends Component {
   render() {
     return (
       <div>
@@ -17,7 +19,7 @@ class AboutUs extends Component {
 
         <div>
           <div className="about-header">
-            <h1>Tentang Kami</h1>
+            <h1>Hubungi Kami</h1>
           </div>
 
           <div className="about-content">
@@ -27,12 +29,12 @@ class AboutUs extends Component {
                   <ul>
                     <li>
                       <Link to="/about">
-                        <h3 style={{ color: "#000" }}>Tentang Kami</h3>
+                        <h3>Tentang Kami</h3>
                       </Link>
                     </li>
                     <li>
                     <Link to="/contact">
-                      <h3>Hubungi Kami</h3>
+                      <h3 style={{ color: "#000" }}>Hubungi Kami</h3>
                     </Link>
                     </li>
                     <li>
@@ -73,38 +75,48 @@ class AboutUs extends Component {
                   </ul>
                 </div>
                 <div className="col-md-8">
-                  <p>
-                    HIAS House menyediakan berbagai pilihan furniture, dekorasi,
-                    dan perlengkapan rumah dengan mengedepankan konsep Modern
-                    dan Stylish yang cocok untuk keluarga masa kini yang dinamis
-                    dan modern juga generasi muda yang trendi dan semua kalangan
-                    urban.
-                    <br />
-                  </p>
-                  <div className="article-image">
-                    <img src={require('../../assets/img/Banner-Newsletter.png')} alt=""/>
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">Nama Lengkap</label>
+                        <InputText type="text" placeholder="Nama Lengkap" />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">Nomor Telepon</label>
+                        <InputText type="text" placeholder="Nomor Telepon" />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">Tempat Pembelian</label>
+                        <InputText type="text" placeholder="Tempat Pembelian" />
+                      </div>
+                    </div>
                   </div>
-                  <p>
-                    <br />
-                    Kami ingin membantu Anda mewujudkan rumah impian yang
-                    estetik dan dapat menjadikan kami sebagai teman stylist
-                    anda. HIAS House menyediakan varian produk furnitur yang
-                    unik, dekorasi dan perlengkapan rumah yang telah melewati
-                    proses kurasi dari Home Stylist profesional. Kami
-                    menyelaraskan warna, gaya dan desain untuk menciptakan
-                    harmonisasi ruang dan kenyamanan Anda. HIAS House membagi
-                    kategori produk menjadi 5 departemen yaitu living, bedroom,
-                    bathroom, dining dan kitchen.
-                  </p>
-                  <h3>
-                    PT Hias Ritel Indonesia
-                  </h3>
-                  <p>
-                    Jl. Raya Boulevard Barat Blok XC No.2A. <br/>
-                    Kelapa Gading, Jakarta 14240 - Indonesia<br/>
-                    P +6221 2245 7333<br/>
-                    F +6221 2245 7334
-                  </p>
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form--group">
+                        <label htmlFor="">No. Pembelian</label>
+                        <InputText type="text" placeholder="No. Pembelian" />
+                      </div>
+                    </div>
+                    <div className="col-md-8">
+                      <div className="form--group">
+                        <label htmlFor="">Alamat Email</label>
+                        <InputText type="text" placeholder="Alamat Email" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="form--group">
+                        <label htmlFor="">Alasan Mengajukan Complaint</label>
+                        <textarea className="text--area" type="text" placeholder="Tuliskan Alasan"/>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,4 +127,4 @@ class AboutUs extends Component {
   }
 }
 
-export default AboutUs;
+export default ContactUs;

@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import "./Articles.scss";
 
-class AboutUs extends Component {
+class Newsletter extends Component {
   render() {
     return (
       <div>
@@ -17,7 +17,7 @@ class AboutUs extends Component {
 
         <div>
           <div className="about-header">
-            <h1>Tentang Kami</h1>
+            <h1>Langganan Update & Berita</h1>
           </div>
 
           <div className="about-content">
@@ -27,7 +27,7 @@ class AboutUs extends Component {
                   <ul>
                     <li>
                       <Link to="/about">
-                        <h3 style={{ color: "#000" }}>Tentang Kami</h3>
+                        <h3>Tentang Kami</h3>
                       </Link>
                     </li>
                     <li>
@@ -62,7 +62,7 @@ class AboutUs extends Component {
                     </li>
                     <li>
                       <Link to="/newsletter">
-                        <h3>Langganan Update &amp; Berita</h3>
+                        <h3 style={{ color: "#000" }}>Langganan Update &amp; Berita</h3>
                       </Link>
                     </li>
                     <li>
@@ -73,38 +73,22 @@ class AboutUs extends Component {
                   </ul>
                 </div>
                 <div className="col-md-8">
-                  <p>
-                    HIAS House menyediakan berbagai pilihan furniture, dekorasi,
-                    dan perlengkapan rumah dengan mengedepankan konsep Modern
-                    dan Stylish yang cocok untuk keluarga masa kini yang dinamis
-                    dan modern juga generasi muda yang trendi dan semua kalangan
-                    urban.
-                    <br />
-                  </p>
-                  <div className="article-image">
-                    <img src={require('../../assets/img/Banner-Newsletter.png')} alt=""/>
+                  <div>
+                    <h3 className="footer-link-title">Langganan Berita</h3>
+                    <div>
+                      <strong><p>Keuntungan dengan berlangganan berita HIAS House:</p></strong>
+                      <ul>
+                        <li>Dapat dengan mudah mendapatkan info promo produk</li>
+                        <li>Selalu update dengan produk-produk terbaru HIAS House</li>
+                      </ul>
+                      <div className="form--group" style={{maxWidth:"50%", marginLeft: 20}}>
+                        <input type="text" placeholder="Alamat Email" className="form--input" />
+                      </div>
+                      <div>
+                        <button className="btn btn--full btn--blue" style={{maxWidth:"50%", marginLeft: 20}}>Langganan</button>
+                      </div>
+                    </div>
                   </div>
-                  <p>
-                    <br />
-                    Kami ingin membantu Anda mewujudkan rumah impian yang
-                    estetik dan dapat menjadikan kami sebagai teman stylist
-                    anda. HIAS House menyediakan varian produk furnitur yang
-                    unik, dekorasi dan perlengkapan rumah yang telah melewati
-                    proses kurasi dari Home Stylist profesional. Kami
-                    menyelaraskan warna, gaya dan desain untuk menciptakan
-                    harmonisasi ruang dan kenyamanan Anda. HIAS House membagi
-                    kategori produk menjadi 5 departemen yaitu living, bedroom,
-                    bathroom, dining dan kitchen.
-                  </p>
-                  <h3>
-                    PT Hias Ritel Indonesia
-                  </h3>
-                  <p>
-                    Jl. Raya Boulevard Barat Blok XC No.2A. <br/>
-                    Kelapa Gading, Jakarta 14240 - Indonesia<br/>
-                    P +6221 2245 7333<br/>
-                    F +6221 2245 7334
-                  </p>
                 </div>
               </div>
             </div>
@@ -115,4 +99,4 @@ class AboutUs extends Component {
   }
 }
 
-export default AboutUs;
+export default Newsletter;

@@ -45,9 +45,10 @@ export const fetchProductById = id => {
     return res.data;
   });
 };
+
 export const getCart = userId => {
   return axios
-    .get(`${BASE_URL}/product/hotItems`)
+  .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
     .then((res) => {
       return res.data
     })
@@ -126,17 +127,11 @@ export const addUserAddress = value => {
 }
 
 export const addToCart = async (value) => {
-  axios
-    .post(`${BASE_URL}/product/addToCart`, { userId: localStorage.getItem('userId') }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    .then(res => {
-      return res.data;
-    });
+  return axios
+      .post(`${BASE_URL}/product/addItemToCart`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+          return res.data
+        })
 };
 
 export const getUserAddress = userId => {

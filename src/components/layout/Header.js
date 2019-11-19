@@ -520,7 +520,7 @@ class Header extends Component {
                       <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
-                            <h3 className="mb--0">Inspiration</h3>
+                            <h3 className="mb--0">INSPIRASI</h3>
                             <p className="mb--0">Create &amp; live your unique style</p>
                           </div>
                         </div>
@@ -530,7 +530,7 @@ class Header extends Component {
                               <img src={require('../../assets/img/image-1.png')} alt=""/>
                             </div>
                             <div>
-                            <p>Inspiration &amp; Ideas</p>
+                            <p>Ide & Inspirasi</p>
                               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                           </div>
@@ -539,7 +539,7 @@ class Header extends Component {
                               <img src={require('../../assets/img/Image-2.png')} alt=""/>
                             </div>
                             <div>
-                              <p>Meet Our Designers</p>
+                              <p>Tips & Trik</p>
                               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                           </div>
