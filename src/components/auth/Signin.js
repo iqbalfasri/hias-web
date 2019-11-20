@@ -131,7 +131,7 @@ class Signin extends Component {
         <div className="divider-with-text mt--2 mb--2">
           <span className="text--size-12">Atau</span>
         </div>
-        <div className="mt--2 mb--2">
+        {/* <div className="mt--2 mb--2">
           <h3 className="text--center text--size-12">Masuk Dengan</h3>
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
@@ -149,7 +149,7 @@ class Signin extends Component {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="mt--2">
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">

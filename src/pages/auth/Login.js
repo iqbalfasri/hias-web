@@ -16,12 +16,12 @@ class Login extends Component {
         <div className="content">
           <section className="section-page">
             <div className="container">
-              <div className="row align-items-center">
-                <div className="col-md-8">
+              <div className="row align-items-center justify-content-center">
+                {/* <div className="col-md-8">
                   <div>
                     <img src="https://via.placeholder.com/1000x550" alt=""/>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-md-4">
                   <Signin />
                 </div>
