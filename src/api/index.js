@@ -76,9 +76,13 @@ export const removeWishlist = id => {
 
 export const registUserToCart = userId => {
   return axios
-    .get(`${BASE_URL}/product/addToCart`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    })
+    .post(
+      `${BASE_URL}/product/addToCart`,
+      { userId: localStorage.getItem("userId") },
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      }
+    )
     .then(res => {
       return res.data;
     });

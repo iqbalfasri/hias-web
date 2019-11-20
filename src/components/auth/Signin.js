@@ -6,6 +6,7 @@ import { withContext } from "../../context/withContext";
 import InputText from "../form/InputText";
 import Checkbox from "../form/Checkbox";
 import Modal from "../../components/layout/Modal";
+import { BASE_URL } from "../../api";
 
 class Signin extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Signin extends Component {
         alert("Fill the field");
       } else {
         const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/authenticate/login`,
+          `${BASE_URL}/authenticate/login`,
           { username, password },
           { headers: { "Content-Type": "application/json" } }
         );

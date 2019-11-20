@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
-import { registUserToCart } from '../../api'
+import { registUserToCart, BASE_URL } from '../../api'
 
 class Signup extends Component {
   constructor (props) {
@@ -44,7 +44,7 @@ class Signup extends Component {
       }
 
       const response = await axios
-        .post(`${process.env.REACT_APP_BASE_URL}/register`, {
+        .post(`${BASE_URL}/register`, {
           name,
           email,
           username: email,
