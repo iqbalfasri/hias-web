@@ -133,7 +133,7 @@ class Detail extends Component {
       </div>
     ) : (
         <div className="pda--items">
-          <button className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Add to Cart</button>
+          <button className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Tambah ke Keranjang</button>
         </div>
       )
   }
@@ -165,68 +165,8 @@ class Detail extends Component {
       case 2:
         return (
           <div>
-            {/* <p>{ product.descriptiom }</p> */}
-            <div className="row">
-              <div className="col-md-5">
-                <p>
-                  <b>SKU</b>
-                </p>
-                <p>
-                  <b>Ukuran</b>
-                </p>
-                <p>
-                  <b>Material</b>
-                </p>
-                <p>
-                  <b>Material Dudukan</b>
-                </p>
-                <p>
-                  <b>Gaya</b>
-                </p>
-                <p>
-                  <b>Cara Perawatan</b>
-                </p>
-              </div>
-              <div className="col-md-1">
-                <p>
-                  <b>:</b>
-                </p>
-                <p>
-                  <b>:</b>
-                </p>
-                <p>
-                  <b>:</b>
-                </p>
-                <p>
-                  <b>:</b>
-                </p>
-                <p>
-                  <b>:</b>
-                </p>
-                <p>
-                  <b>:</b>
-                </p>
-              </div>
-              <div className="col-md-6">
-                <p>
-                  <b>P046264</b>
-                </p>
-                <p>
-                  46cm x 53cm x 46cm
-                </p>
-                <p>
-                  Plywood
-                </p>
-                <p>
-                  Busa
-                </p>
-                <p>
-                  Urban Elegan
-                </p>
-                <p>
-                  Bersihkan dengan lap kering untuk bagian kayu, dan lap basah untuk bagian kulit.
-                </p>
-              </div>
+            <div className="row" style={{paddingLeft:'1.5em'}}>
+              <p>{ product.description }</p>
             </div>
           </div>
         )
@@ -275,7 +215,7 @@ class Detail extends Component {
                   <div>
                     <div>
                       <h1>{product.productName}</h1>
-                      <h2 className="text--color-orange">IDR {formatMoneyWithoutSymbol(product.price)} / each</h2>
+                      <h2 className="text--color-orange">IDR {formatMoneyWithoutSymbol(product.price)} / Item</h2>
                     </div>
                     <div>
                       <div className="mb--1">
@@ -337,13 +277,13 @@ class Detail extends Component {
                     <div className="product-detail-tab">
                       <div className="pdt--tab">
                         <div className={`pdt--tab-item ${this.state.activeDetailTab === 1 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 1 })}>
-                          <span>Overview</span>
+                          <span>Tinjauan</span>
                         </div>
                         <div className={`pdt--tab-item ${this.state.activeDetailTab === 2 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 2 })}>
-                          <span>Details</span>
+                          <span>Detil</span>
                         </div>
                         <div className={`pdt--tab-item ${this.state.activeDetailTab === 3 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 3 })}>
-                          <span>Courier</span>
+                          <span>Kurir</span>
                         </div>
                       </div>
                       <div className="pdt--tab-content">
@@ -351,8 +291,8 @@ class Detail extends Component {
                       </div>
                     </div>
                     <div className="product-detail-variant">
-                      <h3>Other Variant</h3>
-                      <div className="row">
+                      <h3>Varian Lainnya</h3>
+                      <div className="row" style={{paddingLeft:'1.3em'}}>
                         {this.state.variant !== null ? (
                           this.state.variant.map((p, index) => {
                             return (
@@ -373,7 +313,7 @@ class Detail extends Component {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="product-detail-variant">
-                        <h3>Color Options</h3>
+                        <h3>Pilihan Warna</h3>
                         <div>
                           <ColorSelector colors={this.state.colors} />
                         </div>
@@ -397,7 +337,7 @@ class Detail extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h1 className="section-title mb--0">Related Product</h1>
+                    <h1 className="section-title mt--2">Related Product</h1>
                   </div>
                 </div>
               </div>

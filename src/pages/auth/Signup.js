@@ -130,7 +130,7 @@ class Signup extends Component {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text--center">Daftarkan Akun Anda</h3>
+                    <h3 className="text--center mb--2">Daftarkan Akun Anda</h3>
                   </div>
                   <div className="mb--2">
                     <form onSubmit={(e) => this.onSignUp(e)}>
@@ -156,7 +156,7 @@ class Signup extends Component {
                               this.setState({ checkBoxChecked: !this.state.checkBoxChecked })
                             }}
                             isChecked={this.state.checkBoxChecked} />
-                          <span style={{marginLeft:5}}>Saya setuju dengan <Link>syarat & ketentuan</Link> dari HIAS House</span>
+                          <span style={{marginLeft:5}}>Saya setuju dengan <Link to="/terms">syarat & ketentuan</Link> dari HIAS House</span>
                         </div>
                       </div>
                       <div className="form--group">
@@ -170,7 +170,7 @@ class Signup extends Component {
                   <div className="mt--2">
                     <div className="fx justify-content-center align-items-center">
                       <div className="mr--1">
-                        <p className="mb--0 text--color-gray">Already have an account?</p>
+                        <p className="mb--0 text--color-gray">Sudah punya akun?</p>
                       </div>
                       <div>
                         <Link to="/login" className="btn btn--primary">Login</Link>

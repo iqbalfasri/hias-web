@@ -113,10 +113,10 @@ class Category extends Component {
               <div className="row">
                 <div className="col-md-3">
                   <div>
-                    <div>
+                    {/* <div>
                       <h2>LIVING</h2>
                     </div>
-                    <div className="cat-container">
+                    {/* <div className="cat-container">
                       <div>
                         <div className="cat-list cl--parent">
                           <span className="mr--1">
@@ -166,16 +166,16 @@ class Category extends Component {
                           </span>
                         </div>
                       </div>
-                    </div>
-                    <div className="cat-container">
+                    </div> */}
+                    <div className="cat-container mt--2">
                       <div className="cat--title">
                         <span className="text--color-gray">
-                          FILTER PRODUCTS
+                          FILTER PRODUK
                         </span>
                       </div>
                       <div className="cat--sub-title">
                         <span className="mr--1">
-                          <strong>BASED ON COLOR</strong>
+                          <strong>BERDASARKAN WARNA</strong>
                         </span>
                         <span>
                           <FontAwesomeIcon icon={faMinusSquare} />
@@ -185,35 +185,35 @@ class Category extends Component {
                         <div className="cat--items">
                           <Checkbox
                             id="red"
-                            text="Red"
+                            text="Merah"
                             textStyle={{ fontSize: "14px" }}
                           />
                         </div>
                         <div className="cat--items">
                           <Checkbox
                             id="blue"
-                            text="Blue"
+                            text="Biru"
                             textStyle={{ fontSize: "14px" }}
                           />
                         </div>
                         <div className="cat--items">
                           <Checkbox
                             id="green"
-                            text="Green"
+                            text="Hijau"
                             textStyle={{ fontSize: "14px" }}
                           />
                         </div>
                         <div className="cat--items">
                           <Checkbox
                             id="black"
-                            text="Black"
+                            text="Hitam"
                             textStyle={{ fontSize: "14px" }}
                           />
                         </div>
                         <div className="cat--items">
                           <Checkbox
                             id="white"
-                            text="White"
+                            text="Putih"
                             textStyle={{ fontSize: "14px" }}
                           />
                         </div>
@@ -221,11 +221,11 @@ class Category extends Component {
                     </div>
                     <div className="cat-container">
                       <div className="cat--title">
-                        <span className="text--color-gray">SORT PRODUCTS</span>
+                        <span className="text--color-gray">URUTAN PRODUK</span>
                       </div>
                       <div className="cat--sub-title">
                         <span className="mr--1">
-                          <strong>BASED ON PRODUCTS</strong>
+                          <strong>URUTAN BERDASAKRKAN</strong>
                         </span>
                         <span>
                           <FontAwesomeIcon icon={faMinusSquare} />
@@ -237,7 +237,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input type="radio" name="sort" id="lth" onClick={() => { }} />
                             </span>
-                            <label htmlFor="lth">Price Low to High</label>
+                            <label htmlFor="lth">Harga Terendah ke Tinggi</label>
                           </div>
                         </div>
                         <div className="cat--items">
@@ -245,7 +245,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input type="radio" name="sort" id="htl" />
                             </span>
-                            <label htmlFor="htl">Price High to Low</label>
+                            <label htmlFor="htl">Harga Tinggi ke Rendah</label>
                           </div>
                         </div>
                         <div className="cat--items">
@@ -253,7 +253,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input type="radio" name="sort" id="az" />
                             </span>
-                            <label htmlFor="az">A to Z</label>
+                            <label htmlFor="az">A ke Z</label>
                           </div>
                         </div>
                         <div className="cat--items">
@@ -261,7 +261,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input type="radio" name="sort" id="za" />
                             </span>
-                            <label htmlFor="za">Z to A</label>
+                            <label htmlFor="za">Z ke A</label>
                           </div>
                         </div>
                         <div className="cat--items">
@@ -269,7 +269,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input type="radio" name="sort" id="ne" />
                             </span>
-                            <label htmlFor="ne">Newest to Eldest</label>
+                            <label htmlFor="ne">Baru ke Lama</label>
                           </div>
                         </div>
                         <div className="cat--items">
@@ -277,7 +277,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input type="radio" name="sort" id="en" />
                             </span>
-                            <label htmlFor="en">Eldest to Newest</label>
+                            <label htmlFor="en">Lama ke Baru</label>
                           </div>
                         </div>
                       </div>
@@ -287,9 +287,9 @@ class Category extends Component {
                 <div className="col-md-9">
                   <div className="row">
                     <div className="col">
-                      <h3 className="text--size-12">
+                      {/* <h3 className="text--size-12">
                         Menampilkan 10 Produk untuk Sofa
-                      </h3>
+                      </h3> */}
                     </div>
                   </div>
                   <div className="row">{this.renderProduct()}</div>
