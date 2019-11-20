@@ -36,6 +36,8 @@ import Signin from './components/auth/Signin'
 import Checkbox from './components/form/Checkbox'
 import { withContext } from './context/withContext'
 import DetailInspiration from './pages/Inspiration/DetailInspiration'
+import Review from './pages/Review/Review'
+import AddReview from './pages/Review/AddReview'
 
 class App extends Component {
   constructor(props) {
@@ -104,6 +106,8 @@ class App extends Component {
           <Route path="/promo" component={Promo} />
           <Route path="/news" component={News} />
           <Route path="/event" component={Event} />
+          <Route path="/review" component={Review} exact={true} />
+          <Route path="/review/add" component={AddReview} />
           <Route component={NotFound} />
         </Switch>
         <Footer />

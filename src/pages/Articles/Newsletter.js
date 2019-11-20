@@ -1,10 +1,39 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import { Helmet } from "react-helmet";
+import axios from 'axios';
 
 import "./Articles.scss";
 
 class Newsletter extends Component {
+  state = {
+    email: "",
+    isSucessSubscribed: false,
+    isLoading: false
+  }
+  onChangeEmail = (e) => {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  subsribe = () => {
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const value = {
+      email: this.state.email
+    }
+    this.setState({ isLoading: true })
+
+    axios
+      .post(`${BASE_URL}/product/newsLatter`, value)
+      .then((res) => {
+        this.setState({ isSucessSubscribed: true })
+      })
+      .finally(() => {
+        this.setState({ isLoading: false })
+      })
+  }
+
   render() {
     return (
       <div>
@@ -31,9 +60,9 @@ class Newsletter extends Component {
                       </Link>
                     </li>
                     <li>
-                    <Link to="/contact">
-                      <h3>Hubungi Kami</h3>
-                    </Link>
+                      <Link to="/contact">
+                        <h3>Hubungi Kami</h3>
+                      </Link>
                     </li>
                     <li>
                       <Link to="/faq">
@@ -81,13 +110,18 @@ class Newsletter extends Component {
                         <li>Dapat dengan mudah mendapatkan info promo produk</li>
                         <li>Selalu update dengan produk-produk terbaru HIAS House</li>
                       </ul>
-                      <div className="form--group" style={{maxWidth:"50%", marginLeft: 20}}>
-                        <input type="text" placeholder="Alamat Email" className="form--input" />
+                      <div className="form--group" style={{ maxWidth: "50%", marginLeft: 20 }}>
+                        <input type="text" placeholder="Alamat Email" className="form--input" value={this.state.email} onChange={this.onChangeEmail} />
                       </div>
                       <div>
-                        <button className="btn btn--full btn--blue" style={{maxWidth:"50%", marginLeft: 20}}>Langganan</button>
+                        <button onClick={this.subsribe} className="btn btn--full btn--blue" style={{ maxWidth: "50%", marginLeft: 20 }}>{this.state.isLoading ? "Loading ..." : "Langganan"}</button>
                       </div>
                     </div>
+                    {this.state.isSucessSubscribed &&
+                      <div className="col">
+                        <p />
+                        <p>Kamu berhasil berlangganan newsletter hias house</p>
+                      </div>}
                   </div>
                 </div>
               </div>
