@@ -50,7 +50,7 @@ class Order extends Component {
   }
 
   _history() {
-    return <h1>History</h1>;
+    return <h1></h1>;
   }
 
   renderOrderStatus() {
