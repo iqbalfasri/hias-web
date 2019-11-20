@@ -75,7 +75,7 @@ export const removeWishlist = id => {
 };
 
 export const registUserToCart = userId => {
-  return axios.get(`${BASE_URL}/product/${userId}`).then(res => {
+  return axios.get(`${BASE_URL}/${userId}/addToCart`).then(res => {
     return res.data;
   });
 };

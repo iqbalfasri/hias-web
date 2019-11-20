@@ -2,14 +2,35 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 
 import "./Order.scss";
+import axios from "axios";
+import { BASE_URL } from "../../api";
 
 class Order extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeSteps: 1
+      activeSteps: 1,
+      orderData: []
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        `${BASE_URL}/product/${localStorage.getItem(
+          "userId"
+        )}/getOrderByUserId`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        }
+      )
+      .then(res => {
+        this.setState({ orderData: res.data.data.order });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   _onProgress() {
@@ -27,24 +48,7 @@ class Order extends Component {
           </div>
         </div>
 
-        <div className="row-order row-order--item">
-          <div className="content">
-            <div className="order-date">
-              <div className="order-circle--date">
-                <p>21 OCT</p>
-              </div>
-              <div>
-                <h5>ID 9851211</h5>
-              </div>
-            </div>
-          </div>
-          <div className="content">
-            <h5>3</h5>
-          </div>
-          <div className="content">
-            <h5>On Delivery</h5>
-          </div>
-        </div>
+        {this.renderEachOrder(this.state.orderData)}
       </>
     );
   }
@@ -64,6 +68,33 @@ class Order extends Component {
 
       default:
         return null;
+    }
+  }
+
+  renderEachOrder(data) {
+    if (data !== undefined) {
+      return this.state.orderData.map(order => {
+        return (
+          <div className="row-order row-order--item">
+            <div className="content">
+              <div className="order-date">
+                <div className="order-circle--date">
+                  <p>21 OCT</p>
+                </div>
+                <div>
+                  <h5>ID {order.orderId}</h5>
+                </div>
+              </div>
+            </div>
+            <div className="content">
+              <h5>3</h5>
+            </div>
+            <div className="content">
+              <h5>{order.status == 0 ? "Payment" : "On Delivery"}</h5>
+            </div>
+          </div>
+        );
+      });
     }
   }
 
