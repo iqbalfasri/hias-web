@@ -1,0 +1,81 @@
+@import "../../assets/scss/global/var";
+
+.order-steps-list {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1em;
+
+  span {
+    cursor: pointer;
+  }
+}
+
+.order-status-content {
+  border: 1px solid #c6c6c5;
+  padding: 50px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.order-circle--date {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background-color: #01afd9;
+  flex-direction: column;
+  padding: 0 20px;
+  font-size: 12px;
+  color: #fff;
+
+  p {
+    top: 14px;
+    position: relative;
+    // align-self?: center;
+  }
+}
+.order-date {
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: red;
+}
+
+.steps-list--active {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+    border-bottom: 15px solid $grayColor;
+  }
+}
+
+.row-order {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid #c6c6c5;
+  text-align: center;
+  padding-bottom: 15px;
+}
+.content {
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.row-order--item {
+  flex-direction: row;
+  padding: 20px 0;
+  text-align: center;
+}

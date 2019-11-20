@@ -12,7 +12,31 @@ class Header extends Component {
     super(props)
 
     this.state = {
-      keyword: ''
+      keyword: '',
+      isSticky: false
+    }
+
+    this.handleSticky = this.handleSticky.bind(this)
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleSticky);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleSticky);
+  }
+
+  handleSticky() {
+    if (window.scrollY > 0) {
+      this.setState({
+        isSticky: true
+      })
+      console.log('Scroll udah lebih dari 100')
+    } else if (window.scrollY === 0) {
+      this.setState({
+        isSticky: false
+      })
     }
   }
 
@@ -38,6 +62,14 @@ class Header extends Component {
   onClickCartIcon () {
     if (isLogin()) {
       this.props.history.push('/cart')
+    } else {
+      this.props.context.setIsModalSigninPopupOpen(true)
+    }
+  }
+
+  onClickOrderIcon() {
+    if (isLogin()) {
+      this.props.history.push('/order')
     } else {
       this.props.context.setIsModalSigninPopupOpen(true)
     }
@@ -80,7 +112,7 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-top-icon">
-            <div className="header-top-icon--image">
+            <div className="header-top-icon--image" onClick={() => this.onClickOrderIcon()}>
               <img src={require('../../assets/img/OrderStatus.svg')} alt=""/>
             </div>
           </div>
@@ -154,7 +186,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="sticky-header">
+      <header className={this.state.isSticky ? 'sticky-header' : null}>
         <div className="container-fluid">
           <div className="top-header">
             <div className="row align-items-center">
