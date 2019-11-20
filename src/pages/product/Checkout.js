@@ -77,14 +77,16 @@ class Checkout extends Component {
     })
       .then(res => {
         if (res.success) {
-          getUserAddress(localStorage.getItem("userId")).then(res => {
-            console.log(res.data[0]);
-            this.setState({
-              userAddress: res.data[0]
-            });
-            this.setState({ activeSteps: 2 });
-            this.props.context.setIsLoading(false);
-          });
+          // getUserAddress(localStorage.getItem("userId")).then(res => {
+          //   console.log(res.data[0]);
+
+          //   this.setState({ activeSteps: 2 });
+          //   this.props.context.setIsLoading(false);
+          // });
+          this.setState({
+            userAddress: res.data[0],
+            activeSteps: 2
+          }, () => this.props.context.setIsLoading(false));
         }
       })
       .catch(err => {
