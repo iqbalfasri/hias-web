@@ -21,11 +21,11 @@
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 100%);
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    
+
     border-bottom: 15px solid $grayColor;
   }
 }
@@ -108,5 +108,29 @@
     &::after {
       background-color: $mainColor;
     }
+  }
+}
+/**
+
+ADDRESS
+
+*/
+.box-address {
+  width: 350px;
+  max-width: 400px;
+  border: 1px solid #C8C8C8;
+  border-radius: 5px;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  margin: 0 20px 20px;
+}
+.box-address--detail {
+  p {
+    margin: 0 0;
+    font-size: 12px;
+  }
+
+  .phone {
+    padding: 10px 0 0;
   }
 }
