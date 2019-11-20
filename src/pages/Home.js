@@ -291,11 +291,9 @@ class Home extends Component {
           <section className="section-page">
             <div className="container">
 
-              <div className="row align-items-center">
+              <div className="row align-items-center justify-content-center">
                 <div className="col">
-                  <div>
-                    <img src={require('../assets/img/banner-promo.jpg')} alt="" />
-                  </div>
+                  <img src={require('../assets/img/banner-promo.jpg')} alt="" style={{maxWidth:"60%", marginLeft:'auto', marginRight:'auto'}}/>
                 </div>
               </div>
             </div>

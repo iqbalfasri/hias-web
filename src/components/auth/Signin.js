@@ -6,6 +6,7 @@ import { withContext } from "../../context/withContext";
 import InputText from "../form/InputText";
 import Checkbox from "../form/Checkbox";
 import Modal from "../../components/layout/Modal";
+import { BASE_URL } from "../../api";
 
 class Signin extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Signin extends Component {
         alert("Fill the field");
       } else {
         const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/authenticate/login`,
+          `${BASE_URL}/authenticate/login`,
           { username, password },
           { headers: { "Content-Type": "application/json" } }
         );
@@ -131,7 +132,7 @@ class Signin extends Component {
         <div className="divider-with-text mt--2 mb--2">
           <span className="text--size-12">Atau</span>
         </div>
-        <div className="mt--2 mb--2">
+        {/* <div className="mt--2 mb--2">
           <h3 className="text--center text--size-12">Masuk Dengan</h3>
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
@@ -149,7 +150,7 @@ class Signin extends Component {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="mt--2">
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">

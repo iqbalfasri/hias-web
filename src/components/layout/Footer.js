@@ -96,13 +96,13 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li><Link to="/"><span style={{fontWeight:"normal"}}>TANGERANG</span><br/><span className="footer-sub-link">Supermall Karawaci<br/> UG Floor JL. Boulevard Diponegoro 105 Karawaci</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BOGOR</span><br/><span className="footer-sub-link">Botani Square<br/> LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
                       </ul>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BOGOR</span><br/><span className="footer-sub-link">Botani Square<br/> LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
                         <li><Link to="/"><span style={{fontWeight:"normal"}}>BALI</span><br/><span className="footer-sub-link">Level 21 Bali<br/> JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</span></Link></li>
                       </ul>
                     </div>

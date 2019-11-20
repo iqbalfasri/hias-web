@@ -8,11 +8,13 @@ import {
   getUserAddress,
   getCart,
   getVANumberBNI,
-  getVANumberCIMB
+  getVANumberCIMB,
+  BASE_URL
 } from "../../api";
 import { withContext } from "../../context/withContext";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 import "./Checkout.scss";
+import axios from "axios";
 
 class Checkout extends Component {
   constructor(props) {
@@ -34,7 +36,8 @@ class Checkout extends Component {
       subTotal: 0,
       vaBNI: null,
       vaCIMB: null,
-      paymentMethodMode: 1
+      paymentMethodMode: 1,
+      addressId: 0
     };
   }
 
@@ -49,16 +52,27 @@ class Checkout extends Component {
 
   onProcessTab2() {
     this.props.context.setIsLoading(true);
-    Promise.all([
-      getVANumberCIMB(this.state.subTotal).then(res => {
-        this.setState({
-          vaCIMB: res.va
-        });
-      })
-    ]).then(() => {
-      this.props.context.setIsLoading(false);
-      this.setState({ activeSteps: 3 });
-    });
+    axios.post(
+      `${BASE_URL}/product/order`,
+      {
+        userId: localStorage.getItem('userId'),
+        userAddressId: this.state.addressId,
+        total: this.state.subTotal,
+        subTotal: this.state.subTotal,
+        session: null,
+        paymentType: null,
+        status: 0
+      },
+      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+    ).then(res => {
+      if (res.data.success) {
+        this.setState({ activeSteps: 3 }, () => {
+          this.props.context.setIsLoading(false)
+        })
+      }
+    }).catch(error => {
+      console.log(error)
+    })
   }
 
   onProcessTab1() {
@@ -76,15 +90,34 @@ class Checkout extends Component {
       postCode: this.state.postalCode
     })
       .then(res => {
+        const getIdAddress = res.data.slice(-2);
         if (res.success) {
-          getUserAddress(localStorage.getItem("userId")).then(res => {
-            console.log(res.data[0]);
-            this.setState({
-              userAddress: res.data[0]
-            });
-            this.setState({ activeSteps: 2 });
-            this.props.context.setIsLoading(false);
-          });
+          // getUserAddress(localStorage.getItem("userId")).then(res => {
+          //   console.log(res.data[0]);
+
+          //   this.setState({ activeSteps: 2 });
+          //   this.props.context.setIsLoading(false);
+          // });
+          const userAddress = {
+            userId: localStorage.getItem("userId"),
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            company: this.state.companyName,
+            country: this.state.country,
+            city: this.state.city,
+            address: this.state.address,
+            email: this.state.email,
+            phone: this.state.phone,
+            postCode: this.state.postalCode
+          };
+          this.setState(
+            {
+              userAddress: userAddress,
+              activeSteps: 2,
+              addressId: getIdAddress
+            },
+            () => this.props.context.setIsLoading(false)
+          );
         }
       })
       .catch(err => {

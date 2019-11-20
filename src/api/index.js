@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://api-core-hias.herokuapp.com";
+export const BASE_URL = "https://api-core-hias.herokuapp.com";
 
 export const fetchBanner = () => {
   return axios.get(`${BASE_URL}/getAllBanner`).then(res => {
@@ -75,9 +75,17 @@ export const removeWishlist = id => {
 };
 
 export const registUserToCart = userId => {
-  return axios.get(`${BASE_URL}/product/${userId}`).then(res => {
-    return res.data;
-  });
+  return axios
+    .post(
+      `${BASE_URL}/product/addToCart`,
+      { userId: localStorage.getItem("userId") },
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      }
+    )
+    .then(res => {
+      return res.data;
+    });
 };
 
 export const fetchVariantById = id => {
