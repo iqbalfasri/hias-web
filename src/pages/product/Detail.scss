@@ -1,0 +1,19 @@
+.tab--detail {
+  padding: 0 0.2em;
+
+  .tab--detail-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    h4 {
+      flex: 1;
+      font-weight: 600;;
+    }
+
+    p {
+      flex: 1;
+      font-size: 12px;
+    }
+  }
+}
