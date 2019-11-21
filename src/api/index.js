@@ -59,9 +59,13 @@ export const fetchAllInspiration = () => {
 };
 
 export const removeProductOnCart = productId => {
-  return axios.post(`${BASE_URL}/product/wishList`, productId).then(res => {
-    return res.data;
-  });
+  return axios
+    .delete(`${BASE_URL}/product/${productId}/deleteItemCart`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    })
+    .then(res => {
+      return res.data;
+    });
 };
 
 export const removeWishlist = id => {
@@ -198,10 +202,32 @@ export const searchByName = productName => {
     });
 };
 
-export const fetchProductByInspirationId = (id) => {
+export const fetchProductByInspirationId = id => {
+  return axios.post(`${BASE_URL}/inspration/${id}/product`).then(res => {
+    return res.data;
+  });
+};
+
+export const getOrderProgress = userId => {
   return axios
-    .get(`${BASE_URL}/inspration/${id}/product`)
-    .then((res) => {
-      return res.data
+    .get(`${BASE_URL}/product/${userId}/getOrderByUserId`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
     })
-}
+    .then(res => {
+      return res.data;
+    });
+};
+
+export const getOrderById = orderId => {
+  return axios
+    .get(`${BASE_URL}/product/detail/${orderId}/order`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    .then(res => {
+      return res.data;
+    });
+};
