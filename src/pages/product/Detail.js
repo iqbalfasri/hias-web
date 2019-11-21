@@ -165,8 +165,8 @@ class Detail extends Component {
       case 2:
         return (
           <div>
-            <div className="row" style={{paddingLeft:'1.5em'}}>
-              <p>{ product.description }</p>
+            <div className="row" style={{ paddingLeft: '1.5em' }}>
+              <p>{product.description}</p>
             </div>
           </div>
         )
@@ -197,8 +197,8 @@ class Detail extends Component {
 
   render() {
     const { product } = this.state;
-    console.log(this.state);
-    const { id } = this.props.match.params;
+    let { id } = this.props.match.params;
+    id = parseInt(id, 10);
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
@@ -292,7 +292,7 @@ class Detail extends Component {
                     </div>
                     <div className="product-detail-variant">
                       <h3>Varian Lainnya</h3>
-                      <div className="row" style={{paddingLeft:'1.3em'}}>
+                      <div className="row" style={{ paddingLeft: '1.3em' }}>
                         {this.state.variant !== null ? (
                           this.state.variant.map((p, index) => {
                             return (

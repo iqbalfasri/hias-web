@@ -7,7 +7,7 @@ import { faSearch, faHeart, faShoppingCart, faUserCircle, faEnvelope } from '@fo
 import { isLogin } from '../../utils/auth'
 import { withContext } from '../../context/withContext'
 import './Header.scss'
-import { catchClause } from '@babel/types'
+import { catchClause, conditionalExpression } from '@babel/types'
 
 class Header extends Component {
   constructor(props) {
@@ -16,7 +16,10 @@ class Header extends Component {
     this.state = {
       keyword: '',
       isSticky: false,
-      categories: []
+      categoriesMain: [],
+      categoriesSub: [],
+      categoriesSecondSub: [],
+
     }
 
     this.handleSticky = this.handleSticky.bind(this)
@@ -28,13 +31,33 @@ class Header extends Component {
 
     //get all categories
     axios
-      .get(`${BASE_URL}/product/secondSubCategory`)
+      .get(`${BASE_URL}/product/mainCategory`)
       .then(res => {
-        this.setState({ categories: res.data.data });
+        this.setState({ categoriesMain: res.data.data });
       })
       .catch(error => {
         console.log(error);
       });
+    //
+    axios
+      .get(`${BASE_URL}/product/subCategory`)
+      .then(res => {
+        this.setState({ categoriesSub: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    //
+    axios
+      .get(`${BASE_URL}/product/secondSubCategory`)
+      .then(res => {
+        this.setState({ categoriesSecondSub: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
   }
 
   componentWillUnmount() {
@@ -46,7 +69,7 @@ class Header extends Component {
       this.setState({
         isSticky: true
       })
-      console.log('Scroll udah lebih dari 100')
+      //console.log('Scroll udah lebih dari 100')
     } else if (window.scrollY === 0) {
       this.setState({
         isSticky: false
@@ -99,116 +122,49 @@ class Header extends Component {
     }
   }
 
-  renderCategories = () => {
-    const { categories } = this.state;
 
-    if (categories != null) {
-      return <li className="has-sub">
-        <Link to="/products/1">RUANG TAMU</Link>
-        <div className="sub-menu-container">
-          <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
-            <div>
-              <h3 className="mb--0">RUANG TAMU</h3>
-            </div>
-          </div>
-          <div className="sub-menu-content fx fx-no-wrap">
-            <div className="sub-menu-column">
-              <div className="sub-menu-item smi--parent">
-                <Link to="/products/1"><span>Furnitur</span></Link>
+
+  renderCategories = () => {
+    const { categoriesMain, categoriesSub, categoriesSecondSub } = this.state;
+
+    if (categoriesMain != undefined && categoriesSub != undefined && categoriesSecondSub != undefined) {
+
+      return categoriesMain.map((itemMain,i) => {
+        let uniqueSub = categoriesSub.filter((itemSub) => itemMain.mainCategoryName === itemSub.MainCategory.mainCategoryName)
+        return (
+          <li className="has-sub" key={i}>
+            <Link to="">{itemMain.mainCategoryName.toUpperCase()}</Link>
+            <div className="sub-menu-container">
+              <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+                <div>
+                  <h3 className="mb--0">{itemMain.mainCategoryName}</h3>
+                </div>
               </div>
-              <div className="sub-menu-item">
-                <Link to="/products/1"><span>Sofa</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/2"><span>Sofa Bed</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/3"><span>Sectional Sofa</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/4"><span>Kursi</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/5"><span>Recliner</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Meja</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>TV Stand</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Rak Penyimpanan</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Di Luar Ruangan</span></Link>
+              <div className="sub-menu-content fx fx-no-wrap">
+                {uniqueSub.map((itemSub,i1) => {
+                  let chosenSub2 = categoriesSecondSub.filter((itemSub2) => itemSub2.mainCategory.mainCategoryName && itemSub2.subCategory.mainCategoryName === itemSub.subCategoryName)
+                  return (
+                    <div className="sub-menu-column" key={i1}>
+                      <div className="sub-menu-item smi--parent">
+                        <Link to=""><span>{itemSub.subCategoryName}</span></Link>
+                      </div>
+                      {chosenSub2.map((itemSub2,i2) => {
+                        return (
+                          <div className="sub-menu-item" key={i2}>
+                            <Link to={`/products/${itemSub2.id}`}><span>{itemSub2.secondSubCategoryName}</span></Link>
+                          </div>
+                        )
+                      })}
+                    </div>)
+                })}
               </div>
             </div>
-            <div className="sub-menu-column">
-              <div className="sub-menu-item smi--parent">
-                <Link to="/products/living"><span>Dekorasi</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Dekorasi Rumah</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Jam</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Vas</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Bingkai</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Aksesoris</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Lilin</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Cermin</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Bunga</span></Link>
-              </div>
-            </div>
-            <div className="sub-menu-column">
-              <div className="sub-menu-item smi--parent">
-                <Link to="/products/living"><span>Linen</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Bantal</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Insert</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Karpet</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Keset</span></Link>
-              </div>
-            </div>
-            <div className="sub-menu-column">
-              <div className="sub-menu-item smi--parent">
-                <Link to="/products/living"><span>Lampu</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Meja & Lampu Meja</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Lampu Lantai</span></Link>
-              </div>
-              <div className="sub-menu-item">
-                <Link to="/products/living"><span>Lampu Gantung</span></Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
+          </li>
+        )
+      })
     }
   }
+
 
   renderTopIcon() {
     return isLogin() ? (
@@ -310,7 +266,7 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state);
+
     return (
       <header className={this.state.isSticky ? 'sticky-header' : null}>
         <div className="container-fluid">
@@ -345,329 +301,7 @@ class Header extends Component {
               <div className="col">
                 <nav>
                   <ul>
-                    <li className="has-sub">
-                      <Link to="/products/1">RUANG TAMU</Link>
-                      <div className="sub-menu-container">
-                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
-                          <div>
-                            <h3 className="mb--0">RUANG TAMU</h3>
-                          </div>
-                        </div>
-                        <div className="sub-menu-content fx fx-no-wrap">
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/1"><span>Furnitur</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/1"><span>Sofa</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/2"><span>Sofa Bed</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/3"><span>Sectional Sofa</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/4"><span>Kursi</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/5"><span>Recliner</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Meja</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>TV Stand</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Rak Penyimpanan</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Di Luar Ruangan</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Dekorasi</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Dekorasi Rumah</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Jam</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Vas</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Bingkai</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Aksesoris</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Lilin</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Cermin</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Bunga</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Linen</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Bantal</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Insert</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Karpet</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Keset</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Lampu</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Meja & Lampu Meja</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Lampu Lantai</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Lampu Gantung</span></Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="has-sub">
-                      <Link to="/bed">KAMAR TIDUR</Link>
-                      <div className="sub-menu-container">
-                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
-                          <div>
-                            <h3 className="mb--0">KAMAR TIDUR</h3>
-                          </div>
-                        </div>
-                        <div className="sub-menu-content fx fx-no-wrap">
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Furnitur</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Bingkai Tempat Tidur</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Linen</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Sprei</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Insert</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Throw / Blanket</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Bantal</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Mattress</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Kasur</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Lampu</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Meja & Lampu Meja</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Lampu Lantai</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Lampu Gantung</span></Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="has-sub">
-                      <Link to="/bath">KAMAR MANDI</Link>
-                      <div className="sub-menu-container">
-                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
-                          <div>
-                            <h3 className="mb--0">KAMAR MANDI</h3>
-                          </div>
-                        </div>
-                        <div className="sub-menu-content fx fx-no-wrap">
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Linen</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Handuk</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Keset</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Household</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Rak</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Plasticware</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Dispenser</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Keranjang</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Tempat Sampah</span></Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="has-sub">
-                      <Link to="/dining">RUANG MAKAN</Link>
-                      <div className="sub-menu-container">
-                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
-                          <div>
-                            <h3 className="mb--0">RUANG MAKAN</h3>
-                          </div>
-                        </div>
-                        <div className="sub-menu-content fx fx-no-wrap">
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Furnitur</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Kursi</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Meja</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Tempat Penyimpanan</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Table Top</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Alat Makan</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Sendok Garpu</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Serveware</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Perlengkapan Minum</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Table Linen</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Aksesoris</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Peralatan Plastik</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Household</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Rak</span></Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="has-sub">
-                      <Link to="/kitchen">DAPUR</Link>
-                      <div className="sub-menu-container">
-                        <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
-                          <div>
-                            <h3 className="mb--0">DAPUR</h3>
-                          </div>
-                        </div>
-                        <div className="sub-menu-content fx fx-no-wrap">
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Household</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Rak</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Cookware & bakeware</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Tools & Accessories</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Alat Pemotong</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Peralatan Listrik</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Pedal bin</span></Link>
-                            </div>
-                          </div>
-                          {/* <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Linen</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Cloth</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Mat</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Vase</span></Link>
-                            </div>
-                          </div>
-                          <div className="sub-menu-column">
-                            <div className="sub-menu-item smi--parent">
-                              <Link to="/products/living"><span>Furniture</span></Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/living"><span>Storage</span></Link>
-                            </div>
-                          </div> */}
-                        </div>
-                      </div>
-                    </li>
+                    {this.renderCategories()}
                     <li className="menu-header-border has-sub hs--right-edge">
                       <Link to="/">INSPIRASI</Link>
                       <div className="sub-menu-container">
