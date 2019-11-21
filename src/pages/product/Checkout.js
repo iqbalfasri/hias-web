@@ -70,6 +70,7 @@ class Checkout extends Component {
 
   onProcessTab1() {
     this.props.context.setIsLoading(true);
+    this.setState({ activeSteps: 2 }, () => this.props.context.setIsLoading(false))
 
     // addUserAddress({
     //   userId: localStorage.getItem("userId"),
@@ -121,32 +122,33 @@ class Checkout extends Component {
 
   onProcessTab2() {
     this.props.context.setIsLoading(true);
-    axios
-      .post(
-        `${BASE_URL}/product/order`,
-        {
-          userId: localStorage.getItem("userId"),
-          userAddressId: this.state.addressId,
-          total: this.state.subTotal,
-          subTotal: this.state.subTotal,
-          session: null,
-          paymentType: null,
-          status: 0
-        },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-        }
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({ activeSteps: 3 }, () => {
-            this.props.context.setIsLoading(false);
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.setState({ activeSteps: 3 }, () => this.props.context.setIsLoading(false));
+    // axios
+    //   .post(
+    //     `${BASE_URL}/product/order`,
+    //     {
+    //       userId: localStorage.getItem("userId"),
+    //       userAddressId: this.state.addressId,
+    //       total: this.state.subTotal,
+    //       subTotal: this.state.subTotal,
+    //       session: null,
+    //       paymentType: null,
+    //       status: 0
+    //     },
+    //     {
+    //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    //     }
+    //   )
+    //   .then(res => {
+    //     if (res.data.success) {
+    //       this.setState({ activeSteps: 3 }, () => {
+    //         this.props.context.setIsLoading(false);
+    //       });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
 
   renderPaymentMethod() {
@@ -242,12 +244,12 @@ class Checkout extends Component {
             </div>
             <div className="col-4">
               <div>
-                <p>First Name: {this.state.userAddress.firstName}</p>
+                {/* <p>First Name: {this.state.userAddress.firstName}</p>
                 <p>Last Name: {this.state.userAddress.lastName}</p>
                 <p>Email: {this.state.userAddress.email}</p>
                 <p>Company: {this.state.userAddress.company}</p>
                 <p>Address: {this.state.userAddress.address}</p>
-                <p>City: {this.state.userAddress.city}</p>
+                <p>City: {this.state.userAddress.city}</p> */}
               </div>
             </div>
           </div>
@@ -543,12 +545,12 @@ class Checkout extends Component {
                   <div className="col-6">
                     <p className="mb--1 text--color-green">Shipping Address</p>
                     <div>
-                      <p>First Name: {this.state.userAddress.firstName}</p>
+                      {/* <p>First Name: {this.state.userAddress.firstName}</p>
                       <p>Last Name: {this.state.userAddress.lastName}</p>
                       <p>Email: {this.state.userAddress.email}</p>
                       <p>Company: {this.state.userAddress.company}</p>
                       <p>Address: {this.state.userAddress.address}</p>
-                      <p>City: {this.state.userAddress.city}</p>
+                      <p>City: {this.state.userAddress.city}</p> */}
                     </div>
                   </div>
                   <div className="col-6"></div>
@@ -767,7 +769,7 @@ class Checkout extends Component {
   }
 
   modalAddress() {
-    this.setState({ isModalAddress: true });
+    this.setState({ isModalAddress: !this.state.isModalAddress });
   }
 }
 
