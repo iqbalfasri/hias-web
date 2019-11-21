@@ -159,6 +159,37 @@ class Detail extends Component {
     );
   }
 
+  renderCourier(product) {
+    const { courier } = product;
+    for (let i = 0; i < courier.length; i++) {
+      console.log(courier[i]);
+    }
+    return (
+      <>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/jne.jpg")} alt="" />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/jnt.png")} alt="" />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/dhl.png")} alt="" />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/dhl.png")} alt="" />
+          </div>
+        </div>
+      </>
+    );
+  }
+
   renderTabContent() {
     const { activeDetailTab, product } = this.state;
     switch (activeDetailTab) {
@@ -201,25 +232,7 @@ class Detail extends Component {
           </div>
         );
       case 3:
-        return (
-          <div className="row">
-            <div className="col-md-4">
-              <div className="img-detail-thumbnail">
-                <img src={require("../../assets/img/jne.jpg")} alt="" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="img-detail-thumbnail">
-                <img src={require("../../assets/img/jnt.png")} alt="" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="img-detail-thumbnail">
-                <img src={require("../../assets/img/dhl.png")} alt="" />
-              </div>
-            </div>
-          </div>
-        );
+        return <div className="row">{this.renderCourier(product)}</div>;
       default:
         return null;
     }
