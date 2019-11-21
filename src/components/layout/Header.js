@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faHeart, faShoppingCart, faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 import { isLogin } from '../../utils/auth'
 import { withContext } from '../../context/withContext'
 import './Header.scss'
+import { catchClause } from '@babel/types'
 
 class Header extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       keyword: '',
-      isSticky: false
+      isSticky: false,
+      categories: []
     }
 
     this.handleSticky = this.handleSticky.bind(this)
@@ -21,6 +24,17 @@ class Header extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleSticky);
+    const BASE_URL = "https://api-core-hias.herokuapp.com";
+
+    //get all categories
+    axios
+      .get(`${BASE_URL}/product/secondSubCategory`)
+      .then(res => {
+        this.setState({ categories: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   componentWillUnmount() {
@@ -40,7 +54,7 @@ class Header extends Component {
     }
   }
 
-  renderCart () {
+  renderCart() {
     // const cartLength = this.props.cart.length
     // return (
     //   <Link to="/cart">
@@ -52,14 +66,14 @@ class Header extends Component {
     // )
   }
 
-  onLogout () {
+  onLogout() {
     localStorage.removeItem('userId')
     localStorage.removeItem('token')
     localStorage.removeItem('promo')
     window.location.href = '/'
   }
 
-  onClickCartIcon () {
+  onClickCartIcon() {
     if (isLogin()) {
       this.props.history.push('/cart')
     } else {
@@ -75,7 +89,7 @@ class Header extends Component {
     }
   }
 
-  onSearch (e) {
+  onSearch(e) {
     e.preventDefault()
     const { keyword } = this.state
     if (keyword) {
@@ -85,7 +99,118 @@ class Header extends Component {
     }
   }
 
-  renderTopIcon () {
+  renderCategories = () => {
+    const { categories } = this.state;
+
+    if (categories != null) {
+      return <li className="has-sub">
+        <Link to="/products/1">RUANG TAMU</Link>
+        <div className="sub-menu-container">
+          <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
+            <div>
+              <h3 className="mb--0">RUANG TAMU</h3>
+            </div>
+          </div>
+          <div className="sub-menu-content fx fx-no-wrap">
+            <div className="sub-menu-column">
+              <div className="sub-menu-item smi--parent">
+                <Link to="/products/1"><span>Furnitur</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/1"><span>Sofa</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/2"><span>Sofa Bed</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/3"><span>Sectional Sofa</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/4"><span>Kursi</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/5"><span>Recliner</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Meja</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>TV Stand</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Rak Penyimpanan</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Di Luar Ruangan</span></Link>
+              </div>
+            </div>
+            <div className="sub-menu-column">
+              <div className="sub-menu-item smi--parent">
+                <Link to="/products/living"><span>Dekorasi</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Dekorasi Rumah</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Jam</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Vas</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Bingkai</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Aksesoris</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Lilin</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Cermin</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Bunga</span></Link>
+              </div>
+            </div>
+            <div className="sub-menu-column">
+              <div className="sub-menu-item smi--parent">
+                <Link to="/products/living"><span>Linen</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Bantal</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Insert</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Karpet</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Keset</span></Link>
+              </div>
+            </div>
+            <div className="sub-menu-column">
+              <div className="sub-menu-item smi--parent">
+                <Link to="/products/living"><span>Lampu</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Meja & Lampu Meja</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Lampu Lantai</span></Link>
+              </div>
+              <div className="sub-menu-item">
+                <Link to="/products/living"><span>Lampu Gantung</span></Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    }
+  }
+
+  renderTopIcon() {
     return isLogin() ? (
       <div className="fx align-items-center justify-content-end">
         <div className="fx mr--1 align-items-center">
@@ -101,36 +226,36 @@ class Header extends Component {
         <div className="fx align-items-center">
           <div className="header-top-icon">
             <div className="header-top-icon--image">
-            <Link to="/wishlist">
-            <img src={require('../../assets/img/Wishlist.svg')} alt=""/>
-            </Link>
+              <Link to="/wishlist">
+                <img src={require('../../assets/img/Wishlist.svg')} alt="" />
+              </Link>
             </div>
           </div>
           <div className="header-top-icon">
             <div className="header-top-icon--image" onClick={() => this.onClickCartIcon()}>
-              <img src={require('../../assets/img/Cart.svg')} alt=""/>
+              <img src={require('../../assets/img/Cart.svg')} alt="" />
             </div>
           </div>
           <div className="header-top-icon">
             <div className="header-top-icon--image" onClick={() => this.onClickOrderIcon()}>
-              <img src={require('../../assets/img/OrderStatus.svg')} alt=""/>
+              <img src={require('../../assets/img/OrderStatus.svg')} alt="" />
             </div>
           </div>
           <div className="header-top-icon">
             <div className="header-top-icon--image">
-              <img src={require('../../assets/img/Inbox.svg')} alt=""/>
+              <img src={require('../../assets/img/Inbox.svg')} alt="" />
             </div>
           </div>
           <div className="header-top-icon">
             <div className="header-top-icon--image">
-              <img src={require('../../assets/img/DefaultAvatar.svg')} alt=""/>
+              <img src={require('../../assets/img/DefaultAvatar.svg')} alt="" />
             </div>
             <div className="header--dropdown">
               <div className="hd--item">
                 <Link to="/">Account</Link>
               </div>
               <div className="hd--item">
-              <Link to="/wallet">Wallet</Link>
+                <Link to="/wallet">Wallet</Link>
               </div>
               <div className="divider"></div>
               <div className="hd--item" onClick={() => this.onLogout()}>
@@ -138,53 +263,54 @@ class Header extends Component {
               </div>
             </div>
           </div>
-          { this.renderCart() }
+          {this.renderCart()}
           <div className="header-top-icon header-top-icon--flag">
-            <img src={require('../../assets/img/indonesia.png')} alt=""/>
+            <img src={require('../../assets/img/indonesia.png')} alt="" />
           </div>
         </div>
       </div>
     ) : (
-      <div className="fx align-items-center justify-content-end">
-        <div className="fx mr--1 align-items-center">
-          <div className="mr--1">
-            <Link to="/" className="btn btn--transparent">
-              <span className="text--size-12">Beranda</span>
-            </Link>
-          </div>
-          <div className="mr--1">
-            <button className="btn btn--transparent text--size-12">Tentang Kami</button>
-          </div>
-          <div className="mr--1 align-items-center">
-            <button className="btn btn--transparent text--size-12" onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}>Masuk</button>
-          </div>
+        <div className="fx align-items-center justify-content-end">
+          <div className="fx mr--1 align-items-center">
+            <div className="mr--1">
+              <Link to="/" className="btn btn--transparent">
+                <span className="text--size-12">Beranda</span>
+              </Link>
+            </div>
+            <div className="mr--1">
+              <button className="btn btn--transparent text--size-12">Tentang Kami</button>
+            </div>
+            <div className="mr--1 align-items-center">
+              <button className="btn btn--transparent text--size-12" onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}>Masuk</button>
+            </div>
             <div>
               <button className="btn btn--primary" onClick={() => this.props.context.setIsModalSignupPopupOpen(true)}>
                 <span>Daftar</span>
               </button>
             </div>
-        </div>
-        <div className="fx fx align-items-center">
-          <div className="header-top-icon">
-            <div className="header-top-icon--image">
-              <img src={require('../../assets/img/Wishlist.svg')} alt=""/>
+          </div>
+          <div className="fx fx align-items-center">
+            <div className="header-top-icon">
+              <div className="header-top-icon--image">
+                <img src={require('../../assets/img/Wishlist.svg')} alt="" />
+              </div>
+            </div>
+            <div className="header-top-icon">
+              <div className="header-top-icon--image" onClick={() => this.onClickCartIcon()}>
+                <img src={require('../../assets/img/Cart.svg')} alt="" />
+              </div>
+            </div>
+            {this.renderCart()}
+            <div className="header-top-icon header-top-icon--flag">
+              <img src={require('../../assets/img/indonesia.png')} alt="" />
             </div>
           </div>
-          <div className="header-top-icon">
-            <div className="header-top-icon--image" onClick={() => this.onClickCartIcon()}>
-              <img src={require('../../assets/img/Cart.svg')} alt=""/>
-            </div>
-          </div>
-          { this.renderCart() }
-          <div className="header-top-icon header-top-icon--flag">
-            <img src={require('../../assets/img/indonesia.png')} alt=""/>
-          </div>
         </div>
-      </div>
-    )
+      )
   }
 
   render() {
+    console.log(this.state);
     return (
       <header className={this.state.isSticky ? 'sticky-header' : null}>
         <div className="container-fluid">
@@ -193,7 +319,7 @@ class Header extends Component {
               <div className="col-md-2">
                 <div className="logo">
                   <Link to="/">
-                    <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt=""/>
+                    <img src={require('../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png')} alt="" />
                   </Link>
                 </div>
               </div>
@@ -208,7 +334,7 @@ class Header extends Component {
                 </div>
               </div>
               <div className="col-md-6">
-                { this.renderTopIcon() }
+                {this.renderTopIcon()}
               </div>
             </div>
           </div>

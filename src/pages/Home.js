@@ -239,7 +239,7 @@ class Home extends Component {
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/">View All</Link>
+                    <Link className="text--size-12" to="/products/hot">View All</Link>
                   </div>
                 </div>
               </div>
@@ -258,7 +258,7 @@ class Home extends Component {
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/">View All</Link>
+                    <Link className="text--size-12" to="/products/best">View All</Link>
                   </div>
                 </div>
               </div>
@@ -293,7 +293,7 @@ class Home extends Component {
 
               <div className="row align-items-center justify-content-center">
                 <div className="col">
-                  <img src={require('../assets/img/banner-promo.jpg')} alt="" style={{maxWidth:"60%", marginLeft:'auto', marginRight:'auto'}}/>
+                  <img src={require('../assets/img/banner-promo.jpg')} alt="" style={{ maxWidth: "60%", marginLeft: 'auto', marginRight: 'auto' }} />
                 </div>
               </div>
             </div>
@@ -310,21 +310,21 @@ class Home extends Component {
               <div className="row text--center benefit-content">
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-01.png')} style={{width:150, marginLeft:'auto', marginRight:'auto'}}/>
+                    <img src={require('../assets/img/home-icon-01.png')} style={{ width: 150, marginLeft: 'auto', marginRight: 'auto' }} />
                     <h3>Design Penuh Gaya & Terkini</h3>
                     <p>Kami menyesuaikan design dengan tren dan perkembangan terkini.</p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-02.png')} style={{width:150, marginLeft:'auto', marginRight:'auto'}}/>
+                    <img src={require('../assets/img/home-icon-02.png')} style={{ width: 150, marginLeft: 'auto', marginRight: 'auto' }} />
                     <h3>Produk Berkualitas Terbaik</h3>
                     <p>Komitmen kami hanya menyediakan produk-produk terbaik baik lokal ataupun import bagi anda.</p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-03.png')} style={{width:150, marginLeft:'auto', marginRight:'auto'}}/>
+                    <img src={require('../assets/img/home-icon-03.png')} style={{ width: 150, marginLeft: 'auto', marginRight: 'auto' }} />
                     <h3>Kemudahan dalam Pembayaran</h3>
                     <p>Tersedia cicilan 0% untuk bank-bank tertentu.</p>
                   </div>

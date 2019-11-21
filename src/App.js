@@ -40,6 +40,8 @@ import { withContext } from './context/withContext'
 import DetailInspiration from './pages/Inspiration/DetailInspiration'
 import Review from './pages/Review/Review'
 import AddReview from './pages/Review/AddReview'
+import AllHotProducts from './pages/product/AllHotProducts'
+import AllBestProducts from './pages/product/AllBestProducts'
 
 class App extends Component {
   constructor(props) {
@@ -101,6 +103,8 @@ class App extends Component {
           <Route path="/inspiration" component={Inspiration} exact={true} />
           <Route path="/inspiration/detail/:id" component={DetailInspiration} />
           <Route path="/wallet/dashboard" component={DashboardWallet} />
+          <Route path="/products/hot" component={AllHotProducts} exact={true} />
+          <Route path="/products/best" component={AllBestProducts} exact={true} />
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route path="/products/:category" component={Category} exact={false} />
