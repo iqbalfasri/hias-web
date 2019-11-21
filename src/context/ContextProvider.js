@@ -21,7 +21,9 @@ export default class ContextProvider extends Component {
       isLoading: false,
       setIsLoading: this.setIsLoading,
       isModalPromo: false,
-      setIsModalPromo: this.setIsModalPromo
+      setIsModalPromo: this.setIsModalPromo,
+      totalCart: 0,
+      setTotalCart: this.setTotalCart
     }
   }
 
@@ -55,6 +57,10 @@ export default class ContextProvider extends Component {
 
   setIsModalPromo = (isModalPromo) => {
     this.setState({ isModalPromo })
+  }
+
+  setTotalCart = (total) => {
+    this.setState({ totalCart: total })
   }
 
   render () {

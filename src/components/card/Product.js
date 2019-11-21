@@ -72,10 +72,17 @@ class ProductCard extends Component {
 
   render() {
     const { category, title, price, id, thumbnail } = this.props
-
     return (
-      <div className="product-card" >
-        <Link to={`/products/detail/${id}`}>
+      <div
+        className="product-card">
+        <Link
+          to={`/products/detail/${id}`}
+          onClick={() => {
+            if (this.props.needRefreshPage == true) {
+              window.open(`/products/detail/${id}`, '_self');
+            }
+          }}
+        >
           <div className="product-card-image">
             <img style={{ objectFit: 'contain' }} src={thumbnail} alt={title} />
           </div>

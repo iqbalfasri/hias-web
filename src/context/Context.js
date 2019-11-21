@@ -18,7 +18,9 @@ export const Context = createContext(
       isLoading: false,
       setIsLoading: () => {},
       isModalPromo: false,
-      setIsModalPromo: () => {}
+      setIsModalPromo: () => { },
+      totalCart: 0,
+      setTotalCart: () => { }
     }
   }
 )
