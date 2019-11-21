@@ -191,7 +191,7 @@ class Cart extends Component {
               <div className="col-md-3" key={`product-${product.productId}`}>
                 <ProductCard
                   thumbnail={product.thumbnail}
-                  id={product.id}
+                  id={product.id || product.productId}
                   title={product.productName}
                   price={product.price}
                   category={product.categoryName}
