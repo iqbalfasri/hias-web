@@ -57,6 +57,17 @@ class Checkout extends Component {
       });
   }
 
+  componentWillReceiveProps(props) {
+    let userId = localStorage.getItem("userId");
+    getUserAddress(userId)
+      .then(res => {
+        this.setState({ addresses: res.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   onProcessTab1() {
     this.props.context.setIsLoading(true);
 
@@ -262,6 +273,7 @@ class Checkout extends Component {
       .then(res => {
         console.log(res);
         this.props.context.setIsLoading(false);
+        this.setState({ isModalAddress: false })
       })
       .catch(error => {
         console.log(error);
@@ -755,7 +767,7 @@ class Checkout extends Component {
   }
 
   modalAddress() {
-    this.setState({ isModalAddress: !this.state.isModalAddress });
+    this.setState({ isModalAddress: true });
   }
 }
 
