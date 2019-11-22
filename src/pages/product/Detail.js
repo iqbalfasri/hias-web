@@ -34,7 +34,8 @@ class Detail extends Component {
       variant: null,
       colors: null,
       wishListItems: [],
-      showAll: false
+      showAll: false,
+      couriers: []
     };
   }
 
@@ -161,9 +162,12 @@ class Detail extends Component {
 
   renderCourier(product) {
     const { courier } = product;
-    for (let i = 0; i < courier.length; i++) {
-      console.log(courier[i]);
-    }
+
+    // "courier3": "TIKI",
+    // "courier4": "POS",
+    // "courier1": "Hias Courier",
+    // "courier2": "JNE"
+
     return (
       <>
         <div className="col-md-3">
