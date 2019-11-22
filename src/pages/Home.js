@@ -187,7 +187,6 @@ class Home extends Component {
 
   renderInspiration = () => {
     const { inspiration } = this.state;
-    console.log(inspiration)
     if (inspiration !== undefined) {
       if (inspiration.length !== 0) {
         return (
