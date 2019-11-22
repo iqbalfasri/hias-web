@@ -8,6 +8,7 @@ import Checkbox from "../../components/form/Checkbox";
 import { addUserAddress, getUserAddress, getCart, BASE_URL } from "../../api";
 import { withContext } from "../../context/withContext";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
+
 import "./Checkout.scss";
 
 class Checkout extends Component {
@@ -413,7 +414,7 @@ class Checkout extends Component {
         <div>
           {this.state.addresses.map((address, index) => {
             return (
-              <div key={address.idAddress}>
+              <div className="radio--input" key={address.idAddress}>
                 <input
                   id={address.idAddress}
                   onChange={e =>
