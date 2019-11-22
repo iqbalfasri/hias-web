@@ -169,6 +169,7 @@ class Cart extends Component {
       status: ""
     }).then(res => {
       this.props.history.push("/checkout");
+      localStorage.setItem('subTotal', this.getTotalCartPrice())
     });
   }
 
