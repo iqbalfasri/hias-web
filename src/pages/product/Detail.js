@@ -245,6 +245,14 @@ class Detail extends Component {
   render() {
     const { product } = this.state;
     const { id } = this.props.match.params;
+    const arrayImage = product !== null ? [
+      product.thumbnail,
+      product.thumbnail,
+      product.thumbnail,
+      product.thumbnail,
+    ] : [];
+
+    console.log(arrayImage, "image array")
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
@@ -272,25 +280,25 @@ class Detail extends Component {
                           src={product.thumbnail}
                           alt=""
                         />
-                        {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                       </div>
                       <div className="fx fx-no-wrap align-items-center">
-                        <div className="img-detail-thumbnail">
+                        {arrayImage.map(image => (
+                          <div className="img-detail-thumbnail">
+                            <img src={image} alt="" />
+                          </div>
+                        ))}
+                        {/* <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
