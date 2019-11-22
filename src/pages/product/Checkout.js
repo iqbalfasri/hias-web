@@ -45,7 +45,8 @@ class Checkout extends Component {
     getCart(userId).then(res => {
       this.setState({
         cart: res.data.listItems,
-        subTotal: res.data.subTotal
+        subTotal: res.data.subTotal,
+        userAddress: this.state.addresses[0]
       });
     });
 
@@ -71,7 +72,9 @@ class Checkout extends Component {
 
   onProcessTab1() {
     this.props.context.setIsLoading(true);
-    this.setState({ activeSteps: 2 }, () => this.props.context.setIsLoading(false))
+    this.setState({ activeSteps: 2 }, () =>
+      this.props.context.setIsLoading(false)
+    );
 
     // addUserAddress({
     //   userId: localStorage.getItem("userId"),
@@ -123,7 +126,9 @@ class Checkout extends Component {
 
   onProcessTab2() {
     this.props.context.setIsLoading(true);
-    this.setState({ activeSteps: 3 }, () => this.props.context.setIsLoading(false));
+    this.setState({ activeSteps: 3 }, () =>
+      this.props.context.setIsLoading(false)
+    );
     // axios
     //   .post(
     //     `${BASE_URL}/product/order`,
@@ -220,38 +225,32 @@ class Checkout extends Component {
     if (this.state.cart.length !== 0) {
       return this.state.cart.map((c, index) => {
         return (
-          <div className="row align-items-center" key={index}>
-            <div className="col-4">
+          <div
+            className="row align-items-center"
+            style={{ padding: "10px 15px" }}
+            key={index}
+          >
+            <div className="col-2">
               <div className="checkout-image-container">
                 <div className="checkout-image">
                   <img
                     style={{ maxHeight: 70, minWidth: 70 }}
                     src={c.thumbnail}
-                    alt=""
+                    alt={c.productName}
                   />
                 </div>
-                <div>{c.name}</div>
               </div>
             </div>
-            <div className="col-4">
-              <div className="fx align-items-center">
-                <div className="quantity-input">
-                  <span>{c.qty}</span>
-                </div>
-                <div>
-                  <span>IDR {formatMoneyWithoutSymbol(c.price)}</span>
-                </div>
-              </div>
+            <div className="col-md-5">
+              <span>{c.name}</span>
             </div>
-            <div className="col-4">
-              <div>
-                {/* <p>First Name: {this.state.userAddress.firstName}</p>
-                <p>Last Name: {this.state.userAddress.lastName}</p>
-                <p>Email: {this.state.userAddress.email}</p>
-                <p>Company: {this.state.userAddress.company}</p>
-                <p>Address: {this.state.userAddress.address}</p>
-                <p>City: {this.state.userAddress.city}</p> */}
-              </div>
+
+            <div className="col-md-1">
+              <span>{c.qty}</span>
+            </div>
+
+            <div className="col-md-3">
+              <h5>IDR {formatMoneyWithoutSymbol(c.price)}</h5>
             </div>
           </div>
         );
@@ -276,7 +275,7 @@ class Checkout extends Component {
       .then(res => {
         console.log(res);
         this.props.context.setIsLoading(false);
-        this.setState({ isModalAddress: false })
+        this.setState({ isModalAddress: false });
       })
       .catch(error => {
         console.log(error);
@@ -418,10 +417,20 @@ class Checkout extends Component {
                 <input
                   id={address.idAddress}
                   onChange={e =>
-                    this.setState({
-                      addressSelected: e.target.value,
-                      selectedIndexAddress: index
-                    })
+                    this.setState(
+                      {
+                        addressSelected: e.target.value,
+                        selectedIndexAddress: index
+                      },
+                      () => {
+                        localStorage.setItem(
+                          "userAddress",
+                          JSON.stringify(this.state.addresses[
+                            this.state.selectedIndexAddress
+                          ])
+                        );
+                      }
+                    )
                   }
                   value={address.idAddress}
                   type="radio"
@@ -476,29 +485,64 @@ class Checkout extends Component {
           </div>
         );
       case 2:
+        const userAddress = JSON.parse(localStorage.getItem('userAddress'))
         return (
           <div className="checkout-form-wrapper">
-            <div className="row justify-content-end">
-              <div className="col-4">
+            <div className="row">
+              <div className="col-8">
                 <span className="text--color-green">Your Order</span>
+                {this.renderCartDetail()}
               </div>
-              <div className="col-4"></div>
               <div className="col-4">
                 <span className="text--color-green">Shipping Address</span>
+                <div style={{ padding: "10px 0" }}>
+                  <h4>{`${userAddress.firstName} ${userAddress.lastName}`}</h4>
+                  <p
+                    style={{ margin: "0 0" }}
+                  >{`${userAddress.address}`}</p>
+                </div>
               </div>
             </div>
-            {this.renderCartDetail()}
-            <div className="row justify-content-end">
-              <div className="col-4">
-                <span>Shipping Charge</span>
+
+            <div className="row" style={{ margin: "35px 0" }}>
+              <div className="container">
+                <h3>Shipping Method</h3>
               </div>
-              <div className="col-4">
-                <span>
-                  <strong>FREE</strong>
-                </span>
-              </div>
-              <div className="col-4"></div>
             </div>
+
+            <div className="row mt--2 mb--2">
+              <div className="container">
+                <div className="col-md-4">
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between"
+                    }}
+                  >
+                    <h4 style={{ color: "#878786" }}>Shipping</h4>
+                    <h4 style={{ color: "#878786" }}>IDR 400,000</h4>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between"
+                    }}
+                  >
+                    <h4 style={{ color: "#878786" }}>Total Price</h4>
+                    <h4 style={{ color: "#878786" }}>
+                      IDR{" "}
+                      {formatMoneyWithoutSymbol(
+                        localStorage.getItem("subTotal")
+                      )}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="row mt--2">
               <div className="col">
                 <div>
@@ -513,7 +557,7 @@ class Checkout extends Component {
               <div className="col">
                 <div className="text--right">
                   <button
-                    className="btn btn--blue"
+                    className="btn btn--full btn--blue"
                     onClick={() => this.onProcessTab2()}
                   >
                     Continue to Payment
@@ -547,11 +591,11 @@ class Checkout extends Component {
                     <p className="mb--1 text--color-green">Shipping Address</p>
                     <div>
                       {/* <p>First Name: {this.state.userAddress.firstName}</p>
-                      <p>Last Name: {this.state.userAddress.lastName}</p>
-                      <p>Email: {this.state.userAddress.email}</p>
-                      <p>Company: {this.state.userAddress.company}</p>
-                      <p>Address: {this.state.userAddress.address}</p>
-                      <p>City: {this.state.userAddress.city}</p> */}
+                        <p>Last Name: {this.state.userAddress.lastName}</p>
+                        <p>Email: {this.state.userAddress.email}</p>
+                        <p>Company: {this.state.userAddress.company}</p>
+                        <p>Address: {this.state.userAddress.address}</p>
+                        <p>City: {this.state.userAddress.city}</p> */}
                     </div>
                   </div>
                   <div className="col-6"></div>
@@ -698,6 +742,7 @@ class Checkout extends Component {
   }
 
   render() {
+    console.log(this.state.userAddress);
     return (
       <>
         <Helmet key={Math.random()}>
