@@ -92,7 +92,7 @@ class Cart extends Component {
         newList.splice(index, 1);
         this.setState({
           carts: newList
-        });
+        }, () => this.props.context.setTotalCart(0))
       })
       .catch(err => {
         console.log(err);

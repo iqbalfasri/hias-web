@@ -44,6 +44,12 @@ class Header extends Component {
       });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.context.totalCart !== prevState.totalCart) {
+      this.renderCartCount(prevProps.context.totalCart)
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleSticky);
   }
@@ -275,8 +281,8 @@ class Header extends Component {
     }
   };
 
-  renderCartCount() {
-    return this.props.context.totalCart === 0 ? null : (
+  renderCartCount(totalCart) {
+    return this.props.context.totalCart == 0 ? null : (
       <div className="cart--count">{this.props.context.totalCart}</div>
     );
   }
@@ -403,7 +409,6 @@ class Header extends Component {
   }
 
   render() {
-
     return (
       <header className={this.state.isSticky ? "sticky-header" : null}>
         <div className="container-fluid">

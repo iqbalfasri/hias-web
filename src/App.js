@@ -55,7 +55,8 @@ class App extends Component {
       username: "",
       password: "",
       phone: "",
-      isSigningUp: false
+      isSigningUp: false,
+      totalCart: 0
     };
   }
 
@@ -75,10 +76,10 @@ class App extends Component {
       });
   }
 
-  componentWillReceiveProps(props) {
+  componentDidUpdate(prevProps) {
     getCart(localStorage.getItem("userId"))
       .then(res => {
-        props.context.setTotalCart(res.data.listItems.length);
+        prevProps.context.setTotalCart(res.data.listItems.length || 0);
       })
       .catch(error => {
         console.log(error);
@@ -98,7 +99,7 @@ class App extends Component {
       setIsModalSignupPopupOpen,
       isLoading,
       isModalPromo
-    } = this.props.context
+    } = this.props.context;
 
     return (
       <div className="App">
