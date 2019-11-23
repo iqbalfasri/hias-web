@@ -125,10 +125,6 @@ class Signup extends Component {
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-md-12">
-                  <div className="mb--2">
-                    <div className="img--center logo">
-                    </div>
-                  </div>
                   <div>
                     <h3 className="text--center mb--2">Daftarkan Akun Anda</h3>
                   </div>
@@ -173,7 +169,7 @@ class Signup extends Component {
                         <p className="mb--0 text--color-gray">Sudah punya akun?</p>
                       </div>
                       <div>
-                        <Link to="/login" className="btn btn--primary">Login</Link>
+                        <Link to="/login" className="btn btn--primary">Masuk</Link>
                       </div>
                     </div>
                   </div>

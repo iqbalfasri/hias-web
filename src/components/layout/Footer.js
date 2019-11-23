@@ -29,10 +29,10 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
-                  <li><Link to="/about">Whatsapp<br/><span className="footer-sub-link">+62 0859 7893 2728</span></Link></li>
-                  <li><Link to="/">Telephone<br/><span className="footer-sub-link">(021) 8923 777</span></Link></li>
-                  <li><Link to="/">Email<br/><span className="footer-sub-link">halo@hias.com</span></Link></li>
-                  <li><Link to="/">Hari & Jam Kerja<br/><span className="footer-sub-link">Senin - Minggu / 10:00 - 18:00</span></Link></li>
+                  <li><Link to="/about">Whatsapp<br/><span className="footer-sub-link">+62 811-1088-488</span></Link></li>
+                  <li><Link to="/">Email<br/><span className="footer-sub-link">marketing@hias.co.id</span></Link></li>
+                  <li><Link to="/">Layanan Konsumen<br/><span className="footer-sub-link">Senin - Minggu / 09:00 - 18:00 WIB Termasuk hari libur</span></Link></li>
+                  <li><Link to="/">Jam Operasional Outlet<br/><span className="footer-sub-link">Senin - Minggu / 10:00 - 22:00 WIB</span></Link></li>
                 </ul>
               </div>
             </div>
@@ -80,30 +80,30 @@ class Footer extends Component {
               </div>
             </div> */}
             <div className="col-md-3" style={{minWidth:"40%"}}>
-              <div className="footer-link">
+              <div className="footer-link-address">
                 <h3 className="footer-link-title">Lokasi Kami</h3>
                 <div className="row">
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/"><span style={{fontWeight:"normal"}}>JAKARTA</span><br/><span className="footer-sub-link"><span style={{fontWeight:"bold"}}>Fanda’s Senopati 66</span><br/> lt. 3 SCBD</span></Link></li>
-                        <li><Link to="/"><span className="footer-sub-link">Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167</span></Link></li>
-                        <li><Link to="/"><span className="footer-sub-link">Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>JAKARTA</span><br/><span style={{fontWeight:"bold"}}>Fanda’s Senopati 66</span><span className="footer-sub-link"><br/> Lt. 3 SCBD</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"bold"}}>Pondok Indah</span><br/><span className="footer-sub-link">JL. Metro Pondok Indah TB27, No. 167</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"bold"}}>Kelapa Gading</span><br/><span className="footer-sub-link">JL. Boulevard Barat Raya Blok XC No. 2A</span></Link></li>
                       </ul>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/"><span style={{fontWeight:"normal"}}>TANGERANG</span><br/><span className="footer-sub-link">Supermall Karawaci<br/> UG Floor JL. Boulevard Diponegoro 105 Karawaci</span></Link></li>
-                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BOGOR</span><br/><span className="footer-sub-link">Botani Square<br/> LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>TANGERANG</span><br/><span style={{fontWeight:"bold"}}>Supermall Karawaci</span><br/><span className="footer-sub-link">UG Floor JL. Boulevard Diponegoro 105 Karawaci</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BOGOR</span><br/><span style={{fontWeight:"bold"}}>Botani Square</span><br/><span className="footer-sub-link">LG Floor JL. Raya Padjajaran No. 69-71</span></Link></li>
                       </ul>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div>
                       <ul>
-                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BALI</span><br/><span className="footer-sub-link">Level 21 Bali<br/> JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</span></Link></li>
+                        <li><Link to="/"><span style={{fontWeight:"normal"}}>BALI</span><br/><span style={{fontWeight:"bold"}}>Level 21 Bali</span><br/><span className="footer-sub-link">JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</span></Link></li>
                       </ul>
                     </div>
                   </div>
