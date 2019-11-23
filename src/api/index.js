@@ -255,3 +255,16 @@ export const getCityFromRajaOngkir = () => {
       return res.data;
     });
 };
+
+export const fetchOngkir = dataObj => {
+  return axios
+    .post(`https://cors-anywhere.herokuapp.com/https://pro.rajaongkir.com/api/cost`, dataObj, {
+      headers: {
+        'Content-Type': 'application/json',
+        key: '51f91963f9dcefe04e54822191cf71c5',
+      },
+    })
+    .then(res => {
+      return res.data.rajaongkir.results[0].costs[0].cost[0].value;
+    });
+}

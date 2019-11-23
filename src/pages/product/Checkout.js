@@ -11,7 +11,8 @@ import {
   getUserAddress,
   getCart,
   BASE_URL,
-  getCityFromRajaOngkir
+  getCityFromRajaOngkir,
+  fetchOngkir
 } from "../../api";
 import { withContext } from "../../context/withContext";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
@@ -488,12 +489,76 @@ class Checkout extends Component {
     );
   }
 
+  checkOngkir = (courierType = "jne") => {
+    return {
+      origin: "155",
+      destination: "153",
+      weight: "302",
+      courier: courierType
+    };
+  };
+
+  _handleOngkir(index) {
+    this.setState({ courierSelected: index })
+    switch (index) {
+      case 0:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+
+      case 1:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+
+      case 2:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+
+      default:
+        this._handleCost(this.checkOngkir(this.state.listCourier[0]));
+        break;
+    }
+  }
+
+  _handleCost(data) {
+    fetchOngkir(data)
+      .then(ongkir => {
+        console.log(ongkir);
+      })
+      .catch(error => {});
+  }
+
   renderCourierSelection() {
     let { listCourier } = this.state;
 
-    return listCourier.map(courier => {
-      return <div>{courier}</div>;
-    });
+    return (
+      <div className="col-md-8">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignContent: "flex-start",
+            justifyContent: "space-evenly"
+          }}
+        >
+          {listCourier.map((courier, index) => {
+            return (
+              <div key={index}>
+                <input
+                  id={courier}
+                  value={courier}
+                  type="radio"
+                  onChange={() => {
+                    this._handleOngkir(index);
+                  }}
+                  checked={this.state.courierSelected == index ? true : false}
+                />
+                <p>{courier}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 
   renderAddressSelection() {
