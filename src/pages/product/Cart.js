@@ -84,6 +84,10 @@ class Cart extends Component {
       });
   }
 
+  // componentWillUnmount() {
+  //   localStorage.removeItem('cartItems')
+  // }
+
   onChangeQuantity(e, index) {
     const value = e.target.value;
     const quantity = this.state.cartsQuantity;
@@ -190,7 +194,7 @@ class Cart extends Component {
   handlePopup() {
     this.setState({
       relatedPopup: !this.state.relatedPopup
-    });
+    }, () => localStorage.setItem('cartItems', JSON.stringify(this.state.carts)));
   }
 
   handleCoupon(e) {

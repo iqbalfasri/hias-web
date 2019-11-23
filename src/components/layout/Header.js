@@ -62,13 +62,11 @@ class Header extends Component {
       .catch(error => {
         console.log(error);
       });
-
-
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.context.totalCart !== prevState.totalCart) {
-      this.renderCartCount(prevProps.context.totalCart)
+      this.renderCartCount(prevProps.context.totalCart);
     }
   }
 
@@ -80,7 +78,7 @@ class Header extends Component {
     if (window.scrollY > 0) {
       this.setState({
         isSticky: true
-      })
+      });
       //console.log('Scroll udah lebih dari 100')
     } else if (window.scrollY === 0) {
       this.setState({
@@ -134,15 +132,19 @@ class Header extends Component {
     }
   }
 
-
-
   renderCategories = () => {
     const { categoriesMain, categoriesSub, categoriesSecondSub } = this.state;
 
-    if (categoriesMain != undefined && categoriesSub != undefined && categoriesSecondSub != undefined) {
-
+    if (
+      categoriesMain != undefined &&
+      categoriesSub != undefined &&
+      categoriesSecondSub != undefined
+    ) {
       return categoriesMain.map((itemMain, i) => {
-        let uniqueSub = categoriesSub.filter((itemSub) => itemMain.mainCategoryName === itemSub.MainCategory.mainCategoryName)
+        let uniqueSub = categoriesSub.filter(
+          itemSub =>
+            itemMain.mainCategoryName === itemSub.MainCategory.mainCategoryName
+        );
         return (
           <li className="has-sub" key={i}>
             <Link to="">{itemMain.mainCategoryName.toUpperCase()}</Link>
@@ -154,26 +156,36 @@ class Header extends Component {
               </div>
               <div className="sub-menu-content fx fx-no-wrap">
                 {uniqueSub.map((itemSub, i1) => {
-                  let chosenSub2 = categoriesSecondSub.filter((itemSub2) => itemSub2.mainCategory.mainCategoryName && itemSub2.subCategory.mainCategoryName === itemSub.subCategoryName)
+                  let chosenSub2 = categoriesSecondSub.filter(
+                    itemSub2 =>
+                      itemSub2.mainCategory.mainCategoryName &&
+                      itemSub2.subCategory.mainCategoryName ===
+                        itemSub.subCategoryName
+                  );
                   return (
                     <div className="sub-menu-column" key={i1}>
                       <div className="sub-menu-item smi--parent">
-                        <Link to=""><span>{itemSub.subCategoryName}</span></Link>
+                        <Link to="">
+                          <span>{itemSub.subCategoryName}</span>
+                        </Link>
                       </div>
                       {chosenSub2.map((itemSub2, i2) => {
                         return (
                           <div className="sub-menu-item" key={i2}>
-                            <Link to={`/products/${itemSub2.id}`}><span>{itemSub2.secondSubCategoryName}</span></Link>
+                            <Link to={`/products/${itemSub2.id}`}>
+                              <span>{itemSub2.secondSubCategoryName}</span>
+                            </Link>
                           </div>
-                        )
+                        );
                       })}
-                    </div>)
+                    </div>
+                  );
                 })}
               </div>
             </div>
           </li>
-        )
-      })
+        );
+      });
     }
   };
 
@@ -183,6 +195,37 @@ class Header extends Component {
     );
   }
 
+  handleTest() {
+    let arr = [];
+    let arrObj = [
+      {
+        productName: "Yoman barang",
+        thumbnailUrl: "https:kldfkk",
+        price: 1000000,
+        qty: 2
+      },
+      {
+        productName: "Mie ayam 2",
+        thumbnailUrl: "https:kldfkk",
+        price: 1000000,
+        qty: 2
+      }
+    ];
+
+    let newObj = {};
+    arrObj.forEach((obj, index) => {
+      arr.push({
+        productName: `\"${obj.productName}\"`,
+        thumbnailUrl: `\"${obj.thumbnailUrl}\"`,
+      })
+    });
+
+    // arr.push(newObj)
+    // localStorage.setItem('testObj', newObj)
+    console.log(JSON.stringify(arr))
+
+    // console.log(obj)
+  }
 
   renderTopIcon() {
     return isLogin() ? (
@@ -194,7 +237,10 @@ class Header extends Component {
             </Link>
           </div>
           <div>
-            <button className="btn btn--transparent text--size-12">
+            <button
+              onClick={this.handleTest.bind(this)}
+              className="btn btn--transparent text--size-12"
+            >
               Tentang Kami
             </button>
           </div>
@@ -255,34 +301,25 @@ class Header extends Component {
         </div>
       </div>
     ) : (
-        <div className="fx align-items-center justify-content-end">
-          <div className="fx mr--1 align-items-center">
-            <div className="mr--1">
-              <Link to="/" className="btn btn--transparent">
-                <span className="text--size-12">Beranda</span>
-              </Link>
-            </div>
-            <div className="mr--1">
-              <button className="btn btn--transparent text--size-12">
-                Tentang Kami
+      <div className="fx align-items-center justify-content-end">
+        <div className="fx mr--1 align-items-center">
+          <div className="mr--1">
+            <Link to="/" className="btn btn--transparent">
+              <span className="text--size-12">Beranda</span>
+            </Link>
+          </div>
+          <div className="mr--1">
+            <button className="btn btn--transparent text--size-12">
+              Tentang Kami
             </button>
-            </div>
-            <div className="mr--1 align-items-center">
-              <button
-                className="btn btn--transparent text--size-12"
-                onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}
-              >
-                Masuk
+          </div>
+          <div className="mr--1 align-items-center">
+            <button
+              className="btn btn--transparent text--size-12"
+              onClick={() => this.props.context.setIsModalSigninPopupOpen(true)}
+            >
+              Masuk
             </button>
-            </div>
-            <div>
-              <button
-                className="btn btn--primary"
-                onClick={() => this.props.context.setIsModalSignupPopupOpen(true)}
-              >
-                <span>Daftar</span>
-              </button>
-            </div>
           </div>
           <div className="fx fx align-items-center">
             <div className="header-top-icon">
@@ -299,13 +336,22 @@ class Header extends Component {
                 <img src={require("../../assets/img/Cart.svg")} alt="" />
               </div>
             </div>
-            {this.renderCart()}
-            <div className="header-top-icon header-top-icon--flag">
-              <img src={require("../../assets/img/indonesia.png")} alt="" />
+          </div>
+          <div className="header-top-icon">
+            <div
+              className="header-top-icon--image"
+              onClick={() => this.onClickCartIcon()}
+            >
+              <img src={require("../../assets/img/Cart.svg")} alt="" />
             </div>
           </div>
+          {this.renderCart()}
+          <div className="header-top-icon header-top-icon--flag">
+            <img src={require("../../assets/img/indonesia.png")} alt="" />
+          </div>
         </div>
-      );
+      </div>
+    );
   }
 
   render() {

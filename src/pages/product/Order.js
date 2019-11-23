@@ -35,9 +35,9 @@ class Order extends Component {
           <div className="content">
             <h4>ORDER ID</h4>
           </div>
-          <div className="content">
+          {/* <div className="content">
             <h4>TOTAL PRODUCT</h4>
-          </div>
+          </div> */}
           <div className="content">
             <h4>STATUS</h4>
           </div>
@@ -55,9 +55,7 @@ class Order extends Component {
           <div className="content">
             <h4>ORDER ID</h4>
           </div>
-          <div className="content">
-            <h4>TOTAL PRODUCT</h4>
-          </div>
+
           <div className="content">
             <h4>STATUS</h4>
           </div>
@@ -102,9 +100,9 @@ class Order extends Component {
             </div>
 
             {/* Total product */}
-            <div className="row-flex">
+            {/* <div className="row-flex">
               <p>{this.state.orderData.length} Product</p>
-            </div>
+            </div> */}
 
             {/* Status */}
             <div className="row-flex">
