@@ -83,7 +83,7 @@ class Signin extends Component {
       <div>
         <h3 className="text--center">Silahkan Masuk ke Akun Anda</h3>
         <p className="text--size-14 text--center mb--2">
-          Silahkan masuk ke akun Anda untuk menyelesaikan<br />  pembayaran dengan data pribadi Anda
+          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran dengan data pribadi Anda
         </p>
         <form onSubmit={e => this.onLogin(e)}>
           <div className="form--group">

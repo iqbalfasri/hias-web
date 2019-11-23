@@ -77,7 +77,7 @@ class Search extends Component {
               <div className="container">
                 <div className="row mb--2">
                   <div className="col">
-                    <p><strong>Menampilkan {this.state.products.length} hasul untuk "{queryString.parse(this.props.location.search).keyword}"</strong></p>
+                    <p><strong>Menampilkan {this.state.products.length} hasil untuk "{queryString.parse(this.props.location.search).keyword}"</strong></p>
                   </div>
                 </div>
                 <div className="row">

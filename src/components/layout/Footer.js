@@ -29,10 +29,10 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
-                  <li><Link to="/about">Whatsapp<br/><span className="footer-sub-link">+62 0859 7893 2728</span></Link></li>
-                  <li><Link to="/">Telephone<br/><span className="footer-sub-link">(021) 8923 777</span></Link></li>
-                  <li><Link to="/">Email<br/><span className="footer-sub-link">halo@hias.com</span></Link></li>
-                  <li><Link to="/">Hari & Jam Kerja<br/><span className="footer-sub-link">Senin - Minggu / 10:00 - 18:00</span></Link></li>
+                  <li><Link to="/about">Whatsapp<br/><span className="footer-sub-link">+62 811-1088-488</span></Link></li>
+                  <li><Link to="/">Email<br/><span className="footer-sub-link">marketing@hias.co.id</span></Link></li>
+                  <li><Link to="/">Layanan Konsumen<br/><span className="footer-sub-link">Senin - Minggu / 09:00 - 18:00 WIB Termasuk hari libur</span></Link></li>
+                  <li><Link to="/">Jam Operasional Outlet<br/><span className="footer-sub-link">Senin - Minggu / 10:00 - 22:00 WIB</span></Link></li>
                 </ul>
               </div>
             </div>
