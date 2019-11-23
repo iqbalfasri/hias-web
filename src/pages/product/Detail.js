@@ -275,28 +275,6 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-<<<<<<< HEAD
-                        <img style={{ width: '100%' }} src={require('../../assets/img/Untitled-1Artboard 2.jpg')} alt="" />
-                        {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                      </div>
-                      <div className="fx fx-no-wrap align-items-center">
-                        <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                        </div>
-                        <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                        </div>
-                        <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                        </div>
-                        <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
-                          {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
-                        </div>
-=======
                         <img
                           style={{ width: "100%" }}
                           src={product.thumbnail}
@@ -321,7 +299,6 @@ class Detail extends Component {
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
                         </div> */}
->>>>>>> 2a963acce26cd03797b1682149ba9818a4e69175
                       </div>
                     </div>
                   </div>
