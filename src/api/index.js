@@ -231,3 +231,15 @@ export const getOrderById = orderId => {
       return res.data;
     });
 };
+
+export const requestCoupon = couponCode => {
+  return axios
+    .get(`${BASE_URL}/product/coupon/${couponCode}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    .then(res => {
+      return res.data;
+    });
+};
