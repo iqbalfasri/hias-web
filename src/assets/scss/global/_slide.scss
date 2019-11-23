@@ -13,13 +13,14 @@
 
 .swiper-pagination-bullet {
   border-radius: 10px;
-  width: 16px;
+  width: 10px;
+  height: 10px;
   background: #999;
   opacity: 1;
 }
 
 .swiper-pagination-bullet-active {
-  width: 48px;
+  background: #000;
 }
 
 .slide-container-home {
