@@ -219,24 +219,24 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-                        <img style={{ width: '100%' }} src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
+                        <img style={{ width: '100%' }} src={require('../../assets/img/Untitled-1Artboard 2.jpg')} alt="" />
                         {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                       </div>
                       <div className="fx fx-no-wrap align-items-center">
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
+                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
+                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
+                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                         <div className="img-detail-thumbnail">
-                          <img src={require('../../assets/img/TES-ITEM-4.jpg')} alt="" />
+                          <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
                       </div>
