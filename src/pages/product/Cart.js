@@ -286,8 +286,8 @@ class Cart extends Component {
                       <div style={{ marginRight: "3em" }}>
                         {this.state.priceCoupon > 0 ? (
                           <div className="fx justify-content-between">
-                            <h3 className="mr--1">Potongan Kupon</h3>
-                            <h3>
+                            <h3 style={{ color: "#F96464" }} className="mr--1">Potongan Kupon</h3>
+                            <h3 style={{ color: "#F96464" }}>
                               IDR
                               {formatMoneyWithoutSymbol(this.state.priceCoupon)}
                             </h3>
@@ -299,10 +299,6 @@ class Cart extends Component {
                             IDR
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
-                        </div>
-                        <div className="fx justify-content-between">
-                          <h3 className="mr--1">Shipping</h3>
-                          <h3>Free</h3>
                         </div>
                       </div>
                     </div>
