@@ -44,9 +44,9 @@ class Wishlist extends Component {
                             <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
                         </div>
                         <div className="pda--items" >
-                            <button
+                            {/* <button
                                 style={{ display: "block", margin: "12px auto" }}
-                                className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Tambah ke Keranjang</button>
+                                className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Tambah ke Keranjang</button> */}
                         </div>
                     </div >
                 )

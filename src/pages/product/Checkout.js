@@ -37,7 +37,7 @@ class Checkout extends Component {
       addressSelected: null,
       selectedIndexAddress: 0,
       isModalAddress: false,
-      listCourier: ['jne', 'pos', 'tiki'],
+      listCourier: ["jne", "pos", "tiki"],
       courierSelected: 0
     };
   }
@@ -45,11 +45,18 @@ class Checkout extends Component {
   componentDidMount() {
     let userId = localStorage.getItem("userId");
     getCart(userId).then(res => {
-      this.setState({
-        cart: res.data.listItems,
-        subTotal: res.data.subTotal,
-        userAddress: this.state.addresses[0]
-      }, () => localStorage.setItem('userAddress', JSON.stringify(this.state.userAddress)));
+      this.setState(
+        {
+          cart: res.data.listItems,
+          subTotal: res.data.subTotal,
+          userAddress: this.state.addresses[0]
+        },
+        () =>
+          localStorage.setItem(
+            "userAddress",
+            JSON.stringify(this.state.userAddress)
+          )
+      );
     });
 
     getUserAddress(userId)
@@ -72,65 +79,97 @@ class Checkout extends Component {
       });
   }
 
+  componentWillUnmount() {
+    localStorage.removeItem("subTotal");
+  }
+
   onProcessTab1() {
     this.props.context.setIsLoading(true);
     this.setState({ activeSteps: 2 }, () =>
       this.props.context.setIsLoading(false)
     );
-
-    // addUserAddress({
-    //   userId: localStorage.getItem("userId"),
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   company: this.state.companyName,
-    //   country: this.state.country,
-    //   city: this.state.city,
-    //   address: this.state.address,
-    //   email: this.state.email,
-    //   phone: this.state.phone,
-    //   postCode: this.state.postalCode
-    // })
-    //   .then(res => {
-    //     const getIdAddress = res.data.slice(-2);
-    //     if (res.success) {
-    //       // getUserAddress(localStorage.getItem("userId")).then(res => {
-    //       //   console.log(res.data[0]);
-
-    //       //   this.setState({ activeSteps: 2 });
-    //       //   this.props.context.setIsLoading(false);
-    //       // });
-    //       const userAddress = {
-    //         userId: localStorage.getItem("userId"),
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         company: this.state.companyName,
-    //         country: this.state.country,
-    //         city: this.state.city,
-    //         address: this.state.address,
-    //         email: this.state.email,
-    //         phone: this.state.phone,
-    //         postCode: this.state.postalCode
-    //       };
-    //       this.setState(
-    //         {
-    //           userAddress: userAddress,
-    //           activeSteps: 2,
-    //           addressId: getIdAddress
-    //         },
-    //         () => this.props.context.setIsLoading(false)
-    //       );
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   }
 
   onProcessTab2() {
     this.props.context.setIsLoading(true);
-    this.setState({ activeSteps: 3 }, () =>
-      this.props.context.setIsLoading(false)
-    );
+
+    let stringifyData = [];
+    let getSubTotal = localStorage.getItem("subTotal");
+    let getCart = JSON.parse(localStorage.getItem("cartItems"));
+    let getUserId = localStorage.getItem("userId");
+    let getIdAddress = JSON.parse(localStorage.getItem("userAddress"))
+      .idAddress;
+
+    // changed stringify data
+    getCart.forEach(cart => {
+      stringifyData.push({
+        productName: `\"${cart.name}\"`,
+        thumbnailUrl: `\"${cart.thumbnail}\"`,
+        price: cart.price,
+        qty: cart.qty
+      });
+    });
+
+    // this value send to server
+    let value = {
+      userId: getUserId,
+      userAddressId: getIdAddress,
+      total: getSubTotal,
+      subTotal: getSubTotal,
+      session: null,
+      productTotal: getCart.length,
+      paymentType: null,
+      status: 0,
+      productItem: stringifyData
+    };
+
+    // request data to server
+    axios
+      .post(`${BASE_URL}/product/order`, JSON.stringify(value), {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => {
+        let response = {
+          order_id: res.data
+        };
+
+        this.setState({ activeSteps: 3 }, () =>
+          this.props.context.setIsLoading(false)
+        );
+        console.log(response, "RESPONSE ORDER");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // let convertedData = []
+
+    // arrObj.forEach((obj, index) => {
+    //   arr.push({
+    //     productName: `\"${obj.productName}\"`,
+    //     thumbnailUrl: `\"${obj.thumbnailUrl}\"`,
+    //     price: obj.price,
+    //     qty: obj.qty
+    //   });
+    // });
+
+    // let value = {
+    //   userId: 46,
+    //   userAddressId: 79,
+    //   total: 1239032,
+    //   subTotal: 200000200,
+    //   session: null,
+    //   productTotal: 10,
+    //   paymentType: null,
+    //   status: 0,
+    //   productItem: arr
+    // };
+
+    // console.log(value);
+
     // axios
     //   .post(
     //     `${BASE_URL}/product/order`,
@@ -412,13 +451,9 @@ class Checkout extends Component {
   renderCourierSelection() {
     let { listCourier } = this.state;
 
-    return listCourier.map((courier) => {
-      return (
-        <div>
-          {courier}
-        </div>
-      )
-    })
+    return listCourier.map(courier => {
+      return <div>{courier}</div>;
+    });
   }
 
   renderAddressSelection() {
@@ -439,9 +474,11 @@ class Checkout extends Component {
                       () => {
                         localStorage.setItem(
                           "userAddress",
-                          JSON.stringify(this.state.addresses[
-                            this.state.selectedIndexAddress
-                          ])
+                          JSON.stringify(
+                            this.state.addresses[
+                              this.state.selectedIndexAddress
+                            ]
+                          )
                         );
                       }
                     )
@@ -499,7 +536,7 @@ class Checkout extends Component {
           </div>
         );
       case 2:
-        const userAddress = JSON.parse(localStorage.getItem('userAddress'))
+        const userAddress = JSON.parse(localStorage.getItem("userAddress"));
         return (
           <div className="checkout-form-wrapper">
             <div className="row">
@@ -511,9 +548,7 @@ class Checkout extends Component {
                 <span className="text--color-green">Shipping Address</span>
                 <div style={{ padding: "10px 0" }}>
                   <h4>{`${userAddress.firstName} ${userAddress.lastName}`}</h4>
-                  <p
-                    style={{ margin: "0 0" }}
-                  >{`${userAddress.address}`}</p>
+                  <p style={{ margin: "0 0" }}>{`${userAddress.address}`}</p>
                 </div>
               </div>
             </div>
@@ -522,9 +557,11 @@ class Checkout extends Component {
               <div className="container">
                 <h3>Shipping Method</h3>
 
-                <div>
+                {this.renderCourierSelection()}
+
+                {/* <div>
                   <img style={{ maxHeight: 40, minWidth: 40 }} src={require('../../assets/img/jne.jpg')} />
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -539,7 +576,7 @@ class Checkout extends Component {
                     }}
                   >
                     <h4 style={{ color: "#878786" }}>Shipping</h4>
-                    <h4 style={{ color: "#878786" }}>IDR 400,000</h4>
+                    {/* <h4 style={{ color: "#878786" }}>IDR 400,000</h4> */}
                   </div>
 
                   <div
@@ -589,79 +626,18 @@ class Checkout extends Component {
         return (
           <div className="checkout-form-wrapper">
             <div className="row">
-              <div className="col-md-8">
-                <div className="row justify-content-end mb--2">
-                  <div className="col-6">
-                    <span className="mb--1 text--color-green">Your Order</span>
-                  </div>
-                  <div className="col-6"></div>
-                </div>
-                <div className="row align-items-center">
-                  <div className="col-6">
-                    <p>Total Price</p>
-                  </div>
-                  <div className="col-6">
-                    <p>IDR {formatMoneyWithoutSymbol(this.state.subTotal)}</p>
-                  </div>
-                </div>
-                <div className="row justify-content-end">
-                  <div className="col-6">
-                    <p className="mb--1 text--color-green">Shipping Address</p>
-                    <div>
-                      {/* <p>First Name: {this.state.userAddress.firstName}</p>
-                        <p>Last Name: {this.state.userAddress.lastName}</p>
-                        <p>Email: {this.state.userAddress.email}</p>
-                        <p>Company: {this.state.userAddress.company}</p>
-                        <p>Address: {this.state.userAddress.address}</p>
-                        <p>City: {this.state.userAddress.city}</p> */}
-                    </div>
-                  </div>
-                  <div className="col-6"></div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div>
-                  <div className="cat--items">
-                    <div>
-                      <span className="mr--1">
-                        <input
-                          checked={this.state.paymentMethodMode === 1}
-                          onChange={() =>
-                            this.setState({ paymentMethodMode: 1 })
-                          }
-                          type="radio"
-                          name="sort"
-                          id="paymu"
-                        />
-                      </span>
-                      <label htmlFor="paymu">iPaymu Wallet</label>
-                    </div>
-                  </div>
-                  <div className="cat--items">
-                    <div>
-                      <span className="mr--1">
-                        <input
-                          checked={this.state.paymentMethodMode === 2}
-                          onChange={() =>
-                            this.setState({ paymentMethodMode: 2 })
-                          }
-                          type="radio"
-                          name="sort"
-                          id="az"
-                        />
-                      </span>
-                      <label htmlFor="az">Credit Card / Debit Card</label>
-                    </div>
-                  </div>
-                </div>
-                <div>{this.renderPaymentMethod()}</div>
-              </div>
+              <iframe
+                src="https://my.ipaymu.com/payment/9D8D8C62-EAA3-4AB9-B24F-E5010F647DDB"
+                width="1110"
+                height="600"
+              />
             </div>
+
             <div className="row mt--2">
               <div className="col">
                 <div>
                   <button
-                    onClick={() => this.setState({ activeSteps: 2 })}
+                    onClick={() => this.setState({ activeSteps: 1 })}
                     className="btn btn--primary"
                   >
                     Back
@@ -674,7 +650,7 @@ class Checkout extends Component {
                     className="btn btn--blue"
                     onClick={() => this.setState({ activeSteps: 4 })}
                   >
-                    Pay IDR {formatMoneyWithoutSymbol(this.state.subTotal)}
+                    Next
                   </button>
                 </div>
               </div>
@@ -760,7 +736,6 @@ class Checkout extends Component {
   }
 
   render() {
-    console.log(this.state.userAddress);
     return (
       <>
         <Helmet key={Math.random()}>
