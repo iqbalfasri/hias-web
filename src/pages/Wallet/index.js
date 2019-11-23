@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 
 import './index.scss'
+import { createRequire } from 'module'
 
 class Wallet extends Component {
   render () {
@@ -20,18 +21,17 @@ class Wallet extends Component {
                 <div className="col-md-8">
                   <div>
                     <div className="mb--1 img--center">
-                      <img src="https://via.placeholder.com/200" alt=""/>
+                      <img style={{width:350}} src={require('../../assets/img/ipaymu.png')} alt=""/>
                     </div>
-                    <div className="text--center">
-                      <h2>Do You Have iPaymu Account?</h2>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic unde nisi voluptatum aspernatur, laboriosam consectetur, odio delectus dolor beatae inventore consequuntur sit eligendi, quod repellendus repudiandae soluta aliquam commodi eaque?</p>
+                    <div className="text--center mb--2">
+                      <h2>Sudah punya akun iPaymu?</h2>
                     </div>
                     <div className="fx fx-no-wrap justify-content-center">
                       <div className="mr--1">
-                        <button className="btn btn--full btn--blue">Create iPaymu Account</button>
+                        <button className="btn btn--full btn--blue">Buat akun iPaymu</button>
                       </div>
                       <div>
-                        <button className="btn btn--full btn--primary">Create iPaymu Account</button>
+                        <button className="btn btn--full btn--primary">Sudah punya akun</button>
                       </div>
                     </div>
                   </div>
