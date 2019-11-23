@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from 'react-router-dom'
+
+import { BASE_URL, getOrderProgress } from "../../api";
 
 import "./Order.scss";
-import axios from "axios";
-import { BASE_URL } from "../../api";
 
 class Order extends Component {
   constructor(props) {
@@ -16,17 +17,11 @@ class Order extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(
-        `${BASE_URL}/product/${localStorage.getItem(
-          "userId"
-        )}/getOrderByUserId`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-        }
-      )
+    let getUserId = localStorage.getItem("userId");
+    getOrderProgress(getUserId)
       .then(res => {
-        this.setState({ orderData: res.data.data.order });
+        let orderData = res.data.order;
+        this.setState({ orderData });
       })
       .catch(error => {
         console.log(error);
@@ -54,7 +49,23 @@ class Order extends Component {
   }
 
   _history() {
-    return <h1></h1>;
+    return (
+      <>
+        <div className="row-order">
+          <div className="content">
+            <h4>ORDER ID</h4>
+          </div>
+          <div className="content">
+            <h4>TOTAL PRODUCT</h4>
+          </div>
+          <div className="content">
+            <h4>STATUS</h4>
+          </div>
+        </div>
+
+        {this.renderEachOrder(this.state.orderData)}
+      </>
+    );
   }
 
   renderOrderStatus() {
@@ -75,24 +86,31 @@ class Order extends Component {
     if (data !== undefined) {
       return this.state.orderData.map(order => {
         return (
-          <div className="row-order row-order--item">
-            <div className="content">
-              <div className="order-date">
-                <div className="order-circle--date">
-                  <p>21 OCT</p>
-                </div>
-                <div>
-                  <h5>ID {order.orderId}</h5>
-                </div>
+          <a
+            key={order.orderId}
+            href={`/order/detail/${order.orderId}`}
+            className="row row-order row-order--link"
+          >
+            {/* Order Id */}
+            <div className="row row-flex row-order--id-wrapper">
+              <div className="order-circle--date">
+                <p>21 Oct</p>
+              </div>
+              <div>
+                <p>ID {order.orderId}</p>
               </div>
             </div>
-            <div className="content">
-              <h5>3</h5>
+
+            {/* Total product */}
+            <div className="row-flex">
+              <p>{this.state.orderData.length} Product</p>
             </div>
-            <div className="content">
-              <h5>{order.status == 0 ? "Payment" : "On Delivery"}</h5>
+
+            {/* Status */}
+            <div className="row-flex">
+              <p>Waiting for Payment</p>
             </div>
-          </div>
+          </a>
         );
       });
     }

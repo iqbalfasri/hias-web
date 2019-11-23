@@ -1,0 +1,27 @@
+@import '../../assets/scss/global/var';
+
+.banner-inspiration{
+    width: 90%;
+    height: 200px;
+    margin: 20px auto;
+    background-size: cover;
+    background-color: $mainColor;
+    background-blend-mode: color-burn;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+        font-size: 42px;
+        font-weight: 700;
+        color: white;
+    }
+
+    p{  
+        margin: 0;
+        font-size: 18px;
+        color: white;
+    }
+}

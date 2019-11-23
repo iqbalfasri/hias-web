@@ -1,22 +1,31 @@
-import React, { Component } from 'react'
-import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
-import StarRatings from 'react-star-ratings'
-import ShowMoreText from 'react-show-more-text'
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
+import StarRatings from "react-star-ratings";
+import ShowMoreText from "react-show-more-text";
 
-import ProductCard from '../../components/card/Product'
-import ColorSelector from '../../components/ColorSelector'
-import { fetchProductById, fetchWishList, addToCart, fetchHotProduct, fetchVariantById, fetchColorById } from '../../api'
-import { formatMoneyWithoutSymbol } from '../../utils/money'
-import { withContext } from '../../context/withContext'
-import { isLogin } from '../../utils/auth'
+import ProductCard from "../../components/card/Product";
+import ColorSelector from "../../components/ColorSelector";
+import {
+  fetchProductById,
+  fetchWishList,
+  addToCart,
+  fetchHotProduct,
+  fetchVariantById,
+  fetchColorById
+} from "../../api";
+import { formatMoneyWithoutSymbol } from "../../utils/money";
+import { withContext } from "../../context/withContext";
+import { isLogin } from "../../utils/auth";
+
+import "./Detail.scss";
 
 class Detail extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       activeDetailTab: 1,
@@ -25,180 +34,225 @@ class Detail extends Component {
       variant: null,
       colors: null,
       wishListItems: [],
-      showAll: false
-    }
+      showAll: false,
+      couriers: []
+    };
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params
-    fetchProductById(id)
-      .then((res) => {
+    const { id } = this.props.match.params;
+    fetchProductById(id).then(res => {
+      this.setState({
+        product: res.data[0]
+      });
+    });
+
+    fetchVariantById(id).then(res => {
+      if (res.data.length !== 0) {
         this.setState({
-          product: res.data[0]
-        })
-      })
+          variant: res.data
+        });
+      }
+    });
 
-    fetchVariantById(id)
-      .then((res) => {
-        if (res.data.length !== 0) {
-          this.setState({
-            variant: res.data
-          })
-        }
-      })
-
-    fetchColorById(id)
-      .then((res) => {
-        if (res.data.length !== 0) {
-          this.setState({
-            colors: res.data
-          })
-        }
-      })
+    fetchColorById(id).then(res => {
+      if (res.data.length !== 0) {
+        this.setState({
+          colors: res.data
+        });
+      }
+    });
 
     fetchHotProduct()
-      .then((res) => {
-        this.props.context.setHotProducts(res.data)
+      .then(res => {
+        this.props.context.setHotProducts(res.data);
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
 
     if (isLogin()) {
-      fetchWishList(localStorage.getItem('userId'))
-        .then((res) => {
-          this.setState({
-            wishListItems: res.data
-          })
-        })
+      fetchWishList(localStorage.getItem("userId")).then(res => {
+        this.setState({
+          wishListItems: res.data
+        });
+      });
     }
   }
 
   isProductWishlisted(id) {
-    const { wishListItems } = this.state
-    let result = false
+    const { wishListItems } = this.state;
+    let result = false;
     for (let i = 0; i < wishListItems.length; i++) {
       if (wishListItems[i].id === id) {
-        result = true
+        result = true;
         break;
       }
     }
-    return result
+    return result;
   }
 
   renderRelatedProduct() {
     const hotProducts = this.props.context.hotProducts;
-    const products = []
+    const products = [];
     if (hotProducts.length !== 0) {
       for (let i = 0; i < 4; i++) {
-        products.push((
-          <div className="col-md-3" key={`product-${hotProducts[i]}`} key={`related-${i}`}>
+        products.push(
+          <div
+            className="col-md-3"
+            key={`product-${hotProducts[i]}`}
+            key={`related-${i}`}
+          >
             <ProductCard
-              thumbnail={hotProducts[i].thumbnail ? hotProducts[i].thumbnail : 'https://via.placeholder.com/600x600'}
+              thumbnail={
+                hotProducts[i].thumbnail
+                  ? hotProducts[i].thumbnail
+                  : "https://via.placeholder.com/600x600"
+              }
               loved={this.isProductWishlisted(hotProducts[i].productId)}
-              id={hotProducts[i].productId} title={hotProducts[i].productName}
-              price={hotProducts[i].price} category={hotProducts[i].categoryName} />
+              id={hotProducts[i].productId}
+              title={hotProducts[i].productName}
+              price={hotProducts[i].price}
+              category={hotProducts[i].categoryName}
+            />
           </div>
-        ))
+        );
       }
     }
-    return products
+    return products;
   }
 
   onClickAddToCart(product) {
     if (isLogin()) {
       addToCart({
         productId: product.productId,
-        cartId: localStorage.getItem('userId'),
+        cartId: localStorage.getItem("userId"),
         amount: 1
       })
-        .then((res) => {
+        .then(res => {
           this.setState({
             addToCartClicked: true
-          })
+          });
         })
-        .catch((err) => {
-          console.log(err)
-        })
+        .catch(err => {
+          console.log(err);
+        });
     } else {
-      this.props.context.setIsModalSigninPopupOpen(true)
+      this.props.context.setIsModalSigninPopupOpen(true);
     }
   }
 
   renderAddToCartButton() {
-    const { product } = this.state
+    const { product } = this.state;
     return this.state.addToCartClicked ? (
       <div className="pda--items">
         <button className="btn btn--blue">Added to Cart</button>
       </div>
     ) : (
-        <div className="pda--items">
-          <button className="btn btn--blue" onClick={() => this.onClickAddToCart(product)}>Tambah ke Keranjang</button>
+      <div className="pda--items">
+        <button
+          className="btn btn--blue"
+          onClick={() => this.onClickAddToCart(product)}
+        >
+          Tambah ke Keranjang
+        </button>
+      </div>
+    );
+  }
+
+  renderCourier(product) {
+    const { courier } = product;
+
+    // "courier3": "TIKI",
+    // "courier4": "POS",
+    // "courier1": "Hias Courier",
+    // "courier2": "JNE"
+
+    return (
+      <>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/jne.jpg")} alt="" />
+          </div>
         </div>
-      )
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/jnt.png")} alt="" />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/dhl.png")} alt="" />
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="img-detail-thumbnail">
+            <img src={require("../../assets/img/dhl.png")} alt="" />
+          </div>
+        </div>
+      </>
+    );
   }
 
   renderTabContent() {
-    const { activeDetailTab, product } = this.state
+    const { activeDetailTab, product } = this.state;
     switch (activeDetailTab) {
       case 1:
         return (
           <div>
-            {/* <p>{ product.overview }</p> */}
-            {/* <ReadMoreReact text={""}
-              min={300}
-              ideal={300}
-              max={300}
-              readMoreText="read more"/> */}
             <ShowMoreText
               lines={8}
-              more='Show more'
-              less='Show less'
-              anchorClass=''
+              more="Show more"
+              less="Show less"
+              anchorClass=""
               onClick={this.executeOnClick}
               expanded={false}
             >
               <p>{product.overview}</p>
             </ShowMoreText>
           </div>
-        )
+        );
       case 2:
         return (
           <div>
-            <div className="row" style={{paddingLeft:'1.5em'}}>
-              <p>{ product.description }</p>
+            <div className="tab--detail">
+              <div className="tab--detail-content">
+                <h4>SKU </h4>
+                <p>{product.productCode}</p>
+              </div>
+              <div className="tab--detail-content">
+                <h4>Ukuran </h4>
+                <p>{product.dimensions}</p>
+              </div>
+              <div className="tab--detail-content">
+                <h4>Berat </h4>
+                <p>{product.weight} Kg</p>
+              </div>
+              <div className="tab--detail-content">
+                <h4>Deskripsi </h4>
+                <p>{product.description}</p>
+              </div>
             </div>
           </div>
-        )
+        );
       case 3:
-        return (
-          <div className="row">
-            <div className="col-md-4">
-              <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/jne.jpg')} alt="" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/jnt.png')} alt="" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="img-detail-thumbnail">
-                <img src={require('../../assets/img/dhl.png')} alt="" />
-              </div>
-            </div>
-          </div>
-        )
+        return <div className="row">{this.renderCourier(product)}</div>;
       default:
-        return null
+        return null;
     }
   }
 
   render() {
     const { product } = this.state;
-    console.log(this.state);
     const { id } = this.props.match.params;
+    const arrayImage = product !== null ? [
+      product.thumbnail,
+      product.thumbnail,
+      product.thumbnail,
+      product.thumbnail,
+    ] : [];
+
+    console.log(arrayImage, "image array")
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
@@ -215,10 +269,13 @@ class Detail extends Component {
                   <div>
                     <div>
                       <h1>{product.productName}</h1>
-                      <h2 className="text--color-orange">IDR {formatMoneyWithoutSymbol(product.price)} / Item</h2>
+                      <h2 className="text--color-orange">
+                        IDR {formatMoneyWithoutSymbol(product.price)} / Item
+                      </h2>
                     </div>
                     <div>
                       <div className="mb--1">
+<<<<<<< HEAD
                         <img style={{ width: '100%' }} src={require('../../assets/img/Untitled-1Artboard 2.jpg')} alt="" />
                         {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                       </div>
@@ -239,6 +296,32 @@ class Detail extends Component {
                           <img src={require('../../assets/img/Untitled-1Artboard 1.jpg')} alt="" />
                           {/* <img src={require('../../assets/img/Banner-SignIn.png')} alt=""/> */}
                         </div>
+=======
+                        <img
+                          style={{ width: "100%" }}
+                          src={product.thumbnail}
+                          alt=""
+                        />
+                      </div>
+                      <div className="fx fx-no-wrap align-items-center">
+                        {arrayImage.map(image => (
+                          <div className="img-detail-thumbnail">
+                            <img src={image} alt="" />
+                          </div>
+                        ))}
+                        {/* <div className="img-detail-thumbnail">
+                          <img src={product.thumbnail} alt="" />
+                        </div>
+                        <div className="img-detail-thumbnail">
+                          <img src={product.thumbnail} alt="" />
+                        </div>
+                        <div className="img-detail-thumbnail">
+                          <img src={product.thumbnail} alt="" />
+                        </div>
+                        <div className="img-detail-thumbnail">
+                          <img src={product.thumbnail} alt="" />
+                        </div> */}
+>>>>>>> 2a963acce26cd03797b1682149ba9818a4e69175
                       </div>
                     </div>
                   </div>
@@ -248,13 +331,17 @@ class Detail extends Component {
                     <div className="product-detail-actions">
                       {this.isProductWishlisted(id) ? (
                         <div className="pda--items">
-                          <span className="text--size-1-5"><FontAwesomeIcon icon={fasHeart} /></span>
+                          <span className="text--size-1-5">
+                            <FontAwesomeIcon icon={fasHeart} />
+                          </span>
                         </div>
                       ) : (
-                          <div className="pda--items">
-                            <span className="text--size-1-5"><FontAwesomeIcon icon={faHeart} /></span>
-                          </div>
-                        )}
+                        <div className="pda--items">
+                          <span className="text--size-1-5">
+                            <FontAwesomeIcon icon={faHeart} />
+                          </span>
+                        </div>
+                      )}
                       {/* <div className="pda--items">
                         <button className="btn btn--gray">Add to Registry</button>
                       </div> */}
@@ -262,12 +349,14 @@ class Detail extends Component {
                     </div>
                     <div className="rating-container">
                       <div className="mr--1">
-                        <span className="mr--1"><strong>4</strong></span>
+                        <span className="mr--1">
+                          <strong>4</strong>
+                        </span>
                         <StarRatings
                           rating={4}
-                          starDimension='15px'
-                          starSpacing='5px'
-                          starRatedColor='rgb(165, 208, 112)'
+                          starDimension="15px"
+                          starSpacing="5px"
+                          starRatedColor="rgb(165, 208, 112)"
                         />
                       </div>
                       <div>
@@ -276,13 +365,34 @@ class Detail extends Component {
                     </div>
                     <div className="product-detail-tab">
                       <div className="pdt--tab">
-                        <div className={`pdt--tab-item ${this.state.activeDetailTab === 1 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 1 })}>
+                        <div
+                          className={`pdt--tab-item ${
+                            this.state.activeDetailTab === 1
+                              ? "pdt--tab-item-active"
+                              : ""
+                          }`}
+                          onClick={() => this.setState({ activeDetailTab: 1 })}
+                        >
                           <span>Tinjauan</span>
                         </div>
-                        <div className={`pdt--tab-item ${this.state.activeDetailTab === 2 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 2 })}>
+                        <div
+                          className={`pdt--tab-item ${
+                            this.state.activeDetailTab === 2
+                              ? "pdt--tab-item-active"
+                              : ""
+                          }`}
+                          onClick={() => this.setState({ activeDetailTab: 2 })}
+                        >
                           <span>Detil</span>
                         </div>
-                        <div className={`pdt--tab-item ${this.state.activeDetailTab === 3 ? 'pdt--tab-item-active' : ''}`} onClick={() => this.setState({ activeDetailTab: 3 })}>
+                        <div
+                          className={`pdt--tab-item ${
+                            this.state.activeDetailTab === 3
+                              ? "pdt--tab-item-active"
+                              : ""
+                          }`}
+                          onClick={() => this.setState({ activeDetailTab: 3 })}
+                        >
                           <span>Kurir</span>
                         </div>
                       </div>
@@ -292,21 +402,41 @@ class Detail extends Component {
                     </div>
                     <div className="product-detail-variant">
                       <h3>Varian Lainnya</h3>
-                      <div className="row" style={{paddingLeft:'1.3em'}}>
-                        {this.state.variant !== null ? (
-                          this.state.variant.map((p, index) => {
-                            return (
-                              <div className="col-md-4 variant-item" key={`variant-${index}`} onClick={() => { { window.location.reload() } }}>
-                                <Link to={`/products/detail/${p.id}`}>
-                                  <div className="img-detail-thumbnail">
-                                    <img src={p.thumbnail ? p.thumbnail : 'https://via.placeholder.com/1400x700'} alt="" />
-                                  </div>
-                                  <p>{p.productName.substring(p.productName.length - 8, p.productName.length)}</p>
-                                </Link>
-                              </div>
-                            )
-                          })
-                        ) : "Tidak ditemukan"}
+                      <div className="row" style={{ paddingLeft: "1.3em" }}>
+                        {this.state.variant !== null
+                          ? this.state.variant.map((p, index) => {
+                              return (
+                                <div
+                                  className="col-md-4 variant-item"
+                                  key={`variant-${index}`}
+                                  onClick={() => {
+                                    {
+                                      window.location.reload();
+                                    }
+                                  }}
+                                >
+                                  <Link to={`/products/detail/${p.id}`}>
+                                    <div className="img-detail-thumbnail">
+                                      <img
+                                        src={
+                                          p.thumbnail
+                                            ? p.thumbnail
+                                            : "https://via.placeholder.com/1400x700"
+                                        }
+                                        alt=""
+                                      />
+                                    </div>
+                                    <p>
+                                      {p.productName.substring(
+                                        p.productName.length - 8,
+                                        p.productName.length
+                                      )}
+                                    </p>
+                                  </Link>
+                                </div>
+                              );
+                            })
+                          : "Tidak ditemukan"}
                       </div>
                     </div>
                   </div>
@@ -341,9 +471,7 @@ class Detail extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
-                {this.renderRelatedProduct()}
-              </div>
+              <div className="row">{this.renderRelatedProduct()}</div>
             </div>
           </section>
           {/* <section className="section-page">
@@ -433,7 +561,7 @@ class Detail extends Component {
                         </div>
                       </div>
                     </div>
-            
+
                   </div>
                 </div>
               </div>
@@ -441,8 +569,8 @@ class Detail extends Component {
           </section> */}
         </div>
       </div>
-    ) : null
+    ) : null;
   }
 }
 
-export default withContext(Detail)
+export default withContext(Detail);

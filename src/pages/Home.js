@@ -135,7 +135,6 @@ class Home extends Component {
 
   renderBanner = () => {
     const { banner } = this.state;
-    console.log(banner)
     if (banner.length > 0) {
       return (
         <Swiper {...swiperBanner}>
@@ -172,7 +171,6 @@ class Home extends Component {
 
   renderBestProduct() {
     const bestProducts = this.props.context.bestProducts;
-    console.log(bestProducts)
     if (bestProducts.length !== 0) {
       return (
         <Swiper {...params}>
@@ -196,12 +194,14 @@ class Home extends Component {
           <Swiper {...swiperInspiration}>
             {inspiration.map((item, i) => {
               return (
-                <div className="" key={i}>
-                  <img style={{ maxWidth: "20%", display: "inline" }} src="https://via.placeholder.com/600x600" alt="" />
-                  <div className="inspiration-title">
-                    {item.title}
+                <Link key={i} to={`/inspiration/detail/${item.id}`}>
+                  <div >
+                    <img style={{ maxWidth: "20%", display: "inline" }} src={item.banner != null ? item.banner : "https://via.placeholder.com/600x600"} alt="" />
+                    <div className="inspiration-title">
+                      {item.title}
+                    </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </Swiper>
@@ -239,7 +239,7 @@ class Home extends Component {
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/">View All</Link>
+                    <Link className="text--size-12" to="/products/hot">View All</Link>
                   </div>
                 </div>
               </div>
@@ -258,7 +258,7 @@ class Home extends Component {
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/">View All</Link>
+                    <Link className="text--size-12" to="/products/best">View All</Link>
                   </div>
                 </div>
               </div>
@@ -293,7 +293,7 @@ class Home extends Component {
 
               <div className="row align-items-center justify-content-center">
                 <div className="col">
-                  <img src={require('../assets/img/banner-promo.jpg')} alt="" style={{maxWidth:"60%", marginLeft:'auto', marginRight:'auto'}}/>
+                  <img src={require('../assets/img/banner-promo.jpg')} alt="" style={{ maxWidth: "60%", marginLeft: 'auto', marginRight: 'auto' }} />
                 </div>
               </div>
             </div>
@@ -310,21 +310,21 @@ class Home extends Component {
               <div className="row text--center benefit-content">
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-01.png')} style={{width:150, marginLeft:'auto', marginRight:'auto'}}/>
+                    <img src={require('../assets/img/home-icon-01.png')} style={{ width: 150, marginLeft: 'auto', marginRight: 'auto' }} />
                     <h3>Design Penuh Gaya & Terkini</h3>
                     <p>Kami menyesuaikan design dengan tren dan perkembangan terkini.</p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-02.png')} style={{width:150, marginLeft:'auto', marginRight:'auto'}}/>
+                    <img src={require('../assets/img/home-icon-02.png')} style={{ width: 150, marginLeft: 'auto', marginRight: 'auto' }} />
                     <h3>Produk Berkualitas Terbaik</h3>
                     <p>Komitmen kami hanya menyediakan produk-produk terbaik baik lokal ataupun import bagi anda.</p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-03.png')} style={{width:150, marginLeft:'auto', marginRight:'auto'}}/>
+                    <img src={require('../assets/img/home-icon-03.png')} style={{ width: 150, marginLeft: 'auto', marginRight: 'auto' }} />
                     <h3>Kemudahan dalam Pembayaran</h3>
                     <p>Tersedia cicilan 0% untuk bank-bank tertentu.</p>
                   </div>

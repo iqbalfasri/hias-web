@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
+import Modal from "../../components/layout/Modal";
 import InputText from "../../components/form/InputText";
 import Checkbox from "../../components/form/Checkbox";
-import {
-  addUserAddress,
-  getUserAddress,
-  getCart,
-  getVANumberBNI,
-  getVANumberCIMB,
-  BASE_URL
-} from "../../api";
+import { addUserAddress, getUserAddress, getCart, BASE_URL } from "../../api";
 import { withContext } from "../../context/withContext";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
+
 import "./Checkout.scss";
-import axios from "axios";
 
 class Checkout extends Component {
   constructor(props) {
@@ -37,92 +32,129 @@ class Checkout extends Component {
       vaBNI: null,
       vaCIMB: null,
       paymentMethodMode: 1,
-      addressId: 0
+      addressId: 0,
+      addresses: [],
+      addressSelected: null,
+      selectedIndexAddress: 0,
+      isModalAddress: false
     };
   }
 
   componentDidMount() {
-    getCart(localStorage.getItem("userId")).then(res => {
+    let userId = localStorage.getItem("userId");
+    getCart(userId).then(res => {
       this.setState({
         cart: res.data.listItems,
-        subTotal: res.data.subTotal
+        subTotal: res.data.subTotal,
+        userAddress: this.state.addresses[0]
       });
     });
+
+    getUserAddress(userId)
+      .then(res => {
+        this.setState({ addresses: res.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
-  onProcessTab2() {
-    this.props.context.setIsLoading(true);
-    axios.post(
-      `${BASE_URL}/product/order`,
-      {
-        userId: localStorage.getItem('userId'),
-        userAddressId: this.state.addressId,
-        total: this.state.subTotal,
-        subTotal: this.state.subTotal,
-        session: null,
-        paymentType: null,
-        status: 0
-      },
-      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-    ).then(res => {
-      if (res.data.success) {
-        this.setState({ activeSteps: 3 }, () => {
-          this.props.context.setIsLoading(false)
-        })
-      }
-    }).catch(error => {
-      console.log(error)
-    })
+  componentWillReceiveProps(props) {
+    let userId = localStorage.getItem("userId");
+    getUserAddress(userId)
+      .then(res => {
+        this.setState({ addresses: res.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   onProcessTab1() {
     this.props.context.setIsLoading(true);
-    addUserAddress({
-      userId: localStorage.getItem("userId"),
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      company: this.state.companyName,
-      country: this.state.country,
-      city: this.state.city,
-      address: this.state.address,
-      email: this.state.email,
-      phone: this.state.phone,
-      postCode: this.state.postalCode
-    })
-      .then(res => {
-        const getIdAddress = res.data.slice(-2);
-        if (res.success) {
-          // getUserAddress(localStorage.getItem("userId")).then(res => {
-          //   console.log(res.data[0]);
+    this.setState({ activeSteps: 2 }, () =>
+      this.props.context.setIsLoading(false)
+    );
 
-          //   this.setState({ activeSteps: 2 });
-          //   this.props.context.setIsLoading(false);
-          // });
-          const userAddress = {
-            userId: localStorage.getItem("userId"),
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            company: this.state.companyName,
-            country: this.state.country,
-            city: this.state.city,
-            address: this.state.address,
-            email: this.state.email,
-            phone: this.state.phone,
-            postCode: this.state.postalCode
-          };
-          this.setState(
-            {
-              userAddress: userAddress,
-              activeSteps: 2,
-              addressId: getIdAddress
-            },
-            () => this.props.context.setIsLoading(false)
-          );
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // addUserAddress({
+    //   userId: localStorage.getItem("userId"),
+    //   firstName: this.state.firstName,
+    //   lastName: this.state.lastName,
+    //   company: this.state.companyName,
+    //   country: this.state.country,
+    //   city: this.state.city,
+    //   address: this.state.address,
+    //   email: this.state.email,
+    //   phone: this.state.phone,
+    //   postCode: this.state.postalCode
+    // })
+    //   .then(res => {
+    //     const getIdAddress = res.data.slice(-2);
+    //     if (res.success) {
+    //       // getUserAddress(localStorage.getItem("userId")).then(res => {
+    //       //   console.log(res.data[0]);
+
+    //       //   this.setState({ activeSteps: 2 });
+    //       //   this.props.context.setIsLoading(false);
+    //       // });
+    //       const userAddress = {
+    //         userId: localStorage.getItem("userId"),
+    //         firstName: this.state.firstName,
+    //         lastName: this.state.lastName,
+    //         company: this.state.companyName,
+    //         country: this.state.country,
+    //         city: this.state.city,
+    //         address: this.state.address,
+    //         email: this.state.email,
+    //         phone: this.state.phone,
+    //         postCode: this.state.postalCode
+    //       };
+    //       this.setState(
+    //         {
+    //           userAddress: userAddress,
+    //           activeSteps: 2,
+    //           addressId: getIdAddress
+    //         },
+    //         () => this.props.context.setIsLoading(false)
+    //       );
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+  }
+
+  onProcessTab2() {
+    this.props.context.setIsLoading(true);
+    this.setState({ activeSteps: 3 }, () =>
+      this.props.context.setIsLoading(false)
+    );
+    // axios
+    //   .post(
+    //     `${BASE_URL}/product/order`,
+    //     {
+    //       userId: localStorage.getItem("userId"),
+    //       userAddressId: this.state.addressId,
+    //       total: this.state.subTotal,
+    //       subTotal: this.state.subTotal,
+    //       session: null,
+    //       paymentType: null,
+    //       status: 0
+    //     },
+    //     {
+    //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    //     }
+    //   )
+    //   .then(res => {
+    //     if (res.data.success) {
+    //       this.setState({ activeSteps: 3 }, () => {
+    //         this.props.context.setIsLoading(false);
+    //       });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
 
   renderPaymentMethod() {
@@ -193,42 +225,233 @@ class Checkout extends Component {
     if (this.state.cart.length !== 0) {
       return this.state.cart.map((c, index) => {
         return (
-          <div className="row align-items-center" key={index}>
-            <div className="col-4">
+          <div
+            className="row align-items-center"
+            style={{ padding: "10px 15px" }}
+            key={index}
+          >
+            <div className="col-2">
               <div className="checkout-image-container">
                 <div className="checkout-image">
                   <img
                     style={{ maxHeight: 70, minWidth: 70 }}
                     src={c.thumbnail}
-                    alt=""
+                    alt={c.productName}
                   />
                 </div>
-                <div>{c.name}</div>
               </div>
             </div>
-            <div className="col-4">
-              <div className="fx align-items-center">
-                <div className="quantity-input">
-                  <span>{c.qty}</span>
-                </div>
-                <div>
-                  <span>IDR {formatMoneyWithoutSymbol(c.price)}</span>
-                </div>
-              </div>
+            <div className="col-md-5">
+              <span>{c.name}</span>
             </div>
-            <div className="col-4">
-              <div>
-                <p>First Name: {this.state.userAddress.firstName}</p>
-                <p>Last Name: {this.state.userAddress.lastName}</p>
-                <p>Email: {this.state.userAddress.email}</p>
-                <p>Company: {this.state.userAddress.company}</p>
-                <p>Address: {this.state.userAddress.address}</p>
-                <p>City: {this.state.userAddress.city}</p>
-              </div>
+
+            <div className="col-md-1">
+              <span>{c.qty}</span>
+            </div>
+
+            <div className="col-md-3">
+              <h5>IDR {formatMoneyWithoutSymbol(c.price)}</h5>
             </div>
           </div>
         );
       });
+    }
+  }
+
+  handleAddAddress() {
+    this.props.context.setIsLoading(true);
+    addUserAddress({
+      userId: localStorage.getItem("userId"),
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      company: this.state.companyName,
+      country: this.state.country,
+      city: this.state.city,
+      address: this.state.address,
+      email: this.state.email,
+      phone: this.state.phone,
+      postCode: this.state.postalCode
+    })
+      .then(res => {
+        console.log(res);
+        this.props.context.setIsLoading(false);
+        this.setState({ isModalAddress: false });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  renderAddAddress() {
+    return (
+      <>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">First Name</label>
+              <InputText
+                onChange={e => this.setState({ firstName: e.target.value })}
+                value={this.state.firstName}
+                type="text"
+                placeholder="First Name"
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">Last Name</label>
+              <InputText
+                onChange={e => this.setState({ lastName: e.target.value })}
+                value={this.state.lastName}
+                type="text"
+                placeholder="Last Name"
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">Company Name</label>
+              <InputText
+                onChange={e => this.setState({ companyName: e.target.value })}
+                value={this.state.companyName}
+                type="text"
+                placeholder="Company Name"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">Country</label>
+              <InputText
+                onChange={e => this.setState({ country: e.target.value })}
+                value={this.state.country}
+                type="text"
+                placeholder="Country"
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">City</label>
+              <InputText
+                onChange={e => this.setState({ city: e.target.value })}
+                value={this.state.city}
+                type="text"
+                placeholder="City"
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">Postal Code</label>
+              <InputText
+                onChange={e => this.setState({ postalCode: e.target.value })}
+                value={this.state.postalCode}
+                type="text"
+                placeholder="Postal Code"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="form--group">
+              <label htmlFor="">Address</label>
+              <InputText
+                onChange={e => this.setState({ address: e.target.value })}
+                value={this.state.address}
+                type="text"
+                placeholder="Address"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="row align-items-center">
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">Email Address</label>
+              <InputText
+                onChange={e => this.setState({ email: e.target.value })}
+                value={this.state.email}
+                type="text"
+                placeholder="Email Address"
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form--group">
+              <label htmlFor="">Phone</label>
+              <InputText
+                onChange={e => this.setState({ phone: e.target.value })}
+                value={this.state.phone}
+                type="text"
+                placeholder="Phone"
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form--group">
+              <Checkbox id="step1check" text="save Shipping Detail?" />
+            </div>
+          </div>
+        </div>
+        <button
+          className="btn btn--full btn--blue"
+          onClick={() => this.handleAddAddress()}
+        >
+          Simpan
+        </button>
+      </>
+    );
+  }
+
+  renderAddressSelection() {
+    if (this.state.address.length !== 0 || this.state.address !== undefined) {
+      return (
+        <div>
+          {this.state.addresses.map((address, index) => {
+            return (
+              <div className="radio--input" key={address.idAddress}>
+                <input
+                  id={address.idAddress}
+                  onChange={e =>
+                    this.setState(
+                      {
+                        addressSelected: e.target.value,
+                        selectedIndexAddress: index
+                      },
+                      () => {
+                        localStorage.setItem(
+                          "userAddress",
+                          JSON.stringify(this.state.addresses[
+                            this.state.selectedIndexAddress
+                          ])
+                        );
+                      }
+                    )
+                  }
+                  value={address.idAddress}
+                  type="radio"
+                  checked={
+                    this.state.selectedIndexAddress == index ? true : false
+                  }
+                />
+                <label className="box-address" htmlFor={address.idAddress}>
+                  <div className="box-address--detail">
+                    <h4>
+                      {address.firstName} {address.lastName}
+                    </h4>
+                    <p>{address.address}</p>
+                    <p className="phone">{address.phone}</p>
+                  </div>
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      );
     }
   }
 
@@ -239,128 +462,15 @@ class Checkout extends Component {
       case 1:
         return (
           <div className="checkout-form-wrapper">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">First Name</label>
-                  <InputText
-                    onChange={e => this.setState({ firstName: e.target.value })}
-                    value={this.state.firstName}
-                    type="text"
-                    placeholder="First Name"
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">Last Name</label>
-                  <InputText
-                    onChange={e => this.setState({ lastName: e.target.value })}
-                    value={this.state.lastName}
-                    type="text"
-                    placeholder="Last Name"
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">Company Name</label>
-                  <InputText
-                    onChange={e =>
-                      this.setState({ companyName: e.target.value })
-                    }
-                    value={this.state.companyName}
-                    type="text"
-                    placeholder="Company Name"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">Country</label>
-                  <InputText
-                    onChange={e => this.setState({ country: e.target.value })}
-                    value={this.state.country}
-                    type="text"
-                    placeholder="Country"
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">City</label>
-                  <InputText
-                    onChange={e => this.setState({ city: e.target.value })}
-                    value={this.state.city}
-                    type="text"
-                    placeholder="City"
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">Postal Code</label>
-                  <InputText
-                    onChange={e =>
-                      this.setState({ postalCode: e.target.value })
-                    }
-                    value={this.state.postalCode}
-                    type="text"
-                    placeholder="Postal Code"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="form--group">
-                  <label htmlFor="">Address</label>
-                  <InputText
-                    onChange={e => this.setState({ address: e.target.value })}
-                    value={this.state.address}
-                    type="text"
-                    placeholder="Address"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row align-items-center">
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">Email Address</label>
-                  <InputText
-                    onChange={e => this.setState({ email: e.target.value })}
-                    value={this.state.email}
-                    type="text"
-                    placeholder="Email Address"
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="form--group">
-                  <label htmlFor="">Phone</label>
-                  <InputText
-                    onChange={e => this.setState({ phone: e.target.value })}
-                    value={this.state.phone}
-                    type="text"
-                    placeholder="Phone"
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="form--group">
-                  <Checkbox id="step1check" text="save Shipping Detail?" />
-                </div>
-              </div>
-            </div>
-            <div className="row mt--2">
-              <div className="col">
-                <div>
-                  <button className="btn btn--primary">Back</button>
-                </div>
-              </div>
+            <div className="container">
+              {this.renderAddressSelection()}
+              <button
+                className="btn btn-full btn--gray"
+                onClick={() => this.modalAddress()}
+              >
+                Tambah Alamat Baru
+              </button>
+
               <div className="col">
                 <div className="text--right">
                   <button
@@ -375,29 +485,64 @@ class Checkout extends Component {
           </div>
         );
       case 2:
+        const userAddress = JSON.parse(localStorage.getItem('userAddress'))
         return (
           <div className="checkout-form-wrapper">
-            <div className="row justify-content-end">
-              <div className="col-4">
+            <div className="row">
+              <div className="col-8">
                 <span className="text--color-green">Your Order</span>
+                {this.renderCartDetail()}
               </div>
-              <div className="col-4"></div>
               <div className="col-4">
                 <span className="text--color-green">Shipping Address</span>
+                <div style={{ padding: "10px 0" }}>
+                  <h4>{`${userAddress.firstName} ${userAddress.lastName}`}</h4>
+                  <p
+                    style={{ margin: "0 0" }}
+                  >{`${userAddress.address}`}</p>
+                </div>
               </div>
             </div>
-            {this.renderCartDetail()}
-            <div className="row justify-content-end">
-              <div className="col-4">
-                <span>Shipping Charge</span>
+
+            <div className="row" style={{ margin: "35px 0" }}>
+              <div className="container">
+                <h3>Shipping Method</h3>
               </div>
-              <div className="col-4">
-                <span>
-                  <strong>FREE</strong>
-                </span>
-              </div>
-              <div className="col-4"></div>
             </div>
+
+            <div className="row mt--2 mb--2">
+              <div className="container">
+                <div className="col-md-4">
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between"
+                    }}
+                  >
+                    <h4 style={{ color: "#878786" }}>Shipping</h4>
+                    <h4 style={{ color: "#878786" }}>IDR 400,000</h4>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between"
+                    }}
+                  >
+                    <h4 style={{ color: "#878786" }}>Total Price</h4>
+                    <h4 style={{ color: "#878786" }}>
+                      IDR{" "}
+                      {formatMoneyWithoutSymbol(
+                        localStorage.getItem("subTotal")
+                      )}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="row mt--2">
               <div className="col">
                 <div>
@@ -412,7 +557,7 @@ class Checkout extends Component {
               <div className="col">
                 <div className="text--right">
                   <button
-                    className="btn btn--blue"
+                    className="btn btn--full btn--blue"
                     onClick={() => this.onProcessTab2()}
                   >
                     Continue to Payment
@@ -445,12 +590,12 @@ class Checkout extends Component {
                   <div className="col-6">
                     <p className="mb--1 text--color-green">Shipping Address</p>
                     <div>
-                      <p>First Name: {this.state.userAddress.firstName}</p>
-                      <p>Last Name: {this.state.userAddress.lastName}</p>
-                      <p>Email: {this.state.userAddress.email}</p>
-                      <p>Company: {this.state.userAddress.company}</p>
-                      <p>Address: {this.state.userAddress.address}</p>
-                      <p>City: {this.state.userAddress.city}</p>
+                      {/* <p>First Name: {this.state.userAddress.firstName}</p>
+                        <p>Last Name: {this.state.userAddress.lastName}</p>
+                        <p>Email: {this.state.userAddress.email}</p>
+                        <p>Company: {this.state.userAddress.company}</p>
+                        <p>Address: {this.state.userAddress.address}</p>
+                        <p>City: {this.state.userAddress.city}</p> */}
                     </div>
                   </div>
                   <div className="col-6"></div>
@@ -599,7 +744,7 @@ class Checkout extends Component {
   render() {
     console.log(this.state.userAddress);
     return (
-      <div>
+      <>
         <Helmet key={Math.random()}>
           <title>Checkout Page</title>
           <meta property="og:title" content="Hias Homepage" />
@@ -659,8 +804,18 @@ class Checkout extends Component {
             </div>
           </section>
         </div>
-      </div>
+        <Modal
+          isOpen={this.state.isModalAddress}
+          onCloseModal={() => this.modalAddress()}
+        >
+          {this.renderAddAddress()}
+        </Modal>
+      </>
     );
+  }
+
+  modalAddress() {
+    this.setState({ isModalAddress: !this.state.isModalAddress });
   }
 }
 
