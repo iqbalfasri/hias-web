@@ -53,7 +53,8 @@ class Checkout extends Component {
       isModalAddress: false,
       listCourier: ["jne", "pos", "tiki"],
       courierSelected: 0,
-      listCity: []
+      listCity: [],
+      urlIpayMu: ""
     };
   }
 
@@ -170,9 +171,32 @@ class Checkout extends Component {
           order_id: res.data
         };
 
-        this.setState({ activeSteps: 3 }, () =>
-          this.props.context.setIsLoading(false)
-        );
+        this.setState({ activeSteps: 3 }, () => {
+          this.props.context.setIsLoading(false);
+          axios
+            .post(
+              "https://my.ipaymu.com/payment",
+              {
+                key: "QbGcoO0Qds9sQFDmY0MWg1Tq.xtuh1",
+                action: "payment",
+                product: "Hias House Products",
+                price: getSubTotal,
+                quantity: 1,
+                format: "json"
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              }
+            )
+            .then(res => {
+              this.setState({ urlIpayMu: res.data.url });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        });
         console.log(response, "RESPONSE ORDER");
       })
       .catch(error => {
@@ -499,7 +523,7 @@ class Checkout extends Component {
   };
 
   _handleOngkir(index) {
-    this.setState({ courierSelected: index })
+    this.setState({ courierSelected: index });
     switch (index) {
       case 0:
         this._handleCost(this.checkOngkir(this.state.listCourier[index]));
@@ -732,7 +756,7 @@ class Checkout extends Component {
           <div className="checkout-form-wrapper">
             <div className="row">
               <iframe
-                src="https://my.ipaymu.com/payment/9D8D8C62-EAA3-4AB9-B24F-E5010F647DDB"
+                src={this.state.urlIpayMu}
                 width="1110"
                 height="600"
               />
