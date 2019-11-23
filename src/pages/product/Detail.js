@@ -78,6 +78,8 @@ class Detail extends Component {
         });
       });
     }
+
+    window.addEventListener('hashchange', () => { console.log("tes") })
   }
 
   isProductWishlisted(id) {
@@ -114,6 +116,7 @@ class Detail extends Component {
               title={hotProducts[i].productName}
               price={hotProducts[i].price}
               category={hotProducts[i].categoryName}
+              needRefreshPage={true}
             />
           </div>
         );
@@ -149,15 +152,15 @@ class Detail extends Component {
         <button className="btn btn--blue">Added to Cart</button>
       </div>
     ) : (
-      <div className="pda--items">
-        <button
-          className="btn btn--blue"
-          onClick={() => this.onClickAddToCart(product)}
-        >
-          Tambah ke Keranjang
+        <div className="pda--items">
+          <button
+            className="btn btn--blue"
+            onClick={() => this.onClickAddToCart(product)}
+          >
+            Tambah ke Keranjang
         </button>
-      </div>
-    );
+        </div>
+      );
   }
 
   renderCourier(product) {
@@ -242,6 +245,9 @@ class Detail extends Component {
     }
   }
 
+
+
+
   render() {
     const { product } = this.state;
     const { id } = this.props.match.params;
@@ -313,12 +319,12 @@ class Detail extends Component {
                           </span>
                         </div>
                       ) : (
-                        <div className="pda--items">
-                          <span className="text--size-1-5">
-                            <FontAwesomeIcon icon={faHeart} />
-                          </span>
-                        </div>
-                      )}
+                          <div className="pda--items">
+                            <span className="text--size-1-5">
+                              <FontAwesomeIcon icon={faHeart} />
+                            </span>
+                          </div>
+                        )}
                       {/* <div className="pda--items">
                         <button className="btn btn--gray">Add to Registry</button>
                       </div> */}
@@ -347,7 +353,7 @@ class Detail extends Component {
                             this.state.activeDetailTab === 1
                               ? "pdt--tab-item-active"
                               : ""
-                          }`}
+                            }`}
                           onClick={() => this.setState({ activeDetailTab: 1 })}
                         >
                           <span>Tinjauan</span>
@@ -357,7 +363,7 @@ class Detail extends Component {
                             this.state.activeDetailTab === 2
                               ? "pdt--tab-item-active"
                               : ""
-                          }`}
+                            }`}
                           onClick={() => this.setState({ activeDetailTab: 2 })}
                         >
                           <span>Detil</span>
@@ -367,7 +373,7 @@ class Detail extends Component {
                             this.state.activeDetailTab === 3
                               ? "pdt--tab-item-active"
                               : ""
-                          }`}
+                            }`}
                           onClick={() => this.setState({ activeDetailTab: 3 })}
                         >
                           <span>Kurir</span>
@@ -379,41 +385,21 @@ class Detail extends Component {
                     </div>
                     <div className="product-detail-variant">
                       <h3>Varian Lainnya</h3>
-                      <div className="row" style={{ paddingLeft: "1.3em" }}>
-                        {this.state.variant !== null
-                          ? this.state.variant.map((p, index) => {
-                              return (
-                                <div
-                                  className="col-md-4 variant-item"
-                                  key={`variant-${index}`}
-                                  onClick={() => {
-                                    {
-                                      window.location.reload();
-                                    }
-                                  }}
-                                >
-                                  <Link to={`/products/detail/${p.id}`}>
-                                    <div className="img-detail-thumbnail">
-                                      <img
-                                        src={
-                                          p.thumbnail
-                                            ? p.thumbnail
-                                            : "https://via.placeholder.com/1400x700"
-                                        }
-                                        alt=""
-                                      />
-                                    </div>
-                                    <p>
-                                      {p.productName.substring(
-                                        p.productName.length - 8,
-                                        p.productName.length
-                                      )}
-                                    </p>
-                                  </Link>
-                                </div>
-                              );
-                            })
-                          : "Tidak ditemukan"}
+                      <div className="row" style={{ paddingLeft: '1.3em' }}>
+                        {this.state.variant !== null ? (
+                          this.state.variant.map((p, index) => {
+                            return (
+                              <div className="col-md-4 variant-item" key={`variant-${index}`} onClick={() => { { window.location.reload() } }}>
+                                <Link to={`/products/detail/${p.id}`}>
+                                  <div className="img-detail-thumbnail">
+                                    <img src={p.thumbnail ? p.thumbnail : 'https://via.placeholder.com/1400x700'} alt="" />
+                                  </div>
+                                  <p>{p.productName.substring(p.productName.length - 8, p.productName.length)}</p>
+                                </Link>
+                              </div>
+                            )
+                          })
+                        ) : "Tidak ditemukan"}
                       </div>
                     </div>
                   </div>

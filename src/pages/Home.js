@@ -177,7 +177,7 @@ class Home extends Component {
           {bestProducts.map((product, index) => {
             return (
               <div className="product-slide-with-number" key={index}>
-                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
               </div>
             )
           })}
