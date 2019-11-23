@@ -161,7 +161,8 @@ class Home extends Component {
       return hotProducts.map((product) => {
         return (
           <div className="col-md-3" key={`product-${product.productId}`}>
-            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
+            {/* <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
+            <ProductCard thumbnail={require('../assets/img/Untitled-1Artboard 2.jpg')} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
           </div >
         )
       })
