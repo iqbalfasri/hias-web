@@ -243,3 +243,15 @@ export const requestCoupon = couponCode => {
       return res.data;
     });
 };
+
+export const getCityFromRajaOngkir = () => {
+  return axios
+    .get(`https://cors-anywhere.herokuapp.com/https://pro.rajaongkir.com/api/city`, {
+      headers: {
+        key: "51f91963f9dcefe04e54822191cf71c5"
+      }
+    })
+    .then(res => {
+      return res.data;
+    });
+};

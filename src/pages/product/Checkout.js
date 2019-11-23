@@ -1,15 +1,28 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import Select from "react-select";
 import axios from "axios";
 
 import Modal from "../../components/layout/Modal";
 import InputText from "../../components/form/InputText";
 import Checkbox from "../../components/form/Checkbox";
-import { addUserAddress, getUserAddress, getCart, BASE_URL } from "../../api";
+import {
+  addUserAddress,
+  getUserAddress,
+  getCart,
+  BASE_URL,
+  getCityFromRajaOngkir
+} from "../../api";
 import { withContext } from "../../context/withContext";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 
 import "./Checkout.scss";
+
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" }
+];
 
 class Checkout extends Component {
   constructor(props) {
@@ -38,7 +51,8 @@ class Checkout extends Component {
       selectedIndexAddress: 0,
       isModalAddress: false,
       listCourier: ["jne", "pos", "tiki"],
-      courierSelected: 0
+      courierSelected: 0,
+      listCity: []
     };
   }
 
@@ -57,6 +71,25 @@ class Checkout extends Component {
             JSON.stringify(this.state.userAddress)
           )
       );
+
+      // get city raja ongkir
+      getCityFromRajaOngkir()
+        .then(res => {
+          let { results } = res.rajaongkir;
+          let { listCity } = this.state;
+
+          results.forEach(c => {
+            listCity.push({
+              value: c.city_id,
+              label: c.city_name
+            });
+          });
+
+          this.setState({ listCity });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     });
 
     getUserAddress(userId)
@@ -376,12 +409,19 @@ class Checkout extends Component {
           <div className="col-md-4">
             <div className="form--group">
               <label htmlFor="">City</label>
-              <InputText
+              <Select
+                placeholder="Pilih Kota"
+                onChange={e => {
+                  this.setState({ city: e.value.toString() });
+                }}
+                options={this.state.listCity}
+              />
+              {/* <InputText
                 onChange={e => this.setState({ city: e.target.value })}
                 value={this.state.city}
                 type="text"
                 placeholder="City"
-              />
+              /> */}
             </div>
           </div>
           <div className="col-md-4">
