@@ -141,8 +141,8 @@ class Footer extends Component {
                   <div className="fx align-items-center">
                     <div className="footer-download-icon fx justify-content-end align-items-center">
                       <p className="mr--1 mb--0 text--size-12">Temukan Kami</p>
-                      <div><FontAwesomeIcon icon={faFacebookF} color="#fff" /></div>
-                      <div><FontAwesomeIcon icon={faInstagram} color="#fff" /></div>
+                      <div onClick={() => window.location.href="https://www.facebook.com/HiasID"}><FontAwesomeIcon icon={faFacebookF} color="#fff" /></div>
+                      <div onClick={() => window.location.href="https://www.instagram.com/hiashouse"}><FontAwesomeIcon icon={faInstagram} color="#fff" /></div>
                       <div><FontAwesomeIcon icon={faYoutube} color="#fff" /></div>
                     </div>
                   </div>
