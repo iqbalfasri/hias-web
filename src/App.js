@@ -175,6 +175,25 @@ class App extends Component {
         >
           <Signup />
         </Modal>
+        <div className="align-items-center" style={{width: '100%', height:30, position:'fixed', bottom:0, backgroundColor:'#6d6e70', color:'#fff', zIndex:100}}>
+          <marquee style={{height:'100%', paddingTop:5, display:'flex', flexDirection:'row', whiteSpace:'no-wrap', overflow:'hidden'}}>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
+            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
+          </marquee>
+        </div>
       </div>
     );
   }

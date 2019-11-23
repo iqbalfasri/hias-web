@@ -222,7 +222,7 @@ class Category extends Component {
                         </div>
                       </div>
                     </div> */}
-                    <div className="cat-container mt--2">
+                    {/* <div className="cat-container mt--2">
                       <div className="cat--title">
                         <span className="text--color-gray">
                           FILTER PRODUK
@@ -273,8 +273,8 @@ class Category extends Component {
                           />
                         </div>
                       </div>
-                    </div>
-                    <div className="cat-container">
+                    </div> */}
+                    <div className="cat-container mt--2">
                       <div className="cat--title">
                         <span className="text--color-gray">URUTAN PRODUK</span>
                       </div>

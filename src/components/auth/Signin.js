@@ -81,18 +81,9 @@ class Signin extends Component {
   render() {
     return (
       <div>
-        <div className="mb--1">
-          <div className="logo img--center">
-            <img
-              src={require("../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png")}
-              alt=""
-            />
-          </div>
-        </div>
         <h3 className="text--center">Silahkan Masuk ke Akun Anda</h3>
-        <p className="text--size-10 text--center">
-          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran
-          <br /> dengan data pribadi Anda
+        <p className="text--size-14 text--center mb--2">
+          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran dengan data pribadi Anda
         </p>
         <form onSubmit={e => this.onLogin(e)}>
           <div className="form--group">
