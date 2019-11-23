@@ -2,10 +2,17 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 import InputText from "../../components/form/InputText";
 import ProductCard from "../../components/card/Product";
 
-import { getCart, removeProductOnCart, onPlaceOrder } from "../../api";
+import {
+  getCart,
+  removeProductOnCart,
+  onPlaceOrder,
+  requestCoupon
+} from "../../api";
 import { isLogin } from "../../utils/auth";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 import { withContext } from "../../context/withContext";
@@ -19,6 +26,8 @@ class Cart extends Component {
       carts: [],
       cartsQuantity: [],
       relatedPopup: false,
+      couponCode: "",
+      priceCoupon: 0,
       relatedItems: [
         {
           thumbnail:
@@ -90,9 +99,12 @@ class Cart extends Component {
       .then(res => {
         const newList = this.state.carts;
         newList.splice(index, 1);
-        this.setState({
-          carts: newList
-        }, () => this.props.context.setTotalCart(0))
+        this.setState(
+          {
+            carts: newList
+          },
+          () => this.props.context.setTotalCart(0)
+        );
       })
       .catch(err => {
         console.log(err);
@@ -159,7 +171,9 @@ class Cart extends Component {
       const itemAmount = cartsQuantity[i] || 1;
       total = total + itemAmount * carts[i].price;
     }
-    return total;
+
+    // this code will returned price with kupon code
+    return this.state.couponCode < 0 ? total : total - this.state.priceCoupon;
   }
 
   onCheckout() {
@@ -169,7 +183,7 @@ class Cart extends Component {
       status: ""
     }).then(res => {
       this.props.history.push("/checkout");
-      localStorage.setItem('subTotal', this.getTotalCartPrice())
+      localStorage.setItem("subTotal", this.getTotalCartPrice());
     });
   }
 
@@ -179,14 +193,30 @@ class Cart extends Component {
     });
   }
 
+  handleCoupon(e) {
+    e.preventDefault();
+
+    requestCoupon(this.state.couponCode)
+      .then(res => {
+        console.log(res.data[0]);
+        this.setState({ priceCoupon: res.data[0].priceCoupon });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   renderRelatedItems() {
     const { relatedItems } = this.state;
     if (relatedItems.length !== 0 || relatedItems !== undefined) {
       return (
-        <div className="row" style={{
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+        <div
+          className="row"
+          style={{
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
           {relatedItems.map(product => {
             return (
               <div className="col-md-3" key={`product-${product.productId}`}>
@@ -236,23 +266,39 @@ class Cart extends Component {
                     <div className="fx justify-content-between">
                       <div>
                         <div className="fx">
-                          <InputText type="text" placeholder="Coupon" />
+                          <InputText
+                            onChange={e =>
+                              this.setState({ couponCode: e.target.value })
+                            }
+                            type="text"
+                            placeholder="Coupon"
+                          />
                           <div className="ml--1">
-                            <button className="btn btn--primary">Apply</button>
+                            <button
+                              onClick={e => this.handleCoupon(e)}
+                              className="btn btn--primary"
+                            >
+                              Apply
+                            </button>
                           </div>
                         </div>
                       </div>
                       <div style={{ marginRight: "3em" }}>
+                        {this.state.priceCoupon > 0 ? (
+                          <div className="fx justify-content-between">
+                            <h3 style={{ color: "#F96464" }} className="mr--1">Potongan Kupon</h3>
+                            <h3 style={{ color: "#F96464" }}>
+                              IDR
+                              {formatMoneyWithoutSymbol(this.state.priceCoupon)}
+                            </h3>
+                          </div>
+                        ) : null}
                         <div className="fx justify-content-between">
                           <h3 className="mr--1">Subtotal</h3>
                           <h3>
-                            IDR{" "}
+                            IDR
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
-                        </div>
-                        <div className="fx justify-content-between">
-                          <h3 className="mr--1">Shipping</h3>
-                          <h3>Free</h3>
                         </div>
                       </div>
                     </div>
@@ -260,7 +306,7 @@ class Cart extends Component {
                       <div className="total-card-cart">
                         <div>
                           <h3>
-                            Total amount IDR{" "}
+                            Total amount IDR
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>

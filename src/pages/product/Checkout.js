@@ -36,7 +36,9 @@ class Checkout extends Component {
       addresses: [],
       addressSelected: null,
       selectedIndexAddress: 0,
-      isModalAddress: false
+      isModalAddress: false,
+      listCourier: ['jne', 'pos', 'tiki'],
+      courierSelected: 0
     };
   }
 
@@ -47,7 +49,7 @@ class Checkout extends Component {
         cart: res.data.listItems,
         subTotal: res.data.subTotal,
         userAddress: this.state.addresses[0]
-      });
+      }, () => localStorage.setItem('userAddress', JSON.stringify(this.state.userAddress)));
     });
 
     getUserAddress(userId)
@@ -407,6 +409,18 @@ class Checkout extends Component {
     );
   }
 
+  renderCourierSelection() {
+    let { listCourier } = this.state;
+
+    return listCourier.map((courier) => {
+      return (
+        <div>
+          {courier}
+        </div>
+      )
+    })
+  }
+
   renderAddressSelection() {
     if (this.state.address.length !== 0 || this.state.address !== undefined) {
       return (
@@ -507,6 +521,10 @@ class Checkout extends Component {
             <div className="row" style={{ margin: "35px 0" }}>
               <div className="container">
                 <h3>Shipping Method</h3>
+
+                <div>
+                  <img style={{ maxHeight: 40, minWidth: 40 }} src={require('../../assets/img/jne.jpg')} />
+                </div>
               </div>
             </div>
 
@@ -533,7 +551,7 @@ class Checkout extends Component {
                   >
                     <h4 style={{ color: "#878786" }}>Total Price</h4>
                     <h4 style={{ color: "#878786" }}>
-                      IDR{" "}
+                      IDR
                       {formatMoneyWithoutSymbol(
                         localStorage.getItem("subTotal")
                       )}
