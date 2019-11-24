@@ -51,6 +51,12 @@ class Wishlist extends Component {
                     </div >
                 )
             })
+        } else{
+            return(
+              <div style={{width:'100%', height:'50%'}}>
+              <img style={{width:350, marginLeft:'auto', marginRight:'auto', opacity:0.7}} src={require('../../assets/img/empty-state-01.png')}/>
+            </div>
+            )
         }
     }
 
@@ -84,7 +90,7 @@ class Wishlist extends Component {
                         <div className="row">
                             <div className="col-md-4">
                                 <div>
-                                    <h3 className="section-title mb--0">WishList </h3>
+                                    <h3 className="section-title mb--0">Wishlist </h3>
                                 </div>
                             </div>
                         </div>

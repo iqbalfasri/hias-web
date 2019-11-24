@@ -237,12 +237,9 @@ class Header extends Component {
             </Link>
           </div>
           <div>
-            <button
-              onClick={this.handleTest.bind(this)}
-              className="btn btn--transparent text--size-12"
-            >
-              Tentang Kami
-            </button>
+            <Link to="/about" className="btn btn--transparent">
+              <span className="text--size-12">Tentang Kami</span>
+            </Link>
           </div>
         </div>
         <div className="fx align-items-center">
