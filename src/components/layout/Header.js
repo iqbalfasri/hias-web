@@ -306,7 +306,7 @@ class Header extends Component {
             </Link>
           </div>
           <div className="mr--1">
-            <button className="btn btn--transparent text--size-12">
+            <button onClick={() => window.location.href = '/about'} className="btn btn--transparent text--size-12">
               Tentang Kami
             </button>
           </div>
