@@ -137,9 +137,16 @@ class Signin extends Component {
               <p className="mb--0 text--color-gray">Belum punya akun?</p>
             </div>
             <div>
-              <Link to="/signup" className="btn btn--primary">
+              <a
+                onClick={() => {
+                  localStorage.setItem("promo", "true");
+                  this.props.context.setIsModalPromo(false);
+                }}
+                href="/signup"
+                className="btn btn--primary"
+              >
                 Daftar
-              </Link>
+              </a>
             </div>
           </div>
         </div>
