@@ -142,12 +142,12 @@ class Footer extends Component {
                     <div className="footer-download-icon fx justify-content-end align-items-center">
                       <p className="mr--1 mb--0 text--size-12">Temukan Kami</p>
                       <div>
-                        <a href="https://www.facebook.com/HiasID">
+                        <a target="_blank" href="https://www.facebook.com/HiasID">
                           <FontAwesomeIcon icon={faFacebookF} color="#fff" />
                         </a>
                       </div>
                       <div>
-                        <a href="https://www.instagram.com/hiashouse">
+                        <a target="_blank" href="https://www.instagram.com/hiashouse">
                           <FontAwesomeIcon icon={faInstagram} color="#fff" />
                         </a>
                       </div>
