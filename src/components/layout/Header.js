@@ -114,9 +114,9 @@ class Header extends Component {
     }
   }
 
-  onClickOrderIcon() {
+  onClickWishIcon() {
     if (isLogin()) {
-      this.props.history.push("/order");
+      this.props.history.push("/wishlist");
     } else {
       this.props.context.setIsModalSigninPopupOpen(true);
     }
@@ -320,7 +320,7 @@ class Header extends Component {
           </div>
           <div className="fx fx align-items-center">
             <div className="header-top-icon">
-              <div className="header-top-icon--image" title="Wishlist">
+              <div className="header-top-icon--image" onClick={() => this.onClickWishIcon()} title="Wishlist">
                 <img src={require("../../assets/img/Wishlist.svg")} alt="" />
               </div>
             </div>
@@ -334,15 +334,6 @@ class Header extends Component {
               </div>
             </div>
           </div>
-          <div className="header-top-icon">
-            <div
-              className="header-top-icon--image"
-              onClick={() => this.onClickCartIcon()}
-            >
-              <img src={require("../../assets/img/Cart.svg")} alt="" />
-            </div>
-          </div>
-          {this.renderCart()}
           <div className="header-top-icon header-top-icon--flag">
             <img src={require("../../assets/img/indonesia.png")} alt="" />
           </div>
