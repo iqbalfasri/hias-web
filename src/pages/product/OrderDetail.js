@@ -93,7 +93,14 @@ class OrderDetail extends Component {
                     </div>
 
                     <div className="order-status-container">
-                      <div className="order-status-wrapper orb--active">
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status < 1
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
                         <div className="order-status-box">
                           <img
                             src={require("../../assets/img/Coupon.svg")}
@@ -104,7 +111,14 @@ class OrderDetail extends Component {
                           <span>Payment</span>
                         </div>
                       </div>
-                      <div className="order-status-wrapper">
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status == 2
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
                         <div className="order-status-box">
                           <img
                             src={require("../../assets/img/OrderPacking.svg")}
@@ -115,7 +129,14 @@ class OrderDetail extends Component {
                           <span>Packing</span>
                         </div>
                       </div>
-                      <div className="order-status-wrapper">
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status == 2
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
                         <div className="order-status-box">
                           <img
                             src={require("../../assets/img/Inbox.svg")}
@@ -126,7 +147,14 @@ class OrderDetail extends Component {
                           <span>On Delivery</span>
                         </div>
                       </div>
-                      <div className="order-status-wrapper">
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status == 3
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
                         <div className="order-status-box">
                           <img
                             src={require("../../assets/img/ItemArrived.svg")}

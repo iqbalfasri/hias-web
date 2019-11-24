@@ -169,7 +169,9 @@ class Signup extends Component {
                         <p className="mb--0 text--color-gray">Sudah punya akun?</p>
                       </div>
                       <div>
-                        <Link to="/login" className="btn btn--primary">Masuk</Link>
+                        <a onClick={e => {
+                          localStorage.setItem('promo', true)
+                        }} href="/login" className="btn btn--primary">Masuk</a>
                       </div>
                     </div>
                   </div>

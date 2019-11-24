@@ -22,6 +22,13 @@ class Signin extends Component {
 
   async onLogin(e) {
     e.preventDefault();
+    const { username, password } = this.state;
+
+    if (!username || !password) {
+      alert("Fill the field");
+    } else {
+      
+    }
 
     try {
       this.setState({
@@ -83,7 +90,8 @@ class Signin extends Component {
       <div>
         <h3 className="text--center">Silahkan Masuk ke Akun Anda</h3>
         <p className="text--size-14 text--center mb--2">
-          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran dengan data pribadi Anda
+          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran dengan data
+          pribadi Anda
         </p>
         <form onSubmit={e => this.onLogin(e)}>
           <div className="form--group">
@@ -123,35 +131,13 @@ class Signin extends Component {
         <div className="divider-with-text mt--2 mb--2">
           <span className="text--size-12">Atau</span>
         </div>
-        {/* <div className="mt--2 mb--2">
-          <h3 className="text--center text--size-12">Masuk Dengan</h3>
-          <div className="fx justify-content-center align-items-center">
-            <div className="mr--1">
-              <img
-                width="30px"
-                src={require("../../assets/img/fb.png")}
-                alt=""
-              />
-            </div>
-            <div className="ml--1">
-              <img
-                width="30px"
-                src={require("../../assets/img/gmail.png")}
-                alt=""
-              />
-            </div>
-          </div>
-        </div> */}
         <div className="mt--2">
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
               <p className="mb--0 text--color-gray">Belum punya akun?</p>
             </div>
             <div>
-              <Link
-                to="/signup"
-                className="btn btn--primary"
-              >
+              <Link to="/signup" className="btn btn--primary">
                 Daftar
               </Link>
             </div>

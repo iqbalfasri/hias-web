@@ -51,15 +51,18 @@ class Checkout extends Component {
       addressSelected: null,
       selectedIndexAddress: 0,
       isModalAddress: false,
-      listCourier: ["jne", "pos", "tiki"],
+      listCourier: ["JNE", "POS", "TIKI"],
       courierSelected: 0,
       listCity: [],
-      urlIpayMu: ""
+      urlIpayMu: "",
+      hargaOngkir: 0
     };
   }
 
   componentDidMount() {
     let userId = localStorage.getItem("userId");
+    // this._handleOngkir(this.state.courierSelected)
+
     getCart(userId).then(res => {
       this.setState(
         {
@@ -129,7 +132,7 @@ class Checkout extends Component {
     this.props.context.setIsLoading(true);
 
     let stringifyData = [];
-    let getSubTotal = localStorage.getItem("subTotal");
+    let getSubTotal = JSON.parse(localStorage.getItem("subTotal"));
     let getCart = JSON.parse(localStorage.getItem("cartItems"));
     let getUserId = localStorage.getItem("userId");
     let getIdAddress = JSON.parse(localStorage.getItem("userAddress"))
@@ -180,7 +183,7 @@ class Checkout extends Component {
                 key: "QbGcoO0Qds9sQFDmY0MWg1Tq.xtuh1",
                 action: "payment",
                 product: "Hias House Products",
-                price: getSubTotal,
+                price: getSubTotal + this.state.hargaOngkir,
                 quantity: 1,
                 format: "json"
               },
@@ -437,7 +440,9 @@ class Checkout extends Component {
               <Select
                 placeholder="Pilih Kota"
                 onChange={e => {
-                  this.setState({ city: e.value.toString() });
+                  this.setState({ city: e.value.toString() }, () =>
+                    console.log(this.state.city)
+                  );
                 }}
                 options={this.state.listCity}
               />
@@ -516,7 +521,9 @@ class Checkout extends Component {
   checkOngkir = (courierType = "jne") => {
     return {
       origin: "155",
-      destination: "153",
+      destination: JSON.parse(localStorage.getItem('userAddress')).city,
+      originType: "city",
+      destinationType: 'city',
       weight: "302",
       courier: courierType
     };
@@ -538,7 +545,7 @@ class Checkout extends Component {
         break;
 
       default:
-        this._handleCost(this.checkOngkir(this.state.listCourier[0]));
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
         break;
     }
   }
@@ -546,9 +553,11 @@ class Checkout extends Component {
   _handleCost(data) {
     fetchOngkir(data)
       .then(ongkir => {
-        console.log(ongkir);
+        this.setState({ hargaOngkir: ongkir });
       })
-      .catch(error => {});
+      .catch(error => {
+        console.log(error)
+      });
   }
 
   renderCourierSelection() {
@@ -705,7 +714,9 @@ class Checkout extends Component {
                     }}
                   >
                     <h4 style={{ color: "#878786" }}>Shipping</h4>
-                    {/* <h4 style={{ color: "#878786" }}>IDR 400,000</h4> */}
+                    <h4 style={{ color: "#878786" }}>
+                      IDR {formatMoneyWithoutSymbol(this.state.hargaOngkir)}
+                    </h4>
                   </div>
 
                   <div
@@ -719,7 +730,7 @@ class Checkout extends Component {
                     <h4 style={{ color: "#878786" }}>
                       IDR
                       {formatMoneyWithoutSymbol(
-                        localStorage.getItem("subTotal")
+                        JSON.parse(localStorage.getItem("subTotal")) + this.state.hargaOngkir
                       )}
                     </h4>
                   </div>
@@ -755,11 +766,7 @@ class Checkout extends Component {
         return (
           <div className="checkout-form-wrapper">
             <div className="row">
-              <iframe
-                src={this.state.urlIpayMu}
-                width="1110"
-                height="600"
-              />
+              <iframe src={this.state.urlIpayMu} width="1110" height="600" />
             </div>
 
             <div className="row mt--2">

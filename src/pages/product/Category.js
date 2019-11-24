@@ -86,10 +86,10 @@ class Category extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
+  componentDidUpdate(prevProps) {
     axios
       .get(
-        `${BASE_URL}/product/categoryId/${props.match.params.category}`
+        `${BASE_URL}/product/categoryId/${prevProps.match.params.category}`
       )
       .then(res => {
         console.log(res.data.data);
