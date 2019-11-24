@@ -24,11 +24,11 @@ class Signin extends Component {
     e.preventDefault();
     const { username, password } = this.state;
 
-    if (!username || !password) {
-      alert("Fill the field");
-    } else {
-      
-    }
+    // if (!username || !password) {
+    //   alert("Fill the field");
+    // } else {
+
+    // }
 
     try {
       this.setState({
