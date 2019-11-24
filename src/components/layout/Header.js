@@ -263,7 +263,7 @@ class Header extends Component {
           <div className="header-top-icon">
             <div
               className="header-top-icon--image"
-              onClick={() => this.onClickOrderIcon()}
+              onClick={() => window.location.href = '/order'}
               title="Order Status"
             >
               <img src={require("../../assets/img/Inbox.svg")} alt="" />
