@@ -69,7 +69,7 @@ class Refund extends Component {
     return (
       <div>
         <Helmet key={Math.random()}>
-          <title>Inspiration</title>
+          <title>Kebijakan Pengembalian</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />

@@ -25,7 +25,7 @@ class FAQ extends Component {
     return (
       <div>
         <Helmet key={Math.random()}>
-          <title>Inspiration</title>
+          <title>FAQ</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />
@@ -116,21 +116,21 @@ dinamis dan modern juga generasi muda yang trendi dan semua kalangan urban.
 										Metode pembayaran yang disediakan oleh HIAS House adalah bank transfer, Ipaymu, home
 credit dan aeon voucher
 										</p>
-									</div>  
+									</div>
 
 									<button class="accordion">Bagaimana cara mengajukan kredit di HIAS House?</button>
 									<div class="panel">
 										<p>
 										Belum ada update
 										</p>
-									</div>  
+									</div>
 
 									<button class="accordion">Bagaimana cara konfirmasi pembayaran di HIAS House?</button>
 									<div class="panel">
 										<p>
 										Untuk kenyaman customer, HIAS House akan mengirimkan email ke email pengguna untuk mengkonfirmasi apabila customer telah berhasil melakukan pembayaran.
 										</p>
-									</div>  
+									</div>
 
 									<button class="accordion">Bagaimana cara melihat status pesanan saya?</button>
 									<div class="panel">
@@ -154,7 +154,7 @@ perakitan gratis.
 										<p>
 										Pesanan akan diproses 2 x 24 jam. Lama pengiriman produk furniture di area jabodetabek yaitu 5-7 hari kerja setelah pesanan diproses, sedangkan untuk area di luar jabodetabek disesuaikan dengan tujuan dan layanan yang dipilih oleh customer. Pesanan non furniture akan dikirim sesuai dengan pilihan service yang customer pilih.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Berapa biaya yang harus saya keluarkan untuk pengiriman produk?</button>
 									<div class="panel">
@@ -162,7 +162,7 @@ perakitan gratis.
 										Apabila customer berbelanja dengan minimal 2 juta rupiah, maka tidak akan dikenakan
 biaya pengiriman di area Jabodetabek (Jakarta, Bogor, Depok, Tangerang, dan Bekasi). Namun apabila pembelanjaan kurang dari 2 juta rupiah maka akan dikenakan biaya pengiriman 50 ribu per kilometer dari titik pengiriman yaitu store Hias House kelapa gading.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Kapan barang yang saya pesan akan dirakit?</button>
 									<div class="panel">
@@ -170,7 +170,7 @@ biaya pengiriman di area Jabodetabek (Jakarta, Bogor, Depok, Tangerang, dan Beka
 										Barang dapat dirakit sebelum dan sesudah pengiriman. Apabila customer memilih
 untuk perakitan sesudah pengiriman, proses pengiriman dan perakitan akan dilakukan di hari yang berbeda. Maksimal jadwal perakitan adalah 7 hari kerja setelah barang diterima oleh customer. Layanan perakitan hanya berlaku di hari dan jam kerja.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Ada berapa metode pengiriman produk?</button>
 									<div class="panel">
@@ -178,7 +178,7 @@ untuk perakitan sesudah pengiriman, proses pengiriman dan perakitan akan dilakuk
 										Pengiriman produk furniture akan dikirim oleh kurir toko kami dan pengiriman produk non
 furniture akan dilakukan oleh kurir yang bekerja sama dengan kami seperti jne.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Berapa biaya yang saya keluarkan untuk perakitan?</button>
 									<div class="panel">
@@ -186,7 +186,7 @@ furniture akan dilakukan oleh kurir yang bekerja sama dengan kami seperti jne.
 										Apabila customer berbelanja dengan minimal 2 juta rupiah, maka tidak akan dikenakan biaya
 perakitan di area Jabodetabek (Jakarta, Bogor, Depok, Tangerang, dan Bekasi). Namun apabila pembelanjaan kurang dari 2 juta rupiah maka akan dikenakan biaya perakitan 150 ribu per barang untuk area Jabodetabek.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Bagaimana jika produk yang saya terima tidak sesuai dengan yang saya pesan?</button>
 									<div class="panel">
@@ -194,7 +194,7 @@ perakitan di area Jabodetabek (Jakarta, Bogor, Depok, Tangerang, dan Bekasi). Na
 										Jika produk yang anda terima tidak sesuai dengan yang anda pesan maka produk dapat ditukar dan
 dikembalikan. Produk akan ditukar dengan produk yang sesuai dengan pesanan anda, apabila produk yang anda tukar tidak ready stock maka produk akan ditukar dengan barang lain atau uang akan dikembalikan.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Apakah produk yang saya beli dapat ditukar dan dikembalikan?</button>
 									<div class="panel">
@@ -202,7 +202,7 @@ dikembalikan. Produk akan ditukar dengan produk yang sesuai dengan pesanan anda,
 										Produk yang dapat ditukar dan dikembalikan adalah produk yang mengalami kerusakan pada saat
 pengiriman atau apabila produk yang anda terima tidak sesuai dengan apa yang anda pesan.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Apakah produk yang saya beli memiliki garansi?</button>
 									<div class="panel">
@@ -210,14 +210,14 @@ pengiriman atau apabila produk yang anda terima tidak sesuai dengan apa yang and
 										Produk yang mendapatkan garansi hanyalah produk furniture saja. Pemberian garansi terhadap produk
 furniture terhitung 6 bulan setelah barang diterima oleh konsumen.
 										</p>
-									</div>    
+									</div>
 
 									<button class="accordion">Bagaimana cara saya menghubungi customer service?</button>
 									<div class="panel">
 										<p>
 										Anda dapat melihat dari webstore kami atau app Hias House pada bagian Hubungi Kami atau anda dapat menghubungi customer service kami langsung melalui chatbot yang ada pada webstore kami. Melalui chatbot tersebut customer service kami akan membantu anda mengenai pertanyaan-pertanyaan mengenai Hias House.
 										</p>
-									</div>    
+									</div>
                 </div>
               </div>
             </div>

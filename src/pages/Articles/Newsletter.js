@@ -38,7 +38,7 @@ class Newsletter extends Component {
     return (
       <div>
         <Helmet key={Math.random()}>
-          <title>Inspiration</title>
+          <title>Langganan Update & Berita</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />
