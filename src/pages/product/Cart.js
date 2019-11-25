@@ -152,7 +152,7 @@ class Cart extends Component {
                 type="number"
                 name="quantity"
                 className="form--input"
-                min="1"
+                min="3"
               />
             </td>
             <td>

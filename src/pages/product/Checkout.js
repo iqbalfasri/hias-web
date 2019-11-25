@@ -51,7 +51,7 @@ class Checkout extends Component {
       addressSelected: null,
       selectedIndexAddress: 0,
       isModalAddress: false,
-      listCourier: ["JNE", "POS", "TIKI"],
+      listCourier: ["jne", "pos", "tiki"],
       courierSelected: 0,
       listCity: [],
       urlIpayMu: "",
@@ -585,7 +585,7 @@ class Checkout extends Component {
                   }}
                   checked={this.state.courierSelected == index ? true : false}
                 />
-                <p>{courier}</p>
+                <p>{courier.toUpperCase()}</p>
               </div>
             );
           })}

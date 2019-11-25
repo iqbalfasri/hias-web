@@ -286,7 +286,7 @@ class Category extends Component {
                       </div>
                       <div className="cat--sub-title">
                         <span className="mr--1">
-                          <strong>URUTAN BERDASAKRKAN</strong>
+                          <strong>URUTAN BERDASARKAN</strong>
                         </span>
                         <span>
                           <FontAwesomeIcon icon={faMinusSquare} />

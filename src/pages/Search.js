@@ -1,68 +1,87 @@
-import React, { Component } from 'react'
-import { Helmet } from 'react-helmet'
-import { withRouter } from 'react-router-dom'
-import queryString from 'query-string'
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { withRouter } from "react-router-dom";
+import queryString from "query-string";
 
-import ProductCard from '../components/card/Product'
-import { searchByName, fetchWishList } from '../api'
-import { isLogin } from '../utils/auth'
+import ProductCard from "../components/card/Product";
+import { searchByName, fetchWishList } from "../api";
+import { isLogin } from "../utils/auth";
 
 class Search extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       products: [],
       wishListItems: []
-    }
+    };
   }
 
-  componentDidMount () {
-    const { keyword } = queryString.parse(this.props.location.search)
-    searchByName(keyword)
-      .then((res) => {
-        this.setState({
-          products: res.data
-        })
-      })
+  componentDidMount() {
+    const { keyword } = queryString.parse(this.props.location.search);
+    searchByName(keyword).then(res => {
+      this.setState({
+        products: res.data
+      });
+    });
 
     if (isLogin()) {
-      fetchWishList(localStorage.getItem('userId'))
-        .then((res) => {
-          this.setState({
-            wishListItems: res.data
-          })
-        })
+      fetchWishList(localStorage.getItem("userId")).then(res => {
+        this.setState({
+          wishListItems: res.data
+        });
+      });
     }
   }
 
-  isProductWishlisted (id) {
-    const { wishListItems } = this.state
-    let result = false
+  componentDidUpdate(prevProps) {
+    const { keyword } = queryString.parse(prevProps.location.search);
+
+    searchByName(keyword).then(res => {
+      this.setState({
+        products: res.data
+      });
+    });
+  }
+
+  isProductWishlisted(id) {
+    const { wishListItems } = this.state;
+    let result = false;
     for (let i = 0; i < wishListItems.length; i++) {
       if (wishListItems[i].id === id) {
-        result = true
+        result = true;
         break;
       }
     }
-    return result
+    return result;
   }
 
-  renderProduct () {
-    const { products } = this.state
+  renderProduct() {
+    const { products } = this.state;
     if (products !== 0) {
-      return products.map((product) => {
+      return products.map(product => {
         return (
           <div className="col-md-3" key={`product-${product.id}`}>
-            <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+            <ProductCard
+              thumbnail={
+                product.thumbnail
+                  ? product.thumbnail
+                  : "https://via.placeholder.com/600x600"
+              }
+              loved={this.isProductWishlisted(product.id)}
+              id={product.id}
+              title={product.productName}
+              price={product.price}
+              category={product.categoryName}
+            />
             {/* <ProductCard thumbnail={product.thumbnail ? 'https://via.placeholder.com/600x600' : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
           </div>
-        )
-      })
+        );
+      });
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Helmet key={Math.random()}>
@@ -77,19 +96,22 @@ class Search extends Component {
               <div className="container">
                 <div className="row mb--2">
                   <div className="col">
-                    <p><strong>Menampilkan {this.state.products.length} hasil untuk "{queryString.parse(this.props.location.search).keyword}"</strong></p>
+                    <p>
+                      <strong>
+                        Menampilkan {this.state.products.length} hasil untuk "
+                        {queryString.parse(this.props.location.search).keyword}"
+                      </strong>
+                    </p>
                   </div>
                 </div>
-                <div className="row">
-                  { this.renderProduct() } 
-                </div>
+                <div className="row">{this.renderProduct()}</div>
               </div>
             </section>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default withRouter(Search)
+export default withRouter(Search);
