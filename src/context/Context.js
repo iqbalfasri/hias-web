@@ -20,7 +20,9 @@ export const Context = createContext(
       isModalPromo: false,
       setIsModalPromo: () => { },
       totalCart: 0,
-      setTotalCart: () => { }
+      setTotalCart: () => { },
+      subTotal: null,
+      setSubTotal: () => { }
     }
   }
 )
