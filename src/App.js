@@ -76,16 +76,6 @@ class App extends Component {
       });
   }
 
-  componentDidUpdate(prevProps) {
-    getCart(localStorage.getItem("userId"))
-      .then(res => {
-        prevProps.context.setTotalCart(res.data.listItems.length || 0);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   onCloseModalPromo() {
     localStorage.setItem("promo", "true");
     this.props.context.setIsModalPromo(false);
