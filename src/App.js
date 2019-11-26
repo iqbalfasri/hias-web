@@ -173,7 +173,7 @@ class App extends Component {
             position: "fixed",
             bottom: 0,
             backgroundColor: "rgba(0, 0, 0, 0.8)",
-            color: "#fff",
+            color: "#F96464",
             zIndex: 100
           }}
         >

@@ -145,7 +145,7 @@ class Footer extends Component {
                       <ul>
                         <li>
                           <Link to="/">
-                            <span style={{ fontWeight: "normal" }}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
                               JAKARTA
                             </span>
                             <br />
@@ -157,9 +157,9 @@ class Footer extends Component {
                             </span>
                           </Link>
                         </li>
-                        <li>
+                        <li className="mt--05">
                           <Link to="/">
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
                               Pondok Indah
                             </span>
                             <br />
@@ -168,9 +168,9 @@ class Footer extends Component {
                             </span>
                           </Link>
                         </li>
-                        <li>
+                        <li className="mt--05">
                           <Link to="/">
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
                               Kelapa Gading
                             </span>
                             <br />
@@ -187,7 +187,7 @@ class Footer extends Component {
                       <ul>
                         <li>
                           <Link to="/">
-                            <span style={{ fontWeight: "normal" }}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
                               TANGERANG
                             </span>
                             <br />
@@ -200,9 +200,9 @@ class Footer extends Component {
                             </span>
                           </Link>
                         </li>
-                        <li>
+                        <li className="mt--05">
                           <Link to="/">
-                            <span style={{ fontWeight: "normal" }}>BOGOR</span>
+                            <span style={{ fontWeight: "bold", textDecoration: "underline" }}>BOGOR</span>
                             <br />
                             <span style={{ fontWeight: "bold" }}>
                               Botani Square
@@ -221,7 +221,7 @@ class Footer extends Component {
                       <ul>
                         <li>
                           <Link to="/">
-                            <span style={{ fontWeight: "normal" }}>BALI</span>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>BALI</span>
                             <br />
                             <span style={{ fontWeight: "bold" }}>
                               Level 21 Bali
@@ -326,7 +326,7 @@ class Footer extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <div className="pt--1 pb--1">
+              <div className="pt--1 pb--3">
                 <div className="text--size-12 text--center text--color-white">
                   &copy;2019 PT Hias Ritel Indonesia
                 </div>
