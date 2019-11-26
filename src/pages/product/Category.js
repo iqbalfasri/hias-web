@@ -100,6 +100,20 @@ class Category extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.category !== nextProps.match.params.category) {
+      axios
+      .get(`${BASE_URL}/product/categoryId/${nextProps.match.params.category}`)
+      .then(
+        res => {
+          this.setState({ products: res.data.data });
+        },
+        () => console.log(this.state.products)
+      )
+      .catch(error => console.log(error));
+    }
+  }
+
   handleLowToHigh(props) {
     axios
       .get(`${BASE_URL}/product/${props.match.params.category}/priceLow`)
