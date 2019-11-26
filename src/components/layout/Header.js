@@ -10,6 +10,8 @@ import {
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 
+import { getCart } from "./../../api";
+
 import { isLogin } from "../../utils/auth";
 import { withContext } from "../../context/withContext";
 
@@ -64,10 +66,14 @@ class Header extends Component {
       });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.context.totalCart !== prevState.totalCart) {
-      this.renderCartCount(prevProps.context.totalCart);
-    }
+  componentDidUpdate(prevProps) {
+    getCart(localStorage.getItem("userId"))
+      .then(res => {
+        prevProps.context.setTotalCart(res.data.listItems.length || 0);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   componentWillUnmount() {
@@ -216,13 +222,13 @@ class Header extends Component {
     arrObj.forEach((obj, index) => {
       arr.push({
         productName: `\"${obj.productName}\"`,
-        thumbnailUrl: `\"${obj.thumbnailUrl}\"`,
-      })
+        thumbnailUrl: `\"${obj.thumbnailUrl}\"`
+      });
     });
 
     // arr.push(newObj)
     // localStorage.setItem('testObj', newObj)
-    console.log(JSON.stringify(arr))
+    console.log(JSON.stringify(arr));
 
     // console.log(obj)
   }
@@ -263,7 +269,7 @@ class Header extends Component {
           <div className="header-top-icon">
             <div
               className="header-top-icon--image"
-              onClick={() => window.location.href = '/order'}
+              onClick={() => (window.location.href = "/order")}
               title="Order Status"
             >
               <img src={require("../../assets/img/Inbox.svg")} alt="" />
@@ -306,7 +312,10 @@ class Header extends Component {
             </Link>
           </div>
           <div className="mr--1">
-            <button onClick={() => window.location.href = '/about'} className="btn btn--transparent text--size-12">
+            <button
+              onClick={() => (window.location.href = "/about")}
+              className="btn btn--transparent text--size-12"
+            >
               Tentang Kami
             </button>
           </div>
@@ -320,7 +329,11 @@ class Header extends Component {
           </div>
           <div className="fx fx align-items-center">
             <div className="header-top-icon">
-              <div className="header-top-icon--image" onClick={() => this.onClickWishIcon()} title="Wishlist">
+              <div
+                className="header-top-icon--image"
+                onClick={() => this.onClickWishIcon()}
+                title="Wishlist"
+              >
                 <img src={require("../../assets/img/Wishlist.svg")} alt="" />
               </div>
             </div>
