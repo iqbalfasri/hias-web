@@ -17,6 +17,8 @@ import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
 class Category extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -64,14 +66,16 @@ class Category extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     const { category } = this.props.match.params;
     const categoryId = category;
 
     axios
       .get(`${BASE_URL}/product/categoryId/${categoryId}`)
       .then(res => {
-        console.log(res.data.data);
-        this.setState({ products: res.data.data });
+        if (this._isMounted) {
+          this.setState({ products: res.data.data });
+        }
       })
       .catch(error => {
         console.log(error);
@@ -83,6 +87,10 @@ class Category extends Component {
         });
       });
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   componentWillReceiveProps(nextProps) {
