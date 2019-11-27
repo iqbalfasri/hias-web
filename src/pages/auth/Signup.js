@@ -8,7 +8,7 @@ import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
 import { registUserToCart, BASE_URL } from '../../api'
-import isPhoneNumber from '../../utils/phoneValidate'
+import {isPhoneNumber} from '../../utils/inputValidations'
 
 class Signup extends Component {
   constructor (props) {
