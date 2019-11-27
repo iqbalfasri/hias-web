@@ -287,3 +287,13 @@ export const getUserProfile = token => {
       return res.data;
     });
 };
+
+export const userSignin = (username, password) => {
+  return axios.post(
+    `${BASE_URL}/authenticate/login`,
+    { username, password },
+    { headers: { "Content-Type": "application/json" } }
+  ).then(res => {
+    return res.data
+  })
+};
