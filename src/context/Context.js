@@ -13,8 +13,6 @@ export const Context = createContext(
       setIsModalSignupPopupOpen: () => { },
       wishList: [],
       setWishList: () => {},
-      user: null,
-      setUser: () => {},
       isLoading: false,
       setIsLoading: () => {},
       isModalPromo: false,
@@ -22,7 +20,11 @@ export const Context = createContext(
       totalCart: 0,
       setTotalCart: () => { },
       subTotal: null,
-      setSubTotal: () => { }
+      setSubTotal: () => { },
+      userProfile: null,
+      setUserProfile: () => { },
+      userId: null,
+      setUserId: () => { }
     }
   }
 )
