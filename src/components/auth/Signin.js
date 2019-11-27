@@ -22,14 +22,6 @@ class Signin extends Component {
 
   async onLogin(e) {
     e.preventDefault();
-    const { username, password } = this.state;
-
-    // if (!username || !password) {
-    //   alert("Fill the field");
-    // } else {
-
-    // }
-
     try {
       this.setState({
         logging: true
@@ -49,7 +41,8 @@ class Signin extends Component {
         const { data } = response;
 
         if (data.success) {
-          this.props.context.setUser(data.data);
+          this.props.context.setUserProfile(data.data.login.user);
+          localStorage.setItem('userProfile', JSON.stringify(data.data.login.user))
           localStorage.setItem("token", data.data.login.token);
           localStorage.setItem("userId", data.data.login.user.id);
           window.location.href = "/";
