@@ -60,20 +60,6 @@ class Category extends Component {
           </div>
         );
       });
-    } else {
-      return (
-        <div style={{ width: "100%", height: "50%" }}>
-          <img
-            style={{
-              width: 350,
-              marginLeft: "auto",
-              marginRight: "auto",
-              opacity: 0.7
-            }}
-            src={require("../../assets/img/empty-state-01.png")}
-          />
-        </div>
-      );
     }
   }
 
@@ -103,14 +89,16 @@ class Category extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.category !== nextProps.match.params.category) {
       axios
-      .get(`${BASE_URL}/product/categoryId/${nextProps.match.params.category}`)
-      .then(
-        res => {
-          this.setState({ products: res.data.data });
-        },
-        () => console.log(this.state.products)
-      )
-      .catch(error => console.log(error));
+        .get(
+          `${BASE_URL}/product/categoryId/${nextProps.match.params.category}`
+        )
+        .then(
+          res => {
+            this.setState({ products: res.data.data });
+          },
+          () => console.log(this.state.products)
+        )
+        .catch(error => console.log(error));
     }
   }
 
@@ -383,6 +371,15 @@ class Category extends Component {
                   </div>
                 </div>
                 <div className="col-md-9">
+                  <div className="row mt--2">
+                    <div className="col">
+                      <p>
+                        <strong>
+                          Menampilkan {this.state.products.length} produk
+                        </strong>
+                      </p>
+                    </div>
+                  </div>
                   <div className="row">
                     <div className="col">
                       {/* <h3 className="text--size-12">
