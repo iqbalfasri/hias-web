@@ -72,7 +72,7 @@ class Header extends Component {
         prevProps.context.setTotalCart(res.data.listItems.length || 0);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
@@ -109,6 +109,7 @@ class Header extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
     localStorage.removeItem("promo");
+    localStorage.removeItem("userProfile");
     window.location.href = "/";
   }
 
@@ -275,19 +276,19 @@ class Header extends Component {
               <img src={require("../../assets/img/Inbox.svg")} alt="" />
             </div>
           </div>
-          {/* <div className="header-top-icon">
-            <div className="header-top-icon--image">
-              <img src={require("../../assets/img/OrderStatus.svg")} alt="" />
-            </div>
-          </div> */}
           <div className="header-top-icon">
-            <div className="header-top-icon--image">
-              <img src={require("../../assets/img/DefaultAvatar.svg")} alt="" />
+            <div className="header-top-icon--profile">
+              <div className="header-top-icon--image">
+                <img
+                  src={require("../../assets/img/DefaultAvatar.svg")}
+                  alt=""
+                />
+              </div>
+              <p>
+                Hi, {JSON.parse(localStorage.getItem("userProfile")).fullName}
+              </p>
             </div>
             <div className="header--dropdown">
-              {/* <div className="hd--item">
-                <Link to="/">Account</Link>
-              </div> */}
               <div className="hd--item">
                 <Link to="/wallet">Wallet</Link>
               </div>
