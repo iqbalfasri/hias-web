@@ -67,15 +67,15 @@ class Header extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let userId = localStorage.getItem("userId")
+    let userId = localStorage.getItem("userId");
     if (userId !== null) {
       getCart(userId)
-      .then(res => {
-        prevProps.context.setTotalCart(res.data.listItems.length || 0);
-      })
-      .catch(error => {
-        // console.log(error);
-      });
+        .then(res => {
+          prevProps.context.setTotalCart(res.data.listItems.length || 0);
+        })
+        .catch(error => {
+          // console.log(error);
+        });
     }
   }
 
