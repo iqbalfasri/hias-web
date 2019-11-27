@@ -6,7 +6,7 @@ import { withContext } from "../../context/withContext";
 import InputText from "../form/InputText";
 import Checkbox from "../form/Checkbox";
 import Modal from "../../components/layout/Modal";
-import { BASE_URL } from "../../api";
+import { userSignin } from "../../api";
 
 class Signin extends Component {
   constructor(props) {
@@ -16,13 +16,15 @@ class Signin extends Component {
       username: "",
       password: "",
       logging: false,
-      showModal: false
+      showModal: false,
+      errorMessage: ""
     };
   }
 
   async onLogin(e) {
-    e.preventDefault();
     try {
+      e.preventDefault();
+
       this.setState({
         logging: true
       });
@@ -32,27 +34,24 @@ class Signin extends Component {
       if (!username || !password) {
         alert("Fill the field");
       } else {
-        const response = await axios.post(
-          `${BASE_URL}/authenticate/login`,
-          { username, password },
-          { headers: { "Content-Type": "application/json" } }
-        );
+        let response = await userSignin(username, password);
+        let { user, token } = response.data.login;
+        let { id } = user;
 
-        const { data } = response;
+        if (response.success) {
+          const userToJson = JSON.stringify(user);
 
-        if (data.success) {
-          this.props.context.setUserProfile(data.data.login.user);
-          localStorage.setItem('userProfile', JSON.stringify(data.data.login.user))
-          localStorage.setItem("token", data.data.login.token);
-          localStorage.setItem("userId", data.data.login.user.id);
+          localStorage.setItem("userId", id);
+          localStorage.setItem("token", token);
+          localStorage.setItem("userProfile", userToJson);
+
+          // redirect to homepage
           window.location.href = "/";
-        }
-
-        // if email and password doesn't match
-        if (data.error.errorCode == 500) {
-          this.setState({
-            showModal: true
-          });
+        } else {
+          console.log(response.data.error.errorCode)
+          if (response.data.error.errorCode == 500) {
+            alert("user / pass salah")
+          }
         }
       }
 
@@ -60,7 +59,8 @@ class Signin extends Component {
         logging: false
       });
     } catch (error) {
-      console.log(error);
+      // alert("Email belum terdaftar");
+      this.setState({ logging: false });
     }
   }
 
@@ -92,7 +92,6 @@ class Signin extends Component {
               type="email"
               onChange={e => this.onChangeUsername(e)}
               value={this.state.username}
-              type="text"
               placeholder="Alamat Email"
             />
           </div>

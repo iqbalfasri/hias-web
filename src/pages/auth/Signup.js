@@ -57,11 +57,13 @@ class Signup extends Component {
 
       localStorage.setItem('token', data.data.register.token)
       localStorage.setItem('userId', data.data.register.user.id)
+      localStorage.setItem('userProfile', JSON.stringify(data.data.register.user))
 
       if (data.success) {
         registUserToCart(localStorage.getItem('userId'))
           .then(res => {
             if (res.success) {
+              localStorage.setItem('promo', 'true')
               window.location.href = '/thank-you'
             }
           }).catch(error => {
