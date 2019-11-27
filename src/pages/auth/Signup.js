@@ -8,6 +8,7 @@ import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
 import { registUserToCart, BASE_URL } from '../../api'
+import isPhoneNumber from '../../utils/phoneValidate'
 
 class Signup extends Component {
   constructor (props) {
@@ -91,7 +92,7 @@ class Signup extends Component {
   }
 
   onChangePhone (e) {
-    const phone = e.target.value
+    const phone = isPhoneNumber(e.target.value);
     this.setState({
       phone
     })
