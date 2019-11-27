@@ -280,6 +280,7 @@ class Header extends Component {
             <div className="header-top-icon--profile">
               <div className="header-top-icon--image">
                 <img
+                  style={{ width: 26, height: 26 }}
                   src={require("../../assets/img/DefaultAvatar.svg")}
                   alt=""
                 />
