@@ -89,6 +89,7 @@ class Signin extends Component {
         <form onSubmit={e => this.onLogin(e)}>
           <div className="form--group">
             <InputText
+              type="email"
               onChange={e => this.onChangeUsername(e)}
               value={this.state.username}
               type="text"
