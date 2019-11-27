@@ -360,7 +360,7 @@ class Home extends Component {
                     src={require("../assets/img/banner-promo.jpg")}
                     alt=""
                     style={{
-                      maxWidth: "45%",
+                      maxWidth: "85%",
                       marginLeft: "auto",
                       marginRight: "auto"
                     }}
