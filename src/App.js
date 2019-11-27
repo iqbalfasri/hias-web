@@ -67,13 +67,17 @@ class App extends Component {
     }
 
     // get total cart
-    getCart(localStorage.getItem("userId"))
+    let userId = localStorage.getItem('userId');
+    if (userId !== null) {
+      getCart(userId)
       .then(res => {
         this.props.context.setTotalCart(res.data.listItems.length);
       })
       .catch(error => {
         console.log(error);
       });
+    }
+
   }
 
   onCloseModalPromo() {
