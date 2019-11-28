@@ -123,7 +123,7 @@ class Footer extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-5">
                 <div className="fx justify-content-center">
                   <div className="fx align-items-center">
                     <div className="footer-download-icon fx">
@@ -131,12 +131,13 @@ class Footer extends Component {
                       <img style={{width:50, marginRight:10}} src={require('../../assets/img/bca.png')} alt=""/>
                       <img style={{width:70, marginRight:10}} src={require('../../assets/img/cimb.png')} alt=""/>
                       <img style={{width:30, marginRight:10}} src={require('../../assets/img/mastercard.svg')} alt=""/>
+                      <img style={{width:30, marginRight:10}} src={require('../../assets/img/home-credit-logo.png')} alt=""/>
                       <img style={{width:30}} src={require('../../assets/img/visa.png')} alt=""/>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="fx justify-content-end">
                   <div className="fx align-items-center">
                     <div className="footer-download-icon fx justify-content-end align-items-center">
