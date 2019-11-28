@@ -376,7 +376,7 @@ class Header extends Component {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="search-input-container">
                   <form onSubmit={e => this.onSearch(e)}>
                     <input
@@ -391,7 +391,7 @@ class Header extends Component {
                   </form>
                 </div>
               </div>
-              <div className="col-md-6">{this.renderTopIcon()}</div>
+              <div className="col-md-7">{this.renderTopIcon()}</div>
             </div>
           </div>
         </div>

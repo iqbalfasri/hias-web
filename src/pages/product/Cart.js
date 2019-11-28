@@ -146,7 +146,7 @@ class Cart extends Component {
             </td>
             <td>
               <input
-                style={{ width: "50px" }}
+                style={{ width: "60px" }}
                 onChange={e => this.onChangeQuantity(e, index)}
                 value={quantity}
                 type="number"
