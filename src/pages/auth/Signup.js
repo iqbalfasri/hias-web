@@ -154,10 +154,10 @@ class Signup extends Component {
                         <input type="tel" value={this.state.phone} onChange={(e) => this.onChangePhone(e)} className="form--input" placeholder="+62" />
                       </div>
                       <div className="form--group">
-                        <input type="password" value={this.state.password} onChange={(e) => this.onChangePassword(e)} className="form--input" placeholder="Masukkan Password" />
+                        <input minLength={8} type="password" value={this.state.password} onChange={(e) => this.onChangePassword(e)} className="form--input" placeholder="Masukkan Password" />
                       </div>
                       <div className="form--group">
-                        <input type="password" className="form--input" placeholder="Masukkan Ulang Password" />
+                        <input minLength={8} type="password" className="form--input" placeholder="Masukkan Ulang Password" />
                       </div>
                       <div className="form--group">
                         <div className="row" style={{marginLeft:5}}>
