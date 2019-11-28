@@ -331,7 +331,7 @@ class Home extends Component {
               <div className="row">{this.renderProduct()}</div>
             </div>
           </section>
-          {/* <section className="section-page">
+          <section className="section-page">
             <div className="container">
               <div className="row align-items-center mb--2">
                 <div className="col">
@@ -351,7 +351,7 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-          </section> */}
+          </section>
           <section className="section-page">
             <div className="container">
               <div className="row align-items-center justify-content-center">

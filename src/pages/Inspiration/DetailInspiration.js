@@ -42,6 +42,7 @@ class DetailInspiration extends Component {
         const { id } = this.props.match.params
         fetchProductByInspirationId(id)
             .then((res) => {
+                console.log(res, "Data detail")
                 this.setState({
                     inspiration: res.data
                 })

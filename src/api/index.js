@@ -203,7 +203,7 @@ export const searchByName = productName => {
 };
 
 export const fetchProductByInspirationId = id => {
-  return axios.post(`${BASE_URL}/inspration/${id}/product`).then(res => {
+  return axios.get(`${BASE_URL}/inspration/${id}/product`).then(res => {
     return res.data;
   });
 };
