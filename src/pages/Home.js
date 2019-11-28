@@ -70,9 +70,15 @@ const swiperInspiration = {
     type: "bullets",
     clickable: true
   },
+  spaceBetween: 50,
   slidesPerGroup: 1,
-  slidesPerView: 1,
-  loop: true
+  slidesPerView: 5,
+  centeredSlides: true,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  }
 };
 
 class Home extends Component {
@@ -223,20 +229,37 @@ class Home extends Component {
           <Swiper {...swiperInspiration}>
             {inspiration.map((item, i) => {
               return (
-                <Link key={i} to={`/inspiration/detail/${item.id}`}>
-                  <div>
-                    <img
-                      style={{ maxWidth: "20%", display: "inline" }}
-                      src={
-                        item.banner != null
-                          ? item.banner
-                          : "https://via.placeholder.com/600x600"
+                <div className="product-slide-with-number" key={i}>
+                  <div className="product-card">
+                    <Link key={i} to={{
+                      pathname: `/inspiration/detail/${item.id}`,
+                       state: {
+                        description: item.description
                       }
-                      alt=""
-                    />
-                    <div className="inspiration-title">{item.title}</div>
+                    }}>
+                      <div className="product-card-image">
+                        <img
+                          src={
+                            item.banner != null
+                              ? item.banner
+                              : "https://via.placeholder.com/600x600"
+                          }
+                          alt=""
+                        />
+                      </div>
+                      <div className="fx justify-content-between product-card-footer">
+                        <div className="product-card-wrapper">
+                          <div className="fx justify-content-between fx-no-wrap">
+                            <div>
+                              <p className="mb--0 text--color-black"><strong>{item.title}</strong></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </Link>
+
+                </div>
               );
             })}
           </Swiper>
