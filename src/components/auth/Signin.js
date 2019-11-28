@@ -40,17 +40,14 @@ class Signin extends Component {
           { headers: { "Content-Type": "application/json" } }
         );
 
-        const { data } = response;
+        const { data } = await response;
 
         if (data.success) {
-          this.props.context.setUser(data.data);
           localStorage.setItem("token", data.data.login.token);
           localStorage.setItem("userId", data.data.login.user.id);
+          localStorage.setItem("userProfile", JSON.stringify(data.data.login.user));
           window.location.href = "/";
-        }
-
-        // if email and password doesn't match
-        if (data.error.errorCode == 500) {
+        } else {
           this.setState({
             showModal: true,
             errorMessage: data.error.errorMessage
@@ -62,8 +59,7 @@ class Signin extends Component {
         logging: false
       });
     } catch (error) {
-      alert("Email belum terdaftar");
-      this.setState({ logging: false, errorMessage: "Email belum terdaftar" });
+      this.setState({ logging: false });
     }
   }
 
