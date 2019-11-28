@@ -123,6 +123,14 @@ class Checkout extends Component {
 
   onProcessTab1() {
     this.props.context.setIsLoading(true);
+    localStorage.setItem(
+      "userAddress",
+      JSON.stringify(
+        this.state.addresses[
+          this.state.selectedIndexAddress
+        ]
+      )
+    );
     this.setState({ activeSteps: 2 }, () =>
       this.props.context.setIsLoading(false)
     );
@@ -585,7 +593,7 @@ class Checkout extends Component {
                   }}
                   checked={this.state.courierSelected == index ? true : false}
                 />
-                <p>{courier.toUpperCase()}</p>
+                <img width={60} src={courier == 'jne' ? require('../../assets/img/jne.jpeg') : courier == 'pos' ?  require('../../assets/img/pos-id.png') : require('../../assets/img/tiki-logo.png')} />
               </div>
             );
           })}
