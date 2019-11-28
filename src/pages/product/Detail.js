@@ -79,17 +79,12 @@ class Detail extends Component {
         });
       });
     }
-
-    window.addEventListener("hashchange", () => {
-      console.log("tes");
-    });
   }
 
   componentDidUpdate(prevProps) {
     const { id } = this.props.match.params;
     // console.log(prevProps.match.params.id, "prev")
     if (id !== prevProps.match.params.id) {
-
       // Fetch products
       fetchProductById(id).then(res => {
         this.setState({
@@ -100,21 +95,22 @@ class Detail extends Component {
       // Fetch varian
       fetchVariantById(id).then(res => {
         if (res.data.length !== 0) {
-          this.setState({
+          return this.setState({
             variant: res.data
           });
         }
+
+        this.setState({
+          variant: null
+        });
       });
 
       // Fetch color
       fetchColorById(id).then(res => {
-        if (res.data.length !== 0) {
-          this.setState({
-            colors: res.data
-          });
-        }
+        this.setState({
+          colors: res.data
+        });
       });
-
     }
   }
 
@@ -209,19 +205,19 @@ class Detail extends Component {
 
     courier.forEach(c => {
       if (c.courier1 == "Hias Courier") {
-        return
+        return;
       }
 
       if (c.courier2 == "Jne") {
         console.log(c.courier2);
       }
 
-      if (c.courier3 == 'Tiki') {
-        console.log(c.courier3)
+      if (c.courier3 == "Tiki") {
+        console.log(c.courier3);
       }
 
-      if (c.courier4 == 'Pos') {
-        console.log(c.courier4)
+      if (c.courier4 == "Pos") {
+        console.log(c.courier4);
       }
     });
 
@@ -342,8 +338,8 @@ class Detail extends Component {
                         />
                       </div>
                       <div className="fx fx-no-wrap align-items-center">
-                        {arrayImage.map(image => (
-                          <div className="img-detail-thumbnail">
+                        {arrayImage.map((image, i) => (
+                          <div key={i} className="img-detail-thumbnail">
                             <img src={image} alt="" />
                           </div>
                         ))}
@@ -446,11 +442,12 @@ class Detail extends Component {
                                 <div
                                   className="col-md-4 variant-item"
                                   key={`variant-${index}`}
-                                  onClick={() => {
-                                    {
-                                      window.location.reload();
-                                    }
-                                  }}
+                                  //   onClick={() => {
+                                  //     {
+                                  //       window.location.reload();
+                                  //     }
+                                  //   }
+                                  // }
                                 >
                                   <Link to={`/products/detail/${p.id}`}>
                                     <div className="img-detail-thumbnail">
