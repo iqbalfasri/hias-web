@@ -116,3 +116,11 @@ footer {
 .app-store-icon {
   max-width: 100px;
 }
+
+.footer--social-icon {
+  &:hover {
+    svg {
+      color: #4ec5e0;
+    }
+  }
+}

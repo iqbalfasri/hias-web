@@ -299,6 +299,7 @@ class Footer extends Component {
                       <p className="mr--1 mb--0 text--size-12">Temukan Kami</p>
                       <div>
                         <a
+                          className="footer--social-icon"
                           target="_blank"
                           href="https://www.facebook.com/HiasID"
                         >
@@ -307,6 +308,7 @@ class Footer extends Component {
                       </div>
                       <div>
                         <a
+                          className="footer--social-icon"
                           target="_blank"
                           href="https://www.instagram.com/hiashouse"
                         >
