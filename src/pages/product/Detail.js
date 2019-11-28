@@ -16,7 +16,9 @@ import {
   addToCart,
   fetchHotProduct,
   fetchVariantById,
-  fetchColorById
+  fetchColorById,
+  updateWishList,
+  removeWishlist
 } from "../../api";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 import { withContext } from "../../context/withContext";
@@ -80,6 +82,8 @@ class Detail extends Component {
         });
       });
     }
+
+    console.log(this.state.wishListItems, "wish items")
   }
 
   componentDidUpdate(prevProps) {
@@ -299,6 +303,46 @@ class Detail extends Component {
     }
   }
 
+  handleWishList(id) {
+    if (isLogin()) {
+      this.props.context.setIsLoading(true);
+      const value = {
+        productId: id,
+        userId: localStorage.getItem("userId")
+      };
+      if (this.props.loved) {
+        removeWishlist(id)
+          .then(res => {
+            this.setState({
+              isLoved: false
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            this.props.context.setIsLoading(false);
+          });
+      } else {
+        updateWishList(value)
+          .then(res => {
+            this.props.context.setWishList(value);
+            this.setState({
+              isLoved: true
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            this.props.context.setIsLoading(false);
+          });
+      }
+    } else {
+      this.props.context.setIsModalSigninPopupOpen(true);
+    }
+  }
+
   render() {
     const { product } = this.state;
     const { id } = this.props.match.params;
@@ -348,7 +392,11 @@ class Detail extends Component {
                       <div className="mb--1">
                         <Swiper {...swipperConfig}>
                           {arrayImage.map((image, index) => (
-                            <img style={{ width: "100%" }} src={image} alt={product.productName} />
+                            <img
+                              style={{ width: "100%" }}
+                              src={image}
+                              alt={product.productName}
+                            />
                           ))}
                         </Swiper>
                       </div>
@@ -385,7 +433,8 @@ class Detail extends Component {
                         </div>
                       ) : (
                         <div
-                          onClick={() => alert("heart clicked")}
+                          style={{ cursor: "pointer" }}
+                          onClick={() => this.handleWishList(id)}
                           className="pda--items"
                         >
                           <span className="text--size-1-5">
