@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
-import { registUserToCart, BASE_URL } from '../../api'
+import { registUserToCart, BASE_URL, userSignup } from '../../api'
 import {isPhoneNumber} from '../../utils/inputValidations'
 
 class Signup extends Component {
