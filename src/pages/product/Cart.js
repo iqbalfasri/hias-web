@@ -273,7 +273,6 @@ class Cart extends Component {
                       <div>
                         <div className="fx">
                           <InputText
-                            style={{textTransform:"uppercase"}}
                             onChange={e =>
                               this.setState({ couponCode: e.target.value })
                             }
