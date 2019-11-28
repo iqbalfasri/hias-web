@@ -6,6 +6,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import StarRatings from "react-star-ratings";
 import ShowMoreText from "react-show-more-text";
+import Swiper from "react-id-swiper";
 
 import ProductCard from "../../components/card/Product";
 import ColorSelector from "../../components/ColorSelector";
@@ -225,7 +226,11 @@ class Detail extends Component {
       <>
         <div className="col-md-3">
           <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/jne.jpg")} alt="" style={{minWidth:70}}/>
+            <img
+              src={require("../../assets/img/jne.jpg")}
+              alt=""
+              style={{ minWidth: 70 }}
+            />
           </div>
         </div>
         <div className="col-md-3">
@@ -235,7 +240,11 @@ class Detail extends Component {
         </div>
         <div className="col-md-3">
           <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/tiki.png")} alt="" style={{minWidth:100, marginTop:5}}/>
+            <img
+              src={require("../../assets/img/tiki.png")}
+              alt=""
+              style={{ minWidth: 100, marginTop: 5 }}
+            />
           </div>
         </div>
       </>
@@ -293,6 +302,17 @@ class Detail extends Component {
   render() {
     const { product } = this.state;
     const { id } = this.props.match.params;
+    const swipperConfig = {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        type: "fraction"
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+    };
     const arrayImage =
       product !== null
         ? [
@@ -326,21 +346,18 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-                        <img
-                          style={{ width: "100%" }}
-                          src={product.thumbnail}
-                          alt=""
-                        />
+                        <Swiper {...swipperConfig}>
+                          {arrayImage.map((image, index) => (
+                            <img style={{ width: "100%" }} src={image} alt={product.productName} />
+                          ))}
+                        </Swiper>
                       </div>
-                      <div className="fx fx-no-wrap align-items-center">
+                      {/* <div className="fx fx-no-wrap align-items-center">
                         {arrayImage.map((image, i) => (
                           <div key={i} className="img-detail-thumbnail">
                             <img src={image} alt="" />
                           </div>
                         ))}
-                        {/* <div className="img-detail-thumbnail">
-                          <img src={product.thumbnail} alt="" />
-                        </div>
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
                         </div>
@@ -349,8 +366,11 @@ class Detail extends Component {
                         </div>
                         <div className="img-detail-thumbnail">
                           <img src={product.thumbnail} alt="" />
-                        </div> */}
-                      </div>
+                        </div>
+                        <div className="img-detail-thumbnail">
+                          <img src={product.thumbnail} alt="" />
+                        </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -364,7 +384,10 @@ class Detail extends Component {
                           </span>
                         </div>
                       ) : (
-                        <div onClick={() => alert("heart clicked")} className="pda--items">
+                        <div
+                          onClick={() => alert("heart clicked")}
+                          className="pda--items"
+                        >
                           <span className="text--size-1-5">
                             <FontAwesomeIcon icon={faHeart} />
                           </span>
