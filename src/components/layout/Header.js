@@ -370,7 +370,7 @@ class Header extends Component {
                 <div className="logo">
                   <Link to="/">
                     <img
-                      src={require("../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.png")}
+                      src={require("../../assets/img/MASTER_LOGO_HIAS_HOUSE_HORIZONTAL.jpeg")}
                       alt=""
                     />
                   </Link>
