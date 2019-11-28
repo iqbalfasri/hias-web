@@ -152,7 +152,7 @@ class Cart extends Component {
                 type="number"
                 name="quantity"
                 className="form--input"
-                min="1"
+                min="3"
               />
             </td>
             <td>
@@ -194,7 +194,9 @@ class Cart extends Component {
   handlePopup() {
     this.setState({
       relatedPopup: !this.state.relatedPopup
-    }, () => localStorage.setItem('cartItems', JSON.stringify(this.state.carts)));
+    }, () => {
+        localStorage.setItem('cartItems', JSON.stringify(this.state.carts))
+    });
   }
 
   handleCoupon(e) {
@@ -292,16 +294,14 @@ class Cart extends Component {
                           <div className="fx justify-content-between">
                             <h3 style={{ color: "#F96464" }} className="mr--1">Potongan Kupon</h3>
                             <h3 style={{ color: "#F96464" }}>
-                              IDR
-                              {formatMoneyWithoutSymbol(this.state.priceCoupon)}
+                              IDR {formatMoneyWithoutSymbol(this.state.priceCoupon)}
                             </h3>
                           </div>
                         ) : null}
                         <div className="fx justify-content-between">
                           <h3 className="mr--1">Subtotal</h3>
                           <h3>
-                            IDR
-                            {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
+                            IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>
                       </div>
@@ -310,8 +310,7 @@ class Cart extends Component {
                       <div className="total-card-cart">
                         <div>
                           <h3>
-                            Total amount IDR
-                            {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
+                            Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>
                         <div>

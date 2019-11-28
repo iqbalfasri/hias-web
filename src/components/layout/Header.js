@@ -10,6 +10,8 @@ import {
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 
+import { getCart } from "./../../api";
+
 import { isLogin } from "../../utils/auth";
 import { withContext } from "../../context/withContext";
 
@@ -64,9 +66,16 @@ class Header extends Component {
       });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.context.totalCart !== prevState.totalCart) {
-      this.renderCartCount(prevProps.context.totalCart);
+  componentDidUpdate(prevProps) {
+    let userId = localStorage.getItem("userId");
+    if (userId !== null) {
+      getCart(userId)
+        .then(res => {
+          prevProps.context.setTotalCart(res.data.listItems.length || 0);
+        })
+        .catch(error => {
+          // console.log(error);
+        });
     }
   }
 
@@ -103,6 +112,7 @@ class Header extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
     localStorage.removeItem("promo");
+    localStorage.removeItem("userProfile");
     window.location.href = "/";
   }
 
@@ -114,9 +124,9 @@ class Header extends Component {
     }
   }
 
-  onClickOrderIcon() {
+  onClickWishIcon() {
     if (isLogin()) {
-      this.props.history.push("/order");
+      this.props.history.push("/wishlist");
     } else {
       this.props.context.setIsModalSigninPopupOpen(true);
     }
@@ -216,13 +226,13 @@ class Header extends Component {
     arrObj.forEach((obj, index) => {
       arr.push({
         productName: `\"${obj.productName}\"`,
-        thumbnailUrl: `\"${obj.thumbnailUrl}\"`,
-      })
+        thumbnailUrl: `\"${obj.thumbnailUrl}\"`
+      });
     });
 
     // arr.push(newObj)
     // localStorage.setItem('testObj', newObj)
-    console.log(JSON.stringify(arr))
+    console.log(JSON.stringify(arr));
 
     // console.log(obj)
   }
@@ -263,25 +273,26 @@ class Header extends Component {
           <div className="header-top-icon">
             <div
               className="header-top-icon--image"
-              onClick={() => this.onClickOrderIcon()}
+              onClick={() => (window.location.href = "/order")}
               title="Order Status"
             >
               <img src={require("../../assets/img/Inbox.svg")} alt="" />
             </div>
           </div>
-          {/* <div className="header-top-icon">
-            <div className="header-top-icon--image">
-              <img src={require("../../assets/img/OrderStatus.svg")} alt="" />
-            </div>
-          </div> */}
           <div className="header-top-icon">
-            <div className="header-top-icon--image">
-              <img src={require("../../assets/img/DefaultAvatar.svg")} alt="" />
+            <div className="header-top-icon--profile">
+              <div className="header-top-icon--image">
+                <img
+                  style={{ width: 26, height: 26 }}
+                  src={require("../../assets/img/DefaultAvatar.svg")}
+                  alt=""
+                />
+              </div>
+              <p>
+                Hi, {JSON.parse(localStorage.getItem("userProfile")).fullName}
+              </p>
             </div>
             <div className="header--dropdown">
-              {/* <div className="hd--item">
-                <Link to="/">Account</Link>
-              </div> */}
               <div className="hd--item">
                 <Link to="/wallet">Wallet</Link>
               </div>
@@ -306,7 +317,10 @@ class Header extends Component {
             </Link>
           </div>
           <div className="mr--1">
-            <button className="btn btn--transparent text--size-12">
+            <button
+              onClick={() => (window.location.href = "/about")}
+              className="btn btn--transparent text--size-12"
+            >
               Tentang Kami
             </button>
           </div>
@@ -320,7 +334,11 @@ class Header extends Component {
           </div>
           <div className="fx fx align-items-center">
             <div className="header-top-icon">
-              <div className="header-top-icon--image" title="Wishlist">
+              <div
+                className="header-top-icon--image"
+                onClick={() => this.onClickWishIcon()}
+                title="Wishlist"
+              >
                 <img src={require("../../assets/img/Wishlist.svg")} alt="" />
               </div>
             </div>
@@ -334,15 +352,6 @@ class Header extends Component {
               </div>
             </div>
           </div>
-          <div className="header-top-icon">
-            <div
-              className="header-top-icon--image"
-              onClick={() => this.onClickCartIcon()}
-            >
-              <img src={require("../../assets/img/Cart.svg")} alt="" />
-            </div>
-          </div>
-          {this.renderCart()}
           <div className="header-top-icon header-top-icon--flag">
             <img src={require("../../assets/img/indonesia.png")} alt="" />
           </div>

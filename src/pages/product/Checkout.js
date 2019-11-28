@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import Select from "react-select";
 import axios from "axios";
 
 import Modal from "../../components/layout/Modal";
 import InputText from "../../components/form/InputText";
 import Checkbox from "../../components/form/Checkbox";
-import { addUserAddress, getUserAddress, getCart, BASE_URL } from "../../api";
+import {
+  addUserAddress,
+  getUserAddress,
+  getCart,
+  BASE_URL,
+  getCityFromRajaOngkir,
+  fetchOngkir
+} from "../../api";
 import { withContext } from "../../context/withContext";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 
 import "./Checkout.scss";
+
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" }
+];
 
 class Checkout extends Component {
   constructor(props) {
@@ -38,12 +52,17 @@ class Checkout extends Component {
       selectedIndexAddress: 0,
       isModalAddress: false,
       listCourier: ["jne", "pos", "tiki"],
-      courierSelected: 0
+      courierSelected: 0,
+      listCity: [],
+      urlIpayMu: "",
+      hargaOngkir: 0
     };
   }
 
   componentDidMount() {
     let userId = localStorage.getItem("userId");
+    // this._handleOngkir(this.state.courierSelected)
+
     getCart(userId).then(res => {
       this.setState(
         {
@@ -57,6 +76,25 @@ class Checkout extends Component {
             JSON.stringify(this.state.userAddress)
           )
       );
+
+      // get city raja ongkir
+      getCityFromRajaOngkir()
+        .then(res => {
+          let { results } = res.rajaongkir;
+          let { listCity } = this.state;
+
+          results.forEach(c => {
+            listCity.push({
+              value: c.city_id,
+              label: c.city_name
+            });
+          });
+
+          this.setState({ listCity });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     });
 
     getUserAddress(userId)
@@ -94,7 +132,7 @@ class Checkout extends Component {
     this.props.context.setIsLoading(true);
 
     let stringifyData = [];
-    let getSubTotal = localStorage.getItem("subTotal");
+    let getSubTotal = JSON.parse(localStorage.getItem("subTotal"));
     let getCart = JSON.parse(localStorage.getItem("cartItems"));
     let getUserId = localStorage.getItem("userId");
     let getIdAddress = JSON.parse(localStorage.getItem("userAddress"))
@@ -136,9 +174,32 @@ class Checkout extends Component {
           order_id: res.data
         };
 
-        this.setState({ activeSteps: 3 }, () =>
-          this.props.context.setIsLoading(false)
-        );
+        this.setState({ activeSteps: 3 }, () => {
+          this.props.context.setIsLoading(false);
+          axios
+            .post(
+              "https://my.ipaymu.com/payment",
+              {
+                key: "QbGcoO0Qds9sQFDmY0MWg1Tq.xtuh1",
+                action: "payment",
+                product: "Hias House Products",
+                price: getSubTotal + this.state.hargaOngkir,
+                quantity: 1,
+                format: "json"
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              }
+            )
+            .then(res => {
+              this.setState({ urlIpayMu: res.data.url });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        });
         console.log(response, "RESPONSE ORDER");
       })
       .catch(error => {
@@ -376,12 +437,21 @@ class Checkout extends Component {
           <div className="col-md-4">
             <div className="form--group">
               <label htmlFor="">City</label>
-              <InputText
+              <Select
+                placeholder="Pilih Kota"
+                onChange={e => {
+                  this.setState({ city: e.value.toString() }, () =>
+                    console.log(this.state.city)
+                  );
+                }}
+                options={this.state.listCity}
+              />
+              {/* <InputText
                 onChange={e => this.setState({ city: e.target.value })}
                 value={this.state.city}
                 type="text"
                 placeholder="City"
-              />
+              /> */}
             </div>
           </div>
           <div className="col-md-4">
@@ -448,12 +518,80 @@ class Checkout extends Component {
     );
   }
 
+  checkOngkir = (courierType = "jne") => {
+    return {
+      origin: "155",
+      destination: JSON.parse(localStorage.getItem('userAddress')).city,
+      originType: "city",
+      destinationType: 'city',
+      weight: "302",
+      courier: courierType
+    };
+  };
+
+  _handleOngkir(index) {
+    this.setState({ courierSelected: index });
+    switch (index) {
+      case 0:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+
+      case 1:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+
+      case 2:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+
+      default:
+        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        break;
+    }
+  }
+
+  _handleCost(data) {
+    fetchOngkir(data)
+      .then(ongkir => {
+        this.setState({ hargaOngkir: ongkir });
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }
+
   renderCourierSelection() {
     let { listCourier } = this.state;
 
-    return listCourier.map(courier => {
-      return <div>{courier}</div>;
-    });
+    return (
+      <div className="col-md-8">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignContent: "flex-start",
+            justifyContent: "space-evenly"
+          }}
+        >
+          {listCourier.map((courier, index) => {
+            return (
+              <div key={index}>
+                <input
+                  id={courier}
+                  value={courier}
+                  type="radio"
+                  onChange={() => {
+                    this._handleOngkir(index);
+                  }}
+                  checked={this.state.courierSelected == index ? true : false}
+                />
+                <p>{courier.toUpperCase()}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 
   renderAddressSelection() {
@@ -576,7 +714,9 @@ class Checkout extends Component {
                     }}
                   >
                     <h4 style={{ color: "#878786" }}>Shipping</h4>
-                    {/* <h4 style={{ color: "#878786" }}>IDR 400,000</h4> */}
+                    <h4 style={{ color: "#878786" }}>
+                      IDR {formatMoneyWithoutSymbol(this.state.hargaOngkir)}
+                    </h4>
                   </div>
 
                   <div
@@ -590,7 +730,7 @@ class Checkout extends Component {
                     <h4 style={{ color: "#878786" }}>
                       IDR
                       {formatMoneyWithoutSymbol(
-                        localStorage.getItem("subTotal")
+                        JSON.parse(localStorage.getItem("subTotal")) + this.state.hargaOngkir
                       )}
                     </h4>
                   </div>
@@ -626,11 +766,7 @@ class Checkout extends Component {
         return (
           <div className="checkout-form-wrapper">
             <div className="row">
-              <iframe
-                src="https://my.ipaymu.com/payment/9D8D8C62-EAA3-4AB9-B24F-E5010F647DDB"
-                width="1110"
-                height="600"
-              />
+              <iframe src={this.state.urlIpayMu} width="1110" height="600" />
             </div>
 
             <div className="row mt--2">

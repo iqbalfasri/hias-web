@@ -17,6 +17,8 @@ import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
 class Category extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -60,25 +62,20 @@ class Category extends Component {
           </div>
         );
       });
-    }else{
-      return(
-        <div style={{width:'100%', height:'50%'}}>
-        <img style={{width:350, marginLeft:'auto', marginRight:'auto', opacity:0.7}} src={require('../../assets/img/empty-state-01.png')}/>
-      </div>
-      )
     }
   }
 
   componentDidMount() {
+    this._isMounted = true;
     const { category } = this.props.match.params;
-    console.log(category);
     const categoryId = category;
 
     axios
       .get(`${BASE_URL}/product/categoryId/${categoryId}`)
       .then(res => {
-        console.log(res.data.data);
-        this.setState({ products: res.data.data });
+        if (this._isMounted) {
+          this.setState({ products: res.data.data });
+        }
       })
       .catch(error => {
         console.log(error);
@@ -92,16 +89,24 @@ class Category extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    axios
-      .get(
-        `${BASE_URL}/product/categoryId/${props.match.params.category}`
-      )
-      .then(res => {
-        console.log(res.data.data);
-        this.setState({ products: res.data.data });
-      })
-      .catch(error => console.log(error));
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.category !== nextProps.match.params.category) {
+      axios
+        .get(
+          `${BASE_URL}/product/categoryId/${nextProps.match.params.category}`
+        )
+        .then(
+          res => {
+            this.setState({ products: res.data.data });
+          },
+          () => console.log(this.state.products)
+        )
+        .catch(error => console.log(error));
+    }
   }
 
   handleLowToHigh(props) {
@@ -286,7 +291,7 @@ class Category extends Component {
                       </div>
                       <div className="cat--sub-title">
                         <span className="mr--1">
-                          <strong>URUTAN BERDASAKRKAN</strong>
+                          <strong>URUTAN BERDASARKAN</strong>
                         </span>
                         <span>
                           <FontAwesomeIcon icon={faMinusSquare} />
@@ -303,7 +308,9 @@ class Category extends Component {
                                 onClick={() => this.handleLowToHigh(this.props)}
                               />
                             </span>
-                            <label htmlFor="lth">Harga Terendah ke Tinggi</label>
+                            <label htmlFor="lth">
+                              Harga Terendah ke Tinggi
+                            </label>
                           </div>
                         </div>
                         <div className="cat--items">
@@ -330,7 +337,12 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="za" onClick={() => this.handleZtoA(this.props)} />
+                              <input
+                                type="radio"
+                                name="sort"
+                                id="za"
+                                onClick={() => this.handleZtoA(this.props)}
+                              />
                             </span>
                             <label htmlFor="za">Z ke A</label>
                           </div>
@@ -338,7 +350,12 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="ne" onClick={() => this.handleLast(this.props)} />
+                              <input
+                                type="radio"
+                                name="sort"
+                                id="ne"
+                                onClick={() => this.handleLast(this.props)}
+                              />
                             </span>
                             <label htmlFor="ne">Baru ke Lama</label>
                           </div>
@@ -346,7 +363,12 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="en" onClick={() => this.handleNewest(this.props)} />
+                              <input
+                                type="radio"
+                                name="sort"
+                                id="en"
+                                onClick={() => this.handleNewest(this.props)}
+                              />
                             </span>
                             <label htmlFor="en">Lama ke Baru</label>
                           </div>
@@ -356,6 +378,15 @@ class Category extends Component {
                   </div>
                 </div>
                 <div className="col-md-9">
+                  <div className="row mt--2">
+                    <div className="col">
+                      <p>
+                        <strong>
+                          Menampilkan {this.state.products.length} produk
+                        </strong>
+                      </p>
+                    </div>
+                  </div>
                   <div className="row">
                     <div className="col">
                       {/* <h3 className="text--size-12">

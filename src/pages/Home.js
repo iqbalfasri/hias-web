@@ -1,136 +1,153 @@
-import React, { Component } from 'react'
-import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
-import Swiper from 'react-id-swiper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import Swiper from "react-id-swiper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 
-import ProductCard from '../components/card/Product'
-import InputText from '../components/form/InputText'
-import Checkbox from '../components/form/Checkbox'
-import ColorSelector from '../components/ColorSelector'
-import { withContext } from '../context/withContext'
-import { fetchBestSellerProduct, fetchHotProduct, fetchWishList, fetchBanner, fetchAllInspiration } from '../api'
-import { isLogin } from '../utils/auth'
-import './Home.scss'
+import ProductCard from "../components/card/Product";
+import InputText from "../components/form/InputText";
+import Checkbox from "../components/form/Checkbox";
+import ColorSelector from "../components/ColorSelector";
+import { withContext } from "../context/withContext";
+import {
+  fetchBestSellerProduct,
+  fetchHotProduct,
+  fetchWishList,
+  fetchBanner,
+  fetchAllInspiration
+} from "../api";
+import { isLogin } from "../utils/auth";
+import "./Home.scss";
 
 const params = {
-  slideActiveClass: 'slide-product-active',
+  slideActiveClass: "slide-product-active",
   pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
+    el: ".swiper-pagination",
+    type: "bullets",
     clickable: true
   },
   spaceBetween: 50,
   slidesPerGroup: 1,
   slidesPerView: 3,
   centeredSlides: true,
-  loop: true
-}
-
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  }
+};
 
 const swiperBanner = {
   pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
+    el: ".swiper-pagination",
+    type: "bullets",
     clickable: true
   },
   slidesPerGroup: 1,
   slidesPerView: 1,
-  loop: true
-}
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  }
+};
 
 const swiperHome = {
   pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
+    el: ".swiper-pagination",
+    type: "bullets",
     clickable: true
   },
   slidesPerGroup: 1,
   slidesPerView: 1,
   loop: true
-}
+};
 
 const swiperInspiration = {
   pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
+    el: ".swiper-pagination",
+    type: "bullets",
     clickable: true
   },
+  spaceBetween: 50,
   slidesPerGroup: 1,
-  slidesPerView: 1,
-  loop: true
-}
+  slidesPerView: 5,
+  centeredSlides: true,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  }
+};
 
 class Home extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       wishListItems: [],
       banner: [],
       inspiration: []
-    }
+    };
   }
 
   componentDidMount() {
     fetchBestSellerProduct()
-      .then((res) => {
-        this.props.context.setBestProducts(res.data)
+      .then(res => {
+        this.props.context.setBestProducts(res.data);
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
 
     fetchHotProduct()
-      .then((res) => {
-        this.props.context.setHotProducts(res.data)
+      .then(res => {
+        this.props.context.setHotProducts(res.data);
       })
-      .catch((err) => {
-        console.log(err)
-      })
-
+      .catch(err => {
+        console.log(err);
+      });
 
     fetchBanner()
-      .then((res) => {
+      .then(res => {
         this.setState({
           banner: res.data.banner
-        })
+        });
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
 
     fetchAllInspiration()
-      .then((res) => {
+      .then(res => {
         this.setState({
           inspiration: res.data.inspiration
-        })
+        });
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
 
     if (isLogin()) {
-      fetchWishList(localStorage.getItem('userId'))
-        .then((res) => {
-          this.setState({
-            wishListItems: res.data
-          })
-        })
+      fetchWishList(localStorage.getItem("userId")).then(res => {
+        this.setState({
+          wishListItems: res.data
+        });
+      });
     }
   }
 
   isProductWishlisted(id) {
-    const { wishListItems } = this.state
-    let result = false
+    const { wishListItems } = this.state;
+    let result = false;
     for (let i = 0; i < wishListItems.length; i++) {
       if (wishListItems[i].idProduct === id) {
-        result = true
+        result = true;
         break;
       }
     }
-    return result
+    return result;
   }
 
   renderBanner = () => {
@@ -138,33 +155,45 @@ class Home extends Component {
     if (banner.length > 0) {
       return (
         <Swiper {...swiperBanner}>
-          {
-            banner.map((b, i) => {
-              return (
-                <div className="slide-wrapper-home" key={i}>
-                  <div className="fx slide-container-home">
-                    <img className="img--cover" src={b.imageUrl} onClick={() => { window.open(b.link, '_blank') }} alt="" />
-                  </div>
+          {banner.map((b, i) => {
+            return (
+              <div className="slide-wrapper-home" key={i}>
+                <div className="fx slide-container-home">
+                  <img
+                    className="img--cover"
+                    src={b.imageUrl}
+                    onClick={() => {
+                      window.open(b.link, "_blank");
+                    }}
+                    alt=""
+                  />
                 </div>
-              )
-            })
-          }
+              </div>
+            );
+          })}
         </Swiper>
-      )
+      );
     }
-  }
+  };
 
   renderProduct() {
-    const hotProducts = this.props.context.hotProducts
+    const hotProducts = this.props.context.hotProducts;
     if (hotProducts.length !== 0) {
-      return hotProducts.map((product) => {
+      return hotProducts.map(product => {
         return (
           <div className="col-md-3" key={`product-${product.productId}`}>
             {/* <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
-            <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} />
-          </div >
-        )
-      })
+            <ProductCard
+              thumbnail={product.thumbnail}
+              loved={this.isProductWishlisted(product.productId)}
+              id={product.productId}
+              title={product.productName}
+              price={product.price}
+              category={product.categoryName}
+            />
+          </div>
+        );
+      });
     }
   }
 
@@ -176,12 +205,19 @@ class Home extends Component {
           {bestProducts.map((product, index) => {
             return (
               <div className="product-slide-with-number" key={index}>
-                <ProductCard thumbnail={product.thumbnail} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+                <ProductCard
+                  thumbnail={product.thumbnail}
+                  loved={this.isProductWishlisted(product.id)}
+                  id={product.id}
+                  title={product.productName}
+                  price={product.price}
+                  category={product.categoryName}
+                />
               </div>
-            )
+            );
           })}
         </Swiper>
-      )
+      );
     }
   }
 
@@ -193,21 +229,44 @@ class Home extends Component {
           <Swiper {...swiperInspiration}>
             {inspiration.map((item, i) => {
               return (
-                <Link key={i} to={`/inspiration/detail/${item.id}`}>
-                  <div >
-                    <img style={{ maxWidth: "20%", display: "inline" }} src={item.banner != null ? item.banner : "https://via.placeholder.com/600x600"} alt="" />
-                    <div className="inspiration-title">
-                      {item.title}
-                    </div>
+                <div className="product-slide-with-number" key={i}>
+                  <div className="product-card">
+                    <Link key={i} to={{
+                      pathname: `/inspiration/detail/${item.id}`,
+                       state: {
+                        description: item.description
+                      }
+                    }}>
+                      <div className="product-card-image">
+                        <img
+                          src={
+                            item.banner != null
+                              ? item.banner
+                              : "https://via.placeholder.com/600x600"
+                          }
+                          alt=""
+                        />
+                      </div>
+                      <div className="fx justify-content-between product-card-footer">
+                        <div className="product-card-wrapper">
+                          <div className="fx justify-content-between fx-no-wrap">
+                            <div>
+                              <p className="mb--0 text--color-black"><strong>{item.title}</strong></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </Link>
-              )
+
+                </div>
+              );
             })}
           </Swiper>
-        )
+        );
       }
     }
-  }
+  };
 
   render() {
     return (
@@ -222,7 +281,10 @@ class Home extends Component {
           <section>
             <div className="container-fluid">
               <div className="row">
-                <div className="col" style={{ paddingRight: 0, paddingLeft: 0 }}>
+                <div
+                  className="col"
+                  style={{ paddingRight: 0, paddingLeft: 0 }}
+                >
                   {this.renderBanner()}
                 </div>
               </div>
@@ -233,18 +295,20 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0">Produk <span className="text--color-orange">Pilihan</span></h3>
+                    <h3 className="section-title mb--0">
+                      Produk
+                    </h3>
                   </div>
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/products/hot">View All</Link>
+                    <Link className="text--size-12" to="/products/hot">
+                      View All
+                    </Link>
                   </div>
                 </div>
               </div>
-              <div className="row">
-                {this.renderProduct()}
-              </div>
+              <div className="row">{this.renderProduct()}</div>
             </div>
           </section>
           <section className="section-page">
@@ -252,21 +316,45 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0">Produk <span className="text--color-orange">Terlaris</span></h3>
+                    <h3 className="section-title mb--0">
+                      Produk{" "}
+                      <span className="text--color-orange">Terlaris</span>
+                    </h3>
                   </div>
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/products/best">View All</Link>
+                    <Link className="text--size-12" to="/products/best">
+                      View All
+                    </Link>
                   </div>
                 </div>
               </div>
-              <div className="col">
-                {this.renderBestProduct()}
-              </div>
+              <div className="col">{this.renderBestProduct()}</div>
             </div>
           </section>
-          {/* <section className="section-page">
+          <section className="section-page">
+            <div className="container">
+              <div className="row align-items-center mb--2">
+                <div className="col">
+                  <div>
+                    <h3 className="section-title mb--0">
+                      Produk <span className="text--color-orange">Pilihan</span>
+                    </h3>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="text--right">
+                    <Link className="text--size-12" to="/products/hot">
+                      View All
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="row">{this.renderProduct()}</div>
+            </div>
+          </section>
+          <section className="section-page">
             <div className="container">
               <div className="row align-items-center mb--2">
                 <div className="col">
@@ -286,13 +374,20 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-          </section> */}
+          </section>
           <section className="section-page">
             <div className="container">
-
               <div className="row align-items-center justify-content-center">
                 <div className="col">
-                  <img src={require('../assets/img/banner-promo.jpg')} alt="" style={{ maxWidth: "45%", marginLeft: 'auto', marginRight: 'auto' }} />
+                  <img
+                    src={require("../assets/img/banner-promo.jpg")}
+                    alt=""
+                    style={{
+                      maxWidth: "85%",
+                      marginLeft: "auto",
+                      marginRight: "auto"
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -302,28 +397,58 @@ class Home extends Component {
               <div className="row mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0 text--center">Kenapa Memilih <span className="text--color-blue">HIAS?</span></h3>
+                    <h3 className="section-title mb--0 text--center">
+                      Kenapa Memilih{" "}
+                      <span className="text--color-blue">HIAS?</span>
+                    </h3>
                   </div>
                 </div>
               </div>
               <div className="row text--center benefit-content">
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-03.png')} style={{ width: 120, marginLeft: 'auto', marginRight: 'auto' }} />
+                    <img
+                      src={require("../assets/img/home-icon-03.png")}
+                      style={{
+                        width: 120,
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
+                    />
                     <h3>Design Penuh Gaya & Terkini</h3>
-                    <p>Kami menyesuaikan design dengan tren dan perkembangan terkini.</p>
+                    <p>
+                      Kami menyesuaikan design dengan tren dan perkembangan
+                      terkini.
+                    </p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-02.png')} style={{ width: 120, marginLeft: 'auto', marginRight: 'auto' }} />
+                    <img
+                      src={require("../assets/img/home-icon-02.png")}
+                      style={{
+                        width: 120,
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
+                    />
                     <h3>Produk Berkualitas Terbaik</h3>
-                    <p>Komitmen kami hanya menyediakan produk-produk terbaik baik lokal ataupun import bagi anda.</p>
+                    <p>
+                      Komitmen kami hanya menyediakan produk-produk terbaik baik
+                      lokal ataupun import bagi anda.
+                    </p>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div>
-                    <img src={require('../assets/img/home-icon-01.png')} style={{ width: 120, marginLeft: 'auto', marginRight: 'auto' }} />
+                    <img
+                      src={require("../assets/img/home-icon-01.png")}
+                      style={{
+                        width: 120,
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
+                    />
                     <h3>Kemudahan dalam Pembayaran</h3>
                     <p>Tersedia cicilan 0% untuk bank-bank tertentu.</p>
                   </div>
@@ -355,8 +480,8 @@ class Home extends Component {
           </section> */}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default withContext(Home)
+export default withContext(Home);

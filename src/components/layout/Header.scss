@@ -179,7 +179,7 @@ header {
     background-color: $grayColor;
     color: #fff;
 
-    a {
+    a {            
       color: #fff;
     }
   }
@@ -196,7 +196,22 @@ header {
 }
 
 .header-top-icon--image {
-  width: 20px;
+  img {
+    width: 24px;
+  }
+}
+
+.header-top-icon--profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;;
+
+  p {
+    font-weight: bold;;
+    font-size: 12px;
+    padding: 0 10px 0;
+    margin: 0 0;
+  }
 }
 
 .cart--count {
@@ -206,7 +221,7 @@ header {
   width: 20px;
   height: 20px;
   border-radius: 20px;
-  background-color: #F96464;
+  background-color: #f96464;
   text-align: center;
   font-size: 12px;
   display: flex;

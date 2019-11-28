@@ -14,12 +14,14 @@ class OrderDetail extends Component {
   getParams = this.props.match.params.id;
 
   componentDidMount() {
-    getOrderById(2)
+    getOrderById(this.getParams)
       .then(res => {
         this.setState({
-          orderDetail: res.data,
-          orderProducts: res.data.product
+          orderDetail: res.data[0],
+          orderProducts: res.data[0].product
         });
+
+        console.log(this.state.orderDetail);
       })
       .catch(error => {
         console.log(error);
@@ -34,7 +36,7 @@ class OrderDetail extends Component {
             <th scope="row">
               <div className="table-product-image-wrapper align-items-center">
                 <div className="table-product-image">
-                  <img src={item.thumbnail} alt={item.name} />
+                  <img src={item.thumbnailUrl} alt={item.name} />
                 </div>
                 <div>
                   <span>{item.name}</span>
@@ -61,7 +63,6 @@ class OrderDetail extends Component {
   }
 
   render() {
-    console.log(this.getParams);
     return (
       <>
         <div className="content">
@@ -90,7 +91,83 @@ class OrderDetail extends Component {
                         <tbody>{this.renderItems()}</tbody>
                       </table>
                     </div>
-                    <div className="fx justify-content-between">
+
+                    <div className="order-status-container">
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status < 1
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
+                        <div className="order-status-box">
+                          <img
+                            src={require("../../assets/img/Coupon.svg")}
+                            alt=""
+                          />
+                        </div>
+                        <div className="order-status-text">
+                          <span>Payment</span>
+                        </div>
+                      </div>
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status == 2
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
+                        <div className="order-status-box">
+                          <img
+                            src={require("../../assets/img/OrderPacking.svg")}
+                            alt=""
+                          />
+                        </div>
+                        <div className="order-status-text">
+                          <span>Packing</span>
+                        </div>
+                      </div>
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status == 2
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
+                        <div className="order-status-box">
+                          <img
+                            src={require("../../assets/img/Inbox.svg")}
+                            alt=""
+                          />
+                        </div>
+                        <div className="order-status-text">
+                          <span>On Delivery</span>
+                        </div>
+                      </div>
+                      <div
+                        className={`order-status-wrapper ${
+                          this.state.orderDetail !== null &&
+                          this.state.orderDetail.status == 3
+                            ? "orb--active"
+                            : ""
+                        }`}
+                      >
+                        <div className="order-status-box">
+                          <img
+                            src={require("../../assets/img/ItemArrived.svg")}
+                            alt=""
+                          />
+                        </div>
+                        <div className="order-status-text">
+                          <span>Completed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="fx mt--2 justify-content-between">
                       <div>
                         <div className="fx"></div>
                       </div>
@@ -98,8 +175,12 @@ class OrderDetail extends Component {
                         <div className="fx justify-content-between">
                           <h3 className="mr--1">Subtotal</h3>
                           <h3>
-                            IDR
-                            {/* {formatMoneyWithoutSymbol(this.getTotalCartPrice())} */}
+                            IDR{" "}
+                            {formatMoneyWithoutSymbol(
+                              this.state.orderDetail !== null
+                                ? this.state.orderDetail.total
+                                : null
+                            )}
                           </h3>
                         </div>
                         <div className="fx justify-content-between">

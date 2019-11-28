@@ -6,7 +6,7 @@ import { withContext } from "../../context/withContext";
 import InputText from "../form/InputText";
 import Checkbox from "../form/Checkbox";
 import Modal from "../../components/layout/Modal";
-import { BASE_URL } from "../../api";
+import { userSignin } from "../../api";
 
 class Signin extends Component {
   constructor(props) {
@@ -16,14 +16,15 @@ class Signin extends Component {
       username: "",
       password: "",
       logging: false,
-      showModal: false
+      showModal: false,
+      errorMessage: ""
     };
   }
 
   async onLogin(e) {
-    e.preventDefault();
-
     try {
+      e.preventDefault();
+
       this.setState({
         logging: true
       });
@@ -33,26 +34,24 @@ class Signin extends Component {
       if (!username || !password) {
         alert("Fill the field");
       } else {
-        const response = await axios.post(
-          `${BASE_URL}/authenticate/login`,
-          { username, password },
-          { headers: { "Content-Type": "application/json" } }
-        );
+        let response = await userSignin(username, password);
+        let { user, token } = response.data.login;
+        let { id } = user;
 
-        const { data } = response;
+        if (response.success) {
+          const userToJson = JSON.stringify(user);
 
-        if (data.success) {
-          this.props.context.setUser(data.data);
-          localStorage.setItem("token", data.data.login.token);
-          localStorage.setItem("userId", data.data.login.user.id);
+          localStorage.setItem("userId", id);
+          localStorage.setItem("token", token);
+          localStorage.setItem("userProfile", userToJson);
+
+          // redirect to homepage
           window.location.href = "/";
-        }
-
-        // if email and password doesn't match
-        if (data.error.errorCode == 500) {
-          this.setState({
-            showModal: true
-          });
+        } else {
+          console.log(response.data.error.errorCode)
+          if (response.data.error.errorCode == 500) {
+            alert("user / pass salah")
+          }
         }
       }
 
@@ -60,7 +59,8 @@ class Signin extends Component {
         logging: false
       });
     } catch (error) {
-      console.log(error);
+      // alert("Email belum terdaftar");
+      this.setState({ logging: false });
     }
   }
 
@@ -83,14 +83,15 @@ class Signin extends Component {
       <div>
         <h3 className="text--center">Silahkan Masuk ke Akun Anda</h3>
         <p className="text--size-14 text--center mb--2">
-          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran dengan data pribadi Anda
+          Silahkan masuk ke akun Anda untuk menyelesaikan pembayaran dengan data
+          pribadi Anda
         </p>
         <form onSubmit={e => this.onLogin(e)}>
           <div className="form--group">
             <InputText
+              type="email"
               onChange={e => this.onChangeUsername(e)}
               value={this.state.username}
-              type="text"
               placeholder="Alamat Email"
             />
           </div>
@@ -123,37 +124,22 @@ class Signin extends Component {
         <div className="divider-with-text mt--2 mb--2">
           <span className="text--size-12">Atau</span>
         </div>
-        {/* <div className="mt--2 mb--2">
-          <h3 className="text--center text--size-12">Masuk Dengan</h3>
-          <div className="fx justify-content-center align-items-center">
-            <div className="mr--1">
-              <img
-                width="30px"
-                src={require("../../assets/img/fb.png")}
-                alt=""
-              />
-            </div>
-            <div className="ml--1">
-              <img
-                width="30px"
-                src={require("../../assets/img/gmail.png")}
-                alt=""
-              />
-            </div>
-          </div>
-        </div> */}
         <div className="mt--2">
           <div className="fx justify-content-center align-items-center">
             <div className="mr--1">
               <p className="mb--0 text--color-gray">Belum punya akun?</p>
             </div>
             <div>
-              <Link
-                to="/signup"
+              <a
+                onClick={() => {
+                  localStorage.setItem("promo", "true");
+                  this.props.context.setIsModalPromo(false);
+                }}
+                href="/signup"
                 className="btn btn--primary"
               >
                 Daftar
-              </Link>
+              </a>
             </div>
           </div>
         </div>

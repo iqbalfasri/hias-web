@@ -1,35 +1,35 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Home from './pages/Home'
-import Category from './pages/product/Category'
-import SubCategory from './pages/product/SubCategory'
-import Detail from './pages/product/Detail'
-import Cart from './pages/product/Cart'
-import Checkout from './pages/product/Checkout'
-import ThankYou from './pages/ThankYou'
-import Wallet from './pages/Wallet'
-import DashboardWallet from './pages/Wallet/Dashboard'
-import Login from './pages/auth/Login'
-import Signup from './pages/auth/Signup'
-import Inspiration from './pages/Inspiration'
-import Search from './pages/Search'
-import Wishlist from './pages/product/Wishlist'
-import NotFound from './pages/NotFound'
-import AboutUs from './pages/Articles/AboutUs'
-import ContactUs from './pages/Articles/ContactUs'
-import FAQ from './pages/Articles/FAQ'
-import Privacy from './pages/Articles/Privacy'
-import Terms from './pages/Articles/Terms'
-import DeliveryTerms from './pages/Articles/DeliveryTerms'
-import Refund from './pages/Articles/Refund'
-import Newsletter from './pages/Articles/Newsletter'
-import StoreLocation from './pages/Articles/StoreLocation'
-import Promo from './pages/Articles/Promo'
-import Event from './pages/Articles/Event'
-import News from './pages/Articles/News'
-import Order from './pages/product/Order';
-import OrderDetail from './pages/product/OrderDetail'
+import Home from "./pages/Home";
+import Category from "./pages/product/Category";
+import SubCategory from "./pages/product/SubCategory";
+import Detail from "./pages/product/Detail";
+import Cart from "./pages/product/Cart";
+import Checkout from "./pages/product/Checkout";
+import ThankYou from "./pages/ThankYou";
+import Wallet from "./pages/Wallet";
+import DashboardWallet from "./pages/Wallet/Dashboard";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+import Inspiration from "./pages/Inspiration";
+import Search from "./pages/Search";
+import Wishlist from "./pages/product/Wishlist";
+import NotFound from "./pages/NotFound";
+import AboutUs from "./pages/Articles/AboutUs";
+import ContactUs from "./pages/Articles/ContactUs";
+import FAQ from "./pages/Articles/FAQ";
+import Privacy from "./pages/Articles/Privacy";
+import Terms from "./pages/Articles/Terms";
+import DeliveryTerms from "./pages/Articles/DeliveryTerms";
+import Refund from "./pages/Articles/Refund";
+import Newsletter from "./pages/Articles/Newsletter";
+import StoreLocation from "./pages/Articles/StoreLocation";
+import Promo from "./pages/Articles/Promo";
+import Event from "./pages/Articles/Event";
+import News from "./pages/Articles/News";
+import Order from "./pages/product/Order";
+import OrderDetail from "./pages/product/OrderDetail";
 
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -67,23 +67,17 @@ class App extends Component {
     }
 
     // get total cart
-    getCart(localStorage.getItem("userId"))
+    let userId = localStorage.getItem('userId');
+    if (userId !== null) {
+      getCart(userId)
       .then(res => {
         this.props.context.setTotalCart(res.data.listItems.length);
       })
       .catch(error => {
         console.log(error);
       });
-  }
+    }
 
-  componentDidUpdate(prevProps) {
-    getCart(localStorage.getItem("userId"))
-      .then(res => {
-        prevProps.context.setTotalCart(res.data.listItems.length || 0);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
 
   onCloseModalPromo() {
@@ -175,23 +169,168 @@ class App extends Component {
         >
           <Signup />
         </Modal>
-        <div className="align-items-center" style={{width: '100%', height:30, position:'fixed', bottom:0, backgroundColor:'#6d6e70', color:'#fff', zIndex:100, opacity:0.7}}>
-          <marquee style={{height:'100%', paddingTop:5, display:'flex', flexDirection:'row', whiteSpace:'no-wrap', overflow:'hidden'}}>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan harga senilai IDR 25.000</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>YEAR END SALE UP TO 80% ALL ITEM</h3>
-            <h3 className="text--size-14 mr--2" style={{display:'inline-block', animation: 'marquee 8s linear infinite'}}>Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000</h3>
+        <div
+          className="align-items-center"
+          style={{
+            width: "100%",
+            height: 30,
+            position: "fixed",
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            color: "#F96464",
+            zIndex: 100
+          }}
+        >
+          <marquee
+            style={{
+              height: "100%",
+              paddingTop: 5,
+              display: "flex",
+              flexDirection: "row",
+              whiteSpace: "no-wrap",
+              overflow: "hidden"
+            }}
+          >
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan
+              harga senilai IDR 25.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              YEAR END SALE UP TO 80% ALL ITEM
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan
+              harga senilai IDR 25.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              YEAR END SALE UP TO 80% ALL ITEM
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan
+              harga senilai IDR 25.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              YEAR END SALE UP TO 80% ALL ITEM
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan
+              harga senilai IDR 25.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              YEAR END SALE UP TO 80% ALL ITEM
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Masukkan kode promo 'WEBSTOREHIASYUK' untuk mendapatkan potongan
+              harga senilai IDR 25.000
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              YEAR END SALE UP TO 80% ALL ITEM
+            </h3>
+            <h3
+              className="text--size-14 mr--2"
+              style={{
+                display: "inline-block",
+                animation: "marquee 8s linear infinite"
+              }}
+            >
+              Produk Terbaru: Set Soffa Allete dengan harga IDR 2.500.000
+            </h3>
           </marquee>
         </div>
       </div>

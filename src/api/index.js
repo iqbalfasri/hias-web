@@ -203,7 +203,7 @@ export const searchByName = productName => {
 };
 
 export const fetchProductByInspirationId = id => {
-  return axios.post(`${BASE_URL}/inspration/${id}/product`).then(res => {
+  return axios.get(`${BASE_URL}/inspration/${id}/product`).then(res => {
     return res.data;
   });
 };
@@ -242,4 +242,58 @@ export const requestCoupon = couponCode => {
     .then(res => {
       return res.data;
     });
+};
+
+export const getCityFromRajaOngkir = () => {
+  return axios
+    .get(
+      `https://cors-anywhere.herokuapp.com/https://pro.rajaongkir.com/api/city`,
+      {
+        headers: {
+          key: "51f91963f9dcefe04e54822191cf71c5"
+        }
+      }
+    )
+    .then(res => {
+      return res.data;
+    });
+};
+
+export const fetchOngkir = dataObj => {
+  return axios
+    .post(
+      `https://cors-anywhere.herokuapp.com/https://pro.rajaongkir.com/api/cost`,
+      dataObj,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          key: "51f91963f9dcefe04e54822191cf71c5"
+        }
+      }
+    )
+    .then(res => {
+      return res.data.rajaongkir.results[0].costs[0].cost[0].value;
+    });
+};
+
+export const getUserProfile = token => {
+  return axios
+    .get(`${BASE_URL}/member/meProfile`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    .then(res => {
+      return res.data;
+    });
+};
+
+export const userSignin = (username, password) => {
+  return axios.post(
+    `${BASE_URL}/authenticate/login`,
+    { username, password },
+    { headers: { "Content-Type": "application/json" } }
+  ).then(res => {
+    return res.data
+  })
 };

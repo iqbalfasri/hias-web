@@ -13,14 +13,18 @@ export const Context = createContext(
       setIsModalSignupPopupOpen: () => { },
       wishList: [],
       setWishList: () => {},
-      user: null,
-      setUser: () => {},
       isLoading: false,
       setIsLoading: () => {},
       isModalPromo: false,
       setIsModalPromo: () => { },
       totalCart: 0,
-      setTotalCart: () => { }
+      setTotalCart: () => { },
+      subTotal: null,
+      setSubTotal: () => { },
+      userProfile: null,
+      setUserProfile: () => { },
+      userId: null,
+      setUserId: () => { }
     }
   }
 )

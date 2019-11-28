@@ -9,7 +9,7 @@ class StoreLocation extends Component {
     return (
       <div>
         <Helmet key={Math.random()}>
-          <title>Inspiration</title>
+          <title>Lokasi Kami</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />

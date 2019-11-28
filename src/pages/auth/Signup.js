@@ -8,6 +8,7 @@ import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
 import { registUserToCart, BASE_URL } from '../../api'
+import {isPhoneNumber} from '../../utils/inputValidations'
 
 class Signup extends Component {
   constructor (props) {
@@ -56,11 +57,13 @@ class Signup extends Component {
 
       localStorage.setItem('token', data.data.register.token)
       localStorage.setItem('userId', data.data.register.user.id)
+      localStorage.setItem('userProfile', JSON.stringify(data.data.register.user))
 
       if (data.success) {
         registUserToCart(localStorage.getItem('userId'))
           .then(res => {
             if (res.success) {
+              localStorage.setItem('promo', 'true')
               window.location.href = '/thank-you'
             }
           }).catch(error => {
@@ -91,7 +94,7 @@ class Signup extends Component {
   }
 
   onChangePhone (e) {
-    const phone = e.target.value
+    const phone = isPhoneNumber(e.target.value);
     this.setState({
       phone
     })
@@ -169,7 +172,9 @@ class Signup extends Component {
                         <p className="mb--0 text--color-gray">Sudah punya akun?</p>
                       </div>
                       <div>
-                        <Link to="/login" className="btn btn--primary">Masuk</Link>
+                        <a onClick={e => {
+                          localStorage.setItem('promo', true)
+                        }} href="/login" className="btn btn--primary">Masuk</a>
                       </div>
                     </div>
                   </div>

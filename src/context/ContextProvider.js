@@ -16,14 +16,16 @@ export default class ContextProvider extends Component {
       setIsModalSignupPopupOpen: this.setIsModalSignupPopupOpen,
       wishList: [],
       setWishList: this.setWishList,
-      user: null,
-      setUser: this.setUser,
       isLoading: false,
       setIsLoading: this.setIsLoading,
       isModalPromo: false,
       setIsModalPromo: this.setIsModalPromo,
       totalCart: 0,
-      setTotalCart: this.setTotalCart
+      setTotalCart: this.setTotalCart,
+      userProfile: null,
+      setUserProfile: this.setUserProfile,
+      userId: null,
+      setUserId: this.setUserId
     }
   }
 
@@ -47,8 +49,8 @@ export default class ContextProvider extends Component {
     this.setState({ wishList: [...this.state.wishList, wishList] })
   }
 
-  setUser = (user) => {
-    this.setState({ user })
+  setUserProfile = (userProfile) => {
+    this.setState({ userProfile: userProfile })
   }
 
   setIsLoading = (isLoading) => {
@@ -61,6 +63,10 @@ export default class ContextProvider extends Component {
 
   setTotalCart = (total) => {
     this.setState({ totalCart: total })
+  }
+
+  setUserId = (userId) => {
+    this.setState({ userId })
   }
 
   render () {
