@@ -136,7 +136,6 @@ class Refund extends Component {
                   <ul>
                     <li>Mengisi complaint form.</li>
                     <li>Permintaan pengajuan pengembalian produk dilakukan maksimal 14 hari kerja setelah barang diterima.</li>
-                    <li>Permintaan pengajuan pengembalian produk dilakukan maksimal 14 hari kerja setelah barang diterima.</li>
                     <li>Produk non furniture yang dapat ditukar harus dalam kemasan asli.</li>
                     <li>Apabila barang telah diverifikasi dan sudah dinyatakan dapat di kembalikan, dana akan dikembalikan maksimal 30 hari setelah diverifikasi.</li>
                   </ul>

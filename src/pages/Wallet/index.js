@@ -28,10 +28,12 @@ class Wallet extends Component {
                     </div>
                     <div className="fx fx-no-wrap justify-content-center">
                       <div className="mr--1">
-                        <button className="btn btn--full btn--blue">Buat akun iPaymu</button>
+                        <button               
+                          onClick={() => {window.location.href = "https://my.ipaymu.com/members/signup.htm"}} className="btn btn--full btn--blue">Buat akun iPaymu</button>
                       </div>
                       <div>
-                        <button className="btn btn--full btn--primary">Sudah punya akun</button>
+                        <button 
+                        onClick={() => {window.location.href = "https://my.ipaymu.com/login"}} className="btn btn--full btn--primary">Sudah punya akun</button>
                       </div>
                     </div>
                   </div>
