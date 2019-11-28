@@ -78,24 +78,24 @@ class StoreLocation extends Component {
                     <div className="col-md-4">
                       <div className="store-location">
                         <ul>
-                          <li className="mb--2">Jakarta<br/>Fanda’s Senopati 66 lt. 3 SCBD</li>
-                          <li>Jakarta<br/>Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167</li>
+                          <li className="mb--2">Jakarta<br/>Fanda’s Senopati 66 lt. 3 SCBD<br />0878-2088-8321</li>
+                          <li>Jakarta<br/>Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167<br />(021) 22457333</li>
                         </ul>
                       </div>
                     </div>
                     <div className="col-md-4">
                       <div>
                         <ul>
-                          <li className="mb--2">Jakarta<br/>Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A</li>
-                          <li>Tangerang<br/>Supermall Karawaci UG Floor JL. Boulevard Diponegoro 105 Karawaci</li>
+                          <li className="mb--2">Jakarta<br/>Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A<br />(021) 22457333</li>
+                          <li>Tangerang<br/>Supermall Karawaci UG Floor JL. Boulevard Diponegoro 105 Karawaci<br />(021) 54200454</li>
                         </ul>
                       </div>
                     </div>
                     <div className="col-md-4">
                       <div>
                         <ul>
-                          <li className="mb--2">Bogor<br/>Botani Square LG Floor JL. Raya Padjajaran No. 69-71</li>
-                          <li>Bali<br/>Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru</li>
+                          <li className="mb--2">Bogor<br/>Botani Square LG Floor JL. Raya Padjajaran No. 69-71<br />0251-8400 669</li>
+                          <li>Bali<br/>Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru<br />0361-3352195</li>
                         </ul>
                       </div>
                     </div>

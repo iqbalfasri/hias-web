@@ -144,40 +144,55 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/">
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
-                              JAKARTA
-                            </span>
-                            <br />
-                            <span style={{ fontWeight: "bold" }}>
-                              Fanda’s Senopati 66
-                            </span>
-                            <span className="footer-sub-link">
-                              <br /> Lt. 3 SCBD
-                            </span>
-                          </Link>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: "bold",
+                              textDecoration: "underline"
+                            }}
+                          >
+                            JAKARTA
+                          </span>
+                          <br />
+                          <span
+                            style={{ fontWeight: "bold", fontSize: "10px" }}
+                          >
+                            Fanda’s Senopati 66
+                          </span>
+                          <span className="footer-sub-link">
+                            <br /> Lt. 3 SCBD
+                          </span>
                         </li>
                         <li className="mt--05">
-                          <Link to="/">
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
-                              Pondok Indah
-                            </span>
-                            <br />
-                            <span className="footer-sub-link">
-                              JL. Metro Pondok Indah TB27, No. 167
-                            </span>
-                          </Link>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: "bold",
+                              textDecoration: "underline"
+                            }}
+                          >
+                            Pondok Indah
+                          </span>
+                          <br />
+                          <span className="footer-sub-link">
+                            JL. Metro Pondok Indah TB27, No. 167
+                          </span>
                         </li>
                         <li className="mt--05">
-                          <Link to="/">
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
-                              Kelapa Gading
-                            </span>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: "bold",
+                              textDecoration: "underline"
+                            }}
+                          >
+                            Kelapa Gading
+                          </span>
+                          <br />
+                          <span className="footer-sub-link">
+                            JL. Boulevard Barat Raya Blok XC No. 2A
                             <br />
-                            <span className="footer-sub-link">
-                              JL. Boulevard Barat Raya Blok XC No. 2A
-                            </span>
-                          </Link>
+                          </span>
                         </li>
                       </ul>
                     </div>
@@ -186,32 +201,46 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/">
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
-                              TANGERANG
-                            </span>
-                            <br />
-                            <span style={{ fontWeight: "bold" }}>
-                              Supermall Karawaci
-                            </span>
-                            <br />
-                            <span className="footer-sub-link">
-                              UG Floor JL. Boulevard Diponegoro 105 Karawaci
-                            </span>
-                          </Link>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: "bold",
+                              textDecoration: "underline"
+                            }}
+                          >
+                            TANGERANG
+                          </span>
+                          <br />
+                          <span
+                            style={{ fontWeight: "bold", fontSize: "10px" }}
+                          >
+                            Supermall Karawaci
+                          </span>
+                          <br />
+                          <span className="footer-sub-link">
+                            UG Floor JL. Boulevard Diponegoro 105 Karawaci
+                          </span>
                         </li>
                         <li className="mt--05">
-                          <Link to="/">
-                            <span style={{ fontWeight: "bold", textDecoration: "underline" }}>BOGOR</span>
-                            <br />
-                            <span style={{ fontWeight: "bold" }}>
-                              Botani Square
-                            </span>
-                            <br />
-                            <span className="footer-sub-link">
-                              LG Floor JL. Raya Padjajaran No. 69-71
-                            </span>
-                          </Link>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: "bold",
+                              textDecoration: "underline"
+                            }}
+                          >
+                            BOGOR
+                          </span>
+                          <br />
+                          <span
+                            style={{ fontWeight: "bold", fontSize: "10px" }}
+                          >
+                            Botani Square
+                          </span>
+                          <br />
+                          <span className="footer-sub-link">
+                            LG Floor JL. Raya Padjajaran No. 69-71
+                          </span>
                         </li>
                       </ul>
                     </div>
@@ -220,17 +249,25 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/">
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>BALI</span>
-                            <br />
-                            <span style={{ fontWeight: "bold" }}>
-                              Level 21 Bali
-                            </span>
-                            <br />
-                            <span className="footer-sub-link">
-                              JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru
-                            </span>
-                          </Link>
+                          <span
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: "bold",
+                              textDecoration: "underline"
+                            }}
+                          >
+                            BALI
+                          </span>
+                          <br />
+                          <span
+                            style={{ fontWeight: "bold", fontSize: "10px" }}
+                          >
+                            Level 21 Bali
+                          </span>
+                          <br />
+                          <span className="footer-sub-link">
+                            JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru
+                          </span>
                         </li>
                       </ul>
                     </div>
@@ -278,9 +315,9 @@ class Footer extends Component {
                         src={require("../../assets/img/cimb.png")}
                         alt=""
                       />
-                      <img 
-                        style={{width:30, marginRight:10}} 
-                        src={require('../../assets/img/home-credit-logo.png')} 
+                      <img
+                        style={{ width: 30, marginRight: 10 }}
+                        src={require("../../assets/img/home-credit-logo.png")}
                         alt=""
                       />
                       <img

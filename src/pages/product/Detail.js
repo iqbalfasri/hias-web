@@ -369,7 +369,7 @@ class Detail extends Component {
                           </span>
                         </div>
                       ) : (
-                        <div className="pda--items">
+                        <div onClick={() => alert("heart clicked")} className="pda--items">
                           <span className="text--size-1-5">
                             <FontAwesomeIcon icon={faHeart} />
                           </span>
