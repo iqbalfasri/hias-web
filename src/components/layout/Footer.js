@@ -304,9 +304,9 @@ class Footer extends Component {
                         src={require("../../assets/img/cimb.png")}
                         alt=""
                       />
-                      <img 
-                        style={{width:30, marginRight:10}} 
-                        src={require('../../assets/img/home-credit-logo.png')} 
+                      <img
+                        style={{ width: 30, marginRight: 10 }}
+                        src={require("../../assets/img/home-credit-logo.png")}
                         alt=""
                       />
                       <img

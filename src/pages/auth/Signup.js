@@ -35,12 +35,13 @@ class Signup extends Component {
 
       const {
         name,
+        username,
         email,
         phone,
         password
       } = this.state;
 
-      if (!phone || !password || !email || !name) {
+      if (!phone || !password || !email || !name || !username) {
         alert('Fill the field')
       }
 
@@ -48,7 +49,7 @@ class Signup extends Component {
         .post(`${BASE_URL}/register`, {
           name,
           email,
-          username: email,
+          username,
           password: password,
           telp: phone
         });
@@ -114,6 +115,13 @@ class Signup extends Component {
     })
   }
 
+  onChangeUsername(e) {
+    const username = e.target.value
+    this.setState({
+      username
+    })
+  }
+
   render() {
     return (
       <div>
@@ -135,6 +143,9 @@ class Signup extends Component {
                     <form onSubmit={(e) => this.onSignUp(e)}>
                       <div className="form--group">
                         <input type="text" value={this.state.name} onChange={(e) => this.onChangeName(e)} className="form--input" placeholder="Nama Lengkap" />
+                      </div>
+                      <div className="form--group">
+                        <input type="text" value={this.state.username} onChange={(e) => this.onChangeUsername(e)} className="form--input" placeholder="Username" />
                       </div>
                       <div className="form--group">
                         <input type="email" value={this.state.email} onChange={(e) => this.onChangeEmail(e)} className="form--input" placeholder="Email" />
