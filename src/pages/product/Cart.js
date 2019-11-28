@@ -192,11 +192,23 @@ class Cart extends Component {
   }
 
   handlePopup() {
-    this.setState({
-      relatedPopup: !this.state.relatedPopup
-    }, () => {
-        localStorage.setItem('cartItems', JSON.stringify(this.state.carts))
-    });
+    this.setState(
+      {
+        relatedPopup: !this.state.relatedPopup
+      },
+      () => {
+        localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
+      }
+    );
+  }
+
+  handleCouponText(e) {
+    const input = e.target;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+    this.setState({ couponCode: input.value.toUpperCase() }, () =>
+      input.setSelectionRange(start, end)
+    );
   }
 
   handleCoupon(e) {
@@ -273,9 +285,8 @@ class Cart extends Component {
                       <div>
                         <div className="fx">
                           <InputText
-                            onChange={e =>
-                              this.setState({ couponCode: e.target.value })
-                            }
+                            value={this.state.couponCode.toUpperCase()}
+                            onChange={e => this.handleCouponText(e)}
                             type="text"
                             placeholder="Coupon"
                           />
@@ -292,16 +303,20 @@ class Cart extends Component {
                       <div style={{ marginRight: "3em" }}>
                         {this.state.priceCoupon > 0 ? (
                           <div className="fx justify-content-between">
-                            <h3 style={{ color: "#F96464" }} className="mr--1">Potongan Kupon</h3>
+                            <h3 style={{ color: "#F96464" }} className="mr--1">
+                              Potongan Kupon
+                            </h3>
                             <h3 style={{ color: "#F96464" }}>
-                              IDR {formatMoneyWithoutSymbol(this.state.priceCoupon)}
+                              IDR{" "}
+                              {formatMoneyWithoutSymbol(this.state.priceCoupon)}
                             </h3>
                           </div>
                         ) : null}
                         <div className="fx justify-content-between">
                           <h3 className="mr--1">Subtotal</h3>
                           <h3>
-                            IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
+                            IDR{" "}
+                            {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>
                       </div>
@@ -310,7 +325,8 @@ class Cart extends Component {
                       <div className="total-card-cart">
                         <div>
                           <h3>
-                            Total amount IDR {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
+                            Total amount IDR{" "}
+                            {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>
                         <div>
