@@ -47,11 +47,13 @@ class Footer extends Component {
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
                   <li>
-                    <Link to="/about">
-                      <FontAwesomeIcon icon={faWhatsapp} color="#fff" style={{marginRight:4}}/>
-                      Whatsapp
-                      <br />
-                      <span className="footer-sub-link">+62 811-1088-488</span>
+                    <Link>
+                      <a target='_blank' onClick={() => window.location.href="https://wa.me/08111088488/?text=urlencodedtext"}> 
+                        <FontAwesomeIcon icon={faWhatsapp} color="#fff" style={{marginRight:4}}/>
+                        Whatsapp
+                        <br />
+                        <span className="footer-sub-link">+62 811-1088-488</span>
+                        </a>
                     </Link>
                   </li>
                   <li>
@@ -60,7 +62,7 @@ class Footer extends Component {
                       Email
                       <br />
                       <span className="footer-sub-link">
-                        marketing@hias.co.id
+                        cs@hias.co.id
                       </span>
                     </Link>
                   </li>
