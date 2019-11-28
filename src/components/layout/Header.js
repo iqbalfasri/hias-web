@@ -237,6 +237,11 @@ class Header extends Component {
     // console.log(obj)
   }
 
+  getFirstName(fullName) {
+    let firstName = fullName.split(' ');
+    return firstName[0]
+  }
+
   renderTopIcon() {
     return isLogin() ? (
       <div className="fx align-items-center justify-content-end">
@@ -289,7 +294,7 @@ class Header extends Component {
                 />
               </div>
               <p>
-                Hi, {JSON.parse(localStorage.getItem("userProfile")).fullName}
+                Hi, {this.getFirstName(JSON.parse(localStorage.getItem("userProfile")).fullName)}
               </p>
             </div>
             <div className="header--dropdown">
