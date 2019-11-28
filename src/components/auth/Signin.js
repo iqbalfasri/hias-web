@@ -6,7 +6,7 @@ import { withContext } from "../../context/withContext";
 import InputText from "../form/InputText";
 import Checkbox from "../form/Checkbox";
 import Modal from "../../components/layout/Modal";
-import { userSignin } from "../../api";
+import { userSignin, BASE_URL } from "../../api";
 
 class Signin extends Component {
   constructor(props) {
@@ -34,24 +34,27 @@ class Signin extends Component {
       if (!username || !password) {
         alert("Fill the field");
       } else {
-        let response = await userSignin(username, password);
-        let { user, token } = response.data.login;
-        let { id } = user;
+        const response = await axios.post(
+          `${BASE_URL}/authenticate/login`,
+          { username, password },
+          { headers: { "Content-Type": "application/json" } }
+        );
 
-        if (response.success) {
-          const userToJson = JSON.stringify(user);
+        const { data } = response;
 
-          localStorage.setItem("userId", id);
-          localStorage.setItem("token", token);
-          localStorage.setItem("userProfile", userToJson);
-
-          // redirect to homepage
+        if (data.success) {
+          this.props.context.setUser(data.data);
+          localStorage.setItem("token", data.data.login.token);
+          localStorage.setItem("userId", data.data.login.user.id);
           window.location.href = "/";
-        } else {
-          console.log(response.data.error.errorCode)
-          if (response.data.error.errorCode == 500) {
-            alert("user / pass salah")
-          }
+        }
+
+        // if email and password doesn't match
+        if (data.error.errorCode == 500) {
+          this.setState({
+            showModal: true,
+            errorMessage: data.error.errorMessage
+          });
         }
       }
 
@@ -59,8 +62,8 @@ class Signin extends Component {
         logging: false
       });
     } catch (error) {
-      // alert("Email belum terdaftar");
-      this.setState({ logging: false });
+      alert("Email belum terdaftar");
+      this.setState({ logging: false, errorMessage: "Email belum terdaftar" });
     }
   }
 
@@ -148,7 +151,7 @@ class Signin extends Component {
           isOpen={this.state.showModal}
         >
           <h3 style={{ textAlign: "center", color: "#DD4B39" }}>
-            Email and Password doesn't match.
+            {this.state.errorMessage}
           </h3>
         </Modal>
       </div>
