@@ -289,11 +289,21 @@ export const getUserProfile = token => {
 };
 
 export const userSignin = (username, password) => {
-  return axios.post(
-    `${BASE_URL}/authenticate/login`,
-    { username, password },
-    { headers: { "Content-Type": "application/json" } }
-  ).then(res => {
-    return res.data
-  })
+  return axios
+    .post(
+      `${BASE_URL}/authenticate/login`,
+      { username, password },
+      { headers: { "Content-Type": "application/json" } }
+    )
+    .then(res => {
+      return res.data;
+    });
+};
+
+export const userSignup = value => {
+  return axios
+    .post(`${BASE_URL}/register`, value)
+    .then(res => {
+      return res.data;
+    });
 };

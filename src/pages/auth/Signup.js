@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import Modal from '../../components/layout/Modal'
 import Checkbox from '../../components/form/Checkbox'
 
-import { registUserToCart, BASE_URL } from '../../api'
+import { registUserToCart, BASE_URL, userSignup } from '../../api'
 import {isPhoneNumber} from '../../utils/inputValidations'
 
 class Signup extends Component {
@@ -35,13 +35,12 @@ class Signup extends Component {
 
       const {
         name,
-        username,
         email,
         phone,
         password
       } = this.state;
 
-      if (!phone || !password || !email || !name || !username) {
+      if (!phone || !password || !email || !name) {
         alert('Fill the field')
       }
 
@@ -49,7 +48,7 @@ class Signup extends Component {
         .post(`${BASE_URL}/register`, {
           name,
           email,
-          username,
+          username: email,
           password: password,
           telp: phone
         });
@@ -145,19 +144,16 @@ class Signup extends Component {
                         <input type="text" value={this.state.name} onChange={(e) => this.onChangeName(e)} className="form--input" placeholder="Nama Lengkap" />
                       </div>
                       <div className="form--group">
-                        <input type="text" value={this.state.username} onChange={(e) => this.onChangeUsername(e)} className="form--input" placeholder="Username" />
-                      </div>
-                      <div className="form--group">
                         <input type="email" value={this.state.email} onChange={(e) => this.onChangeEmail(e)} className="form--input" placeholder="Email" />
                       </div>
                       <div className="form--group">
                         <input type="tel" value={this.state.phone} onChange={(e) => this.onChangePhone(e)} className="form--input" placeholder="+62" />
                       </div>
                       <div className="form--group">
-                        <input type="password" value={this.state.password} onChange={(e) => this.onChangePassword(e)} className="form--input" placeholder="Masukkan Password" />
+                        <input minLength={8} type="password" value={this.state.password} onChange={(e) => this.onChangePassword(e)} className="form--input" placeholder="Masukkan Password" />
                       </div>
                       <div className="form--group">
-                        <input type="password" className="form--input" placeholder="Masukkan Ulang Password" />
+                        <input minLength={8} type="password" className="form--input" placeholder="Masukkan Ulang Password" />
                       </div>
                       <div className="form--group">
                         <div className="row" style={{marginLeft:5}}>
