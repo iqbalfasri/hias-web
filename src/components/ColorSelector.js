@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import './ColorSelector.scss'
+import "./ColorSelector.scss";
 
 class ColorSelector extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       colorSelectedIndex: null
-    }
+    };
   }
 
   onColorSelected(index) {
     this.setState({
       colorSelectedIndex: index
-    })
+    });
   }
 
   render() {
@@ -23,19 +23,29 @@ class ColorSelector extends Component {
     const { colors } = this.props;
     return (
       <div className="color-container">
-        {colors !== null ? colors.map((c, i) => {
-          return <div key={i}
-            style={{ backgroundColor: c.colorName.replace(" ", "").toLowerCase() }}
-            onClick={() => {
-              this.onColorSelected(i);
-              window.open(`/products/detail/${c.id}`, "_self");
-            }}
-            className={`cc-wrapper ${colorSelectedIndex === 1 ? 'cc-wrapper--selected' : ''}`}></div>
-        }) : "warna lain tidak tersedia"
-        }
+        {colors !== null
+          ? colors.map((c, i) => {
+              return (
+                <Link
+                  key={i}
+                  style={{
+                    backgroundColor: c.colorName.replace(" ", "").toLowerCase()
+                  }}
+                  onClick={() => {
+                    // this.onColorSelected(i);
+                    // window.open(`/products/detail/${c.id}`, "_self");
+                  }}
+                  to={`/products/detail/${c.id}`}
+                  className={`cc-wrapper ${
+                    colorSelectedIndex === 1 ? "cc-wrapper--selected" : ""
+                  }`}
+                />
+              );
+            })
+          : "warna lain tidak tersedia"}
       </div>
-    )
+    );
   }
 }
 
-export default ColorSelector
+export default ColorSelector;

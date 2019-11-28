@@ -35,7 +35,8 @@ class Detail extends Component {
       colors: null,
       wishListItems: [],
       showAll: false,
-      couriers: []
+      couriers: [],
+      idProduct: null
     };
   }
 
@@ -82,6 +83,39 @@ class Detail extends Component {
     window.addEventListener("hashchange", () => {
       console.log("tes");
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { id } = this.props.match.params;
+    // console.log(prevProps.match.params.id, "prev")
+    if (id !== prevProps.match.params.id) {
+
+      // Fetch products
+      fetchProductById(id).then(res => {
+        this.setState({
+          product: res.data[0]
+        });
+      });
+
+      // Fetch varian
+      fetchVariantById(id).then(res => {
+        if (res.data.length !== 0) {
+          this.setState({
+            variant: res.data
+          });
+        }
+      });
+
+      // Fetch color
+      fetchColorById(id).then(res => {
+        if (res.data.length !== 0) {
+          this.setState({
+            colors: res.data
+          });
+        }
+      });
+
+    }
   }
 
   isProductWishlisted(id) {
@@ -175,7 +209,7 @@ class Detail extends Component {
 
     courier.forEach(c => {
       if (c.courier1 == "Hias Courier") {
-        return 
+        return
       }
 
       if (c.courier2 == "Jne") {
