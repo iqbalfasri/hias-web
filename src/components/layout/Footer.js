@@ -47,28 +47,39 @@ class Footer extends Component {
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
                   <li>
-                    <Link>
-                      <a target='_blank' onClick={() => window.location.href="https://wa.me/08111088488/?text=urlencodedtext"}> 
-                        <FontAwesomeIcon icon={faWhatsapp} color="#fff" style={{marginRight:4}}/>
-                        Whatsapp
-                        <br />
-                        <span className="footer-sub-link">+62 811-1088-488</span>
-                        </a>
-                    </Link>
+                    <a
+                      target="_blank"
+                      href="https://wa.me/08111088488/?text=urlencodedtext"
+                    >
+                      <FontAwesomeIcon
+                        icon={faWhatsapp}
+                        color="#fff"
+                        style={{ marginRight: 4 }}
+                      />
+                      Whatsapp
+                      <br />
+                      <span className="footer-sub-link">+62 811-1088-488</span>
+                    </a>
                   </li>
                   <li>
                     <Link to="/">
-                      <FontAwesomeIcon icon={faEnvelopeOpen} color="#fff" style={{marginRight:4}}/>
+                      <FontAwesomeIcon
+                        icon={faEnvelopeOpen}
+                        color="#fff"
+                        style={{ marginRight: 4 }}
+                      />
                       Email
                       <br />
-                      <span className="footer-sub-link">
-                        cs@hias.co.id
-                      </span>
+                      <span className="footer-sub-link">cs@hias.co.id</span>
                     </Link>
                   </li>
                   <li>
                     <Link to="/">
-                      <FontAwesomeIcon icon={faPhone} color="#fff" style={{marginRight:4}}/>
+                      <FontAwesomeIcon
+                        icon={faPhone}
+                        color="#fff"
+                        style={{ marginRight: 4 }}
+                      />
                       Layanan Konsumen
                       <br />
                       <span className="footer-sub-link">
@@ -78,7 +89,11 @@ class Footer extends Component {
                   </li>
                   <li>
                     <Link to="/">
-                      <FontAwesomeIcon icon={faClock} color="#fff" style={{marginRight:4}}/>
+                      <FontAwesomeIcon
+                        icon={faClock}
+                        color="#fff"
+                        style={{ marginRight: 4 }}
+                      />
                       Jam Operasional Outlet
                       <br />
                       <span className="footer-sub-link">
@@ -154,8 +169,13 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/" style={{cursor:"default"}}>
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                          <Link to="/" style={{ cursor: "default" }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
                               JAKARTA
                             </span>
                             <br />
@@ -163,7 +183,8 @@ class Footer extends Component {
                               Fanda’s Senopati 66
                             </span>
                             <span className="footer-sub-link">
-                              <br /> Lt. 3 SCBD<br/>
+                              <br /> Lt. 3 SCBD
+                              <br />
                             </span>
                             <span className="footer-sub-link">
                               +62 878-2088-8321
@@ -171,13 +192,19 @@ class Footer extends Component {
                           </Link>
                         </li>
                         <li className="mt--05">
-                          <Link to="/" style={{cursor:"default"}}>
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                          <Link to="/" style={{ cursor: "default" }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
                               Pondok Indah
                             </span>
                             <br />
                             <span className="footer-sub-link">
-                              JL. Metro Pondok Indah TB27, No. 167<br/>
+                              JL. Metro Pondok Indah TB27, No. 167
+                              <br />
                             </span>
                             <span className="footer-sub-link">
                               +62 21-2245-7333
@@ -185,13 +212,19 @@ class Footer extends Component {
                           </Link>
                         </li>
                         <li className="mt--05">
-                          <Link to="/" style={{cursor:"default"}}>
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                          <Link to="/" style={{ cursor: "default" }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
                               Kelapa Gading
                             </span>
                             <br />
                             <span className="footer-sub-link">
-                              JL. Boulevard Barat Raya Blok XC No. 2A<br/>
+                              JL. Boulevard Barat Raya Blok XC No. 2A
+                              <br />
                             </span>
                             <span className="footer-sub-link">
                               +62 21-2245-7333
@@ -205,8 +238,13 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/" style={{cursor:"default"}}>
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                          <Link to="/" style={{ cursor: "default" }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
                               TANGERANG
                             </span>
                             <br />
@@ -215,7 +253,8 @@ class Footer extends Component {
                             </span>
                             <br />
                             <span className="footer-sub-link">
-                              UG Floor JL. Boulevard Diponegoro 105 Karawaci<br/>
+                              UG Floor JL. Boulevard Diponegoro 105 Karawaci
+                              <br />
                             </span>
                             <span className="footer-sub-link">
                               +62 21-5420-0454
@@ -223,15 +262,23 @@ class Footer extends Component {
                           </Link>
                         </li>
                         <li className="mt--05">
-                          <Link to="/" style={{cursor:"default"}}>
-                            <span style={{ fontWeight: "bold", textDecoration: "underline" }}>BOGOR</span>
+                          <Link to="/" style={{ cursor: "default" }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
+                              BOGOR
+                            </span>
                             <br />
                             <span style={{ fontWeight: "bold" }}>
                               Botani Square
                             </span>
                             <br />
                             <span className="footer-sub-link">
-                              LG Floor JL. Raya Padjajaran No. 69-71<br/>
+                              LG Floor JL. Raya Padjajaran No. 69-71
+                              <br />
                             </span>
                             <span className="footer-sub-link">
                               +62 251-8400-669
@@ -245,15 +292,23 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/" style={{cursor:"default"}}>
-                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>BALI</span>
+                          <Link to="/" style={{ cursor: "default" }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
+                              BALI
+                            </span>
                             <br />
                             <span style={{ fontWeight: "bold" }}>
                               Level 21 Bali
                             </span>
                             <br />
                             <span className="footer-sub-link">
-                              JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru<br/>
+                              JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru
+                              <br />
                             </span>
                             <span className="footer-sub-link">
                               +62 361-3352-195
