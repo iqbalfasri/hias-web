@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
   faYoutube,
-  faInstagram
+  faInstagram,
+  faWhatsapp,
+  fa
 } from "@fortawesome/free-brands-svg-icons";
 
 import "./Footer.scss";
+import { faClock, faEnvelopeOpen } from "@fortawesome/free-regular-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 class Footer extends Component {
   render() {
@@ -44,6 +48,7 @@ class Footer extends Component {
                 <ul>
                   <li>
                     <Link to="/about">
+                      <FontAwesomeIcon icon={faWhatsapp} color="#fff" style={{marginRight:4}}/>
                       Whatsapp
                       <br />
                       <span className="footer-sub-link">+62 811-1088-488</span>
@@ -51,6 +56,7 @@ class Footer extends Component {
                   </li>
                   <li>
                     <Link to="/">
+                      <FontAwesomeIcon icon={faEnvelopeOpen} color="#fff" style={{marginRight:4}}/>
                       Email
                       <br />
                       <span className="footer-sub-link">
@@ -60,6 +66,7 @@ class Footer extends Component {
                   </li>
                   <li>
                     <Link to="/">
+                      <FontAwesomeIcon icon={faPhone} color="#fff" style={{marginRight:4}}/>
                       Layanan Konsumen
                       <br />
                       <span className="footer-sub-link">
@@ -69,6 +76,7 @@ class Footer extends Component {
                   </li>
                   <li>
                     <Link to="/">
+                      <FontAwesomeIcon icon={faClock} color="#fff" style={{marginRight:4}}/>
                       Jam Operasional Outlet
                       <br />
                       <span className="footer-sub-link">
@@ -144,103 +152,49 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: "bold",
-                              textDecoration: "underline"
-                            }}
-                          >
-                            JAKARTA
-                          </span>
-                          <br />
-                          <span
-                            style={{ fontWeight: "bold", fontSize: "10px" }}
-                          >
-                            Fanda’s Senopati 66
-                          </span>
-                          <span className="footer-sub-link">
-                            <br /> Lt. 3 SCBD
-                          </span>
-                        </li>
-                        <li className="mt--05">
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: "bold",
-                              textDecoration: "underline"
-                            }}
-                          >
-                            Pondok Indah
-                          </span>
-                          <br />
-                          <span className="footer-sub-link">
-                            JL. Metro Pondok Indah TB27, No. 167
-                          </span>
-                        </li>
-                        <li className="mt--05">
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: "bold",
-                              textDecoration: "underline"
-                            }}
-                          >
-                            Kelapa Gading
-                          </span>
-                          <br />
-                          <span className="footer-sub-link">
-                            JL. Boulevard Barat Raya Blok XC No. 2A
+                          <Link to="/" style={{cursor:"default"}}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                              JAKARTA
+                            </span>
                             <br />
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div>
-                      <ul>
-                        <li>
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: "bold",
-                              textDecoration: "underline"
-                            }}
-                          >
-                            TANGERANG
-                          </span>
-                          <br />
-                          <span
-                            style={{ fontWeight: "bold", fontSize: "10px" }}
-                          >
-                            Supermall Karawaci
-                          </span>
-                          <br />
-                          <span className="footer-sub-link">
-                            UG Floor JL. Boulevard Diponegoro 105 Karawaci
-                          </span>
+                            <span style={{ fontWeight: "bold" }}>
+                              Fanda’s Senopati 66
+                            </span>
+                            <span className="footer-sub-link">
+                              <br /> Lt. 3 SCBD<br/>
+                            </span>
+                            <span className="footer-sub-link">
+                              +62 878-2088-8321
+                            </span>
+                          </Link>
                         </li>
                         <li className="mt--05">
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: "bold",
-                              textDecoration: "underline"
-                            }}
-                          >
-                            BOGOR
-                          </span>
-                          <br />
-                          <span
-                            style={{ fontWeight: "bold", fontSize: "10px" }}
-                          >
-                            Botani Square
-                          </span>
-                          <br />
-                          <span className="footer-sub-link">
-                            LG Floor JL. Raya Padjajaran No. 69-71
-                          </span>
+                          <Link to="/" style={{cursor:"default"}}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                              Pondok Indah
+                            </span>
+                            <br />
+                            <span className="footer-sub-link">
+                              JL. Metro Pondok Indah TB27, No. 167<br/>
+                            </span>
+                            <span className="footer-sub-link">
+                              +62 21-2245-7333
+                            </span>
+                          </Link>
+                        </li>
+                        <li className="mt--05">
+                          <Link to="/" style={{cursor:"default"}}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                              Kelapa Gading
+                            </span>
+                            <br />
+                            <span className="footer-sub-link">
+                              JL. Boulevard Barat Raya Blok XC No. 2A<br/>
+                            </span>
+                            <span className="footer-sub-link">
+                              +62 21-2245-7333
+                            </span>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -249,25 +203,60 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: "bold",
-                              textDecoration: "underline"
-                            }}
-                          >
-                            BALI
-                          </span>
-                          <br />
-                          <span
-                            style={{ fontWeight: "bold", fontSize: "10px" }}
-                          >
-                            Level 21 Bali
-                          </span>
-                          <br />
-                          <span className="footer-sub-link">
-                            JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru
-                          </span>
+                          <Link to="/" style={{cursor:"default"}}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>
+                              TANGERANG
+                            </span>
+                            <br />
+                            <span style={{ fontWeight: "bold" }}>
+                              Supermall Karawaci
+                            </span>
+                            <br />
+                            <span className="footer-sub-link">
+                              UG Floor JL. Boulevard Diponegoro 105 Karawaci<br/>
+                            </span>
+                            <span className="footer-sub-link">
+                              +62 21-5420-0454
+                            </span>
+                          </Link>
+                        </li>
+                        <li className="mt--05">
+                          <Link to="/" style={{cursor:"default"}}>
+                            <span style={{ fontWeight: "bold", textDecoration: "underline" }}>BOGOR</span>
+                            <br />
+                            <span style={{ fontWeight: "bold" }}>
+                              Botani Square
+                            </span>
+                            <br />
+                            <span className="footer-sub-link">
+                              LG Floor JL. Raya Padjajaran No. 69-71<br/>
+                            </span>
+                            <span className="footer-sub-link">
+                              +62 251-8400-669
+                            </span>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div>
+                      <ul>
+                        <li>
+                          <Link to="/" style={{cursor:"default"}}>
+                            <span style={{ fontWeight: "bold", textDecoration: 'underline' }}>BALI</span>
+                            <br />
+                            <span style={{ fontWeight: "bold" }}>
+                              Level 21 Bali
+                            </span>
+                            <br />
+                            <span className="footer-sub-link">
+                              JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru<br/>
+                            </span>
+                            <span className="footer-sub-link">
+                              +62 361-3352-195
+                            </span>
+                          </Link>
                         </li>
                       </ul>
                     </div>

@@ -225,22 +225,17 @@ class Detail extends Component {
       <>
         <div className="col-md-3">
           <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/jne.jpg")} alt="" />
+            <img src={require("../../assets/img/jne.jpg")} alt="" style={{minWidth:70}}/>
           </div>
         </div>
         <div className="col-md-3">
           <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/jnt.png")} alt="" />
+            <img src={require("../../assets/img/pos.png")} alt="" />
           </div>
         </div>
         <div className="col-md-3">
           <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/dhl.png")} alt="" />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/dhl.png")} alt="" />
+            <img src={require("../../assets/img/tiki.png")} alt="" style={{minWidth:100, marginTop:5}}/>
           </div>
         </div>
       </>
