@@ -111,6 +111,10 @@ header {
       font-weight: 400;
     }
 
+    &:hover a {
+      color: #4bc4df !important;
+    }
+
     span {
       white-space: nowrap;
     }
@@ -179,7 +183,7 @@ header {
     background-color: $grayColor;
     color: #fff;
 
-    a {            
+    a {
       color: #fff;
     }
   }
@@ -204,10 +208,10 @@ header {
 .header-top-icon--profile {
   display: flex;
   flex-direction: row;
-  align-items: center;;
+  align-items: center;
 
   p {
-    font-weight: bold;;
+    font-weight: bold;
     font-size: 12px;
     padding: 0 10px 0;
     margin: 0 0;
