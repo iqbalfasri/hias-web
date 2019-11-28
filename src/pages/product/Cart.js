@@ -152,6 +152,7 @@ class Cart extends Component {
                 type="number"
                 name="quantity"
                 className="form--input"
+                maxLength={6}
                 min="3"
               />
             </td>
@@ -166,6 +167,18 @@ class Cart extends Component {
         );
       });
     }
+  }
+
+  getTotalCartPricBeforeCoupon() {
+    const { cartsQuantity, carts } = this.state;
+    let total = 0;
+    for (let i = 0; i < carts.length; i++) {
+      const itemAmount = cartsQuantity[i] || 1;
+      total = total + itemAmount * carts[i].price;
+    }
+
+    // this code will returned price with kupon code
+    return total;
   }
 
   getTotalCartPrice() {
@@ -302,15 +315,26 @@ class Cart extends Component {
                       </div>
                       <div style={{ marginRight: "3em" }}>
                         {this.state.priceCoupon > 0 ? (
-                          <div className="fx justify-content-between">
-                            <h3 style={{ color: "#F96464" }} className="mr--1">
-                              Potongan Kupon
-                            </h3>
-                            <h3 style={{ color: "#F96464" }}>
-                              IDR{" "}
-                              {formatMoneyWithoutSymbol(this.state.priceCoupon)}
-                            </h3>
-                          </div>
+                          <>
+                            <div className="fx justify-content-between">
+                              <h3>Potongan</h3>
+                              <h3>
+                                IDR{" "}
+                                {formatMoneyWithoutSymbol(
+                                  this.state.priceCoupon
+                                )}
+                              </h3>
+                            </div>
+                            <div className="fx justify-content-between">
+                              <h3>Diskon</h3>
+                              <h3
+                                style={{ textDecoration: "line-through" }}
+                                className="mr--1"
+                              >
+                                IDR {formatMoneyWithoutSymbol(this.getTotalCartPricBeforeCoupon())}
+                              </h3>
+                            </div>
+                          </>
                         ) : null}
                         <div className="fx justify-content-between">
                           <h3 className="mr--1">Subtotal</h3>
