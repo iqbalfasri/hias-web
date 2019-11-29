@@ -46,6 +46,7 @@ class Signin extends Component {
           localStorage.setItem("token", data.data.login.token);
           localStorage.setItem("userId", data.data.login.user.id);
           localStorage.setItem("userProfile", JSON.stringify(data.data.login.user));
+          localStorage.setItem('sugestLatestLogin', data.data.login.user.userName);
           window.location.href = "/";
         } else {
           this.setState({
@@ -90,7 +91,7 @@ class Signin extends Component {
             <InputText
               type="email"
               onChange={e => this.onChangeUsername(e)}
-              value={this.state.username}
+              value={this.state.username || localStorage.getItem('sugestLatestLogin')}
               placeholder="Alamat Email"
             />
           </div>
