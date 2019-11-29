@@ -358,7 +358,7 @@ class Home extends Component {
               <div className="row align-items-center justify-content-center">
                 <div className="col">
                   <img
-                    src={require("../assets/img/banner-promo.jpg")}
+                    src={require("../assets/img/banner-promo.jpeg")}
                     alt=""
                     style={{
                       maxWidth: "100%",
