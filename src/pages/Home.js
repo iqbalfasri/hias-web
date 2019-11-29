@@ -33,7 +33,7 @@ const params = {
   centeredSlides: true,
   loop: true,
   autoplay: {
-    delay: 5000,
+    delay: 3000,
     disableOnInteraction: false
   }
 };
@@ -48,7 +48,7 @@ const swiperBanner = {
   slidesPerView: 1,
   loop: true,
   autoplay: {
-    delay: 5000,
+    delay: 3000,
     disableOnInteraction: false
   }
 };
@@ -70,13 +70,11 @@ const swiperInspiration = {
     type: "bullets",
     clickable: true
   },
-  spaceBetween: 50,
-  slidesPerGroup: 1,
-  slidesPerView: 5,
-  centeredSlides: true,
+  spaceBetween: 20,
+  slidesPerView: 4,
   loop: true,
   autoplay: {
-    delay: 5000,
+    delay: 3000,
     disableOnInteraction: false
   }
 };
@@ -357,6 +355,23 @@ class Home extends Component {
           </section>
           <section className="section-page">
             <div className="container">
+              <div className="row align-items-center justify-content-center">
+                <div className="col">
+                  <img
+                    src={require("../assets/img/banner-promo.jpg")}
+                    alt=""
+                    style={{
+                      maxWidth: "100%",
+                      marginLeft: "auto",
+                      marginRight: "auto"
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="section-page">
+            <div className="container">
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
@@ -376,24 +391,7 @@ class Home extends Component {
               </div>
             </div>
           </section>
-          <section className="section-page">
-            <div className="container">
-              <div className="row align-items-center justify-content-center">
-                <div className="col">
-                  <img
-                    src={require("../assets/img/banner-promo.jpg")}
-                    alt=""
-                    style={{
-                      maxWidth: "85%",
-                      marginLeft: "auto",
-                      marginRight: "auto"
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="section-page">
+          {/* <section className="section-page">
             <div className="container">
               <div className="row mb--2">
                 <div className="col">
@@ -456,7 +454,7 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
           {/* <section className="section-page section-bg-dark download-section">
             <div className="container">
               <div className="row justify-content-center">

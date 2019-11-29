@@ -62,7 +62,7 @@ class Footer extends Component {
                     </a>
                   </li>
                   <li>
-                    <Link to="/">
+                    <a href="mailto:cs@hias.co.id">
                       <FontAwesomeIcon
                         icon={faEnvelopeOpen}
                         color="#fff"
@@ -70,11 +70,11 @@ class Footer extends Component {
                       />
                       Email
                       <br />
-                      <span className="footer-sub-link">cs@hias.co.id</span>
-                    </Link>
+                      <a href="mailto:cs@hias.co.id" className="footer-sub-link">cs@hias.co.id</a>
+                    </a>
                   </li>
                   <li>
-                    <Link to="/">
+                    <span>
                       <FontAwesomeIcon
                         icon={faPhone}
                         color="#fff"
@@ -85,10 +85,10 @@ class Footer extends Component {
                       <span className="footer-sub-link">
                         Senin - Minggu / 09:00 - 18:00 WIB Termasuk hari libur
                       </span>
-                    </Link>
+                    </span>
                   </li>
                   <li>
-                    <Link to="/">
+                    <span>
                       <FontAwesomeIcon
                         icon={faClock}
                         color="#fff"
@@ -99,7 +99,7 @@ class Footer extends Component {
                       <span className="footer-sub-link">
                         Senin - Minggu / 10:00 - 22:00 WIB
                       </span>
-                    </Link>
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -169,9 +169,10 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/" style={{ cursor: "default" }}>
+                          <div>
                             <span
                               style={{
+                                fontSize: '10px',
                                 fontWeight: "bold",
                                 textDecoration: "underline"
                               }}
@@ -179,24 +180,24 @@ class Footer extends Component {
                               JAKARTA
                             </span>
                             <br />
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold", fontSize: '10px', }}>
                               Fanda’s Senopati 66
                             </span>
                             <span className="footer-sub-link">
                               <br /> Lt. 3 SCBD
                               <br />
                             </span>
-                            <span className="footer-sub-link">
+                            <p style={{ marginTop: 0, marginBottom: 0, lineHeight: '26px' }} className="footer-sub-link">
                               +62 878-2088-8321
-                            </span>
-                          </Link>
+                            </p>
+                          </div>
                         </li>
                         <li className="mt--05">
-                          <Link to="/" style={{ cursor: "default" }}>
+                          <div>
                             <span
                               style={{
+                                fontSize: '10px',
                                 fontWeight: "bold",
-                                textDecoration: "underline"
                               }}
                             >
                               Pondok Indah
@@ -206,17 +207,17 @@ class Footer extends Component {
                               JL. Metro Pondok Indah TB27, No. 167
                               <br />
                             </span>
-                            <span className="footer-sub-link">
+                            <p style={{ marginTop: 0, marginBottom: 0, lineHeight: '26px' }} className="footer-sub-link">
                               +62 21-2245-7333
-                            </span>
-                          </Link>
+                            </p>
+                          </div>
                         </li>
                         <li className="mt--05">
-                          <Link to="/" style={{ cursor: "default" }}>
+                          <div>
                             <span
                               style={{
+                                fontSize: '10px',
                                 fontWeight: "bold",
-                                textDecoration: "underline"
                               }}
                             >
                               Kelapa Gading
@@ -226,10 +227,10 @@ class Footer extends Component {
                               JL. Boulevard Barat Raya Blok XC No. 2A
                               <br />
                             </span>
-                            <span className="footer-sub-link">
+                            <p style={{ marginTop: 0, marginBottom: 0, lineHeight: '26px' }} className="footer-sub-link">
                               +62 21-2245-7333
-                            </span>
-                          </Link>
+                            </p>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -238,9 +239,10 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/" style={{ cursor: "default" }}>
+                          <div>
                             <span
                               style={{
+                                fontSize: '10px',
                                 fontWeight: "bold",
                                 textDecoration: "underline"
                               }}
@@ -248,7 +250,7 @@ class Footer extends Component {
                               TANGERANG
                             </span>
                             <br />
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold",fontSize: '10px', }}>
                               Supermall Karawaci
                             </span>
                             <br />
@@ -256,15 +258,16 @@ class Footer extends Component {
                               UG Floor JL. Boulevard Diponegoro 105 Karawaci
                               <br />
                             </span>
-                            <span className="footer-sub-link">
+                            <p style={{ marginTop: 0, marginBottom: 0, lineHeight: '26px' }} className="footer-sub-link">
                               +62 21-5420-0454
-                            </span>
-                          </Link>
+                            </p>
+                          </div>
                         </li>
                         <li className="mt--05">
-                          <Link to="/" style={{ cursor: "default" }}>
+                          <div>
                             <span
                               style={{
+                                fontSize: '10px',
                                 fontWeight: "bold",
                                 textDecoration: "underline"
                               }}
@@ -272,7 +275,7 @@ class Footer extends Component {
                               BOGOR
                             </span>
                             <br />
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold",fontSize: '10px', }}>
                               Botani Square
                             </span>
                             <br />
@@ -280,10 +283,10 @@ class Footer extends Component {
                               LG Floor JL. Raya Padjajaran No. 69-71
                               <br />
                             </span>
-                            <span className="footer-sub-link">
+                            <p style={{ marginTop: 0, marginBottom: 0, lineHeight: '26px' }} className="footer-sub-link">
                               +62 251-8400-669
-                            </span>
-                          </Link>
+                            </p>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -292,9 +295,10 @@ class Footer extends Component {
                     <div>
                       <ul>
                         <li>
-                          <Link to="/" style={{ cursor: "default" }}>
+                          <div>
                             <span
                               style={{
+                                fontSize: '10px',
                                 fontWeight: "bold",
                                 textDecoration: "underline"
                               }}
@@ -302,7 +306,7 @@ class Footer extends Component {
                               BALI
                             </span>
                             <br />
-                            <span style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold", fontSize: '10px', }}>
                               Level 21 Bali
                             </span>
                             <br />
@@ -310,10 +314,10 @@ class Footer extends Component {
                               JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru
                               <br />
                             </span>
-                            <span className="footer-sub-link">
+                            <p style={{ marginTop: 0, marginBottom: 0, lineHeight: '26px' }} className="footer-sub-link">
                               +62 361-3352-195
-                            </span>
-                          </Link>
+                            </p>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -385,7 +389,7 @@ class Footer extends Component {
                   <div className="fx align-items-center">
                     <div className="footer-download-icon fx justify-content-end align-items-center">
                       <p className="mr--1 mb--0 text--size-12">Temukan Kami</p>
-                      <div>
+                      <div className="circle--social">
                         <a
                           className="footer--social-icon"
                           target="_blank"
@@ -394,7 +398,7 @@ class Footer extends Component {
                           <FontAwesomeIcon icon={faFacebookF} color="#fff" />
                         </a>
                       </div>
-                      <div>
+                      <div className="circle--social">
                         <a
                           className="footer--social-icon"
                           target="_blank"
@@ -403,7 +407,7 @@ class Footer extends Component {
                           <FontAwesomeIcon icon={faInstagram} color="#fff" />
                         </a>
                       </div>
-                      <div>
+                      <div className="circle--social">
                         <FontAwesomeIcon icon={faYoutube} color="#fff" />
                       </div>
                     </div>
