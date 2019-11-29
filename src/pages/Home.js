@@ -239,6 +239,7 @@ class Home extends Component {
                     }}>
                       <div className="product-card-image">
                         <img
+                          style={{ objectFit: 'cover' }}
                           src={
                             item.banner != null
                               ? item.banner
