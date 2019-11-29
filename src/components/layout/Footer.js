@@ -366,7 +366,7 @@ class Footer extends Component {
                         alt=""
                       />
                       <img
-                        style={{ width: 30, marginRight: 10 }}
+                        style={{ width: 30, height: 15, marginRight: 10 }}
                         src={require("../../assets/img/home-credit-logo.png")}
                         alt=""
                       />
