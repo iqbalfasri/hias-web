@@ -40,6 +40,8 @@ class Signup extends Component {
         alert("Fill the field");
       } else if (password !== confirmPassword) {
         alert("Password yang dimasukan tidak sama");
+      } else if (phone.length < 12) {
+        alert("Harap masukan nomor telepon dengan benar");
       } else {
         const response = await axios.post(`${BASE_URL}/register`, {
           name,

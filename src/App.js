@@ -31,6 +31,8 @@ import News from "./pages/Articles/News";
 import Order from "./pages/product/Order";
 import OrderDetail from "./pages/product/OrderDetail";
 
+import ForgotPassword from './pages/auth/ForgotPassword';
+
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/layout/Modal";
@@ -143,6 +145,7 @@ class App extends Component {
           <Route path="/event" component={Event} />
           <Route path="/review" component={Review} exact={true} />
           <Route path="/review/add" component={AddReview} />
+          <Route path="/forgot-password" component={ForgotPassword} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
