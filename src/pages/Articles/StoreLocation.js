@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import "./Articles.scss";
@@ -31,9 +31,9 @@ class StoreLocation extends Component {
                       </Link>
                     </li>
                     <li>
-                    <Link to="/contact">
-                      <h3>Hubungi Kami</h3>
-                    </Link>
+                      <Link to="/contact">
+                        <h3>Hubungi Kami</h3>
+                      </Link>
                     </li>
                     <li>
                       <Link to="/faq">
@@ -78,24 +78,93 @@ class StoreLocation extends Component {
                     <div className="col-md-4">
                       <div className="store-location">
                         <ul>
-                          <li className="mb--2" style={{minHeight:120}}>Jakarta<br/>Fanda’s Senopati 66 lt. 3 SCBD<br/>+62 878-2088-8321</li>
-                          <li style={{minHeight:120}}>Jakarta<br/>Pondok Indah<br/> JL. Metro Pondok Indah TB27, No. 167<br/>+62 21-2245-7333</li>
+                          <li style={{ minHeight: 125 }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
+                              Jakarta
+                            </span>
+                            <br />
+                            <span>Fanda’s Senopati 66 lt. 3 SCBD</span>
+                            <br />
+                            +62 878-2088-8321
+                          </li>
+                          <li style={{ minHeight: 125 }}>
+                            <span style={{ fontWeight: "bold" }}>
+                              Pondok Indah
+                            </span>
+                            <br /> JL. Metro Pondok Indah TB27, No. 167
+                            <br />
+                            +62 21-2245-7333
+                          </li>
+                          <li style={{ minHeight: 125 }}>
+                            <span style={{ fontWeight: "bold" }}>
+                              Kelapa Gading
+                            </span>
+                            <br /> JL. Boulevard Barat Raya Blok XC No. 2A
+                            <br />
+                            +62 21-2245-7333
+                          </li>
                         </ul>
                       </div>
                     </div>
                     <div className="col-md-4">
-                      <div>
+                      <div className="store-location">
                         <ul>
-                          <li className="mb--2" style={{minHeight:120}}>Jakarta<br/>Kelapa Gading<br/> JL. Boulevard Barat Raya Blok XC No. 2A<br/>+62 21-2245-7333</li>
-                          <li style={{minHeight:120}}>Tangerang<br/>Supermall Karawaci UG Floor JL. Boulevard Diponegoro 105 Karawaci<br/>+62 21-5420-0454</li>
+                          <li style={{ minHeight: 125 }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
+                              Tangerang
+                            </span>
+                            <br />
+                            Supermall Karawaci <br />
+                            UG Floor JL. Boulevard Diponegoro 105 Karawaci
+                            <br />
+                            +62 21-5420-0454
+                          </li>
+
+                          <li style={{ minHeight: 125 }}>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
+                              Bogor
+                            </span>
+                            <br />
+                            Botani Square LG Floor JL. Raya Padjajaran No. 69-71
+                            <br />
+                            +62 251-8400-669
+                          </li>
                         </ul>
                       </div>
                     </div>
                     <div className="col-md-4">
-                      <div>
+                      <div className="store-location">
                         <ul>
-                          <li className="mb--2" style={{minHeight:120}}>Bogor<br/>Botani Square LG Floor JL. Raya Padjajaran No. 69-71<br/>+62 251-8400-669</li>
-                          <li style={{minHeight:120}}>Bali<br/>Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod Denpasar Baru<br/>+62 361-3352-195</li>
+                          <li>
+                            <span
+                              style={{
+                                fontWeight: "bold",
+                                textDecoration: "underline"
+                              }}
+                            >
+                              Bali
+                            </span>
+                            <br />
+                            Level 21 Bali JL. Teuku Umar No. 1 Dauh Puri Klod
+                            Denpasar Baru
+                            <br />
+                            +62 361-3352-195
+                          </li>
                         </ul>
                       </div>
                     </div>
