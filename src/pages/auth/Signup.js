@@ -48,7 +48,7 @@ class Signup extends Component {
           email,
           username: email,
           password: password,
-          telp: phone
+          telp: `0${phone}`
         });
 
         const { data } = await response;
@@ -157,13 +157,31 @@ class Signup extends Component {
                         />
                       </div>
                       <div className="form--group">
-                        <input
-                          type="tel"
-                          value={this.state.phone}
-                          onChange={e => this.onChangePhone(e)}
-                          className="form--input"
-                          placeholder="+62"
-                        />
+                        <div
+                          style={{
+                            alignItems: "center",
+                            display: "flex",
+                            width: "100%",
+                            padding: "5px",
+                            border: "1px solid #ccc",
+                            borderRadius: "5px"
+                          }}
+                        >
+                          <span style={{ padding: "0 10px" }}>+62</span>
+                          <input
+                            style={{
+                              width: "100%",
+                              outline: "none",
+                              padding: "5px",
+                              margin: " 0 0",
+                              border: "none"
+                            }}
+                            type="tel"
+                            value={this.state.phone}
+                            onChange={e => this.onChangePhone(e)}
+                            placeholder="e.g 821xxxxxxx"
+                          />
+                        </div>
                       </div>
                       <div className="form--group">
                         <input
