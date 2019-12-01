@@ -39,7 +39,8 @@ class Detail extends Component {
       wishListItems: [],
       showAll: false,
       couriers: [],
-      idProduct: null
+      idProduct: null,
+      picture: []
     };
   }
 
@@ -356,6 +357,11 @@ class Detail extends Component {
         prevEl: ".swiper-button-prev"
       }
     };
+
+    const pict = product !== null && product.picture.length !== 0 ? Object.values(product.picture[0]) : [];
+
+    let allPicts = product !== null ? [product.thumbnail, ...pict] : [];
+
     const arrayImage =
       product !== null
         ? [
@@ -390,7 +396,7 @@ class Detail extends Component {
                     <div>
                       <div className="mb--1">
                         <Swiper {...swipperConfig}>
-                          {arrayImage.map((image, index) => (
+                          {allPicts.map((image, index) => (
                             <img
                               style={{ width: "100%" }}
                               src={image}

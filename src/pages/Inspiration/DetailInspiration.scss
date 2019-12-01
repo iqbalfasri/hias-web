@@ -1,12 +1,10 @@
 @import '../../assets/scss/global/var';
 
 .banner-inspiration{
-    width: 90%;
-    height: 200px;
-    margin: 20px auto;
+    width: 100%;
+    height: 400px;
     background-size: cover;
-    background-color: $mainColor;
-    background-blend-mode: color-burn;
+    background-position: center;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -19,7 +17,7 @@
         color: white;
     }
 
-    p{  
+    p{
         margin: 0;
         font-size: 18px;
         color: white;
