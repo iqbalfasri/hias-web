@@ -11,7 +11,6 @@ import ThankYou from "./pages/ThankYou";
 import Wallet from "./pages/Wallet";
 import DashboardWallet from "./pages/Wallet/Dashboard";
 import Login from "./pages/auth/Login";
-import Signup from "./pages/auth/Signup";
 import Inspiration from "./pages/Inspiration";
 import Search from "./pages/Search";
 import Wishlist from "./pages/product/Wishlist";
@@ -37,6 +36,8 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/layout/Modal";
 import Signin from "./components/auth/Signin";
+import Signup from "./components/auth/Signup";
+import Register from "./pages/auth/Register";
 import Checkbox from "./components/form/Checkbox";
 import { withContext } from "./context/withContext";
 import DetailInspiration from "./pages/Inspiration/DetailInspiration";
@@ -103,7 +104,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={Home} exact={true} />
           <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/signup" component={Register} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/about" component={AboutUs} />

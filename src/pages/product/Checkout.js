@@ -680,6 +680,24 @@ class Checkout extends Component {
     }
   }
 
+  handleFinisOrder() {
+    // window.location.href = '/order';
+    let cartId = localStorage.getItem("userId");
+    let token = localStorage.getItem("token");
+    axios
+      .delete(`${BASE_URL}/product/${cartId}/deleteCart`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        if (res.data.success) {
+          window.location.href = "/order";
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   renderCheckoutForm() {
     const { activeSteps } = this.state;
 
@@ -702,7 +720,7 @@ class Checkout extends Component {
                     className="btn btn--blue"
                     onClick={() => this.onProcessTab1()}
                   >
-                    Next
+                    Selanjutnya
                   </button>
                 </div>
               </div>
@@ -782,7 +800,7 @@ class Checkout extends Component {
                     onClick={() => this.setState({ activeSteps: 1 })}
                     className="btn btn--primary"
                   >
-                    Back
+                    Kembali
                   </button>
                 </div>
               </div>
@@ -792,7 +810,7 @@ class Checkout extends Component {
                     className="btn btn--full btn--blue"
                     onClick={() => this.onProcessTab2()}
                   >
-                    Continue to Payment
+                    Lanjut ke Pembayaran
                   </button>
                 </div>
               </div>
@@ -810,10 +828,10 @@ class Checkout extends Component {
               <div className="col">
                 <div>
                   <button
-                    onClick={() => this.setState({ activeSteps: 1 })}
+                    onClick={() => this.setState({ activeSteps: 2 })}
                     className="btn btn--primary"
                   >
-                    Back
+                    Kembali
                   </button>
                 </div>
               </div>
@@ -821,9 +839,17 @@ class Checkout extends Component {
                 <div className="text--right">
                   <button
                     className="btn btn--blue"
-                    onClick={() => this.setState({ activeSteps: 4 })}
+                    onClick={() => {
+                      let orderCount = JSON.parse(localStorage.getItem('orderCount'))
+                      if (orderCount == 0 || orderCount == undefined) {
+                        localStorage.setItem('orderCount', JSON.stringify(1))
+                      } else {
+                        localStorage.setItem('orderCount', JSON.stringify(orderCount + 1))
+                      }
+                      this.setState({ activeSteps: 4 });
+                    }}
                   >
-                    Next
+                    Lanjut
                   </button>
                 </div>
               </div>
@@ -896,7 +922,17 @@ class Checkout extends Component {
                     onClick={() => this.setState({ activeSteps: 3 })}
                     className="btn btn--primary"
                   >
-                    Back
+                    Kembali
+                  </button>
+                </div>
+              </div>
+              <div className="col">
+                <div className="text--right">
+                  <button
+                    className="btn btn--full btn--blue"
+                    onClick={() => this.handleFinisOrder()}
+                  >
+                    Cek status Order
                   </button>
                 </div>
               </div>

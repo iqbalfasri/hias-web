@@ -40,7 +40,8 @@ class Detail extends Component {
       showAll: false,
       couriers: [],
       idProduct: null,
-      picture: []
+      picture: [],
+      freeze: false
     };
   }
 
@@ -84,7 +85,7 @@ class Detail extends Component {
       });
     }
 
-    console.log(this.state.wishListItems, "wish items")
+    console.log(this.state.wishListItems, "wish items");
   }
 
   componentDidUpdate(prevProps) {
@@ -345,20 +346,46 @@ class Detail extends Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product, freeze } = this.state;
     const { id } = this.props.match.params;
-    const swipperConfig = {
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+    const autoplay = {
+      delay: 3000,
+      disableOnInteraction: false
+    };
+    const swipperConfig = () => {
+      if (!freeze) {
+        return {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination"
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          },
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false
+          }
+        };
+      } else {
+        return {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination"
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          }
+        };
       }
     };
 
-    const pict = product !== null && product.picture.length !== 0 ? Object.values(product.picture[0]) : [];
+    const pict =
+      product !== null && product.picture.length !== 0
+        ? Object.values(product.picture[0])
+        : [];
 
     let allPicts = product !== null ? [product.thumbnail, ...pict] : [];
 
@@ -388,16 +415,17 @@ class Detail extends Component {
                 <div className="col-md-8">
                   <div>
                     <div>
-                      <h1>{product.productName}</h1>
+                      <h1 style={{ color: "#6c6e70" }}>{product.productName}</h1>
                       <h2 className="text--color-orange">
                         IDR {formatMoneyWithoutSymbol(product.price)} / Item
                       </h2>
                     </div>
                     <div>
                       <div className="mb--1">
-                        <Swiper {...swipperConfig}>
+                        <Swiper {...swipperConfig()}>
                           {allPicts.map((image, index) => (
                             <img
+                              onClick={e => this.setState({ freeze: true })}
                               style={{ width: "100%" }}
                               src={image}
                               alt={product.productName}
@@ -465,7 +493,7 @@ class Detail extends Component {
                         />
                       </div>
                       <div>
-                        <span>Average Score</span>
+                        <span style={{ color: "#6c6e70" }}>Average Score</span>
                       </div>
                     </div>
                     <div className="product-detail-tab">
@@ -478,7 +506,7 @@ class Detail extends Component {
                           }`}
                           onClick={() => this.setState({ activeDetailTab: 1 })}
                         >
-                          <span>Tinjauan</span>
+                          <span style={{ color: "#6c6e70" }}>Tinjauan</span>
                         </div>
                         <div
                           className={`pdt--tab-item ${
@@ -488,7 +516,7 @@ class Detail extends Component {
                           }`}
                           onClick={() => this.setState({ activeDetailTab: 2 })}
                         >
-                          <span>Detil</span>
+                          <span style={{ color: "#6c6e70" }}>Detil</span>
                         </div>
                         <div
                           className={`pdt--tab-item ${
@@ -498,7 +526,7 @@ class Detail extends Component {
                           }`}
                           onClick={() => this.setState({ activeDetailTab: 3 })}
                         >
-                          <span>Kurir</span>
+                          <span style={{ color: "#6c6e70" }}>Kurir</span>
                         </div>
                       </div>
                       <div className="pdt--tab-content">
@@ -506,7 +534,7 @@ class Detail extends Component {
                       </div>
                     </div>
                     <div className="product-detail-variant">
-                      <h3>Varian Lainnya</h3>
+                      <h3 style={{ color: "#6c6e70" }}>Varian Lainnya</h3>
                       <div className="row" style={{ paddingLeft: "1.3em" }}>
                         {this.state.variant !== null
                           ? this.state.variant.map((p, index) => {
@@ -532,7 +560,7 @@ class Detail extends Component {
                                         alt=""
                                       />
                                     </div>
-                                    <p>
+                                    <p style={{ color: "#6c6e70" }}>
                                       {p.productName.substring(
                                         p.productName.length - 8,
                                         p.productName.length
@@ -549,7 +577,7 @@ class Detail extends Component {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="product-detail-variant">
-                        <h3>Pilihan Warna</h3>
+                        <h3 style={{ color: "#6c6e70" }}>Pilihan Warna</h3>
                         <div>
                           <ColorSelector colors={this.state.colors} />
                         </div>

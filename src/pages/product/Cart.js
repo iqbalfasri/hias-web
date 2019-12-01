@@ -67,7 +67,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    const userId = localStorage.getItem("userId");
+    const userId = JSON.parse(localStorage.getItem("userId"));
     if (!isLogin()) {
       this.props.history.push("/login");
     }
@@ -153,7 +153,7 @@ class Cart extends Component {
                 name="quantity"
                 className="form--input"
                 maxLength={6}
-                min="3"
+                min="0"
               />
             </td>
             <td>
@@ -331,7 +331,10 @@ class Cart extends Component {
                                 style={{ textDecoration: "line-through" }}
                                 className="mr--1"
                               >
-                                IDR {formatMoneyWithoutSymbol(this.getTotalCartPricBeforeCoupon())}
+                                IDR{" "}
+                                {formatMoneyWithoutSymbol(
+                                  this.getTotalCartPricBeforeCoupon()
+                                )}
                               </h3>
                             </div>
                           </>

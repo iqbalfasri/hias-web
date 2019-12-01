@@ -229,15 +229,18 @@ class Home extends Component {
               return (
                 <div className="product-slide-with-number" key={i}>
                   <div className="product-card">
-                    <Link key={i} to={{
-                      pathname: `/inspiration/detail/${item.id}`,
-                       state: {
-                        description: item.description
-                      }
-                    }}>
+                    <Link
+                      key={i}
+                      to={{
+                        pathname: `/inspiration/detail/${item.id}`,
+                        state: {
+                          description: item.description
+                        }
+                      }}
+                    >
                       <div className="product-card-image">
                         <img
-                          style={{ objectFit: 'cover' }}
+                          style={{ objectFit: "cover" }}
                           src={
                             item.banner != null
                               ? item.banner
@@ -250,14 +253,15 @@ class Home extends Component {
                         <div className="product-card-wrapper">
                           <div className="fx justify-content-between fx-no-wrap">
                             <div>
-                              <p className="mb--0 text--color-black"><strong>{item.title}</strong></p>
+                              <p className="mb--0 text--color-black">
+                                <strong>{item.title}</strong>
+                              </p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </Link>
                   </div>
-
                 </div>
               );
             })}
@@ -294,7 +298,10 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0">
+                    <h3
+                      style={{ color: "#6c6e70" }}
+                      className="section-title mb--0"
+                    >
                       Produk
                     </h3>
                   </div>
@@ -315,7 +322,10 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0">
+                    <h3
+                      style={{ color: "#6c6e70" }}
+                      className="section-title mb--0"
+                    >
                       Produk{" "}
                       <span className="text--color-orange">Terlaris</span>
                     </h3>
@@ -337,7 +347,7 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0">
+                    <h3 style={{ color: "#6c6e70" }} className="section-title mb--0">
                       Produk <span className="text--color-orange">Pilihan</span>
                     </h3>
                   </div>
@@ -375,19 +385,22 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 className="section-title mb--0">Inspirasi <span className="text--color-blue">HIAS House</span></h3>
+                    <h3 style={{ color: "#6c6e70" }} className="section-title mb--0">
+                      Inspirasi{" "}
+                      <span className="text--color-blue">HIAS House</span>
+                    </h3>
                   </div>
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/">View All</Link>
+                    <Link className="text--size-12" to="/">
+                      View All
+                    </Link>
                   </div>
                 </div>
               </div>
               <div className="row">
-                <div className="col">
-                  {this.renderInspiration()}
-                </div>
+                <div className="col">{this.renderInspiration()}</div>
               </div>
             </div>
           </section>
