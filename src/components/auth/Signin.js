@@ -13,7 +13,7 @@ class Signin extends Component {
     super(props);
 
     this.state = {
-      username: "",
+      username: "" || localStorage.getItem('sugestLatestLogin'),
       password: "",
       logging: false,
       showModal: false,
