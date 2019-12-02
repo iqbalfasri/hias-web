@@ -529,11 +529,6 @@ class Checkout extends Component {
               />
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="form--group">
-              <Checkbox id="step1check" text="save Shipping Detail?" />
-            </div>
-          </div>
         </div>
         <button
           className="btn btn--full btn--blue"
