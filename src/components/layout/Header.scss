@@ -59,14 +59,15 @@ header {
 
       &:hover {
         a {
-          border-bottom: 2px solid $mainTextColor;
+          border-bottom: 2px solid #6c6e70;
         }
       }
     }
 
     a {
       font-weight: 700;
-      color: $mainTextColor;
+      color: #6c6e70;
+      // color: $mainTextColor;
       white-space: nowrap;
       font-size: 12px;
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import "./Articles.scss";
@@ -31,9 +31,9 @@ class AboutUs extends Component {
                       </Link>
                     </li>
                     <li>
-                    <Link to="/contact">
-                      <h3>Hubungi Kami</h3>
-                    </Link>
+                      <Link to="/contact">
+                        <h3>Hubungi Kami</h3>
+                      </Link>
                     </li>
                     <li>
                       <Link to="/faq">
@@ -74,36 +74,56 @@ class AboutUs extends Component {
                 </div>
                 <div className="col-md-8">
                   <p>
-                    HIAS House menyediakan berbagai pilihan furniture, dekorasi,
-                    dan perlengkapan rumah dengan mengedepankan konsep Modern
-                    dan Stylish yang cocok untuk keluarga masa kini yang dinamis
-                    dan modern juga generasi muda yang trendi dan semua kalangan
-                    urban.
+                    Hi!
                     <br />
+                    Terima kasih sudah berkunjung ke website Kami
                   </p>
-                  <div className="article-image">
-                    <img src={require('../../assets/img/Banner-Newsletter.png')} alt=""/>
-                  </div>
+                  {/* <div className="article-image">
+                    <img
+                      src={require("../../assets/img/Banner-Newsletter.png")}
+                      alt=""
+                    />
+                  </div> */}
                   <p>
+                    Perkenalkan, Kami HIAS House yang dikelola oleh PT HIAS
+                    Ritel Indonesia. HIAS House mulai melayani Anda pada tahun
+                    2016 yang telah hadir di beberapa store di area Jakarta dan
+                    Bali.
                     <br />
-                    Kami ingin membantu Anda mewujudkan rumah impian yang
-                    estetik dan dapat menjadikan kami sebagai teman stylist
-                    anda. HIAS House menyediakan varian produk furnitur yang
-                    unik, dekorasi dan perlengkapan rumah yang telah melewati
-                    proses kurasi dari Home Stylist profesional. Kami
-                    menyelaraskan warna, gaya dan desain untuk menciptakan
-                    harmonisasi ruang dan kenyamanan Anda. HIAS House membagi
-                    kategori produk menjadi 5 departemen yaitu living, bedroom,
-                    bathroom, dining dan kitchen.
+                    HIAS House menyediakan berbagai pilihan furnitur, home decor
+                    dan perlengkapan rumah dengan mengedepankan konsep{" "}
+                    <strong>
+                      <i>Modern</i>
+                    </strong>{" "}
+                    dan{" "}
+                    <strong>
+                      <i>Stylish</i>
+                    </strong>
+                    .
+                    <br />
+                    <br />
+                    HIAS House hadir untuk membantu Anda mewujudkan rumah impian
+                    yang estetik dan berkualitas, karena Kami percaya kenyamanan
+                    berawal dari rumah.
+                    <br />
+                    <br /> Kami menyediakan varian produk furnitur yang unik,
+                    dekorasi dan perlengkapan rumah yang telah melewati proses
+                    kurasi dari stylist profesional.
+                    <br />
+                    <br />
+                    Kami menyelaraskan warna, gaya dan desain untuk menciptakan
+                    harmonisasi ruang untuk menambah kenyamanan Anda. HIAS House
+                    membagi kategori produk menjadi 5 departemen yaitu living,
+                    bedroom, bathroom, dining dan kitchen.
                   </p>
-                  <h3>
-                    PT Hias Ritel Indonesia
-                  </h3>
+                  <br />
+                  <h3>PT Hias Ritel Indonesia</h3>
                   <p>
-                    Jl. Raya Boulevard Barat Blok XC No.2A. <br/>
-                    Kelapa Gading, Jakarta 14240 - Indonesia<br/>
-                    P +6221 2245 7333<br/>
-                    F +6221 2245 7334
+                    Jl. Raya Boulevard Barat Blok XC No.2A. <br />
+                    Kelapa Gading, Jakarta 14240 - Indonesia
+                    <br />
+                    P +6221 2245 7333
+                    <br />F +6221 2245 7334
                   </p>
                 </div>
               </div>

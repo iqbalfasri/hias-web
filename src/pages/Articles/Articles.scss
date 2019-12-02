@@ -18,6 +18,7 @@
 .about-content {
   padding: 20px;
   p {
+    padding-top: 20px;
     padding-inline-start: 20px;
     line-height: 24px;
   }
@@ -87,8 +88,10 @@
   color: #000;
 
   ul{
+    list-style: none;
+    padding-inline-start: 20px;
     li {
       color: rgb(58, 58, 58)
     }
-  }  
+  }
 }

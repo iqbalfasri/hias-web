@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import { BASE_URL, getOrderProgress } from "../../api";
 
@@ -80,11 +80,21 @@ class Order extends Component {
     }
   }
 
+  getOrderDetail() {
+    let orderHasNotRead = JSON.parse(localStorage.getItem("orderCount"));
+    if (orderHasNotRead == 0 || orderHasNotRead == undefined) {
+      localStorage.removeItem("orderCount");
+    } else {
+      localStorage.setItem("orderCount", orderHasNotRead - 1);
+    }
+  }
+
   renderEachOrder(data) {
     if (data !== undefined) {
       return this.state.orderData.map(order => {
         return (
           <a
+            onClick={() => this.getOrderDetail()}
             key={order.orderId}
             href={`/order/detail/${order.orderId}`}
             className="row row-order row-order--link"

@@ -100,7 +100,7 @@ class ProductCard extends Component {
               <Link to={`/products/detail/${id}`}>
                 <div>
                   <p className="mb--0 text--color-gray">{category}</p>
-                  <p className="mb--0 text--color-black">
+                  <p className="mb--0" style={{ color: "#6c6e70" }}>
                     <strong>{title}</strong>
                   </p>
                 </div>

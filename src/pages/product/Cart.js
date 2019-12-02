@@ -67,7 +67,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    const userId = localStorage.getItem("userId");
+    const userId = JSON.parse(localStorage.getItem("userId"));
     if (!isLogin()) {
       this.props.history.push("/login");
     }
@@ -89,12 +89,12 @@ class Cart extends Component {
   // }
 
   onChangeQuantity(e, index) {
-    const value = e.target.value;
-    const quantity = this.state.cartsQuantity;
-    quantity[index] = value;
-    this.setState({
-      cartsQuantity: quantity
-    });
+    // const value = e.target.value;
+    // const quantity = this.state.cartsQuantity;
+    // quantity[index] = value;
+    // this.setState({
+    //   cartsQuantity: quantity
+    // });
   }
 
   onRemoveCart(index, productId) {
@@ -118,10 +118,34 @@ class Cart extends Component {
       });
   }
 
+  handleIncrement = cart => {
+    const carts = [...this.state.carts];
+    const index = carts.indexOf(cart);
+
+    if (carts[index].qty) {
+      carts[index].qty += 1;
+      this.setState({ carts });
+    }
+  };
+
+  handleDecrement = cart => {
+    const carts = [...this.state.carts];
+    const index = carts.indexOf(cart);
+
+    if (carts[index].qty == 1) {
+      return;
+    }
+
+    if (carts[index].qty) {
+      carts[index].qty -= 1;
+      this.setState({ carts });
+    }
+  };
+
   renderCart() {
     if (this.state.carts.length !== 0) {
       return this.state.carts.map((cart, index) => {
-        const quantity = this.state.cartsQuantity[index] || 1;
+        const quantity = this.state.carts[index].qty || 1;
         return (
           <tr key={`${cart.idItems}-${index}`}>
             <th scope="row">
@@ -145,21 +169,21 @@ class Cart extends Component {
               <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
             </td>
             <td>
+              <button className="btn btn--primary mr--1" onClick={() => this.handleDecrement(cart)}>-</button>
               <input
-                style={{ width: "50px" }}
-                onChange={e => this.onChangeQuantity(e, index)}
+                style={{ width: "50px", height: '34px' }}
                 value={quantity}
-                type="number"
+                type="text"
                 name="quantity"
                 className="form--input"
-                maxLength={6}
-                min="3"
+                pattern="[0-9]*"
               />
+              <button className="btn btn--blue ml--1" onClick={() => this.handleIncrement(cart)}>+</button>
             </td>
             <td>
               <span>
                 <strong>
-                  IDR {formatMoneyWithoutSymbol(quantity * cart.price)}
+                  IDR {formatMoneyWithoutSymbol(cart.qty * cart.price)}
                 </strong>
               </span>
             </td>
@@ -185,7 +209,8 @@ class Cart extends Component {
     const { cartsQuantity, carts } = this.state;
     let total = 0;
     for (let i = 0; i < carts.length; i++) {
-      const itemAmount = cartsQuantity[i] || 1;
+      const itemAmount = carts[i].qty || 1;
+      // const itemAmount = cartsQuantity[i] || 1;
       total = total + itemAmount * carts[i].price;
     }
 
@@ -205,14 +230,18 @@ class Cart extends Component {
   }
 
   handlePopup() {
-    this.setState(
-      {
-        relatedPopup: !this.state.relatedPopup
-      },
-      () => {
-        localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
-      }
-    );
+    if (this.state.carts.length == 0) {
+      alert("Maaf cart kamu kosong, ayo belanja dulu");
+    } else {
+      this.setState(
+        {
+          relatedPopup: !this.state.relatedPopup
+        },
+        () => {
+          localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
+        }
+      );
+    }
   }
 
   handleCouponText(e) {
@@ -287,7 +316,7 @@ class Cart extends Component {
                           <tr>
                             <th scope="col">ITEM DETAIL</th>
                             <th scope="col">PRICE</th>
-                            <th scope="col">QTY</th>
+                            <th scope="col"><span style={{ textAlign: 'center' }}>QTY</span></th>
                             <th scope="col">TOTAL</th>
                           </tr>
                         </thead>
@@ -331,7 +360,10 @@ class Cart extends Component {
                                 style={{ textDecoration: "line-through" }}
                                 className="mr--1"
                               >
-                                IDR {formatMoneyWithoutSymbol(this.getTotalCartPricBeforeCoupon())}
+                                IDR{" "}
+                                {formatMoneyWithoutSymbol(
+                                  this.getTotalCartPricBeforeCoupon()
+                                )}
                               </h3>
                             </div>
                           </>
@@ -358,7 +390,7 @@ class Cart extends Component {
                             onClick={() => this.handlePopup()}
                             className="btn btn--blue btn--full"
                           >
-                            Proceed to Checkout
+                            Proses pembelian
                           </button>
                         </div>
                       </div>

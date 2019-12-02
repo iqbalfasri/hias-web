@@ -109,11 +109,11 @@ class Header extends Component {
   }
 
   onLogout() {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("promo");
-    localStorage.removeItem("userProfile");
-    window.location.href = "/";
+    this.props.context.setModalLogout(true);
+    // localStorage.removeItem("userId");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("userProfile");
+    // window.location.href = "/";
   }
 
   onClickCartIcon() {
@@ -205,6 +205,13 @@ class Header extends Component {
     );
   }
 
+  renderOrderCount() {
+    let orderHasNotRead = JSON.parse(localStorage.getItem("orderCount"));
+    return orderHasNotRead == 0 || orderHasNotRead == undefined ? null : (
+      <div className="cart--count">{orderHasNotRead}</div>
+    );
+  }
+
   handleTest() {
     let arr = [];
     let arrObj = [
@@ -238,8 +245,8 @@ class Header extends Component {
   }
 
   getFirstName(fullName) {
-    let firstName = fullName.split(' ');
-    return firstName[0]
+    let firstName = fullName.split(" ");
+    return firstName[0];
   }
 
   renderTopIcon() {
@@ -248,12 +255,12 @@ class Header extends Component {
         <div className="fx mr--1 align-items-center">
           <div className="mr--1">
             <Link to="/" className="btn btn--transparent">
-              <span className="text--size-12">Beranda</span>
+              <span style={{ color: "#6c6e70" }} className="text--size-12">Beranda</span>
             </Link>
           </div>
           <div>
             <Link to="/about" className="btn btn--transparent">
-              <span className="text--size-12">Tentang Kami</span>
+              <span style={{ color: "#6c6e70" }} className="text--size-12">Tentang Kami</span>
             </Link>
           </div>
         </div>
@@ -276,6 +283,7 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-top-icon">
+            {this.renderOrderCount()}
             <div
               className="header-top-icon--image"
               onClick={() => (window.location.href = "/order")}
@@ -293,8 +301,11 @@ class Header extends Component {
                   alt=""
                 />
               </div>
-              <p>
-                Hi, {this.getFirstName(JSON.parse(localStorage.getItem("userProfile")).fullName)}
+              <p style={{ color: "#6c6e70" }}>
+                Hi,{" "}
+                {this.getFirstName(
+                  JSON.parse(localStorage.getItem("userProfile")).fullName
+                )}
               </p>
             </div>
             <div className="header--dropdown">

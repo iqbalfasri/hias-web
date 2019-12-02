@@ -125,11 +125,7 @@ class Checkout extends Component {
     this.props.context.setIsLoading(true);
     localStorage.setItem(
       "userAddress",
-      JSON.stringify(
-        this.state.addresses[
-          this.state.selectedIndexAddress
-        ]
-      )
+      JSON.stringify(this.state.addresses[this.state.selectedIndexAddress])
     );
     this.setState({ activeSteps: 2 }, () =>
       this.props.context.setIsLoading(false)
@@ -369,27 +365,50 @@ class Checkout extends Component {
   }
 
   handleAddAddress() {
-    this.props.context.setIsLoading(true);
-    addUserAddress({
-      userId: localStorage.getItem("userId"),
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      company: this.state.companyName,
-      country: this.state.country,
-      city: this.state.city,
-      address: this.state.address,
-      email: this.state.email,
-      phone: this.state.phone,
-      postCode: this.state.postalCode
-    })
-      .then(res => {
-        console.log(res);
-        this.props.context.setIsLoading(false);
-        this.setState({ isModalAddress: false });
+    let {
+      firstName,
+      lastName,
+      companyName,
+      country,
+      city,
+      address,
+      email,
+      postalCode
+    } = this.state;
+    if (
+      !firstName ||
+      !lastName ||
+      !companyName ||
+      !country ||
+      !city ||
+      !address ||
+      !email ||
+      !postalCode
+    ) {
+      alert("Form wajib diisi lengkap");
+    } else {
+      this.props.context.setIsLoading(true);
+      addUserAddress({
+        userId: localStorage.getItem("userId"),
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        company: this.state.companyName,
+        country: this.state.country,
+        city: this.state.city,
+        address: this.state.address,
+        email: this.state.email,
+        phone: this.state.phone,
+        postCode: this.state.postalCode
       })
-      .catch(error => {
-        console.log(error);
-      });
+        .then(res => {
+          console.log(res);
+          this.props.context.setIsLoading(false);
+          this.setState({ isModalAddress: false });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   renderAddAddress() {
@@ -510,11 +529,6 @@ class Checkout extends Component {
               />
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="form--group">
-              <Checkbox id="step1check" text="save Shipping Detail?" />
-            </div>
-          </div>
         </div>
         <button
           className="btn btn--full btn--blue"
@@ -529,9 +543,9 @@ class Checkout extends Component {
   checkOngkir = (courierType = "jne") => {
     return {
       origin: "155",
-      destination: JSON.parse(localStorage.getItem('userAddress')).city,
+      destination: JSON.parse(localStorage.getItem("userAddress")).city,
       originType: "city",
-      destinationType: 'city',
+      destinationType: "city",
       weight: "302",
       courier: courierType
     };
@@ -564,7 +578,7 @@ class Checkout extends Component {
         this.setState({ hargaOngkir: ongkir });
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
       });
   }
 
@@ -593,7 +607,16 @@ class Checkout extends Component {
                   }}
                   checked={this.state.courierSelected == index ? true : false}
                 />
-                <img width={60} src={courier == 'jne' ? require('../../assets/img/jne.jpeg') : courier == 'pos' ?  require('../../assets/img/pos-id.png') : require('../../assets/img/tiki-logo.png')} />
+                <img
+                  width={60}
+                  src={
+                    courier == "jne"
+                      ? require("../../assets/img/jne.jpeg")
+                      : courier == "pos"
+                      ? require("../../assets/img/pos-id.png")
+                      : require("../../assets/img/tiki-logo.png")
+                  }
+                />
               </div>
             );
           })}
@@ -652,6 +675,24 @@ class Checkout extends Component {
     }
   }
 
+  handleFinisOrder() {
+    // window.location.href = '/order';
+    let cartId = localStorage.getItem("userId");
+    let token = localStorage.getItem("token");
+    axios
+      .delete(`${BASE_URL}/product/${cartId}/deleteCart`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        if (res.data.success) {
+          window.location.href = "/order";
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   renderCheckoutForm() {
     const { activeSteps } = this.state;
 
@@ -674,7 +715,7 @@ class Checkout extends Component {
                     className="btn btn--blue"
                     onClick={() => this.onProcessTab1()}
                   >
-                    Next
+                    Selanjutnya
                   </button>
                 </div>
               </div>
@@ -738,7 +779,8 @@ class Checkout extends Component {
                     <h4 style={{ color: "#878786" }}>
                       IDR
                       {formatMoneyWithoutSymbol(
-                        JSON.parse(localStorage.getItem("subTotal")) + this.state.hargaOngkir
+                        JSON.parse(localStorage.getItem("subTotal")) +
+                          this.state.hargaOngkir
                       )}
                     </h4>
                   </div>
@@ -753,7 +795,7 @@ class Checkout extends Component {
                     onClick={() => this.setState({ activeSteps: 1 })}
                     className="btn btn--primary"
                   >
-                    Back
+                    Kembali
                   </button>
                 </div>
               </div>
@@ -763,7 +805,7 @@ class Checkout extends Component {
                     className="btn btn--full btn--blue"
                     onClick={() => this.onProcessTab2()}
                   >
-                    Continue to Payment
+                    Lanjut ke Pembayaran
                   </button>
                 </div>
               </div>
@@ -781,10 +823,10 @@ class Checkout extends Component {
               <div className="col">
                 <div>
                   <button
-                    onClick={() => this.setState({ activeSteps: 1 })}
+                    onClick={() => this.setState({ activeSteps: 2 })}
                     className="btn btn--primary"
                   >
-                    Back
+                    Kembali
                   </button>
                 </div>
               </div>
@@ -792,9 +834,17 @@ class Checkout extends Component {
                 <div className="text--right">
                   <button
                     className="btn btn--blue"
-                    onClick={() => this.setState({ activeSteps: 4 })}
+                    onClick={() => {
+                      let orderCount = JSON.parse(localStorage.getItem('orderCount'))
+                      if (orderCount == 0 || orderCount == undefined) {
+                        localStorage.setItem('orderCount', JSON.stringify(1))
+                      } else {
+                        localStorage.setItem('orderCount', JSON.stringify(orderCount + 1))
+                      }
+                      this.setState({ activeSteps: 4 });
+                    }}
                   >
-                    Next
+                    Lanjut
                   </button>
                 </div>
               </div>
@@ -867,7 +917,17 @@ class Checkout extends Component {
                     onClick={() => this.setState({ activeSteps: 3 })}
                     className="btn btn--primary"
                   >
-                    Back
+                    Kembali
+                  </button>
+                </div>
+              </div>
+              <div className="col">
+                <div className="text--right">
+                  <button
+                    className="btn btn--full btn--blue"
+                    onClick={() => this.handleFinisOrder()}
+                  >
+                    Cek status Order
                   </button>
                 </div>
               </div>

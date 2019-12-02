@@ -11,7 +11,6 @@ import ThankYou from "./pages/ThankYou";
 import Wallet from "./pages/Wallet";
 import DashboardWallet from "./pages/Wallet/Dashboard";
 import Login from "./pages/auth/Login";
-import Signup from "./pages/auth/Signup";
 import Inspiration from "./pages/Inspiration";
 import Search from "./pages/Search";
 import Wishlist from "./pages/product/Wishlist";
@@ -31,10 +30,14 @@ import News from "./pages/Articles/News";
 import Order from "./pages/product/Order";
 import OrderDetail from "./pages/product/OrderDetail";
 
+import ForgotPassword from "./pages/auth/ForgotPassword";
+
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/layout/Modal";
 import Signin from "./components/auth/Signin";
+import Signup from "./components/auth/Signup";
+import Register from "./pages/auth/Register";
 import Checkbox from "./components/form/Checkbox";
 import { withContext } from "./context/withContext";
 import DetailInspiration from "./pages/Inspiration/DetailInspiration";
@@ -67,22 +70,28 @@ class App extends Component {
     }
 
     // get total cart
-    let userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem("userId");
     if (userId !== null) {
       getCart(userId)
-      .then(res => {
-        this.props.context.setTotalCart(res.data.listItems.length);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+        .then(res => {
+          this.props.context.setTotalCart(res.data.listItems.length);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
-
   }
 
   onCloseModalPromo() {
     localStorage.setItem("promo", "true");
     this.props.context.setIsModalPromo(false);
+  }
+
+  handleLogout() {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userProfile");
+    window.location.href = "/";
   }
 
   render() {
@@ -92,7 +101,9 @@ class App extends Component {
       isModalSignupPopupOpen,
       setIsModalSignupPopupOpen,
       isLoading,
-      isModalPromo
+      isModalPromo,
+      modalLogout,
+      setModalLogout
     } = this.props.context;
 
     return (
@@ -101,7 +112,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={Home} exact={true} />
           <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/signup" component={Register} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/about" component={AboutUs} />
@@ -143,6 +154,7 @@ class App extends Component {
           <Route path="/event" component={Event} />
           <Route path="/review" component={Review} exact={true} />
           <Route path="/review/add" component={AddReview} />
+          <Route path="/forgot-password" component={ForgotPassword} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
@@ -169,6 +181,13 @@ class App extends Component {
         >
           <Signup />
         </Modal>
+        <Modal isOpen={modalLogout} onCloseModal={() => setModalLogout(false)}>
+          <h3 className="text--center mb-2">Apakah anda yakin ingin keluar?</h3>
+          <div className="row align-items-center" style={{ justifyContent: "space-evenly" }}>
+            <button className="btn btn--blue" onClick={() => this.handleLogout()}>Iya</button>
+            <button className="btn btn--primary" onClick={() => setModalLogout(false)}>Tidak</button>
+          </div>
+        </Modal>
         <div
           className="align-items-center"
           style={{
@@ -176,8 +195,8 @@ class App extends Component {
             height: 30,
             position: "fixed",
             bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            color: "#F96464",
+            backgroundColor: "#6d6e70",
+            color: "#fff",
             zIndex: 100
           }}
         >

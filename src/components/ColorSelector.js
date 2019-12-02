@@ -22,7 +22,7 @@ class ColorSelector extends Component {
     const { colorSelectedIndex } = this.state;
     const { colors } = this.props;
     return (
-      <div className="color-container">
+      <div style={{ color: "#6c6e70" }} className="color-container">
         {colors !== null
           ? colors.map((c, i) => {
               return (
