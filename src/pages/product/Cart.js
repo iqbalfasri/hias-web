@@ -89,12 +89,12 @@ class Cart extends Component {
   // }
 
   onChangeQuantity(e, index) {
-    const value = e.target.value;
-    const quantity = this.state.cartsQuantity;
-    quantity[index] = value;
-    this.setState({
-      cartsQuantity: quantity
-    });
+    // const value = e.target.value;
+    // const quantity = this.state.cartsQuantity;
+    // quantity[index] = value;
+    // this.setState({
+    //   cartsQuantity: quantity
+    // });
   }
 
   onRemoveCart(index, productId) {
@@ -122,30 +122,30 @@ class Cart extends Component {
     const carts = [...this.state.carts];
     const index = carts.indexOf(cart);
 
-    console.log(carts[index]);
     if (carts[index].qty) {
-      carts[index].qty++;
+      carts[index].qty += 1;
+      this.setState({ carts });
     }
-    this.setState({ carts });
   };
 
   handleDecrement = cart => {
     const carts = [...this.state.carts];
     const index = carts.indexOf(cart);
 
-    console.log(carts[index]);
-    if (carts[index].qty) {
-      carts[index].qty--;
-    } else {
+    if (carts[index].qty == 1) {
       return;
     }
-    this.setState({ carts });
+
+    if (carts[index].qty) {
+      carts[index].qty -= 1;
+      this.setState({ carts });
+    }
   };
 
   renderCart() {
     if (this.state.carts.length !== 0) {
       return this.state.carts.map((cart, index) => {
-        const quantity = this.state.cartsQuantity[index] || 1;
+        const quantity = this.state.carts[index].qty || 1;
         return (
           <tr key={`${cart.idItems}-${index}`}>
             <th scope="row">
@@ -169,18 +169,16 @@ class Cart extends Component {
               <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
             </td>
             <td>
-              <button onClick={() => this.handleDecrement(cart)}>-</button>
+              <button className="btn btn--primary mr--1" onClick={() => this.handleDecrement(cart)}>-</button>
               <input
-                style={{ width: "80px" }}
-                // onChange={e => this.onChangeQuantity(e, index)}
-                value={cart.qty}
-                type="number"
+                style={{ width: "50px", height: '34px' }}
+                value={quantity}
+                type="text"
                 name="quantity"
                 className="form--input"
                 pattern="[0-9]*"
-                min={1}
               />
-              <button onClick={() => this.handleIncrement(cart)}>+</button>
+              <button className="btn btn--blue ml--1" onClick={() => this.handleIncrement(cart)}>+</button>
             </td>
             <td>
               <span>
@@ -318,7 +316,7 @@ class Cart extends Component {
                           <tr>
                             <th scope="col">ITEM DETAIL</th>
                             <th scope="col">PRICE</th>
-                            <th scope="col">QTY</th>
+                            <th scope="col"><span style={{ textAlign: 'center' }}>QTY</span></th>
                             <th scope="col">TOTAL</th>
                           </tr>
                         </thead>
