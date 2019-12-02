@@ -118,6 +118,30 @@ class Cart extends Component {
       });
   }
 
+  handleIncrement = cart => {
+    const carts = [...this.state.carts];
+    const index = carts.indexOf(cart);
+
+    console.log(carts[index]);
+    if (carts[index].qty) {
+      carts[index].qty++;
+    }
+    this.setState({ carts });
+  };
+
+  handleDecrement = cart => {
+    const carts = [...this.state.carts];
+    const index = carts.indexOf(cart);
+
+    console.log(carts[index]);
+    if (carts[index].qty) {
+      carts[index].qty--;
+    } else {
+      return;
+    }
+    this.setState({ carts });
+  };
+
   renderCart() {
     if (this.state.carts.length !== 0) {
       return this.state.carts.map((cart, index) => {
@@ -145,21 +169,23 @@ class Cart extends Component {
               <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
             </td>
             <td>
+              <button onClick={() => this.handleDecrement(cart)}>-</button>
               <input
-                style={{ width: "50px" }}
-                onChange={e => this.onChangeQuantity(e, index)}
-                value={quantity}
+                style={{ width: "80px" }}
+                // onChange={e => this.onChangeQuantity(e, index)}
+                value={cart.qty}
                 type="number"
                 name="quantity"
                 className="form--input"
-                maxLength={6}
-                min="0"
+                pattern="[0-9]*"
+                min={1}
               />
+              <button onClick={() => this.handleIncrement(cart)}>+</button>
             </td>
             <td>
               <span>
                 <strong>
-                  IDR {formatMoneyWithoutSymbol(quantity * cart.price)}
+                  IDR {formatMoneyWithoutSymbol(cart.qty * cart.price)}
                 </strong>
               </span>
             </td>
@@ -185,7 +211,8 @@ class Cart extends Component {
     const { cartsQuantity, carts } = this.state;
     let total = 0;
     for (let i = 0; i < carts.length; i++) {
-      const itemAmount = cartsQuantity[i] || 1;
+      const itemAmount = carts[i].qty || 1;
+      // const itemAmount = cartsQuantity[i] || 1;
       total = total + itemAmount * carts[i].price;
     }
 
