@@ -30,7 +30,7 @@ import News from "./pages/Articles/News";
 import Order from "./pages/product/Order";
 import OrderDetail from "./pages/product/OrderDetail";
 
-import ForgotPassword from './pages/auth/ForgotPassword';
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -70,22 +70,28 @@ class App extends Component {
     }
 
     // get total cart
-    let userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem("userId");
     if (userId !== null) {
       getCart(userId)
-      .then(res => {
-        this.props.context.setTotalCart(res.data.listItems.length);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+        .then(res => {
+          this.props.context.setTotalCart(res.data.listItems.length);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
-
   }
 
   onCloseModalPromo() {
     localStorage.setItem("promo", "true");
     this.props.context.setIsModalPromo(false);
+  }
+
+  handleLogout() {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userProfile");
+    window.location.href = "/";
   }
 
   render() {
@@ -95,7 +101,9 @@ class App extends Component {
       isModalSignupPopupOpen,
       setIsModalSignupPopupOpen,
       isLoading,
-      isModalPromo
+      isModalPromo,
+      modalLogout,
+      setModalLogout
     } = this.props.context;
 
     return (
@@ -172,6 +180,13 @@ class App extends Component {
           onCloseModal={() => this.onCloseModalPromo()}
         >
           <Signup />
+        </Modal>
+        <Modal isOpen={modalLogout} onCloseModal={() => setModalLogout(false)}>
+          <h3 className="text--center mb-2">Apakah anda yakin ingin keluar?</h3>
+          <div className="row align-items-center" style={{ justifyContent: "space-evenly" }}>
+            <button className="btn btn--blue" onClick={() => this.handleLogout()}>Iya</button>
+            <button className="btn btn--primary" onClick={() => setModalLogout(false)}>Tidak</button>
+          </div>
         </Modal>
         <div
           className="align-items-center"

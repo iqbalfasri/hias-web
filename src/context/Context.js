@@ -24,7 +24,9 @@ export const Context = createContext(
       userProfile: null,
       setUserProfile: () => { },
       userId: null,
-      setUserId: () => { }
+      setUserId: () => { },
+      modalLogout: false,
+      setModalLogout: () => { }
     }
   }
 )

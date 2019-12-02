@@ -109,10 +109,11 @@ class Header extends Component {
   }
 
   onLogout() {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userProfile");
-    window.location.href = "/";
+    this.props.context.setModalLogout(true);
+    // localStorage.removeItem("userId");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("userProfile");
+    // window.location.href = "/";
   }
 
   onClickCartIcon() {
