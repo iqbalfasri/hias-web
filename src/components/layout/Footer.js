@@ -406,7 +406,7 @@ class Footer extends Component {
               <div className="col-md-5">
                 <div className="fx justify-content-center">
                   <div className="fx align-items-center">
-                    <div className="footer-download-icon fx">
+                    <div className="footer-download-icon fx align-items-center">
                       <p className="mr--1 mb--0 text--size-12">
                         Metode Cicilan 0%
                       </p>
@@ -426,12 +426,12 @@ class Footer extends Component {
                         alt=""
                       />
                       <img
-                        style={{ width: 30, height: 15, marginRight: 10 }}
+                        style={{ width: 30, height: 20, marginRight: 10 }}
                         src={require("../../assets/img/mastercard.svg")}
                         alt=""
                       />
                       <img
-                        style={{ width: 30, height: 15 }}
+                        style={{ width: 30, height: 10 }}
                         src={require("../../assets/img/visa.png")}
                         alt=""
                       />
