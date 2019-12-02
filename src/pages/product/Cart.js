@@ -205,14 +205,18 @@ class Cart extends Component {
   }
 
   handlePopup() {
-    this.setState(
-      {
-        relatedPopup: !this.state.relatedPopup
-      },
-      () => {
-        localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
-      }
-    );
+    if (this.state.carts.length == 0) {
+      alert("Maaf cart kamu kosong, ayo belanja dulu");
+    } else {
+      this.setState(
+        {
+          relatedPopup: !this.state.relatedPopup
+        },
+        () => {
+          localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
+        }
+      );
+    }
   }
 
   handleCouponText(e) {
@@ -361,7 +365,7 @@ class Cart extends Component {
                             onClick={() => this.handlePopup()}
                             className="btn btn--blue btn--full"
                           >
-                            Proceed to Checkout
+                            Proses pembelian
                           </button>
                         </div>
                       </div>
