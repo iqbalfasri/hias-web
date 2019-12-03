@@ -29,6 +29,7 @@ class Checkout extends Component {
   constructor(props) {
     super(props);
 
+    this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
     this.state = {
       activeSteps: 1,
       firstName: "",
@@ -41,7 +42,7 @@ class Checkout extends Component {
       email: "",
       phone: "",
       userAddress: null,
-      cart: [],
+      cart: this.cartItems || [],
       subTotal: 0,
       vaBNI: null,
       vaCIMB: null,
@@ -63,39 +64,39 @@ class Checkout extends Component {
     let userId = localStorage.getItem("userId");
     // this._handleOngkir(this.state.courierSelected)
 
-    getCart(userId).then(res => {
-      this.setState(
-        {
-          cart: res.data.listItems,
-          subTotal: res.data.subTotal,
-          userAddress: this.state.addresses[0]
-        },
-        () =>
-          localStorage.setItem(
-            "userAddress",
-            JSON.stringify(this.state.userAddress)
-          )
-      );
+    // getCart(userId).then(res => {
+    //   this.setState(
+    //     {
+    //       cart: res.data.listItems,
+    //       subTotal: res.data.subTotal,
+    //       userAddress: this.state.addresses[0]
+    //     },
+    //     () =>
+    //       localStorage.setItem(
+    //         "userAddress",
+    //         JSON.stringify(this.state.userAddress)
+    //       )
+    //   );
+    // });
 
-      // get city raja ongkir
-      getCityFromRajaOngkir()
-        .then(res => {
-          let { results } = res.rajaongkir;
-          let { listCity } = this.state;
+    // get city raja ongkir
+    getCityFromRajaOngkir()
+      .then(res => {
+        let { results } = res.rajaongkir;
+        let { listCity } = this.state;
 
-          results.forEach(c => {
-            listCity.push({
-              value: c.city_id,
-              label: c.city_name
-            });
+        results.forEach(c => {
+          listCity.push({
+            value: c.city_id,
+            label: c.city_name
           });
-
-          this.setState({ listCity });
-        })
-        .catch(error => {
-          console.log(error);
         });
-    });
+
+        this.setState({ listCity });
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
     getUserAddress(userId)
       .then(res => {
@@ -417,34 +418,34 @@ class Checkout extends Component {
         <div className="row">
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">First Name</label>
+              <label htmlFor="">Nama Depan</label>
               <InputText
                 onChange={e => this.setState({ firstName: e.target.value })}
                 value={this.state.firstName}
                 type="text"
-                placeholder="First Name"
+                placeholder="e.g Napoleon"
               />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">Last Name</label>
+              <label htmlFor="">Nama Belakang</label>
               <InputText
                 onChange={e => this.setState({ lastName: e.target.value })}
                 value={this.state.lastName}
                 type="text"
-                placeholder="Last Name"
+                placeholder="e.g Boneparte"
               />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">Company Name</label>
+              <label htmlFor="">Nama Perusahaan</label>
               <InputText
                 onChange={e => this.setState({ companyName: e.target.value })}
                 value={this.state.companyName}
                 type="text"
-                placeholder="Company Name"
+                placeholder="e.g Clevara ID"
               />
             </div>
           </div>
@@ -452,18 +453,18 @@ class Checkout extends Component {
         <div className="row">
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">Country</label>
+              <label htmlFor="">Negara</label>
               <InputText
                 onChange={e => this.setState({ country: e.target.value })}
                 value={this.state.country}
                 type="text"
-                placeholder="Country"
+                placeholder="e.g Indonesia"
               />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">City</label>
+              <label htmlFor="">Kota</label>
               <Select
                 placeholder="Pilih Kota"
                 onChange={e => {
@@ -483,12 +484,12 @@ class Checkout extends Component {
           </div>
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">Postal Code</label>
+              <label htmlFor="">Kode Pos</label>
               <InputText
                 onChange={e => this.setState({ postalCode: e.target.value })}
                 value={this.state.postalCode}
                 type="text"
-                placeholder="Postal Code"
+                placeholder="e.g 14210"
               />
             </div>
           </div>
@@ -496,12 +497,12 @@ class Checkout extends Component {
         <div className="row">
           <div className="col">
             <div className="form--group">
-              <label htmlFor="">Address</label>
+              <label htmlFor="">Alamat Lengkap</label>
               <InputText
                 onChange={e => this.setState({ address: e.target.value })}
                 value={this.state.address}
                 type="text"
-                placeholder="Address"
+                placeholder="Masukan alamat lengkap"
               />
             </div>
           </div>
@@ -509,23 +510,23 @@ class Checkout extends Component {
         <div className="row align-items-center">
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">Email Address</label>
+              <label htmlFor="">Alamat Email</label>
               <InputText
                 onChange={e => this.setState({ email: e.target.value })}
                 value={this.state.email}
-                type="text"
-                placeholder="Email Address"
+                type="email"
+                placeholder="Alamat Email"
               />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form--group">
-              <label htmlFor="">Phone</label>
+              <label htmlFor="">Nomo Seluler</label>
               <InputText
                 onChange={e => this.setState({ phone: e.target.value })}
                 value={this.state.phone}
                 type="text"
-                placeholder="Phone"
+                placeholder="Alamat Email"
               />
             </div>
           </div>
@@ -728,11 +729,11 @@ class Checkout extends Component {
           <div className="checkout-form-wrapper">
             <div className="row">
               <div className="col-8">
-                <span className="text--color-green">Your Order</span>
+                <span className="text--color-green">Orderan Kamu</span>
                 {this.renderCartDetail()}
               </div>
               <div className="col-4">
-                <span className="text--color-green">Shipping Address</span>
+                <span className="text--color-green">Alamat Pengiriman</span>
                 <div style={{ padding: "10px 0" }}>
                   <h4>{`${userAddress.firstName} ${userAddress.lastName}`}</h4>
                   <p style={{ margin: "0 0" }}>{`${userAddress.address}`}</p>
@@ -742,7 +743,7 @@ class Checkout extends Component {
 
             <div className="row" style={{ margin: "35px 0" }}>
               <div className="container">
-                <h3>Shipping Method</h3>
+                <h3>Metode Pengiriman</h3>
 
                 {this.renderCourierSelection()}
 
@@ -762,7 +763,7 @@ class Checkout extends Component {
                       justifyContent: "space-between"
                     }}
                   >
-                    <h4 style={{ color: "#878786" }}>Shipping</h4>
+                    <h4 style={{ color: "#878786" }}>Pengiriman</h4>
                     <h4 style={{ color: "#878786" }}>
                       IDR {formatMoneyWithoutSymbol(this.state.hargaOngkir)}
                     </h4>
@@ -775,7 +776,7 @@ class Checkout extends Component {
                       justifyContent: "space-between"
                     }}
                   >
-                    <h4 style={{ color: "#878786" }}>Total Price</h4>
+                    <h4 style={{ color: "#878786" }}>Total Harga</h4>
                     <h4 style={{ color: "#878786" }}>
                       IDR
                       {formatMoneyWithoutSymbol(
@@ -835,11 +836,16 @@ class Checkout extends Component {
                   <button
                     className="btn btn--blue"
                     onClick={() => {
-                      let orderCount = JSON.parse(localStorage.getItem('orderCount'))
+                      let orderCount = JSON.parse(
+                        localStorage.getItem("orderCount")
+                      );
                       if (orderCount == 0 || orderCount == undefined) {
-                        localStorage.setItem('orderCount', JSON.stringify(1))
+                        localStorage.setItem("orderCount", JSON.stringify(1));
                       } else {
-                        localStorage.setItem('orderCount', JSON.stringify(orderCount + 1))
+                        localStorage.setItem(
+                          "orderCount",
+                          JSON.stringify(orderCount + 1)
+                        );
                       }
                       this.setState({ activeSteps: 4 });
                     }}
@@ -901,11 +907,8 @@ class Checkout extends Component {
                 </div>
                 <div className="mt--2">
                   <p className="text--center">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Odit accusantium incidunt et explicabo illo recusandae
-                    exercitationem ullam, ea architecto! Voluptates iusto
-                    aliquid optio quam aut, consectetur accusantium placeat
-                    itaque beatae?
+                    Pembayaran pesanan anda sedang dalam proses verifikasi, kami
+                    akan kirim info status pembayaran anda melalui email.
                   </p>
                 </div>
               </div>
@@ -962,7 +965,7 @@ class Checkout extends Component {
                             : ""
                         }
                       >
-                        <span>Shipping Address</span>
+                        <span>Alamat Pengiriman</span>
                       </div>
                       <div
                         className={
@@ -971,7 +974,7 @@ class Checkout extends Component {
                             : ""
                         }
                       >
-                        <span>Billing Details</span>
+                        <span>Rincian Penagihan</span>
                       </div>
                       <div
                         className={
@@ -980,7 +983,7 @@ class Checkout extends Component {
                             : ""
                         }
                       >
-                        <span>Payment</span>
+                        <span>Pembayaran</span>
                       </div>
                       <div
                         className={
@@ -989,7 +992,7 @@ class Checkout extends Component {
                             : ""
                         }
                       >
-                        <span>Order Status</span>
+                        <span>Status Pembelian</span>
                       </div>
                     </div>
                     <div className="checkout-form">

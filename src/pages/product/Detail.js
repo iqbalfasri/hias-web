@@ -483,7 +483,7 @@ class Detail extends Component {
                     <div className="rating-container">
                       <div className="mr--1">
                         <span className="mr--1">
-                          <strong>4</strong>
+                          <span style={{ color: '#6c6e70', fontWeight: 'bold' }}>4</span>
                         </span>
                         <StarRatings
                           rating={4}
@@ -493,7 +493,7 @@ class Detail extends Component {
                         />
                       </div>
                       <div>
-                        <span style={{ color: "#6c6e70" }}>Average Score</span>
+                        <span style={{ color: "#6c6e70" }}>Skor rata-rata</span>
                       </div>
                     </div>
                     <div className="product-detail-tab">
