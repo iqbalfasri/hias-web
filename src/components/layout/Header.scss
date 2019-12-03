@@ -110,10 +110,10 @@ header {
       color: #fff !important;
       border-bottom: 0 !important;
       font-weight: 400;
-    }
 
-    &:hover a {
-      color: #4bc4df !important;
+      &:hover {
+        color: #4bc4df !important;
+      }
     }
 
     span {
@@ -124,9 +124,7 @@ header {
       margin-bottom: 0;
     }
     &.smi--parent {
-      a {
-        font-weight: 900;
-      }
+      font-weight: 900;
     }
   }
 

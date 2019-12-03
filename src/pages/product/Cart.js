@@ -169,16 +169,26 @@ class Cart extends Component {
               <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
             </td>
             <td>
-              <button className="btn btn--primary mr--1" onClick={() => this.handleDecrement(cart)}>-</button>
+              <button
+                className="btn btn--primary mr--1"
+                onClick={() => this.handleDecrement(cart)}
+              >
+                -
+              </button>
               <input
-                style={{ width: "50px", height: '34px' }}
+                style={{ width: "50px", height: "34px" }}
                 value={quantity}
                 type="text"
                 name="quantity"
                 className="form--input"
                 pattern="[0-9]*"
               />
-              <button className="btn btn--blue ml--1" onClick={() => this.handleIncrement(cart)}>+</button>
+              <button
+                className="btn btn--blue ml--1"
+                onClick={() => this.handleIncrement(cart)}
+              >
+                +
+              </button>
             </td>
             <td>
               <span>
@@ -314,9 +324,11 @@ class Cart extends Component {
                       <table className="table">
                         <thead>
                           <tr>
-                            <th scope="col">ITEM DETAIL</th>
-                            <th scope="col">PRICE</th>
-                            <th scope="col"><span style={{ textAlign: 'center' }}>QTY</span></th>
+                            <th scope="col">RINCIAN BARANG</th>
+                            <th scope="col">HARGA</th>
+                            <th scope="col">
+                              <span style={{ textAlign: "center" }}>QTY</span>
+                            </th>
                             <th scope="col">TOTAL</th>
                           </tr>
                         </thead>
@@ -330,7 +342,7 @@ class Cart extends Component {
                             value={this.state.couponCode.toUpperCase()}
                             onChange={e => this.handleCouponText(e)}
                             type="text"
-                            placeholder="Coupon"
+                            placeholder="Kupon"
                           />
                           <div className="ml--1">
                             <button
@@ -381,7 +393,7 @@ class Cart extends Component {
                       <div className="total-card-cart">
                         <div>
                           <h3>
-                            Total amount IDR{" "}
+                            Jumlah Total IDR{" "}
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>
@@ -409,7 +421,8 @@ class Cart extends Component {
         >
           <div>
             <h3 style={{ textAlign: "center" }}>
-              Are you sure you don’t want this item?
+              Kamu yakin tidak mau item ini?
+              {/* Are you sure you don’t want this item? */}
             </h3>
           </div>
           {this.renderRelatedItems()}
@@ -418,7 +431,8 @@ class Cart extends Component {
             onClick={() => this.onCheckout()}
             className="btn btn--blue"
           >
-            Proceed to Checkout
+            {/* Proceed to Checkout */}
+            Proses Sekarang
           </button>
         </Modal>
       </>
