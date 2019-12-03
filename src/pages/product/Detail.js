@@ -382,12 +382,20 @@ class Detail extends Component {
       }
     };
 
-    const pict =
-      product !== null && product.picture.length !== 0
-        ? Object.values(product.picture[0])
-        : [];
+    // const pict =
+    //   product !== null && product.picture.length !== 0
+    //     ? Object.values(product.picture[0])
+    //     : [];
 
-    let allPicts = product !== null ? [product.thumbnail, ...pict] : [];
+    // let allPicts = product !== null ? [product.thumbnail, ...pict] : [];
+    // let allPicts =
+    //   product !== null && product.picture.length !== 0
+    //     ? [product.thumbnail, ...product.picture]
+    //     : [];
+    let allPicts = product !== null ? [product.thumbnail] : [];
+    let getPicts = product !== null && product.picture.length !== 0 ? product.picture.map(pic => pic !== null ? allPicts.push(pic) : false) : [];
+
+    console.log(allPicts)
 
     const arrayImage =
       product !== null
@@ -415,7 +423,9 @@ class Detail extends Component {
                 <div className="col-md-8">
                   <div>
                     <div>
-                      <h1 style={{ color: "#6c6e70" }}>{product.productName}</h1>
+                      <h1 style={{ color: "#6c6e70" }}>
+                        {product.productName}
+                      </h1>
                       <h2 className="text--color-orange">
                         IDR {formatMoneyWithoutSymbol(product.price)} / Item
                       </h2>
@@ -423,14 +433,20 @@ class Detail extends Component {
                     <div>
                       <div className="mb--1">
                         <Swiper {...swipperConfig()}>
-                          {allPicts.map((image, index) => (
-                            <img
-                              onClick={e => this.setState({ freeze: true })}
-                              style={{ width: "100%" }}
-                              src={image}
-                              alt={product.productName}
-                            />
-                          ))}
+                          {allPicts.map((image, index) => {
+                            return (
+                              <img
+                                onClick={e => this.setState({ freeze: true })}
+                                style={{
+                                  width: "100%",
+                                  maxHeight: "572px",
+                                  objectFit: "cover"
+                                }}
+                                src={image}
+                                alt={product.productName}
+                              />
+                            );
+                          })}
                         </Swiper>
                       </div>
                       {/* <div className="fx fx-no-wrap align-items-center">
@@ -483,7 +499,11 @@ class Detail extends Component {
                     <div className="rating-container">
                       <div className="mr--1">
                         <span className="mr--1">
-                          <span style={{ color: '#6c6e70', fontWeight: 'bold' }}>4</span>
+                          <span
+                            style={{ color: "#6c6e70", fontWeight: "bold" }}
+                          >
+                            4
+                          </span>
                         </span>
                         <StarRatings
                           rating={4}
