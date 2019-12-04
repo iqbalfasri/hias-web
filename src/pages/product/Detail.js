@@ -205,23 +205,31 @@ class Detail extends Component {
   renderCourier(product) {
     const { courier } = product;
 
-    const C_JNE  = require("../../assets/img/jne.jpg");
-    const C_POS  = require("../../assets/img/pos.png");
+    const C_JNE = require("../../assets/img/jne.jpg");
+    const C_POS = require("../../assets/img/pos.png");
     const C_TIKI = require("../../assets/img/tiki.png");
-    // const C_HIAS = require('../../assets/img/')
+    const C_HIAS = require("../../assets/img/hias-courier.jpeg");
 
     return (
       <>
         {courier.map(c => {
           return (
-            <div className="col-md-3">
-              <div className="img-detail-thumbnail">
-                <img
-                  src={c == 'JNE' ? C_JNE : c == 'POS' ? C_POS : c == 'TIKI' ? C_TIKI : c == null ? null : null}
-                  alt=""
-                  style={{ maxWidth: 70, maxHeight: 22 }}
-                />
-              </div>
+            <div className="img-detail-thumbnail">
+              <img
+                src={
+                  c == "JNE"
+                    ? C_JNE
+                    : c == "POS"
+                    ? C_POS
+                    : c == "TIKI"
+                    ? C_TIKI
+                    : c == null
+                    ? null
+                    : C_HIAS
+                }
+                alt=""
+                style={{ maxWidth: 70, maxHeight: 22 }}
+              />
             </div>
           );
         })}
@@ -271,7 +279,18 @@ class Detail extends Component {
           </div>
         );
       case 3:
-        return <div className="row">{this.renderCourier(product)}</div>;
+        return (
+          <div
+            style={{
+              display: "flex",
+              padding: '0 10px',
+              flexDirection: "row",
+              justifyContent: "space-between"
+            }}
+          >
+            {this.renderCourier(product)}
+          </div>
+        );
       default:
         return null;
     }
