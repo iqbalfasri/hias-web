@@ -82,8 +82,8 @@ class OrderDetail extends Component {
                       <table className="table">
                         <thead>
                           <tr>
-                            <th scope="col">ITEM DETAIL</th>
-                            <th scope="col">PRICE</th>
+                            <th scope="col">RINCIAN BARANG</th>
+                            <th scope="col">HARGA</th>
                             <th scope="col">QTY</th>
                             <th scope="col">TOTAL</th>
                           </tr>
