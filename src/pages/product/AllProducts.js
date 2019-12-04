@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {
-  fetchAllProducts,
-  fetchWishList
-} from "../../api";
+import { fetchAllProducts, fetchWishList } from "../../api";
 import ProductCard from "../../components/card/Product";
 import { isLogin } from "../../utils/auth";
 
 class AllHotProducts extends Component {
   state = {
     product: [],
-    wishListItems: []
+    wishListItems: [],
+    wished: false
   };
 
   componentDidMount() {
@@ -22,16 +20,28 @@ class AllHotProducts extends Component {
       fetchWishList(localStorage.getItem("userId")).then(res => {
         this.setState({
           wishListItems: res.data
-        });
+        }, () => this.restructureData());
       });
+
     }
+  }
+
+  restructureData() {
+    let { product, wishListItems } = this.state;
+    let result = {};
+
+    product.map((item, index) => {
+      wishListItems.map(wishItems => {
+        console.log(item)
+      });
+    });
   }
 
   isProductWishlisted(id) {
     const { wishListItems } = this.state;
     let result = false;
     for (let i = 0; i < wishListItems.length; i++) {
-      if (wishListItems[i].id === id) {
+      if (wishListItems[i].id == id) {
         result = true;
         break;
       }
@@ -43,6 +53,7 @@ class AllHotProducts extends Component {
     const { product } = this.state;
     if (product !== 0) {
       return product.map((product, i) => {
+        console.log(this.isProductWishlisted(product.productId), "Wish value")
         return (
           <div className="col-md-3" key={i}>
             <ProductCard
@@ -51,8 +62,8 @@ class AllHotProducts extends Component {
                   ? product.thumbnail
                   : "https://via.placeholder.com/600x600"
               }
-              loved={this.isProductWishlisted(product.id)}
-              id={product.id}
+              loved={this.isProductWishlisted(product.productId)}
+              id={product.productId}
               title={product.productName}
               price={product.price}
               category={product.categoryName}

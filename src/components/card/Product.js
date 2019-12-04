@@ -48,7 +48,6 @@ class ProductCard extends Component {
       } else {
         updateWishList(value)
           .then(res => {
-            console.log(res)
             this.props.context.setWishList(value);
             this.setState({
               isLoved: true
@@ -72,7 +71,7 @@ class ProductCard extends Component {
     return (
       <div className="product-wish-list" onClick={() => this.addToWishList(id)}>
         <span className="text--size-1-5" style={{ color: "#ba0001" }}>
-          <FontAwesomeIcon icon={loved || isLoved ? fasHeart : faHeart} />
+          <FontAwesomeIcon icon={loved ? fasHeart : faHeart} />
         </span>
       </div>
     );

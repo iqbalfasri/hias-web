@@ -140,7 +140,7 @@ class Home extends Component {
     const { wishListItems } = this.state;
     let result = false;
     for (let i = 0; i < wishListItems.length; i++) {
-      if (wishListItems[i].idProduct === id) {
+      if (wishListItems[i].id == id) {
         result = true;
         break;
       }
@@ -180,7 +180,6 @@ class Home extends Component {
       return hotProducts.map(product => {
         return (
           <div className="col-md-3" key={`product-${product.productId}`}>
-            {/* <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.productId)} id={product.productId} title={product.productName} price={product.price} category={product.categoryName} /> */}
             <ProductCard
               thumbnail={product.thumbnail}
               loved={this.isProductWishlisted(product.productId)}
@@ -347,7 +346,10 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 style={{ color: "#6c6e70" }} className="section-title mb--0">
+                    <h3
+                      style={{ color: "#6c6e70" }}
+                      className="section-title mb--0"
+                    >
                       Produk <span className="text--color-orange">Pilihan</span>
                     </h3>
                   </div>
@@ -385,7 +387,10 @@ class Home extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h3 style={{ color: "#6c6e70" }} className="section-title mb--0">
+                    <h3
+                      style={{ color: "#6c6e70" }}
+                      className="section-title mb--0"
+                    >
                       Inspirasi{" "}
                       <span className="text--color-blue">HIAS House</span>
                     </h3>

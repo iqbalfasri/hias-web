@@ -118,6 +118,9 @@ class Detail extends Component {
           colors: res.data
         });
       });
+
+      // wish
+      this.isProductWishlisted(id)
     }
   }
 
@@ -283,7 +286,7 @@ class Detail extends Component {
           <div
             style={{
               display: "flex",
-              padding: '0 10px',
+              padding: "0 10px",
               flexDirection: "row",
               justifyContent: "space-between"
             }}
@@ -373,37 +376,7 @@ class Detail extends Component {
       }
     };
 
-    // const pict =
-    //   product !== null && product.picture.length !== 0
-    //     ? Object.values(product.picture[0])
-    //     : [];
-
-    // let allPicts = product !== null ? [product.thumbnail, ...pict] : [];
-    // let allPicts =
-    //   product !== null && product.picture.length !== 0
-    //     ? [product.thumbnail, ...product.picture]
-    //     : [];
     let allPicts = product !== null ? [product.thumbnail] : [];
-    let getPicts =
-      product !== null && product.picture.length !== 0
-        ? product.picture.map(pic =>
-            pic !== null ? allPicts.push(pic) : false
-          )
-        : [];
-
-    console.log(allPicts);
-
-    const arrayImage =
-      product !== null
-        ? [
-            product.thumbnail,
-            product.thumbnail,
-            product.thumbnail,
-            product.thumbnail
-          ]
-        : [];
-
-    // console.log(arrayImage, "image array")
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
@@ -472,9 +445,19 @@ class Detail extends Component {
                     <div className="product-detail-actions">
                       {this.isProductWishlisted(id) ? (
                         <div className="pda--items">
-                          <span className="text--size-1-5">
-                            <FontAwesomeIcon icon={fasHeart} />
-                          </span>
+                          <div
+                            className="product-wish-list"
+                            onClick={() => this.addToWishList(id)}
+                          >
+                            <span
+                              className="text--size-1-5"
+                              style={{ color: "#ba0001" }}
+                            >
+                              <FontAwesomeIcon
+                                icon={this.isProductWishlisted(product.productId) ? fasHeart : faHeart}
+                              />
+                            </span>
+                          </div>
                         </div>
                       ) : (
                         <div
@@ -482,8 +465,8 @@ class Detail extends Component {
                           onClick={() => this.handleWishList(id)}
                           className="pda--items"
                         >
-                          <span className="text--size-1-5">
-                            <FontAwesomeIcon icon={faHeart} />
+                          <span className="text--size-1-5" style={{ color: "#ba0001" }}>
+                            <FontAwesomeIcon icon={this.isProductWishlisted(product.productId) ? fasHeart : faHeart} />
                           </span>
                         </div>
                       )}
