@@ -57,6 +57,7 @@ class Category extends Component {
               id={product.id}
               title={product.productName}
               price={product.price}
+              discount={product.discount}
               category={product.categoryName}
             />
           </div>
