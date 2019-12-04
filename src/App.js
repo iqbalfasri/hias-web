@@ -45,6 +45,7 @@ import Review from "./pages/Review/Review";
 import AddReview from "./pages/Review/AddReview";
 import AllHotProducts from "./pages/product/AllHotProducts";
 import AllBestProducts from "./pages/product/AllBestProducts";
+import AllProducts from './pages/product/AllProducts';
 
 import { getCart } from "./api";
 
@@ -136,6 +137,7 @@ class App extends Component {
             component={AllBestProducts}
             exact={true}
           />
+          <Route path="/products/all" component={AllProducts} exact={true} />
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route

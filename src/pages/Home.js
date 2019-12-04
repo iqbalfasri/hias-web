@@ -308,7 +308,7 @@ class Home extends Component {
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/products/hot">
+                    <Link className="text--size-12" to="/products/all">
                       View All
                     </Link>
                   </div>
