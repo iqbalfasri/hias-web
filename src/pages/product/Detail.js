@@ -133,7 +133,7 @@ class Detail extends Component {
     if (prevState && prevState.wishListItems !== this.state.wishListItems) {
       fetchWishList(localStorage.getItem("userId"))
         .then(res => {
-          this.setState({wishListItems: res.data});
+          this.setState({ wishListItems: res.data });
         })
         .catch(error => {
           console.log(error);
@@ -420,9 +420,25 @@ class Detail extends Component {
                       <h1 style={{ color: "#6c6e70" }}>
                         {product.productName}
                       </h1>
-                      <h2 className="text--color-orange">
-                        IDR {formatMoneyWithoutSymbol(product.price)} / Item
-                      </h2>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {product.discount !== null ? (
+                          <h2
+                            className="text--color-orange mr--1"
+                            style={{ textDecoration: "line-through", fontSize: '20px' }}
+                          >
+                            IDR {formatMoneyWithoutSymbol(product.price)}
+                          </h2>
+                        ) : null}
+                        <h2 className="text--color-orange">
+                          IDR{" "}
+                          {formatMoneyWithoutSymbol(
+                            product.discount == null
+                              ? product.price
+                              : (product.price * product.discount) / 100
+                          )}{" "}
+                          / Item
+                        </h2>
+                      </div>
                     </div>
                     <div>
                       <div className="mb--1">
