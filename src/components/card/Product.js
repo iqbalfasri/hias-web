@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import {
-  faHeart as fasHeart
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { isLogin } from "../../utils/auth";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
@@ -77,7 +75,8 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { category, title, price, id, thumbnail } = this.props;
+    const { category, title, price, id, thumbnail, discount } = this.props;
+
     return (
       <div className="product-card">
         <Link
@@ -106,9 +105,45 @@ class ProductCard extends Component {
               {this.renderLovedIcon()}
             </div>
             <Link to={`/products/detail/${id}`}>
-              <p className="text--color-orange mb--0">
-                <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
-              </p>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {discount !== null ? (
+                  <span
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      color: "#fff",
+                      borderRadius: "15px",
+                      fontSize: "10px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: "#c2191f",
+                      marginRight: '10px'
+                    }}
+                  >
+                    {`${discount}%`}
+                  </span>
+                ) : null}
+                {discount != null ? (
+                  <p
+                    className="text--color-orange mb--0 mr--1"
+                    style={{ textDecoration: "line-through", marginBottom: "0", fontSize: '12px' }}
+                  >
+                    <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
+                  </p>
+                ) : null}
+                <p
+                  className="text--color-orange mb--0"
+                  style={{ margin: "0 0" }}
+                >
+                  <strong>
+                    IDR{" "}
+                    {formatMoneyWithoutSymbol(
+                      discount == null ? price : (price * discount) / 100
+                    )}
+                  </strong>
+                </p>
+              </div>
             </Link>
           </div>
         </div>
