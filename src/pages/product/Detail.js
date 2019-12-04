@@ -16,7 +16,9 @@ import {
   addToCart,
   fetchHotProduct,
   fetchVariantById,
-  fetchColorById
+  fetchColorById,
+  updateWishList,
+  removeWishlist
 } from "../../api";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 import { withContext } from "../../context/withContext";
@@ -37,7 +39,9 @@ class Detail extends Component {
       wishListItems: [],
       showAll: false,
       couriers: [],
-      idProduct: null
+      idProduct: null,
+      picture: [],
+      freeze: false
     };
   }
 
@@ -80,6 +84,8 @@ class Detail extends Component {
         });
       });
     }
+
+    console.log(this.state.wishListItems, "wish items");
   }
 
   componentDidUpdate(prevProps) {
@@ -299,20 +305,98 @@ class Detail extends Component {
     }
   }
 
+  handleWishList(id) {
+    if (isLogin()) {
+      this.props.context.setIsLoading(true);
+      const value = {
+        productId: id,
+        userId: localStorage.getItem("userId")
+      };
+      if (this.props.loved) {
+        removeWishlist(id)
+          .then(res => {
+            this.setState({
+              isLoved: false
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            this.props.context.setIsLoading(false);
+          });
+      } else {
+        updateWishList(value)
+          .then(res => {
+            this.props.context.setWishList(value);
+            this.setState({
+              isLoved: true
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            this.props.context.setIsLoading(false);
+          });
+      }
+    } else {
+      this.props.context.setIsModalSigninPopupOpen(true);
+    }
+  }
+
   render() {
-    const { product } = this.state;
+    const { product, freeze } = this.state;
     const { id } = this.props.match.params;
-    const swipperConfig = {
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        type: "fraction"
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+    const autoplay = {
+      delay: 3000,
+      disableOnInteraction: false
+    };
+    const swipperConfig = () => {
+      if (!freeze) {
+        return {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination"
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          },
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false
+          }
+        };
+      } else {
+        return {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination"
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          }
+        };
       }
     };
+
+    // const pict =
+    //   product !== null && product.picture.length !== 0
+    //     ? Object.values(product.picture[0])
+    //     : [];
+
+    // let allPicts = product !== null ? [product.thumbnail, ...pict] : [];
+    // let allPicts =
+    //   product !== null && product.picture.length !== 0
+    //     ? [product.thumbnail, ...product.picture]
+    //     : [];
+    let allPicts = product !== null ? [product.thumbnail] : [];
+    let getPicts = product !== null && product.picture.length !== 0 ? product.picture.map(pic => pic !== null ? allPicts.push(pic) : false) : [];
+
+    console.log(allPicts)
+
     const arrayImage =
       product !== null
         ? [
@@ -339,17 +423,30 @@ class Detail extends Component {
                 <div className="col-md-8">
                   <div>
                     <div>
-                      <h1>{product.productName}</h1>
+                      <h1 style={{ color: "#6c6e70" }}>
+                        {product.productName}
+                      </h1>
                       <h2 className="text--color-orange">
                         IDR {formatMoneyWithoutSymbol(product.price)} / Item
                       </h2>
                     </div>
                     <div>
                       <div className="mb--1">
-                        <Swiper {...swipperConfig}>
-                          {arrayImage.map((image, index) => (
-                            <img style={{ width: "100%" }} src={image} alt={product.productName} />
-                          ))}
+                        <Swiper {...swipperConfig()}>
+                          {allPicts.map((image, index) => {
+                            return (
+                              <img
+                                onClick={e => this.setState({ freeze: true })}
+                                style={{
+                                  width: "100%",
+                                  maxHeight: "572px",
+                                  objectFit: "cover"
+                                }}
+                                src={image}
+                                alt={product.productName}
+                              />
+                            );
+                          })}
                         </Swiper>
                       </div>
                       {/* <div className="fx fx-no-wrap align-items-center">
@@ -385,7 +482,8 @@ class Detail extends Component {
                         </div>
                       ) : (
                         <div
-                          onClick={() => alert("heart clicked")}
+                          style={{ cursor: "pointer" }}
+                          onClick={() => this.handleWishList(id)}
                           className="pda--items"
                         >
                           <span className="text--size-1-5">
@@ -401,7 +499,11 @@ class Detail extends Component {
                     <div className="rating-container">
                       <div className="mr--1">
                         <span className="mr--1">
-                          <strong>4</strong>
+                          <span
+                            style={{ color: "#6c6e70", fontWeight: "bold" }}
+                          >
+                            4
+                          </span>
                         </span>
                         <StarRatings
                           rating={4}
@@ -411,7 +513,7 @@ class Detail extends Component {
                         />
                       </div>
                       <div>
-                        <span>Average Score</span>
+                        <span style={{ color: "#6c6e70" }}>Skor rata-rata</span>
                       </div>
                     </div>
                     <div className="product-detail-tab">
@@ -424,7 +526,7 @@ class Detail extends Component {
                           }`}
                           onClick={() => this.setState({ activeDetailTab: 1 })}
                         >
-                          <span>Tinjauan</span>
+                          <span style={{ color: "#6c6e70" }}>Tinjauan</span>
                         </div>
                         <div
                           className={`pdt--tab-item ${
@@ -434,7 +536,7 @@ class Detail extends Component {
                           }`}
                           onClick={() => this.setState({ activeDetailTab: 2 })}
                         >
-                          <span>Detil</span>
+                          <span style={{ color: "#6c6e70" }}>Detil</span>
                         </div>
                         <div
                           className={`pdt--tab-item ${
@@ -444,7 +546,7 @@ class Detail extends Component {
                           }`}
                           onClick={() => this.setState({ activeDetailTab: 3 })}
                         >
-                          <span>Kurir</span>
+                          <span style={{ color: "#6c6e70" }}>Kurir</span>
                         </div>
                       </div>
                       <div className="pdt--tab-content">
@@ -452,7 +554,7 @@ class Detail extends Component {
                       </div>
                     </div>
                     <div className="product-detail-variant">
-                      <h3>Varian Lainnya</h3>
+                      <h3 style={{ color: "#6c6e70" }}>Varian Lainnya</h3>
                       <div className="row" style={{ paddingLeft: "1.3em" }}>
                         {this.state.variant !== null
                           ? this.state.variant.map((p, index) => {
@@ -478,7 +580,7 @@ class Detail extends Component {
                                         alt=""
                                       />
                                     </div>
-                                    <p>
+                                    <p style={{ color: "#6c6e70" }}>
                                       {p.productName.substring(
                                         p.productName.length - 8,
                                         p.productName.length
@@ -495,7 +597,7 @@ class Detail extends Component {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="product-detail-variant">
-                        <h3>Pilihan Warna</h3>
+                        <h3 style={{ color: "#6c6e70" }}>Pilihan Warna</h3>
                         <div>
                           <ColorSelector colors={this.state.colors} />
                         </div>

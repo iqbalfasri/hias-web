@@ -7,7 +7,7 @@ class ThankYou extends Component {
     return (
       <div>
         <Helmet key={Math.random()}>
-          <title>Thank You Page</title>
+          <title>Berhasil</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />
@@ -33,16 +33,16 @@ class ThankYou extends Component {
                 <div className="col-md-4">
                   <div>
                     <div className="mb--2">
-                      <h1>CONGRATULATIONS!</h1>
-                      <h3>Your HIAS account has been successfully registered.</h3>
+                      <h1>SELAMAT!</h1>
+                      <h3>Akun HIAS House Anda berhasil terdaftar, selamat berbelanja di website Kami.</h3>
                     </div>
                     <div className="mb--2">
                       <p className="text--color-gray">
-                        Please check your email and confirm registration
+                        Mohon periksa email Anda untuk verifikasi pengguna
                       </p>
                     </div>
                     <div>
-                      <Link to="/" className="btn btn--blue">Back to HIAS Website</Link>
+                      <Link to="/" className="btn btn--blue">Kembali ke website HIAS House</Link>
                     </div>
                   </div>
                 </div>

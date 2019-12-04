@@ -25,7 +25,9 @@ export default class ContextProvider extends Component {
       userProfile: null,
       setUserProfile: this.setUserProfile,
       userId: null,
-      setUserId: this.setUserId
+      setUserId: this.setUserId,
+      modalLogout: false,
+      setModalLogout: this.setModalLogout
     }
   }
 
@@ -67,6 +69,10 @@ export default class ContextProvider extends Component {
 
   setUserId = (userId) => {
     this.setState({ userId })
+  }
+
+  setModalLogout = (value) => {
+    this.setState({ modalLogout: value })
   }
 
   render () {

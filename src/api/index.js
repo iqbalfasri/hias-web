@@ -70,7 +70,7 @@ export const removeProductOnCart = productId => {
 
 export const removeWishlist = id => {
   return axios
-    .get(`${BASE_URL}/product/wishList/${id}`, {
+    .delete(`${BASE_URL}/product/wishList/${id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     })
     .then(res => {

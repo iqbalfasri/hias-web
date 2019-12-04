@@ -67,7 +67,7 @@ class OrderDetail extends Component {
       <>
         <div className="content">
           <Helmet key={Math.random()}>
-            <title>Order Detail - {this.getParams}</title>
+            <title>Detail Pesanan - {this.getParams}</title>
             <meta property="og:title" content="Hias Homepage" />
             <meta name="description" content="Hias" />
             <meta name="robots" content="index, nofollow" />
@@ -82,9 +82,9 @@ class OrderDetail extends Component {
                       <table className="table">
                         <thead>
                           <tr>
-                            <th scope="col">ITEM DETAIL</th>
-                            <th scope="col">PRICE</th>
-                            <th scope="col">QTY</th>
+                            <th scope="col">DETIL BARANG</th>
+                            <th scope="col">HARGA</th>
+                            <th scope="col">JUMLAH</th>
                             <th scope="col">TOTAL</th>
                           </tr>
                         </thead>
@@ -108,7 +108,7 @@ class OrderDetail extends Component {
                           />
                         </div>
                         <div className="order-status-text">
-                          <span>Payment</span>
+                          <span>Pembayaran Sukses</span>
                         </div>
                       </div>
                       <div
@@ -126,7 +126,7 @@ class OrderDetail extends Component {
                           />
                         </div>
                         <div className="order-status-text">
-                          <span>Packing</span>
+                          <span>Kemas Barang</span>
                         </div>
                       </div>
                       <div
@@ -144,7 +144,7 @@ class OrderDetail extends Component {
                           />
                         </div>
                         <div className="order-status-text">
-                          <span>On Delivery</span>
+                          <span>Dalam Pengiriman</span>
                         </div>
                       </div>
                       <div
@@ -162,7 +162,7 @@ class OrderDetail extends Component {
                           />
                         </div>
                         <div className="order-status-text">
-                          <span>Completed</span>
+                          <span>Transaksi Sukses</span>
                         </div>
                       </div>
                     </div>
@@ -184,13 +184,13 @@ class OrderDetail extends Component {
                           </h3>
                         </div>
                         <div className="fx justify-content-between">
-                          <h3 className="mr--1">Shipping</h3>
-                          <h3>Free</h3>
+                          <h3 className="mr--1">Ongkos Kirim</h3>
+                          <h3>Gratis</h3>
                           <button
                             onClick={() => this.handlePopup()}
                             className="btn btn--blue btn--full"
                           >
-                            Confirm Order
+                            Barang Diterima
                           </button>
                         </div>
                       </div>

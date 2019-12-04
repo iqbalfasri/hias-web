@@ -182,7 +182,7 @@ class Category extends Component {
                     {/* <div>
                       <h2>LIVING</h2>
                     </div>
-                    {/* <div className="cat-container">
+                    <div className="cat-container">
                       <div>
                         <div className="cat-list cl--parent">
                           <span className="mr--1">
@@ -233,11 +233,9 @@ class Category extends Component {
                         </div>
                       </div>
                     </div> */}
-                    {/* <div className="cat-container mt--2">
+                    <div className="cat-container mt--2">
                       <div className="cat--title">
-                        <span className="text--color-gray">
-                          FILTER PRODUK
-                        </span>
+                        <span className="text--color-gray">FILTER PRODUK</span>
                       </div>
                       <div className="cat--sub-title">
                         <span className="mr--1">
@@ -284,7 +282,7 @@ class Category extends Component {
                           />
                         </div>
                       </div>
-                    </div> */}
+                    </div>
                     <div className="cat-container mt--2">
                       <div className="cat--title">
                         <span className="text--color-gray">URUTAN PRODUK</span>

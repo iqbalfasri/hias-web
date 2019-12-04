@@ -67,7 +67,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    const userId = localStorage.getItem("userId");
+    const userId = JSON.parse(localStorage.getItem("userId"));
     if (!isLogin()) {
       this.props.history.push("/login");
     }
@@ -89,12 +89,12 @@ class Cart extends Component {
   // }
 
   onChangeQuantity(e, index) {
-    const value = e.target.value;
-    const quantity = this.state.cartsQuantity;
-    quantity[index] = value;
-    this.setState({
-      cartsQuantity: quantity
-    });
+    // const value = e.target.value;
+    // const quantity = this.state.cartsQuantity;
+    // quantity[index] = value;
+    // this.setState({
+    //   cartsQuantity: quantity
+    // });
   }
 
   onRemoveCart(index, productId) {
@@ -118,10 +118,34 @@ class Cart extends Component {
       });
   }
 
+  handleIncrement = cart => {
+    const carts = [...this.state.carts];
+    const index = carts.indexOf(cart);
+
+    if (carts[index].qty) {
+      carts[index].qty += 1;
+      this.setState({ carts });
+    }
+  };
+
+  handleDecrement = cart => {
+    const carts = [...this.state.carts];
+    const index = carts.indexOf(cart);
+
+    if (carts[index].qty == 1) {
+      return;
+    }
+
+    if (carts[index].qty) {
+      carts[index].qty -= 1;
+      this.setState({ carts });
+    }
+  };
+
   renderCart() {
     if (this.state.carts.length !== 0) {
       return this.state.carts.map((cart, index) => {
-        const quantity = this.state.cartsQuantity[index] || 1;
+        const quantity = this.state.carts[index].qty || 1;
         return (
           <tr key={`${cart.idItems}-${index}`}>
             <th scope="row">
@@ -145,20 +169,31 @@ class Cart extends Component {
               <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
             </td>
             <td>
+              <button
+                className="btn btn--primary mr--1"
+                onClick={() => this.handleDecrement(cart)}
+              >
+                -
+              </button>
               <input
-                style={{ width: "60px" }}
-                onChange={e => this.onChangeQuantity(e, index)}
+                style={{ width: "50px", height: "34px", textAlign: "center" }}
                 value={quantity}
-                type="number"
+                type="text"
                 name="quantity"
                 className="form--input"
-                min="3"
+                pattern="[0-9]*"
               />
+              <button
+                className="btn btn--blue ml--1"
+                onClick={() => this.handleIncrement(cart)}
+              >
+                +
+              </button>
             </td>
             <td>
               <span>
                 <strong>
-                  IDR {formatMoneyWithoutSymbol(quantity * cart.price)}
+                  IDR {formatMoneyWithoutSymbol(cart.qty * cart.price)}
                 </strong>
               </span>
             </td>
@@ -168,11 +203,24 @@ class Cart extends Component {
     }
   }
 
-  getTotalCartPrice() {
+  getTotalCartPricBeforeCoupon() {
     const { cartsQuantity, carts } = this.state;
     let total = 0;
     for (let i = 0; i < carts.length; i++) {
       const itemAmount = cartsQuantity[i] || 1;
+      total = total + itemAmount * carts[i].price;
+    }
+
+    // this code will returned price with kupon code
+    return total;
+  }
+
+  getTotalCartPrice() {
+    const { cartsQuantity, carts } = this.state;
+    let total = 0;
+    for (let i = 0; i < carts.length; i++) {
+      const itemAmount = carts[i].qty || 1;
+      // const itemAmount = cartsQuantity[i] || 1;
       total = total + itemAmount * carts[i].price;
     }
 
@@ -192,14 +240,18 @@ class Cart extends Component {
   }
 
   handlePopup() {
-    this.setState(
-      {
-        relatedPopup: !this.state.relatedPopup
-      },
-      () => {
-        localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
-      }
-    );
+    if (this.state.carts.length == 0) {
+      alert("Maaf cart kamu kosong, ayo belanja dulu");
+    } else {
+      this.setState(
+        {
+          relatedPopup: !this.state.relatedPopup
+        },
+        () => {
+          localStorage.setItem("cartItems", JSON.stringify(this.state.carts));
+        }
+      );
+    }
   }
 
   handleCouponText(e) {
@@ -272,9 +324,11 @@ class Cart extends Component {
                       <table className="table">
                         <thead>
                           <tr>
-                            <th scope="col">ITEM DETAIL</th>
-                            <th scope="col">PRICE</th>
-                            <th scope="col">QTY</th>
+                            <th scope="col">RINCIAN BARANG</th>
+                            <th scope="col">HARGA</th>
+                            <th scope="col">
+                              <span style={{ textAlign: "center" }}>JUMLAH</span>
+                            </th>
                             <th scope="col">TOTAL</th>
                           </tr>
                         </thead>
@@ -288,7 +342,7 @@ class Cart extends Component {
                             value={this.state.couponCode.toUpperCase()}
                             onChange={e => this.handleCouponText(e)}
                             type="text"
-                            placeholder="Coupon"
+                            placeholder="Kupon"
                           />
                           <div className="ml--1">
                             <button
@@ -302,15 +356,29 @@ class Cart extends Component {
                       </div>
                       <div style={{ marginRight: "3em" }}>
                         {this.state.priceCoupon > 0 ? (
-                          <div className="fx justify-content-between">
-                            <h3 style={{ color: "#F96464" }} className="mr--1">
-                              Potongan Kupon
-                            </h3>
-                            <h3 style={{ color: "#F96464" }}>
-                              IDR{" "}
-                              {formatMoneyWithoutSymbol(this.state.priceCoupon)}
-                            </h3>
-                          </div>
+                          <>
+                            <div className="fx justify-content-between">
+                              <h3>Potongan</h3>
+                              <h3>
+                                IDR{" "}
+                                {formatMoneyWithoutSymbol(
+                                  this.state.priceCoupon
+                                )}
+                              </h3>
+                            </div>
+                            <div className="fx justify-content-between">
+                              <h3>Diskon</h3>
+                              <h3
+                                style={{ textDecoration: "line-through" }}
+                                className="mr--1"
+                              >
+                                IDR{" "}
+                                {formatMoneyWithoutSymbol(
+                                  this.getTotalCartPricBeforeCoupon()
+                                )}
+                              </h3>
+                            </div>
+                          </>
                         ) : null}
                         <div className="fx justify-content-between">
                           <h3 className="mr--1">Subtotal</h3>
@@ -325,7 +393,7 @@ class Cart extends Component {
                       <div className="total-card-cart">
                         <div>
                           <h3>
-                            Total amount IDR{" "}
+                            Jumlah Total IDR{" "}
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
                           </h3>
                         </div>
@@ -334,7 +402,7 @@ class Cart extends Component {
                             onClick={() => this.handlePopup()}
                             className="btn btn--blue btn--full"
                           >
-                            Proceed to Checkout
+                            Proses pembelian
                           </button>
                         </div>
                       </div>
@@ -353,7 +421,8 @@ class Cart extends Component {
         >
           <div>
             <h3 style={{ textAlign: "center" }}>
-              Are you sure you don’t want this item?
+              Kamu yakin tidak mau item ini?
+              {/* Are you sure you don’t want this item? */}
             </h3>
           </div>
           {this.renderRelatedItems()}
@@ -362,7 +431,8 @@ class Cart extends Component {
             onClick={() => this.onCheckout()}
             className="btn btn--blue"
           >
-            Proceed to Checkout
+            {/* Proceed to Checkout */}
+            Proses Sekarang
           </button>
         </Modal>
       </>

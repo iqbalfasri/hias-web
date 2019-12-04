@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import { Helmet } from "react-helmet";
+import Select from 'react-select';
 import axios from 'axios';
 
 import InputText from '../../components/form/InputText'
@@ -16,7 +17,33 @@ class Refund extends Component {
     email: "",
     alasanPengembalian: "",
     isLoading: false,
-    isSentSuccess: ""
+    isSentSuccess: "",
+    listStore: [
+      {
+        value: 'HIAS House Senopati',
+        label: 'HIAS House Senopati',
+      },
+      {
+        value: 'HIAS House Pondok Indah',
+        label: 'HIAS House Pondok Indah',
+      },
+      {
+        value: 'HIAS House Kelapa Gading',
+        label: 'HIAS House Kelapa Gading',
+      },
+      {
+        label: 'HIAS House Supermal Karawaci',
+        value: 'HIAS House Supermal Karawaci',
+      },
+      {
+        label: 'HIAS House Botani Square',
+        value: 'HIAS House Botani Square',
+      },
+      {
+        label: 'HIAS House Level 21 Mall Bali',
+        value: 'HIAS House Level 21 Mall Bali'
+      }
+    ]
   }
 
   onChangeNama = (e) => {
@@ -154,8 +181,16 @@ class Refund extends Component {
                     </div>
                     <div className="col-md-4">
                       <div className="form--group">
-                        <label htmlFor="">Tempat Pembelian</label>
-                        <InputText type="text" placeholder="Tempat Pembelian" value={this.state.tempatPembelian} onChange={this.onChangeTempatPembelian} />
+                      <label htmlFor="">Tempat Pembelian</label>
+                        <Select
+                          placeholder="Lokasi Pembelian"
+                          onChange={e => {
+                            this.setState({ tempatPembelian: e.value.toString() }, () =>
+                              console.log(this.state.tempatPembelian)
+                            );
+                          }}
+                          options={this.state.listStore}
+                        />
                       </div>
                     </div>
                   </div>

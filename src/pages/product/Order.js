@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import { BASE_URL, getOrderProgress } from "../../api";
 
@@ -33,7 +33,7 @@ class Order extends Component {
       <>
         <div className="row-order">
           <div className="content">
-            <h4>ORDER ID</h4>
+            <h4>ID PESANAN</h4>
           </div>
           {/* <div className="content">
             <h4>TOTAL PRODUCT</h4>
@@ -53,7 +53,7 @@ class Order extends Component {
       <>
         <div className="row-order">
           <div className="content">
-            <h4>ORDER ID</h4>
+            <h4>ID PESANAN</h4>
           </div>
 
           <div className="content">
@@ -80,11 +80,21 @@ class Order extends Component {
     }
   }
 
+  getOrderDetail() {
+    let orderHasNotRead = JSON.parse(localStorage.getItem("orderCount"));
+    if (orderHasNotRead == 0 || orderHasNotRead == undefined) {
+      localStorage.removeItem("orderCount");
+    } else {
+      localStorage.setItem("orderCount", orderHasNotRead - 1);
+    }
+  }
+
   renderEachOrder(data) {
     if (data !== undefined) {
       return this.state.orderData.map(order => {
         return (
           <a
+            onClick={() => this.getOrderDetail()}
             key={order.orderId}
             href={`/order/detail/${order.orderId}`}
             className="row row-order row-order--link"
@@ -106,7 +116,7 @@ class Order extends Component {
 
             {/* Status */}
             <div className="row-flex">
-              <p>Waiting for Payment</p>
+              <p>Menunggu Pembayaran</p>
             </div>
           </a>
         );
@@ -119,7 +129,7 @@ class Order extends Component {
       <>
         <div className="content">
           <Helmet key={Math.random()}>
-            <title>Order Page</title>
+            <title>Status Pesanan</title>
             <meta property="og:title" content="Hias Homepage" />
             <meta name="description" content="Hias" />
             <meta name="robots" content="index, nofollow" />
@@ -148,7 +158,7 @@ class Order extends Component {
                           }}
                           onClick={() => this.setState({ activeSteps: 1 })}
                         >
-                          On Progress
+                          Proses
                         </span>
                       </div>
                       <div
@@ -168,7 +178,7 @@ class Order extends Component {
                           }}
                           onClick={() => this.setState({ activeSteps: 2 })}
                         >
-                          History
+                          Riwayat
                         </span>
                       </div>
                     </div>

@@ -59,14 +59,15 @@ header {
 
       &:hover {
         a {
-          border-bottom: 2px solid $mainTextColor;
+          border-bottom: 2px solid #6c6e70;
         }
       }
     }
 
     a {
       font-weight: 700;
-      color: $mainTextColor;
+      color: #6c6e70;
+      // color: $mainTextColor;
       white-space: nowrap;
       font-size: 12px;
     }
@@ -109,10 +110,10 @@ header {
       color: #fff !important;
       border-bottom: 0 !important;
       font-weight: 400;
-    }
 
-    &:hover a {
-      color: #4bc4df !important;
+      &:hover {
+        color: #4bc4df !important;
+      }
     }
 
     span {
@@ -123,9 +124,7 @@ header {
       margin-bottom: 0;
     }
     &.smi--parent {
-      a {
-        font-weight: 900;
-      }
+      font-weight: 900;
     }
   }
 

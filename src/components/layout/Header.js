@@ -109,16 +109,16 @@ class Header extends Component {
   }
 
   onLogout() {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("promo");
-    localStorage.removeItem("userProfile");
-    window.location.href = "/";
+    this.props.context.setModalLogout(true);
+    // localStorage.removeItem("userId");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("userProfile");
+    // window.location.href = "/";
   }
 
   onClickCartIcon() {
     if (isLogin()) {
-      this.props.history.push("/cart");
+      window.location.href = "/cart";
     } else {
       this.props.context.setIsModalSigninPopupOpen(true);
     }
@@ -175,9 +175,7 @@ class Header extends Component {
                   return (
                     <div className="sub-menu-column" key={i1}>
                       <div className="sub-menu-item smi--parent">
-                        <Link to="">
-                          <span>{itemSub.subCategoryName}</span>
-                        </Link>
+                        <span>{itemSub.subCategoryName}</span>
                       </div>
                       {chosenSub2.map((itemSub2, i2) => {
                         return (
@@ -202,6 +200,13 @@ class Header extends Component {
   renderCartCount(totalCart) {
     return this.props.context.totalCart == 0 ? null : (
       <div className="cart--count">{this.props.context.totalCart}</div>
+    );
+  }
+
+  renderOrderCount() {
+    let orderHasNotRead = JSON.parse(localStorage.getItem("orderCount"));
+    return orderHasNotRead == 0 || orderHasNotRead == undefined ? null : (
+      <div className="cart--count">{orderHasNotRead}</div>
     );
   }
 
@@ -237,18 +242,27 @@ class Header extends Component {
     // console.log(obj)
   }
 
+  getFirstName(fullName) {
+    let firstName = fullName.split(" ");
+    return firstName[0];
+  }
+
   renderTopIcon() {
     return isLogin() ? (
       <div className="fx align-items-center justify-content-end">
         <div className="fx mr--1 align-items-center">
           <div className="mr--1">
             <Link to="/" className="btn btn--transparent">
-              <span className="text--size-12">Beranda</span>
+              <span style={{ color: "#6c6e70" }} className="text--size-12">
+                Beranda
+              </span>
             </Link>
           </div>
           <div>
             <Link to="/about" className="btn btn--transparent">
-              <span className="text--size-12">Tentang Kami</span>
+              <span style={{ color: "#6c6e70" }} className="text--size-12">
+                Tentang Kami
+              </span>
             </Link>
           </div>
         </div>
@@ -271,6 +285,7 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-top-icon">
+            {this.renderOrderCount()}
             <div
               className="header-top-icon--image"
               onClick={() => (window.location.href = "/order")}
@@ -288,13 +303,16 @@ class Header extends Component {
                   alt=""
                 />
               </div>
-              <p>
-                Hi, {JSON.parse(localStorage.getItem("userProfile")).fullName}
+              <p style={{ color: "#6c6e70" }}>
+                Hi,{" "}
+                {this.getFirstName(
+                  JSON.parse(localStorage.getItem("userProfile")).fullName
+                )}
               </p>
             </div>
             <div className="header--dropdown">
               <div className="hd--item">
-                <Link to="/wallet">Wallet</Link>
+                <Link to="/wallet">Dompet</Link>
               </div>
               <div className="divider"></div>
               <div className="hd--item" onClick={() => this.onLogout()}>
@@ -412,9 +430,7 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/1">
-                                <span>Furnitur</span>
-                              </Link>
+                              <span>Furnitur</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/1">
@@ -464,9 +480,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/10">
-                                <span>Dekorasi</span>
-                              </Link>
+                              <span>Dekorasi</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/11">
@@ -511,9 +525,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/19">
-                                <span>Linen</span>
-                              </Link>
+                              <span>Linen</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/20">
@@ -538,9 +550,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/24">
-                                <span>Lampu</span>
-                              </Link>
+                              <span>Lampu</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/25">
@@ -572,21 +582,15 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/28">
-                                <span>Furnitur</span>
-                              </Link>
+                              <span>Furnitur</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/29">
-                                <span>Bingkai Tempat Tidur</span>
-                              </Link>
+                              <span>Bingkai Tempat Tidur</span>
                             </div>
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/30">
-                                <span>Linen</span>
-                              </Link>
+                              <span>Linen</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/31">
@@ -611,9 +615,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/35">
-                                <span>Matras</span>
-                              </Link>
+                              <span>Matras</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/36">
@@ -623,9 +625,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/37">
-                                <span>Lampu</span>
-                              </Link>
+                              <span>Lampu</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/38">
@@ -657,9 +657,7 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/41">
-                                <span>Linen</span>
-                              </Link>
+                            <span>Linen</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/42">
@@ -674,9 +672,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/44">
-                                <span>Perlengkapan Kamar Mandi</span>
-                              </Link>
+                            <span>Perlengkapan Kamar Mandi</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/45">
@@ -718,9 +714,7 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/50">
-                                <span>Furnitur</span>
-                              </Link>
+                            <span>Furnitur</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/51">
@@ -740,9 +734,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/54">
-                                <span>Perlengkapan Ruang Makan</span>
-                              </Link>
+                            <span>Perlengkapan Ruang Makan</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/55">
@@ -782,9 +774,7 @@ class Header extends Component {
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/62">
-                                <span>Perlengkapan Lain</span>
-                              </Link>
+                            <span>Perlengkapan Lain</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/63">
@@ -806,9 +796,7 @@ class Header extends Component {
                         <div className="sub-menu-content fx fx-no-wrap">
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
-                              <Link to="/products/64">
-                                <span>Peralatan Dapur</span>
-                              </Link>
+                              <span>Peralatan Dapur</span>
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/65">
