@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import {
-  faChevronRight,
   faHeart as fasHeart
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -71,7 +70,7 @@ class ProductCard extends Component {
     return (
       <div className="product-wish-list" onClick={() => this.addToWishList(id)}>
         <span className="text--size-1-5" style={{ color: "#ba0001" }}>
-          <FontAwesomeIcon icon={loved ? fasHeart : faHeart} />
+          <FontAwesomeIcon icon={loved || isLoved ? fasHeart : faHeart} />
         </span>
       </div>
     );
