@@ -25,7 +25,7 @@ class ForgotPassword extends Component {
         .post(`${BASE_URL}/forgot`, { email: email, confirmEmail: email })
         .then(res => {
           this.setState({
-            statusMessage: res.data.data.message
+            statusMessage: 'Tautan pemulihan telah dikirim ke ' + email
           });
         })
         .catch(error => {
