@@ -205,54 +205,26 @@ class Detail extends Component {
   renderCourier(product) {
     const { courier } = product;
 
-    // "courier3": "TIKI",
-    // "courier4": "POS",
-    // "courier1": "Hias Courier",
-    // "courier2": "JNE"
-
-    courier.forEach(c => {
-      if (c.courier1 == "Hias Courier") {
-        return;
-      }
-
-      if (c.courier2 == "Jne") {
-        console.log(c.courier2);
-      }
-
-      if (c.courier3 == "Tiki") {
-        console.log(c.courier3);
-      }
-
-      if (c.courier4 == "Pos") {
-        console.log(c.courier4);
-      }
-    });
+    const C_JNE  = require("../../assets/img/jne.jpg");
+    const C_POS  = require("../../assets/img/pos.png");
+    const C_TIKI = require("../../assets/img/tiki.png");
+    // const C_HIAS = require('../../assets/img/')
 
     return (
       <>
-        <div className="col-md-3">
-          <div className="img-detail-thumbnail">
-            <img
-              src={require("../../assets/img/jne.jpg")}
-              alt=""
-              style={{ minWidth: 70 }}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="img-detail-thumbnail">
-            <img src={require("../../assets/img/pos.png")} alt="" />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="img-detail-thumbnail">
-            <img
-              src={require("../../assets/img/tiki.png")}
-              alt=""
-              style={{ minWidth: 100, marginTop: 5 }}
-            />
-          </div>
-        </div>
+        {courier.map(c => {
+          return (
+            <div className="col-md-3">
+              <div className="img-detail-thumbnail">
+                <img
+                  src={c == 'JNE' ? C_JNE : c == 'POS' ? C_POS : c == 'TIKI' ? C_TIKI : c == null ? null : null}
+                  alt=""
+                  style={{ maxWidth: 70, maxHeight: 22 }}
+                />
+              </div>
+            </div>
+          );
+        })}
       </>
     );
   }
@@ -393,9 +365,14 @@ class Detail extends Component {
     //     ? [product.thumbnail, ...product.picture]
     //     : [];
     let allPicts = product !== null ? [product.thumbnail] : [];
-    let getPicts = product !== null && product.picture.length !== 0 ? product.picture.map(pic => pic !== null ? allPicts.push(pic) : false) : [];
+    let getPicts =
+      product !== null && product.picture.length !== 0
+        ? product.picture.map(pic =>
+            pic !== null ? allPicts.push(pic) : false
+          )
+        : [];
 
-    console.log(allPicts)
+    console.log(allPicts);
 
     const arrayImage =
       product !== null
