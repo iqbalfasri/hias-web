@@ -41,7 +41,8 @@ class Detail extends Component {
       couriers: [],
       idProduct: null,
       picture: [],
-      freeze: false
+      freeze: false,
+      isLoved: false
     };
   }
 
@@ -79,16 +80,25 @@ class Detail extends Component {
 
     if (isLogin()) {
       fetchWishList(localStorage.getItem("userId")).then(res => {
-        this.setState({
-          wishListItems: res.data
-        });
+        this.setState(
+          {
+            wishListItems: res.data
+          },
+          () => {
+            let { wishListItems, product } = this.state;
+
+            wishListItems.forEach(wish => {
+              if (wish.id == product.productId) {
+                this.setState({ isLoved: true });
+              }
+            });
+          }
+        );
       });
     }
-
-    console.log(this.state.wishListItems, "wish items");
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { id } = this.props.match.params;
     // console.log(prevProps.match.params.id, "prev")
     if (id !== prevProps.match.params.id) {
@@ -118,9 +128,17 @@ class Detail extends Component {
           colors: res.data
         });
       });
+    }
 
-      // wish
-      this.isProductWishlisted(id)
+    // Wishlist
+    if (prevState.wishListItems !== this.state.wishListItems) {
+      fetchWishList(localStorage.getItem("userId"))
+        .then(res => {
+          this.setState({ wishListItems: res.data })
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 
@@ -306,25 +324,33 @@ class Detail extends Component {
         productId: id,
         userId: localStorage.getItem("userId")
       };
-      if (this.props.loved) {
-        removeWishlist(id)
-          .then(res => {
-            this.setState({
-              isLoved: false
-            });
-          })
-          .catch(err => {
-            console.log(err);
-          })
-          .finally(() => {
-            this.props.context.setIsLoading(false);
-          });
+      const { wishListItems, product } = this.state;
+
+      if (this.state.isLoved) {
+        wishListItems.forEach(wish => {
+          if (wish.id == product.productId) {
+            let { idWishlist } = wish;
+            removeWishlist(idWishlist)
+              .then(res => {
+                this.setState({
+                  isLoved: !this.state.isLoved
+                });
+              })
+              .catch(err => {
+                console.log(err);
+              })
+              .finally(() => {
+                this.props.context.setIsLoading(false);
+              });
+          }
+        });
       } else {
+        console.log(this.state.isLoved, "is love false");
         updateWishList(value)
           .then(res => {
             this.props.context.setWishList(value);
             this.setState({
-              isLoved: true
+              isLoved: !this.state.isLoved
             });
           })
           .catch(err => {
@@ -454,7 +480,7 @@ class Detail extends Component {
                               style={{ color: "#ba0001" }}
                             >
                               <FontAwesomeIcon
-                                icon={this.isProductWishlisted(product.productId) ? fasHeart : faHeart}
+                                icon={this.state.isLoved ? fasHeart : faHeart}
                               />
                             </span>
                           </div>
@@ -465,8 +491,13 @@ class Detail extends Component {
                           onClick={() => this.handleWishList(id)}
                           className="pda--items"
                         >
-                          <span className="text--size-1-5" style={{ color: "#ba0001" }}>
-                            <FontAwesomeIcon icon={this.isProductWishlisted(product.productId) ? fasHeart : faHeart} />
+                          <span
+                            className="text--size-1-5"
+                            style={{ color: "#ba0001" }}
+                          >
+                            <FontAwesomeIcon
+                              icon={this.state.isLoved ? fasHeart : faHeart}
+                            />
                           </span>
                         </div>
                       )}
