@@ -20,7 +20,7 @@ import {
   updateWishList,
   removeWishlist
 } from "../../api";
-import { formatMoneyWithoutSymbol } from "../../utils/money";
+import { formatMoneyWithoutSymbol, getDiscount } from "../../utils/money";
 import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
@@ -434,7 +434,7 @@ class Detail extends Component {
                           {formatMoneyWithoutSymbol(
                             product.discount == null
                               ? product.price
-                              : (product.price * product.discount) / 100
+                              : getDiscount(product.price, product.discount)
                           )}{" "}
                           / Item
                         </h2>
