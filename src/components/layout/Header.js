@@ -312,7 +312,7 @@ class Header extends Component {
             </div>
             <div className="header--dropdown">
               <div className="hd--item">
-                <Link to="/wallet">Wallet</Link>
+                <Link to="/wallet">Dompet</Link>
               </div>
               <div className="divider"></div>
               <div className="hd--item" onClick={() => this.onLogout()}>
@@ -394,7 +394,7 @@ class Header extends Component {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="search-input-container">
                   <form onSubmit={e => this.onSearch(e)}>
                     <input
@@ -409,7 +409,7 @@ class Header extends Component {
                   </form>
                 </div>
               </div>
-              <div className="col-md-6">{this.renderTopIcon()}</div>
+              <div className="col-md-7">{this.renderTopIcon()}</div>
             </div>
           </div>
         </div>
@@ -929,17 +929,17 @@ class Header extends Component {
                         </div>
                         <div className="sub-menu-content">
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <Link to="#">
+                            <Link to="/promo">
                               <span className="mr--2">Promo</span>
                             </Link>
                           </div>
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <Link to="#">
+                            <Link to="/news">
                               <span className="mr--2">Berita</span>
                             </Link>
                           </div>
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <Link to="#">
+                            <Link to="/event">
                               <span className="mr--2">Acara</span>
                             </Link>
                           </div>

@@ -30,11 +30,11 @@ class Footer extends Component {
                   </Link>
                 </div>
                 <ul>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/about">Tentang Kami</Link>
                   </li>
-                  <li>
-                    <Link to="/inspiration">Inspiration & Ideas</Link>
+                  <li style={{marginBottom:21}}>
+                    <Link to="/inspiration">Ide & Inspirasi</Link>
                   </li>
                   <li>
                     <Link to="/catalog">Katalog</Link>
@@ -46,7 +46,7 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
-                  <li>
+                  <li class="mb--2">
                     <a
                       target="_blank"
                       href="https://wa.me/082211990890/?text=urlencodedtext"
@@ -61,7 +61,7 @@ class Footer extends Component {
                       <span className="footer-sub-link">+62 822-1199-0890</span>
                     </a>
                   </li>
-                  <li>
+                  <li class="mb--2">
                     <a href="mailto:cs@hias.co.id">
                       <FontAwesomeIcon
                         icon={faEnvelopeOpen}
@@ -78,7 +78,7 @@ class Footer extends Component {
                       </a>
                     </a>
                   </li>
-                  <li>
+                  <li class="mb--2">
                     <span>
                       <FontAwesomeIcon
                         icon={faPhone}
@@ -113,22 +113,22 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Layanan Pelanggan</h3>
                 <ul>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/contact">Hubungi Kami</Link>
                   </li>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/faq">FAQ</Link>
                   </li>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/privacy">Kebijakan & Privasi</Link>
                   </li>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/terms">Syarat & Ketentuan</Link>
                   </li>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/deliveryterms">Kebijakan Pengiriman</Link>
                   </li>
-                  <li>
+                  <li style={{marginBottom:21}}>
                     <Link to="/refund">Kebijakan Pengembalian</Link>
                   </li>
                   <li>

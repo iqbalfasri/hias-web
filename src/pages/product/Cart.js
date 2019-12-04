@@ -176,7 +176,7 @@ class Cart extends Component {
                 -
               </button>
               <input
-                style={{ width: "50px", height: "34px" }}
+                style={{ width: "50px", height: "34px", textAlign: "center" }}
                 value={quantity}
                 type="text"
                 name="quantity"
@@ -327,7 +327,7 @@ class Cart extends Component {
                             <th scope="col">RINCIAN BARANG</th>
                             <th scope="col">HARGA</th>
                             <th scope="col">
-                              <span style={{ textAlign: "center" }}>QTY</span>
+                              <span style={{ textAlign: "center" }}>JUMLAH</span>
                             </th>
                             <th scope="col">TOTAL</th>
                           </tr>

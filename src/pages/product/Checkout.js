@@ -871,7 +871,7 @@ class Checkout extends Component {
                       />
                     </div>
                     <div className="order-status-text">
-                      <span>Payment</span>
+                      <span>Pembayaran Sukses</span>
                     </div>
                   </div>
                   <div className="order-status-wrapper">
@@ -882,7 +882,7 @@ class Checkout extends Component {
                       />
                     </div>
                     <div className="order-status-text">
-                      <span>Packing</span>
+                      <span>Kemas Barang</span>
                     </div>
                   </div>
                   <div className="order-status-wrapper">
@@ -890,7 +890,7 @@ class Checkout extends Component {
                       <img src={require("../../assets/img/Inbox.svg")} alt="" />
                     </div>
                     <div className="order-status-text">
-                      <span>On Delivery</span>
+                      <span>Dalam Pengiriman</span>
                     </div>
                   </div>
                   <div className="order-status-wrapper">
@@ -901,7 +901,7 @@ class Checkout extends Component {
                       />
                     </div>
                     <div className="order-status-text">
-                      <span>Completed</span>
+                      <span>Transaksi Sukses</span>
                     </div>
                   </div>
                 </div>
