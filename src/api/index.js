@@ -20,6 +20,12 @@ export const fetchHotProduct = () => {
   });
 };
 
+export const fetchAllProducts = () => {
+  return axios.get(`${BASE_URL}/product/hotItems`).then(res => {
+    return res.data
+  });
+}
+
 export const updateWishList = value => {
   return axios.post(`${BASE_URL}/product/wishList`, value).then(res => {
     return res.data;
