@@ -21,7 +21,7 @@ export const fetchHotProduct = () => {
 };
 
 export const fetchAllProducts = () => {
-  return axios.get(`${BASE_URL}/product/hotItems`).then(res => {
+  return axios.get(`${BASE_URL}/product/getProduct`).then(res => {
     return res.data
   });
 }

@@ -66,6 +66,7 @@ class AllHotProducts extends Component {
               id={product.productId}
               title={product.productName}
               price={product.price}
+              discount={product.discount}
               category={product.categoryName}
             />
           </div>
