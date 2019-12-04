@@ -130,15 +130,14 @@ class Detail extends Component {
       });
     }
 
-    // Wishlist
-    if (prevState.wishListItems !== this.state.wishListItems) {
+    if (prevState && prevState.wishListItems !== this.state.wishListItems) {
       fetchWishList(localStorage.getItem("userId"))
         .then(res => {
-          this.setState({ wishListItems: res.data })
+          this.setState({wishListItems: res.data});
         })
         .catch(error => {
-          console.log(error)
-        })
+          console.log(error);
+        });
     }
   }
 
