@@ -88,7 +88,7 @@ class ProductCard extends Component {
           }}
         >
           <div className="product-card-image">
-            <img style={{ objectFit: "cover" }} src={thumbnail} alt={title} />
+            <img style={{ objectFit: "contain" }} src={thumbnail} alt={title} />
           </div>
         </Link>
         <div className="fx justify-content-between product-card-footer">
