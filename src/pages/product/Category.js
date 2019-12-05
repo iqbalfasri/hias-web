@@ -57,6 +57,7 @@ class Category extends Component {
               id={product.id}
               title={product.productName}
               price={product.price}
+              discount={product.discount}
               category={product.categoryName}
             />
           </div>
@@ -70,16 +71,17 @@ class Category extends Component {
     const { category } = this.props.match.params;
     const categoryId = category;
 
-    axios
-      .get(`${BASE_URL}/product/categoryId/${categoryId}`)
-      .then(res => {
-        if (this._isMounted) {
-          this.setState({ products: res.data.data });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.handleLowToHigh(this.props);
+    // axios
+    //   .get(`${BASE_URL}/product/categoryId/${categoryId}`)
+    //   .then(res => {
+    //     if (this._isMounted) {
+    //       this.setState({ products: res.data.data });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
     if (isLogin()) {
       fetchWishList(localStorage.getItem("userId")).then(res => {
         this.setState({

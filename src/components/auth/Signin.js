@@ -74,7 +74,7 @@ class Signin extends Component {
     const username = e.target.value;
     this.setState({
       username
-    });
+    }, () => localStorage.removeItem('sugestLatestLogin'));
   }
 
   onChangePassword(e) {
@@ -98,7 +98,7 @@ class Signin extends Component {
               type="email"
               onChange={e => this.onChangeUsername(e)}
               value={
-                this.state.username || localStorage.getItem("sugestLatestLogin")
+                this.state.username
               }
               placeholder="Alamat Email"
             />

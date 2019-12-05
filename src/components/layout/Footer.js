@@ -30,10 +30,10 @@ class Footer extends Component {
                   </Link>
                 </div>
                 <ul>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/about">Tentang Kami</Link>
                   </li>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/inspiration">Ide & Inspirasi</Link>
                   </li>
                   <li>
@@ -46,7 +46,7 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
-                  <li class="mb--2">
+                  <li className="mb--2">
                     <a
                       target="_blank"
                       href="https://wa.me/082211990890/?text=urlencodedtext"
@@ -61,7 +61,7 @@ class Footer extends Component {
                       <span className="footer-sub-link">+62 822-1199-0890</span>
                     </a>
                   </li>
-                  <li class="mb--2">
+                  <li className="mb--2">
                     <a href="mailto:cs@hias.co.id">
                       <FontAwesomeIcon
                         icon={faEnvelopeOpen}
@@ -70,15 +70,12 @@ class Footer extends Component {
                       />
                       Email
                       <br />
-                      <a
-                        href="mailto:cs@hias.co.id"
-                        className="footer-sub-link"
-                      >
-                        cs@hias.co.id
-                      </a>
+                    </a>
+                    <a href="mailto:cs@hias.co.id" className="footer-sub-link">
+                      cs@hias.co.id
                     </a>
                   </li>
-                  <li class="mb--2">
+                  <li className="mb--2">
                     <span>
                       <FontAwesomeIcon
                         icon={faPhone}
@@ -113,22 +110,22 @@ class Footer extends Component {
               <div className="footer-link">
                 <h3 className="footer-link-title">Layanan Pelanggan</h3>
                 <ul>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/contact">Hubungi Kami</Link>
                   </li>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/faq">FAQ</Link>
                   </li>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/privacy">Kebijakan & Privasi</Link>
                   </li>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/terms">Syarat & Ketentuan</Link>
                   </li>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/deliveryterms">Kebijakan Pengiriman</Link>
                   </li>
-                  <li style={{marginBottom:21}}>
+                  <li style={{ marginBottom: 21 }}>
                     <Link to="/refund">Kebijakan Pengembalian</Link>
                   </li>
                   <li>

@@ -186,6 +186,7 @@ class Home extends Component {
               id={product.productId}
               title={product.productName}
               price={product.price}
+              discount={product.discount}
               category={product.categoryName}
             />
           </div>
@@ -208,6 +209,7 @@ class Home extends Component {
                   id={product.id}
                   title={product.productName}
                   price={product.price}
+                  discount={product.discount}
                   category={product.categoryName}
                 />
               </div>
