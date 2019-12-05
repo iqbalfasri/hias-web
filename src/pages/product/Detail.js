@@ -174,6 +174,7 @@ class Detail extends Component {
               id={hotProducts[i].productId}
               title={hotProducts[i].productName}
               price={hotProducts[i].price}
+              discount={hotProducts[i].discount}
               category={hotProducts[i].categoryName}
               needRefreshPage={true}
             />
@@ -646,7 +647,7 @@ class Detail extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h1 className="section-title mt--2">Related Product</h1>
+                    <h1 className="section-title mt--2">Produk Terkait</h1>
                   </div>
                 </div>
               </div>
