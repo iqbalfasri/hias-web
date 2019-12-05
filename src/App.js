@@ -25,6 +25,7 @@ import Refund from "./pages/Articles/Refund";
 import Newsletter from "./pages/Articles/Newsletter";
 import StoreLocation from "./pages/Articles/StoreLocation";
 import Promo from "./pages/Articles/Promo";
+import DetailPromo1 from "./pages/Articles/DetailPromo1";
 import Event from "./pages/Articles/Event";
 import News from "./pages/Articles/News";
 import Order from "./pages/product/Order";
@@ -45,7 +46,6 @@ import Review from "./pages/Review/Review";
 import AddReview from "./pages/Review/AddReview";
 import AllHotProducts from "./pages/product/AllHotProducts";
 import AllBestProducts from "./pages/product/AllBestProducts";
-import AllProducts from './pages/product/AllProducts';
 
 import { getCart } from "./api";
 
@@ -137,7 +137,6 @@ class App extends Component {
             component={AllBestProducts}
             exact={true}
           />
-          <Route path="/products/all" component={AllProducts} exact={true} />
           <Route path="/products/search" component={Search} exact={true} />
           <Route path="/products/detail/:id" component={Detail} exact={true} />
           <Route
@@ -152,6 +151,7 @@ class App extends Component {
           <Route path="/order" component={Order} exact={true} />
           <Route path="/order/detail/:id" component={OrderDetail} />
           <Route path="/promo" component={Promo} />
+          <Route path="/DetailPromo1" component={DetailPromo1} />
           <Route path="/news" component={News} />
           <Route path="/event" component={Event} />
           <Route path="/review" component={Review} exact={true} />
