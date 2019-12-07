@@ -106,7 +106,7 @@ class ProductCard extends Component {
             </div>
             <Link to={`/products/detail/${id}`}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                {discount !== null ? (
+                {/* {discount !== null ? (
                   <span
                     style={{
                       width: "30px",
@@ -123,7 +123,7 @@ class ProductCard extends Component {
                   >
                     {`${discount}%`}
                   </span>
-                ) : null}
+                ) : null} */}
                 {discount != null ? (
                   <p
                     className="text--color-orange mb--0 mr--1"
