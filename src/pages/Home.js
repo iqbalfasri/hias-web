@@ -46,7 +46,7 @@ const swiperBanner = {
   },
   slidesPerGroup: 1,
   slidesPerView: 1,
-  loop: true,
+  // loop: true,
   autoplay: {
     delay: 3000,
     disableOnInteraction: false
