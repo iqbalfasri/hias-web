@@ -46,7 +46,7 @@ const swiperBanner = {
   },
   slidesPerGroup: 1,
   slidesPerView: 1,
-  loop: true,
+  // loop: true,
   autoplay: {
     delay: 3000,
     disableOnInteraction: false
@@ -310,7 +310,7 @@ class Home extends Component {
                 <div className="col">
                   <div className="text--right">
                     <Link className="text--size-12" to="/products/all">
-                      View All
+                      Lihat semua
                     </Link>
                   </div>
                 </div>
@@ -335,7 +335,7 @@ class Home extends Component {
                 <div className="col">
                   <div className="text--right">
                     <Link className="text--size-12" to="/products/best">
-                      View All
+                      Lihat semua
                     </Link>
                   </div>
                 </div>
@@ -359,7 +359,7 @@ class Home extends Component {
                 <div className="col">
                   <div className="text--right">
                     <Link className="text--size-12" to="/products/hot">
-                      View All
+                      Lihat semua
                     </Link>
                   </div>
                 </div>

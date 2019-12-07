@@ -20,7 +20,7 @@ import {
   updateWishList,
   removeWishlist
 } from "../../api";
-import { formatMoneyWithoutSymbol } from "../../utils/money";
+import { formatMoneyWithoutSymbol, getDiscount } from "../../utils/money";
 import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
@@ -174,6 +174,7 @@ class Detail extends Component {
               id={hotProducts[i].productId}
               title={hotProducts[i].productName}
               price={hotProducts[i].price}
+              discount={hotProducts[i].discount}
               category={hotProducts[i].categoryName}
               needRefreshPage={true}
             />
@@ -434,7 +435,7 @@ class Detail extends Component {
                           {formatMoneyWithoutSymbol(
                             product.discount == null
                               ? product.price
-                              : (product.price * product.discount) / 100
+                              : getDiscount(product.price, product.discount)
                           )}{" "}
                           / Item
                         </h2>
@@ -646,7 +647,7 @@ class Detail extends Component {
               <div className="row align-items-center mb--2">
                 <div className="col">
                   <div>
-                    <h1 className="section-title mt--2">Related Product</h1>
+                    <h1 className="section-title mt--2">Produk Terkait</h1>
                   </div>
                 </div>
               </div>

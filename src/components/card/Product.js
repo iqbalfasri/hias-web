@@ -5,7 +5,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { isLogin } from "../../utils/auth";
-import { formatMoneyWithoutSymbol } from "../../utils/money";
+import { formatMoneyWithoutSymbol, getDiscount } from "../../utils/money";
 import { withContext } from "../../context/withContext";
 import { updateWishList, removeWishlist } from "../../api";
 
@@ -139,7 +139,7 @@ class ProductCard extends Component {
                   <strong>
                     IDR{" "}
                     {formatMoneyWithoutSymbol(
-                      discount == null ? price : (price * discount) / 100
+                      discount == null ? price : getDiscount(price, discount)
                     )}
                   </strong>
                 </p>
