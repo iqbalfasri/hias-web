@@ -26,17 +26,6 @@ class AllHotProducts extends Component {
     }
   }
 
-  restructureData() {
-    let { product, wishListItems } = this.state;
-    let result = {};
-
-    product.map((item, index) => {
-      wishListItems.map(wishItems => {
-        console.log(item)
-      });
-    });
-  }
-
   isProductWishlisted(id) {
     const { wishListItems } = this.state;
     let result = false;
@@ -63,7 +52,7 @@ class AllHotProducts extends Component {
                   : "https://via.placeholder.com/600x600"
               }
               loved={this.isProductWishlisted(product.productId)}
-              id={product.productId}
+              id={product.productId || product.id}
               title={product.productName}
               price={product.price}
               discount={product.discount}
