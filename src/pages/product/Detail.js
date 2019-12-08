@@ -406,7 +406,7 @@ class Detail extends Component {
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
-          <title>Product Detail</title>
+          <title>HIAS House - {product.productName}</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />
@@ -421,11 +421,14 @@ class Detail extends Component {
                       <h1 style={{ color: "#6c6e70" }}>
                         {product.productName}
                       </h1>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
                         {product.discount !== null ? (
                           <h2
                             className="text--color-orange mr--1"
-                            style={{ textDecoration: "line-through", fontSize: '20px' }}
+                            style={{
+                              textDecoration: "line-through",
+                              fontSize: "20px"
+                            }}
                           >
                             IDR {formatMoneyWithoutSymbol(product.price)}
                           </h2>
@@ -579,65 +582,53 @@ class Detail extends Component {
                         {this.renderTabContent()}
                       </div>
                     </div>
-                    <div className="product-detail-variant">
-                      <h3 style={{ color: "#6c6e70" }}>Varian Lainnya</h3>
-                      <div className="row" style={{ paddingLeft: "1.3em" }}>
-                        {this.state.variant !== null
-                          ? this.state.variant.map((p, index) => {
-                              return (
-                                <div
-                                  className="col-md-4 variant-item"
-                                  key={`variant-${index}`}
-                                  //   onClick={() => {
-                                  //     {
-                                  //       window.location.reload();
-                                  //     }
-                                  //   }
-                                  // }
-                                >
-                                  <Link to={`/products/detail/${p.id}`}>
-                                    <div className="img-detail-thumbnail">
-                                      <img
-                                        src={
-                                          p.thumbnail
-                                            ? p.thumbnail
-                                            : "https://via.placeholder.com/1400x700"
-                                        }
-                                        alt=""
-                                      />
-                                    </div>
-                                    <p style={{ color: "#6c6e70" }}>
-                                      {p.productName.substring(
-                                        p.productName.length - 8,
-                                        p.productName.length
-                                      )}
-                                    </p>
-                                  </Link>
-                                </div>
-                              );
-                            })
-                          : "Tidak ditemukan"}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
+                    {this.state.variant !== null ? (
                       <div className="product-detail-variant">
-                        <h3 style={{ color: "#6c6e70" }}>Pilihan Warna</h3>
-                        <div>
-                          <ColorSelector colors={this.state.colors} />
+                        <h3 style={{ color: "#6c6e70" }}>Varian Lainnya</h3>
+                        <div className="row" style={{ paddingLeft: "1.3em" }}>
+                          {this.state.variant.map((p, index) => {
+                            return (
+                              <div
+                                className="col-md-4 variant-item"
+                                key={`variant-${index}`}
+                              >
+                                <Link to={`/products/detail/${p.id}`}>
+                                  <div className="img-detail-thumbnail">
+                                    <img
+                                      src={
+                                        p.thumbnail
+                                          ? p.thumbnail
+                                          : "https://via.placeholder.com/1400x700"
+                                      }
+                                      alt=""
+                                    />
+                                  </div>
+                                  <p style={{ color: "#6c6e70" }}>
+                                    {p.productName.substring(
+                                      p.productName.length - 8,
+                                      p.productName.length
+                                    )}
+                                  </p>
+                                </Link>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                  {this.state.colors !== null ? (
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="product-detail-variant">
+                          <h3 style={{ color: "#6c6e70" }}>Pilihan Warna</h3>
+                          <div>
+                            <ColorSelector colors={this.state.colors} />
+                          </div>
                         </div>
                       </div>
                     </div>
-                    {/*                   <div className="col-md-6">
-                      <div className="product-detail-variant">
-                        <h3>Tone Options</h3>
-                        <div>
-                          <ColorSelector />
-                        </div>
-                      </div>
-                    </div> */}
-                  </div>
+                  ) : null}
                 </div>
               </div>
             </div>

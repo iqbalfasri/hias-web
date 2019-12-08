@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import moment from 'moment'
 
 import { BASE_URL, getOrderProgress } from "../../api";
 
@@ -92,6 +93,7 @@ class Order extends Component {
   renderEachOrder(data) {
     if (data !== undefined) {
       return this.state.orderData.map(order => {
+        let convertTimeStamp = moment(order.date).format("D MMM");
         return (
           <a
             onClick={() => this.getOrderDetail()}
@@ -102,7 +104,7 @@ class Order extends Component {
             {/* Order Id */}
             <div className="row row-flex row-order--id-wrapper">
               <div className="order-circle--date">
-                <p>21 Oct</p>
+                <p>{convertTimeStamp}</p>
               </div>
               <div>
                 <p>ID {order.orderId}</p>
