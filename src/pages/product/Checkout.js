@@ -863,7 +863,18 @@ class Checkout extends Component {
             <div className="row mt--2">
               <div className="col">
                 <div className="order-status-container">
-                  <div className="order-status-wrapper orb--active">
+                <div className="order-status-wrapper orb--active">
+                    <div className="order-status-box">
+                      <img
+                        src={require("../../assets/img/Coupon.svg")}
+                        alt=""
+                      />
+                    </div>
+                    <div className="order-status-text">
+                      <span>Menunggu Pembayaran</span>
+                    </div>
+                  </div>
+                  <div className="order-status-wrapper">
                     <div className="order-status-box">
                       <img
                         src={require("../../assets/img/Coupon.svg")}

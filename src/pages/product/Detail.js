@@ -209,7 +209,7 @@ class Detail extends Component {
     const { product } = this.state;
     return this.state.addToCartClicked ? (
       <div className="pda--items">
-        <button className="btn btn--blue">Added to Cart</button>
+        <button className="btn btn--blue">Ditambahkan ke keranjang</button>
       </div>
     ) : (
       <div className="pda--items">
