@@ -20,7 +20,7 @@ class AllHotProducts extends Component {
       fetchWishList(localStorage.getItem("userId")).then(res => {
         this.setState({
           wishListItems: res.data
-        }, () => this.restructureData());
+        });
       });
 
     }

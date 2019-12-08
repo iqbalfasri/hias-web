@@ -30,6 +30,7 @@ import Event from "./pages/Articles/Event";
 import News from "./pages/Articles/News";
 import Order from "./pages/product/Order";
 import OrderDetail from "./pages/product/OrderDetail";
+import AllProducts from './pages/product/AllProducts';
 
 import ForgotPassword from "./pages/auth/ForgotPassword";
 
@@ -132,6 +133,7 @@ class App extends Component {
           <Route path="/inspiration/detail/:id" component={DetailInspiration} />
           <Route path="/wallet/dashboard" component={DashboardWallet} />
           <Route path="/products/hot" component={AllHotProducts} exact={true} />
+          <Route path="/products/all" component={AllProducts} exact={true} />
           <Route
             path="/products/best"
             component={AllBestProducts}
