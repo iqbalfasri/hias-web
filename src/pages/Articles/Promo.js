@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import "./Promo.scss";
 
@@ -22,7 +23,7 @@ class Promo extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <div className="promo-header">
           <div className="container">
             <div className="row">
@@ -38,39 +39,59 @@ class Promo extends Component {
             </div>
           </div>
         </div>
-
-        <div className="promo-content">
-          <div className="container">
-            <h1>CONTENT</h1>
+        <div className="container">
+        <div className="row">
+            <div className="col-md-4">
+              <div className="product-card">
+                <Link to={"/DetailPromo1"}>
+                  <div className="product-card-image">
+                    <img style={{ objectFit: "cover" }} src={require("../../assets/img/evoucher.jpg")} alt={"Promo Hias House"} />
+                  </div>
+                </Link>
+                <div className="fx justify-content-between product-card-footer">
+                  <div className="product-card-wrapper">
+                    <div className="fx justify-content-between fx-no-wrap">
+                      <Link to={"/"}>
+                        <div>
+                          <p className="mb--0" style={{ color: "#6c6e70" }}>
+                            <strong>VOUCHER IDR 25.000</strong>
+                          </p>
+                          <p className="mb--0 text--color-gray">5 - 20 Desember 2019</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="product-card">
+                <Link to={"/DetailPromo2"}>
+                  <div className="product-card-image">
+                    <img style={{ objectFit: "cover" }} src={require("../../assets/img/evoucher2.jpg")} alt={"Promo Hias House"} />
+                  </div>
+                </Link>
+                <div className="fx justify-content-between product-card-footer">
+                  <div className="product-card-wrapper">
+                    <div className="fx justify-content-between fx-no-wrap">
+                      <Link to={"/"}>
+                      <div>
+                          <p className="mb--0" style={{ color: "#6c6e70" }}>
+                            <strong>Diskon Akhir Tahun Sampai 80% Untuk Semua Produk HIAS House*</strong>
+                          </p>
+                          <p className="mb--0 text--color-gray">1 - 30 Desember 2019</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+            </div>
           </div>
         </div>
-
-        <div className="container" style={{ marginBottom: 250 }}>
-          <h1>example dropdown</h1>
-
-          <div>
-            <button class="accordion">Section 1</button>
-            <div class="panel">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-
-            <button class="accordion">Section 2</button>
-            <div class="panel">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-          </div>
-        </div>
-      </>
+      </div>
     );
   }
 }

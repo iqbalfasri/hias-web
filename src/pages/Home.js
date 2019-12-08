@@ -276,7 +276,7 @@ class Home extends Component {
     return (
       <div>
         <Helmet key={Math.random()}>
-          <title>Home Page</title>
+          <title>HIAS House - Beranda</title>
           <meta property="og:title" content="Hias Homepage" />
           <meta name="description" content="Hias" />
           <meta name="robots" content="index, nofollow" />
