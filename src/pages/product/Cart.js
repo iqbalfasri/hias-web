@@ -18,6 +18,8 @@ import { formatMoneyWithoutSymbol } from "../../utils/money";
 import { withContext } from "../../context/withContext";
 import Modal from "../../components/layout/Modal";
 
+import { getDiscount } from "../../utils/money";
+
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -142,6 +144,15 @@ class Cart extends Component {
     }
   };
 
+  getTotal(discount, cart) {
+    let priceWithoutDiscount = cart.qty * cart.price;
+    if (discount == null) {
+      return priceWithoutDiscount
+    }
+
+    return getDiscount(priceWithoutDiscount, discount)
+  }
+
   renderCart() {
     if (this.state.carts.length !== 0) {
       return this.state.carts.map((cart, index) => {
@@ -166,7 +177,17 @@ class Cart extends Component {
               </div>
             </th>
             <td>
-              <span>IDR {formatMoneyWithoutSymbol(cart.price)}</span>
+              {cart.discount !== null ? (
+                <span style={{ textDecoration: 'line-through' }} className="mr--1">IDR {formatMoneyWithoutSymbol(cart.price)}</span>
+              ) : null}
+              <span>
+                IDR{" "}
+                {formatMoneyWithoutSymbol(
+                  cart.discount == null
+                    ? cart.price
+                    : getDiscount(cart.price, cart.discount)
+                )}
+              </span>
             </td>
             <td>
               <button
@@ -193,7 +214,7 @@ class Cart extends Component {
             <td>
               <span>
                 <strong>
-                  IDR {formatMoneyWithoutSymbol(cart.qty * cart.price)}
+                  IDR {formatMoneyWithoutSymbol(this.getTotal(cart.discount, cart))}
                 </strong>
               </span>
             </td>
@@ -208,7 +229,11 @@ class Cart extends Component {
     let total = 0;
     for (let i = 0; i < carts.length; i++) {
       const itemAmount = cartsQuantity[i] || 1;
-      total = total + itemAmount * carts[i].price;
+      if (carts[i].discount == null) {
+        total = total + itemAmount * carts[i].price;
+      } else {
+        total = total + itemAmount * getDiscount(carts[i].price, carts[i].discount);
+      }
     }
 
     // this code will returned price with kupon code
@@ -221,7 +246,11 @@ class Cart extends Component {
     for (let i = 0; i < carts.length; i++) {
       const itemAmount = carts[i].qty || 1;
       // const itemAmount = cartsQuantity[i] || 1;
-      total = total + itemAmount * carts[i].price;
+      if (carts[i].discount == null) {
+        total = total + itemAmount * carts[i].price;
+      } else {
+        total = total + itemAmount * getDiscount(carts[i].price, carts[i].discount);
+      }
     }
 
     // this code will returned price with kupon code
@@ -327,7 +356,9 @@ class Cart extends Component {
                             <th scope="col">RINCIAN BARANG</th>
                             <th scope="col">HARGA</th>
                             <th scope="col">
-                              <span style={{ textAlign: "center" }}>JUMLAH</span>
+                              <span style={{ textAlign: "center" }}>
+                                JUMLAH
+                              </span>
                             </th>
                             <th scope="col">TOTAL</th>
                           </tr>
@@ -349,7 +380,7 @@ class Cart extends Component {
                               onClick={e => this.handleCoupon(e)}
                               className="btn btn--primary"
                             >
-                              Apply
+                              Gunakan
                             </button>
                           </div>
                         </div>
