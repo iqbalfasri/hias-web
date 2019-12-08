@@ -203,7 +203,7 @@ class Signup extends Component {
                   isChecked={this.state.checkBoxChecked}
                 />
                 <span style={{ marginLeft: 5 }}>
-                  Saya setuju dengan <Link to="/terms">syarat & ketentuan</Link>{" "}
+                  Saya setuju dengan <Link to="/terms" target="_blank">syarat & ketentuan</Link>{" "}
                   dari HIAS House
                 </span>
               </div>
