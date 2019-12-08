@@ -166,6 +166,46 @@ class Category extends Component {
       });
   }
 
+  handleRedColor(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/colorRed`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      });
+  }
+
+  handleBlueColor(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/colorBlue`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      });
+  }
+
+  handleBlackColor(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/colorBlack`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      });
+  }
+
+  handleGreenColor(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/colorGreen`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      });
+  }
+
+  handleWhiteColor(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/colorWhite`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      });
+  }
+
   render() {
     return (
       <div className="content">
@@ -249,39 +289,59 @@ class Category extends Component {
                       </div>
                       <div>
                         <div className="cat--items">
-                          <Checkbox
-                            id="red"
-                            text="Merah"
-                            textStyle={{ fontSize: "14px" }}
-                          />
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr"
+                              onClick={() => this.handleRedColor(this.props)}
+                            />
+                          </span>
+                          <label htmlFor="clr">Merah</label>
                         </div>
                         <div className="cat--items">
-                          <Checkbox
-                            id="blue"
-                            text="Biru"
-                            textStyle={{ fontSize: "14px" }}
-                          />
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr"
+                              onClick={() => this.handleBlueColor(this.props)}
+                            />
+                          </span>
+                          <label htmlFor="clr">Biru</label>
                         </div>
                         <div className="cat--items">
-                          <Checkbox
-                            id="green"
-                            text="Hijau"
-                            textStyle={{ fontSize: "14px" }}
-                          />
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr"
+                              onClick={() => this.handleGreenColor(this.props)}
+                            />
+                          </span>
+                          <label htmlFor="clr">Hijau</label>
                         </div>
                         <div className="cat--items">
-                          <Checkbox
-                            id="black"
-                            text="Hitam"
-                            textStyle={{ fontSize: "14px" }}
-                          />
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr"
+                              onClick={() => this.handleBlackColor(this.props)}
+                            />
+                          </span>
+                          <label htmlFor="clr">Hitam</label>
                         </div>
                         <div className="cat--items">
-                          <Checkbox
-                            id="white"
-                            text="Putih"
-                            textStyle={{ fontSize: "14px" }}
-                          />
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr"
+                              onClick={() => this.handleWhiteColor(this.props)}
+                            />
+                          </span>
+                          <label htmlFor="clr">Putih</label>
                         </div>
                       </div>
                     </div>
