@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as fasHeart, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import StarRatings from "react-star-ratings";
 import ShowMoreText from "react-show-more-text";
 import Swiper from "react-id-swiper";
@@ -379,9 +379,11 @@ class Detail extends Component {
           pagination: {
             el: ".swiper-pagination"
           },
+          renderPrevButton: () => <div className="swiper-button-prev"><FontAwesomeIcon color="#4bc4df" size="2x" icon={faChevronLeft} /></div>,
+          renderNextButton: () =>  <div className="swiper-button-next"><FontAwesomeIcon color="#4bc4df" size="2x" icon={faChevronRight} /></div>,
           navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
           },
           autoplay: {
             delay: 3000,
