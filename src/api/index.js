@@ -278,7 +278,8 @@ export const fetchOngkir = dataObj => {
       }
     )
     .then(res => {
-      return res.data.rajaongkir.results[0].costs[0].cost[0].value;
+      return res.data
+      // return res.data.rajaongkir.results[0].costs[0].cost[0].value;
     });
 };
 

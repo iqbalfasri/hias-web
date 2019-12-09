@@ -176,8 +176,10 @@ class App extends Component {
         >
           <Signup />
         </Modal>
-        <Modal isOpen={isLoading}>
-          <h1 className="text--center mb--0">PROCESSING...</h1>
+        <Modal bgTransparent={true} isOpen={isLoading}>
+          <center>
+            <img style={{ width: 150, height: 150 }} src={require('./assets/img/loading.gif')} />
+          </center>
         </Modal>
         <Modal
           isOpen={isModalPromo}

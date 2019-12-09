@@ -52,7 +52,7 @@ class Checkout extends Component {
       addressSelected: null,
       selectedIndexAddress: 0,
       isModalAddress: false,
-      listCourier: ["jne", "pos", "tiki"],
+      listCourier: ["jne", "pos", "tiki", "hias_courier"],
       courierSelected: 0,
       listCity: [],
       urlIpayMu: "",
@@ -388,6 +388,7 @@ class Checkout extends Component {
     ) {
       alert("Form wajib diisi lengkap");
     } else {
+      console.log(JSON.stringify(this.state.city));
       this.props.context.setIsLoading(true);
       addUserAddress({
         userId: localStorage.getItem("userId"),
@@ -566,6 +567,9 @@ class Checkout extends Component {
       case 2:
         this._handleCost(this.checkOngkir(this.state.listCourier[index]));
         break;
+      case 3:
+        this.setState({ hargaOngkir: 0 });
+        break;
 
       default:
         this._handleCost(this.checkOngkir(this.state.listCourier[index]));
@@ -615,7 +619,9 @@ class Checkout extends Component {
                       ? require("../../assets/img/jne.jpeg")
                       : courier == "pos"
                       ? require("../../assets/img/pos-id.png")
-                      : require("../../assets/img/tiki-logo.png")
+                      : courier == "tiki"
+                      ? require("../../assets/img/tiki-logo.png")
+                      : require("../../assets/img/hias-courier.jpeg")
                   }
                 />
               </div>
@@ -863,7 +869,7 @@ class Checkout extends Component {
             <div className="row mt--2">
               <div className="col">
                 <div className="order-status-container">
-                <div className="order-status-wrapper orb--active">
+                  <div className="order-status-wrapper orb--active">
                     <div className="order-status-box">
                       <img
                         src={require("../../assets/img/Coupon.svg")}
