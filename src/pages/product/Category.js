@@ -53,6 +53,7 @@ class Category extends Component {
                   ? product.thumbnail
                   : "https://via.placeholder.com/600x600"
               }
+              isWrapPrice={true}
               loved={this.isProductWishlisted(product.id)}
               id={product.id}
               title={product.productName}
