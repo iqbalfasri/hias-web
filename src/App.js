@@ -31,6 +31,7 @@ import News from "./pages/Articles/News";
 import Order from "./pages/product/Order";
 import OrderDetail from "./pages/product/OrderDetail";
 import AllProducts from './pages/product/AllProducts';
+import DetailNews from './pages/Articles/DetailNews'
 
 import ForgotPassword from "./pages/auth/ForgotPassword";
 
@@ -155,6 +156,7 @@ class App extends Component {
           <Route path="/promo" component={Promo} />
           <Route path="/DetailPromo1" component={DetailPromo1} />
           <Route path="/news" component={News} />
+          <Route path="/detailnews" component={DetailNews} />
           <Route path="/event" component={Event} />
           <Route path="/review" component={Review} exact={true} />
           <Route path="/review/add" component={AddReview} />

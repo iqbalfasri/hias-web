@@ -45,29 +45,6 @@ class Promo extends Component {
               <div className="product-card">
                 <Link to={"/DetailPromo1"}>
                   <div className="product-card-image">
-                    <img style={{ objectFit: "cover" }} src={require("../../assets/img/evoucher.jpg")} alt={"Promo Hias House"} />
-                  </div>
-                </Link>
-                <div className="fx justify-content-between product-card-footer">
-                  <div className="product-card-wrapper">
-                    <div className="fx justify-content-between fx-no-wrap">
-                      <Link to={"/"}>
-                        <div>
-                          <p className="mb--0" style={{ color: "#6c6e70" }}>
-                            <strong>VOUCHER IDR 25.000</strong>
-                          </p>
-                          <p className="mb--0 text--color-gray">5 - 20 Desember 2019</p>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="product-card">
-                <Link to={"/DetailPromo2"}>
-                  <div className="product-card-image">
                     <img style={{ objectFit: "cover" }} src={require("../../assets/img/evoucher2.jpg")} alt={"Promo Hias House"} />
                   </div>
                 </Link>
@@ -79,13 +56,15 @@ class Promo extends Component {
                           <p className="mb--0" style={{ color: "#6c6e70" }}>
                             <strong>Diskon Akhir Tahun Sampai 80% Untuk Semua Produk HIAS House*</strong>
                           </p>
-                          <p className="mb--0 text--color-gray">1 - 30 Desember 2019</p>
+                          <p className="mb--0 text--color-gray">12 November - 31 Desember 2019</p>
                         </div>
                       </Link>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col-md-4">
             </div>
             <div className="col-md-4">
             </div>
