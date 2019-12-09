@@ -3,7 +3,8 @@ import axios from "axios";
 import {
   fetchBestSellerProduct,
   fetchHotProduct,
-  fetchWishList
+  fetchWishList,
+  fetchAllProductPilihan
 } from "../../api";
 import ProductCard from "../../components/card/Product";
 import { isLogin } from "../../utils/auth";
@@ -15,7 +16,7 @@ class AllHotProducts extends Component {
   };
 
   componentDidMount() {
-    fetchHotProduct().then(res => {
+    fetchAllProductPilihan().then(res => {
       this.setState({ product: res.data });
     });
 
