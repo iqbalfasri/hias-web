@@ -95,3 +95,17 @@
     }
   }
 }
+
+.bank-list {
+  img {
+    width: 100px;
+  }
+  li {
+    list-style: none;
+    margin-bottom:30px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -73,11 +73,12 @@ class AboutUs extends Component {
                   </ul>
                 </div>
                 <div className="col-md-8">
-                  <p>
+                  <strong><p style={{paddingTop:0}}>
                     Hi!
                     <br />
                     Terima kasih sudah berkunjung ke website Kami
                   </p>
+                  </strong>
                   {/* <div className="article-image">
                     <img
                       src={require("../../assets/img/Banner-Newsletter.png")}
