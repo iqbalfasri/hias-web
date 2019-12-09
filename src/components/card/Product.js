@@ -38,6 +38,18 @@ class ProductCard extends Component {
     }
   }
 
+  componentDidUpdate(prevState) {
+    if (prevState && prevState.wishListItems !== this.state.wishListItems) {
+      fetchWishList(localStorage.getItem("userId"))
+        .then(res => {
+          this.setState({ wishListItems: res.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+
   addToWishList(id) {
     if (isLogin()) {
       // this.props.context.setIsLoading(true);
@@ -105,6 +117,17 @@ class ProductCard extends Component {
   render() {
     const { category, title, price, id, thumbnail, discount } = this.props;
 
+    let wrappStyle = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start"
+    };
+
+    let noWrappStyle = {
+      display: "flex",
+      alignItems: "center"
+    };
+
     return (
       <div className="product-card">
         <Link
@@ -133,7 +156,7 @@ class ProductCard extends Component {
               {this.renderLovedIcon()}
             </div>
             <Link to={`/products/detail/${id}`}>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={this.props.isWrapPrice ? wrappStyle : noWrappStyle}>
                 {/* {discount !== null ? (
                   <span
                     style={{
