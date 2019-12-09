@@ -1,19 +1,28 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { addToCart, fetchWishList } from "../../api";
 import ProductCard from "../../components/card/Product";
 import { isLogin } from "../../utils/auth";
 
 class Wishlist extends Component {
   state = {
-    wishListItems: []
+    wishListItems: [],
+    emptyMessage: "",
+    isLoading: false
   };
 
   componentDidMount() {
+    this.setState({ isLoading: true })
     if (isLogin()) {
       fetchWishList(localStorage.getItem("userId")).then(res => {
-        this.setState({
-          wishListItems: res.data
-        });
+        // handle empty wishlist
+        if (res.data.length !== 0) {
+          this.setState({
+            wishListItems: res.data,
+            isLoading: false
+          });
+        } else {
+          this.setState({ emptyMessage: "Tidak ada wishlist", isLoading: false });
+        }
       });
     } else {
       this.props.history.push("/login");
@@ -109,6 +118,9 @@ class Wishlist extends Component {
                 </div>
               </div>
             </div>
+            <br />
+            <p>{this.state.isLoading ? 'Loading...' : null}</p>
+            <h3>{this.state.emptyMessage}</h3>
             <div className="contianer-review-list">{this.renderProduct()}</div>
           </div>
         </div>
