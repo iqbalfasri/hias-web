@@ -23,30 +23,88 @@ class Inspiration extends Component {
     const { inspiration } = this.state;
     if (inspiration !== null) {
       return inspiration.map((item, i) => {
-        return (
-          <div key={i}>
-            <div className="mb--1">
-              <div className="mb--1">
-                <img src={item.banner} alt="" />
-              </div>
-              <div className="fx fx-no-wrap">
-                <div>
-                  <div className="inspiration-number">{i + 1}</div>
+        // first template
+        if (i == 0) {
+          return (
+            <div key={i}>
+              <div className="insp-template">
+                <div
+                  style={{ backgroundImage: `url(${item.banner})` }}
+                  className="insp-template-1--image"
+                ></div>
+                <div className="insp-template-1--content">
+                  <div className="content--max-wd">
+                    <h2>Sub title</h2>
+                    <h1>{item.title}</h1>
+                  </div>
                 </div>
-                <div className="ml--1">
-                  <h1>{item.title}</h1>
-                  <p className="mb--0">{item.description}</p>
+                <div className="insp-right--content">
+                  <div style={{ display: "flex" }} className="mt--2">
+                    <div className="col-md-3">
+                      <p className="insp-1--desc">{item.description}</p>
+                    </div>
+                    <div className="col-md-3">
+                      <img
+                        className="insp-1--img-content-top mb--2"
+                        src={item.banner}
+                      />
+                      <img
+                        className="insp-1--img-content-top"
+                        src={item.banner}
+                      />
+                    </div>
+                    <div className="col-md-3">
+                      <img style={{ width: "100%" }} src={item.banner} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
+          );
+        }
+
+        // second template
+        if (i == 1) {
+        }
+
+        // third template
+        if (i == 2) {
+          return (
+            <div key={i}>
+              <div className="insp-template">
+                <div
+                  style={{ backgroundImage: `url(${item.banner})` }}
+                  className="insp-template-1--image"
+                ></div>
+                <div className="insp-template-3--content">
+                  <div className="content--max-wd">
+                    <h2>Sub title</h2>
+                    <h1>{item.title}</h1>
+                  </div>
+                </div>
+                <div className="insp-right--content">
+                  <div className="mt--2">
+                    <div className="col-md-12">
+                      <p
+                        style={{ textAlign: "right" }}
+                        className="insp-1--desc"
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        return null;
       });
     }
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <Helmet key={Math.random()}>
