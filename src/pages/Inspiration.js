@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import ShowMoreText from "react-show-more-text";
 
 import "./Inspiration.scss";
 import { fetchAllInspiration } from "../../src/api";
@@ -65,13 +66,65 @@ class Inspiration extends Component {
 
         // second template
         if (i == 1) {
+          return (
+            <div key={i}>
+              <div className="insp-template mb--1">
+                <div className="insp-right--content">
+                  <div style={{ display: "flex" }}>
+                    <div className="insp-template-2--content">
+                      <div className="col-md-8">
+                        <div className="content--max-wd">
+                          <h2>Sub title</h2>
+                          <h1>{item.title}</h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt--2">
+                    <div style={{ display: "flex" }}>
+                      <div className="col-md-4">
+                        <img src={item.banner} />
+                      </div>
+                      <div className="col-md-4">
+                        <img src={item.banner} />
+                      </div>
+                      <div className="col-md-4">
+                        <div
+                          style={{ backgroundImage: `url(${item.banner})` }}
+                          className="insp-tempate-2vertical--img"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="insp-template-2--content mt--2">
+                    <div className="col-md-8">
+                      <div className="content--max-wd">
+                        <p className="insp-2--desc">
+                          <ShowMoreText
+                            lines={5}
+                            more="Lihat lebih banyak"
+                            less="Lihat lebih sedikit"
+                          >
+                            {item.description}
+                          </ShowMoreText>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
         }
 
         // third template
         if (i == 2) {
           return (
             <div key={i}>
-              <div className="insp-template">
+              <div
+                style={{ marginTop: "80px" }}
+                className="insp-template mt--2"
+              >
                 <div
                   style={{ backgroundImage: `url(${item.banner})` }}
                   className="insp-template-1--image"
