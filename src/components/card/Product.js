@@ -7,7 +7,7 @@ import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { isLogin } from "../../utils/auth";
 import { formatMoneyWithoutSymbol, getDiscount } from "../../utils/money";
 import { withContext } from "../../context/withContext";
-import { updateWishList, removeWishlist } from "../../api";
+import { updateWishList, removeWishlist, fetchWishList } from "../../api";
 
 import "./Product.scss";
 
@@ -16,45 +16,85 @@ class ProductCard extends Component {
     super(props);
 
     this.state = {
-      isLoved: false
+      isLoved: false,
+      wishListItems: []
     };
+  }
+
+  componentDidMount() {
+    if (isLogin()) {
+      fetchWishList(localStorage.getItem("userId")).then(res => {
+        this.setState({ wishListItems: res.data }, () => {
+          let { wishListItems } = this.state;
+          let idProduct = this.props.id;
+
+          wishListItems.forEach(wish => {
+            if (wish.id == idProduct) {
+              this.setState({ isLoved: true });
+            }
+          });
+        });
+      });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState && prevState.wishListItems !== this.state.wishListItems) {
+      fetchWishList(localStorage.getItem("userId"))
+        .then(res => {
+          this.setState({ wishListItems: res.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   addToWishList(id) {
     if (isLogin()) {
-      this.props.context.setIsLoading(true);
+      // this.props.context.setIsLoading(true);
       const value = {
         productId: id,
         userId: JSON.parse(localStorage.getItem("userId"))
       };
-      if (this.props.loved) {
-        removeWishlist(id)
-          .then(res => {
-            if (res.success) {
-              this.setState({
-                isLoved: false
+
+      const { wishListItems } = this.state;
+      const idProduct = this.props.id;
+
+      if (this.state.isLoved) {
+        wishListItems.forEach(wish => {
+          if (wish.id == idProduct) {
+            let { idWishlist } = wish;
+
+            removeWishlist(idWishlist)
+              .then(res => {
+                if (res.success) {
+                  this.setState({
+                    isLoved: false
+                  });
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              })
+              .finally(() => {
+                // this.props.context.setIsLoading(false);
               });
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          })
-          .finally(() => {
-            this.props.context.setIsLoading(false);
-          });
+          }
+        });
       } else {
         updateWishList(value)
           .then(res => {
             this.props.context.setWishList(value);
             this.setState({
-              isLoved: true
+              isLoved: !this.state.isLoved
             });
           })
           .catch(err => {
             console.log(err);
           })
           .finally(() => {
-            this.props.context.setIsLoading(false);
+            // this.props.context.setIsLoading(false);
           });
       }
     } else {
@@ -68,7 +108,7 @@ class ProductCard extends Component {
     return (
       <div className="product-wish-list" onClick={() => this.addToWishList(id)}>
         <span className="text--size-1-5" style={{ color: "#ba0001" }}>
-          <FontAwesomeIcon icon={loved || isLoved ? fasHeart : faHeart} />
+          <FontAwesomeIcon icon={isLoved ? fasHeart : faHeart} />
         </span>
       </div>
     );
@@ -76,6 +116,17 @@ class ProductCard extends Component {
 
   render() {
     const { category, title, price, id, thumbnail, discount } = this.props;
+
+    let wrappStyle = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start"
+    };
+
+    let noWrappStyle = {
+      display: "flex",
+      alignItems: "center"
+    };
 
     return (
       <div className="product-card">
@@ -105,7 +156,7 @@ class ProductCard extends Component {
               {this.renderLovedIcon()}
             </div>
             <Link to={`/products/detail/${id}`}>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={this.props.isWrapPrice ? wrappStyle : noWrappStyle}>
                 {/* {discount !== null ? (
                   <span
                     style={{
@@ -127,7 +178,11 @@ class ProductCard extends Component {
                 {discount != null ? (
                   <p
                     className="text--color-orange mb--0 mr--1"
-                    style={{ textDecoration: "line-through", marginBottom: "0", fontSize: '12px' }}
+                    style={{
+                      textDecoration: "line-through",
+                      marginBottom: "0",
+                      fontSize: "12px"
+                    }}
                   >
                     <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
                   </p>

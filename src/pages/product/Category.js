@@ -53,6 +53,7 @@ class Category extends Component {
                   ? product.thumbnail
                   : "https://via.placeholder.com/600x600"
               }
+              isWrapPrice={true}
               loved={this.isProductWishlisted(product.id)}
               id={product.id}
               title={product.productName}
@@ -133,9 +134,20 @@ class Category extends Component {
       });
   }
 
+  handleAtoZ(props) {
+    axios
+      .get(`${BASE_URL}/product/${props.match.params.category}/aToz`)
+      .then(res => {
+        this.setState({ products: res.data.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   handleZtoA(props) {
     axios
-      .get(`${BASE_URL}/product/${props.match.params.category}/priceHigh`)
+      .get(`${BASE_URL}/product/${props.match.params.category}/zToa`)
       .then(res => {
         this.setState({ products: res.data.data });
       })
@@ -389,7 +401,12 @@ class Category extends Component {
                         <div className="cat--items">
                           <div>
                             <span className="mr--1">
-                              <input type="radio" name="sort" id="az" />
+                              <input
+                                type="radio"
+                                name="sort"
+                                id="az"
+                                onClick={() => this.handleAtoZ(this.props)}
+                              />
                             </span>
                             <label htmlFor="az">A ke Z</label>
                           </div>

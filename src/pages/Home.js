@@ -15,7 +15,8 @@ import {
   fetchHotProduct,
   fetchWishList,
   fetchBanner,
-  fetchAllInspiration
+  fetchAllInspiration,
+  fetchProductPilihan
 } from "../api";
 import { isLogin } from "../utils/auth";
 import "./Home.scss";
@@ -86,7 +87,8 @@ class Home extends Component {
     this.state = {
       wishListItems: [],
       banner: [],
-      inspiration: []
+      inspiration: [],
+      productPilihan: []
     };
   }
 
@@ -126,6 +128,10 @@ class Home extends Component {
       .catch(err => {
         console.log(err);
       });
+
+    fetchProductPilihan().then(res => {
+      this.setState({ productPilihan: res.data })
+    });
 
     if (isLogin()) {
       fetchWishList(localStorage.getItem("userId")).then(res => {
@@ -175,7 +181,28 @@ class Home extends Component {
   };
 
   renderProduct() {
-    const hotProducts = this.props.context.hotProducts;
+    const { productPilihan } = this.state;
+    if (productPilihan.length !== 0) {
+      return productPilihan.map(product => {
+        return (
+          <div className="col-md-3" key={`product-${product.productId}`}>
+            <ProductCard
+              thumbnail={product.thumbnail}
+              loved={this.isProductWishlisted(product.productId)}
+              id={product.productId}
+              title={product.productName}
+              price={product.price}
+              discount={product.discount}
+              category={product.categoryName}
+            />
+          </div>
+        );
+      });
+    }
+  }
+
+  renderOnlyProduct() {
+    const { hotProducts } = this.props.context;
     if (hotProducts.length !== 0) {
       return hotProducts.map(product => {
         return (
@@ -315,7 +342,7 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row">{this.renderProduct()}</div>
+              <div className="row">{this.renderOnlyProduct()}</div>
             </div>
           </section>
           <section className="section-page">

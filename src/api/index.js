@@ -22,9 +22,9 @@ export const fetchHotProduct = () => {
 
 export const fetchAllProducts = () => {
   return axios.get(`${BASE_URL}/product/getProduct`).then(res => {
-    return res.data
+    return res.data;
   });
-}
+};
 
 export const updateWishList = value => {
   return axios.post(`${BASE_URL}/product/wishList`, value).then(res => {
@@ -278,7 +278,8 @@ export const fetchOngkir = dataObj => {
       }
     )
     .then(res => {
-      return res.data.rajaongkir.results[0].costs[0].cost[0].value;
+      return res.data;
+      // return res.data.rajaongkir.results[0].costs[0].cost[0].value;
     });
 };
 
@@ -307,9 +308,19 @@ export const userSignin = (username, password) => {
 };
 
 export const userSignup = value => {
-  return axios
-    .post(`${BASE_URL}/register`, value)
-    .then(res => {
-      return res.data;
-    });
+  return axios.post(`${BASE_URL}/register`, value).then(res => {
+    return res.data;
+  });
 };
+
+export const fetchProductPilihan = () => {
+  return axios.get(`${BASE_URL}/product/productPilihan`).then(res => {
+    return res.data;
+  });
+};
+
+export const fetchAllProductPilihan = () => {
+  return axios.get(`${BASE_URL}/product/getAllProductPilihan`).then(res => {
+    return res.data;
+  })
+}
