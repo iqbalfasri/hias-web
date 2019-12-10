@@ -16,24 +16,29 @@ class ProductCard extends Component {
     super(props);
 
     this.state = {
+      isLovedLoading: false,
       isLoved: false,
       wishListItems: []
     };
   }
 
   componentDidMount() {
+    this.setState({ isLovedLoading: true });
     if (isLogin()) {
       fetchWishList(localStorage.getItem("userId")).then(res => {
-        this.setState({ wishListItems: res.data }, () => {
-          let { wishListItems } = this.state;
-          let idProduct = this.props.id;
+        this.setState(
+          { wishListItems: res.data, isLovedLoading: false },
+          () => {
+            let { wishListItems } = this.state;
+            let idProduct = this.props.id;
 
-          wishListItems.forEach(wish => {
-            if (wish.id == idProduct) {
-              this.setState({ isLoved: true });
-            }
-          });
-        });
+            wishListItems.forEach(wish => {
+              if (wish.id == idProduct) {
+                this.setState({ isLoved: true });
+              }
+            });
+          }
+        );
       });
     }
   }
@@ -153,7 +158,14 @@ class ProductCard extends Component {
                   </p>
                 </div>
               </Link>
-              {this.renderLovedIcon()}
+              {/* Create a simple loading, */}
+              {this.state.isLovedLoading ? (
+                <span title="Loading..." className="text--size-1-5 pulse animated" style={{ color: "#ddd" }}>
+                  <FontAwesomeIcon icon={fasHeart} />
+                </span>
+              ) : (
+                this.renderLovedIcon()
+              )}
             </div>
             <Link to={`/products/detail/${id}`}>
               <div style={this.props.isWrapPrice ? wrappStyle : noWrappStyle}>

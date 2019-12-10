@@ -29,7 +29,7 @@
     object-fit: contain;
     width: 100%;
     height: 200px;
-    transition: .2s all ease-in-out;
+    transition: 0.2s all ease-in-out;
   }
 
   span {
@@ -240,4 +240,46 @@
   flex: 0 0 50px;
   max-width: 50px;
   margin-right: 1em;
+}
+
+// Animation pulse
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  50% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+
+  50% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+.pulse.animated,
+.pulse.animated-hover:hover,
+.parent.animated-hover:hover > .pulse {
+  -webkit-animation: pulse 2s linear infinite;
+  animation: pulse 2s linear infinite;
 }
