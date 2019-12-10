@@ -27,7 +27,7 @@ class Inspiration extends Component {
         if (i == 0) {
           return (
             <div key={i}>
-              <div>
+              <div className="insp-template">
                 <div
                   style={{ backgroundImage: `url(${item.banner})` }}
                   className="insp-template-1--image"
@@ -39,7 +39,7 @@ class Inspiration extends Component {
                   </div>
                 </div>
                 <div className="insp-right--content">
-                  <div className="row mt--2">
+                  <div style={{ display: "flex" }} className="mt--2">
                     <div className="col-md-3">
                       <p className="insp-1--desc">{item.description}</p>
                     </div>
@@ -54,7 +54,43 @@ class Inspiration extends Component {
                       />
                     </div>
                     <div className="col-md-3">
-                      <img style={{ width: '100%' }} src={item.banner} />
+                      <img style={{ width: "100%" }} src={item.banner} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        // second template
+        if (i == 1) {
+        }
+
+        // third template
+        if (i == 2) {
+          return (
+            <div key={i}>
+              <div className="insp-template">
+                <div
+                  style={{ backgroundImage: `url(${item.banner})` }}
+                  className="insp-template-1--image"
+                ></div>
+                <div className="insp-template-3--content">
+                  <div className="content--max-wd">
+                    <h2>Sub title</h2>
+                    <h1>{item.title}</h1>
+                  </div>
+                </div>
+                <div className="insp-right--content">
+                  <div className="mt--2">
+                    <div className="col-md-12">
+                      <p
+                        style={{ textAlign: "right" }}
+                        className="insp-1--desc"
+                      >
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </div>
