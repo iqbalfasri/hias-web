@@ -1,4 +1,4 @@
-@import '../assets/scss/global/var';
+@import "../assets/scss/global/var";
 
 .inspiration-number {
   width: 50px;
@@ -11,3 +11,58 @@
   font-size: 1.5em;
   border-radius: 50%;
 }
+
+.insp-right--content {
+  margin-left: 25vw;
+  position: relative;
+
+  p {
+    padding: 0 0;
+    margin: 0 0;
+  }
+}
+
+// Template 1
+.insp-template-1--image {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  margin-left: 25vw;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.insp-template-1--content {
+  position: absolute;
+  top: 5vw;
+  left: 15vw;
+
+  h1 {
+    color: #222 !important;
+    font-size: 4.214em;
+    line-height: 0.95;
+    font-weight: bold;
+    letter-spacing: -0.04em;
+    word-spacing: -0.015em;
+    max-width: 30vw;
+  }
+
+  .content--max-wd {
+    max-width: 50vw;
+  }
+}
+
+.insp-1--desc {
+  color: #222222;
+  font-size: 16px;
+}
+.insp-1--img-content-top {
+  position: relative;
+  top: -100px;
+  overflow: hidden;
+}
+// .insp-template-1--image img {
+//   width: 100%;
+//   object-position: center;
+// }
