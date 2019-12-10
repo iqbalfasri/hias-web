@@ -201,6 +201,27 @@ class Home extends Component {
     }
   }
 
+  renderOnlyProduct() {
+    const { hotProducts } = this.props.context;
+    if (hotProducts.length !== 0) {
+      return hotProducts.map(product => {
+        return (
+          <div className="col-md-3" key={`product-${product.productId}`}>
+            <ProductCard
+              thumbnail={product.thumbnail}
+              loved={this.isProductWishlisted(product.productId)}
+              id={product.productId}
+              title={product.productName}
+              price={product.price}
+              discount={product.discount}
+              category={product.categoryName}
+            />
+          </div>
+        );
+      });
+    }
+  }
+
   renderBestProduct() {
     const bestProducts = this.props.context.bestProducts;
     if (bestProducts.length !== 0) {
@@ -321,7 +342,7 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row">{this.renderProduct()}</div>
+              <div className="row">{this.renderOnlyProduct()}</div>
             </div>
           </section>
           <section className="section-page">
