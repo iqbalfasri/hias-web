@@ -439,42 +439,42 @@ class Header extends Component {
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/2">
                                 <span>Sofa Bed</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/3">
                                 <span>Sofa Modular</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/4">
                                 <span>Kursi</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/5">
                                 <span>Kursi Santai</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/6">
                                 <span>Meja</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/7">
                                 <span>Penyangga TV</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/8">
                                 <span>Rak Penyimpanan</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/1">
+                              <Link to="/products/9">
                                 <span>Luar Ruangan</span>
                               </Link>
                             </div>
@@ -484,42 +484,42 @@ class Header extends Component {
                               <span>Dekorasi</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/10">
                                 <span>Dekorasi Rumah</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/11">
                                 <span>Jam</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/12">
                                 <span>Vas</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/13">
                                 <span>Bingkai</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/14">
                                 <span>Aksesoris</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/15">
                                 <span>Lilin</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/16">
                                 <span>Cermin</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/2">
+                              <Link to="/products/17">
                                 <span>Bunga</span>
                               </Link>
                             </div>
@@ -529,22 +529,22 @@ class Header extends Component {
                               <span>Linen</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/3">
+                              <Link to="/products/18">
                                 <span>Bantal</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/3">
+                              <Link to="/products/19">
                                 <span>Bantal Sofa</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/3">
+                              <Link to="/products/20">
                                 <span>Karpet</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/3">
+                              <Link to="/products/21">
                                 <span>Keset</span>
                               </Link>
                             </div>
@@ -554,17 +554,17 @@ class Header extends Component {
                               <span>Lampu</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/4">
+                              <Link to="/products/22">
                                 <span>Lampu Meja</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/4">
+                              <Link to="/products/23">
                                 <span>Lampu Lantai</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/4">
+                              <Link to="/products/24">
                                 <span>Lampu Gantung</span>
                               </Link>
                             </div>
@@ -586,7 +586,7 @@ class Header extends Component {
                               <span>Furnitur</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/5">
+                              <Link to="/products/25">
                                 <span>Bingkai Tempat Tidur</span>
                               </Link>
                             </div>
@@ -596,22 +596,22 @@ class Header extends Component {
                               <span>Linen</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/6">
+                              <Link to="/products/26">
                                 <span>Set Sprei</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/6">
+                              <Link to="/products/27">
                                 <span>Bantal</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/6">
+                              <Link to="/products/28">
                                 <span>Selimut</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/6">
+                              <Link to="/products/29">
                                 <span>Bantal</span>
                               </Link>
                             </div>
@@ -621,7 +621,7 @@ class Header extends Component {
                               <span>Matras</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/7">
+                              <Link to="/products/30">
                                 <span>Matras</span>
                               </Link>
                             </div>
@@ -631,17 +631,17 @@ class Header extends Component {
                               <span>Lampu</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/8">
+                              <Link to="/products/31">
                                 <span>Lampu Meja</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/8">
+                              <Link to="/products/32">
                                 <span>Lampu Lantai</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/8">
+                              <Link to="/products/33">
                                 <span>Lampu Gantung</span>
                               </Link>
                             </div>
@@ -663,12 +663,12 @@ class Header extends Component {
                               <span>Linen</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/9">
+                              <Link to="/products/34">
                                 <span>Handuk</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/9">
+                              <Link to="/products/35">
                                 <span>Keset Kamar Mandi</span>
                               </Link>
                             </div>
@@ -678,27 +678,27 @@ class Header extends Component {
                               <span>Perlengkapan Kamar Mandi</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/10">
+                              <Link to="/products/36">
                                 <span>Rak</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/10">
+                              <Link to="/products/37">
                                 <span>Peralatan Plastik</span>
                               </Link>
                             </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/10">
+                            {/* <div className="sub-menu-item">
+                              <Link to="/products/38">
                                 <span>Dispenser</span>
                               </Link>
-                            </div>
+                            </div> */}
                             <div className="sub-menu-item">
-                              <Link to="/products/10">
+                              <Link to="/products/39">
                                 <span>Keranjang</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/10">
+                              <Link to="/products/40">
                                 <span>Tempat Sampah</span>
                               </Link>
                             </div>
@@ -720,17 +720,17 @@ class Header extends Component {
                               <span>Furnitur</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/11">
+                              <Link to="/products/41">
                                 <span>Kursi Makan</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/11">
+                              <Link to="/products/42">
                                 <span>Meja</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/11">
+                              <Link to="/products/43">
                                 <span>Kabinet Ruang Makan</span>
                               </Link>
                             </div>
@@ -740,37 +740,37 @@ class Header extends Component {
                               <span>Perlengkapan Ruang Makan</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/44">
                                 <span>Peralatan Makan</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/45">
                                 <span>Sendok Garpu</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/46">
                                 <span>Peralatan Saji</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/47">
                                 <span>Perlengkapan Minum</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/48">
                                 <span>Linen Meja</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/49">
                                 <span>Aksesoris</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/12">
+                              <Link to="/products/50">
                                 <span>Peralatan Plastik</span>
                               </Link>
                             </div>
@@ -780,7 +780,7 @@ class Header extends Component {
                               <span>Perlengkapan Lain</span>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/13">
+                              <Link to="/products/51">
                                 <span>Rak</span>
                               </Link>
                             </div>
@@ -803,47 +803,47 @@ class Header extends Component {
                             </div>
 
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/52">
                                 <span>Alat Masak</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/53">
                                 <span>Aksesoris</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/54">
                                 <span>Alat Pemotong</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/55">
                                 <span>Peralatan Listrik</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/56">
                                 <span>Tempat Sampah</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/57">
                                 <span>Pedal Bin</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/15">
+                              <Link to="/products/58">
                                 <span>Perlengkapan Minum</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/14">
+                              <Link to="/products/59">
                                 <span>Mat</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
-                              <Link to="/products/16">
+                              <Link to="/products/60">
                                 <span>Storage</span>
                               </Link>
                             </div>
