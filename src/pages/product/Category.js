@@ -295,9 +295,6 @@ class Category extends Component {
                         <span className="mr--1">
                           <strong>BERDASARKAN WARNA</strong>
                         </span>
-                        <span>
-                          <FontAwesomeIcon icon={faMinusSquare} />
-                        </span>
                       </div>
                       <div>
                         <div className="cat--items">
@@ -364,9 +361,6 @@ class Category extends Component {
                       <div className="cat--sub-title">
                         <span className="mr--1">
                           <strong>URUTAN BERDASARKAN</strong>
-                        </span>
-                        <span>
-                          <FontAwesomeIcon icon={faMinusSquare} />
                         </span>
                       </div>
                       <div>

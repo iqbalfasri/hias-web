@@ -896,7 +896,7 @@ class Header extends Component {
                       </div>
                     </li>
                     <li className="menu-header-border has-sub hs--right-edge">
-                      <Link to="#">UNIT BISNIS HIAS</Link>
+                      <Link to="/review">TESTIMONI</Link>
                       {/* <div className="sub-menu-container">
                         <div className="sub-menu-title fx fx-no-wrap justify-content-between align-items-center">
                           <div>
