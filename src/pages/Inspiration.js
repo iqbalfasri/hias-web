@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import ShowMoreText from "react-show-more-text";
+import { Link } from "react-router-dom";
 
 import "./Inspiration.scss";
 import { fetchAllInspiration } from "../../src/api";
@@ -27,7 +28,15 @@ class Inspiration extends Component {
         // first template
         if (i == 0) {
           return (
-            <div key={i}>
+            <Link
+              key={i}
+              to={{
+                pathname: `/inspiration/detail/${item.id}`,
+                state: {
+                  description: item.description
+                }
+              }}
+            >
               <div className="insp-template">
                 <div
                   style={{ backgroundImage: `url(${item.banner})` }}
@@ -35,7 +44,7 @@ class Inspiration extends Component {
                 ></div>
                 <div className="insp-template-1--content">
                   <div className="content--max-wd">
-                    <h2>Sub title</h2>
+                    <h2 style={{ color: "#333" }}>Inspirasi &amp; Ide</h2>
                     <h1>{item.title}</h1>
                   </div>
                 </div>
@@ -60,21 +69,29 @@ class Inspiration extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         }
 
         // second template
         if (i == 1) {
           return (
-            <div key={i}>
+            <Link
+              key={i}
+              to={{
+                pathname: `/inspiration/detail/${item.id}`,
+                state: {
+                  description: item.description
+                }
+              }}
+            >
               <div className="insp-template mb--1">
                 <div className="insp-right--content">
                   <div style={{ display: "flex" }}>
                     <div className="insp-template-2--content">
                       <div className="col-md-8">
                         <div className="content--max-wd">
-                          <h2>Sub title</h2>
+                          <h2 style={{ color: "#333" }}>Inspirasi &amp; Ide</h2>
                           <h1>{item.title}</h1>
                         </div>
                       </div>
@@ -113,25 +130,33 @@ class Inspiration extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         }
 
         // third template
         if (i == 2) {
           return (
-            <div key={i}>
+            <Link
+              key={i}
+              to={{
+                pathname: `/inspiration/detail/${item.id}`,
+                state: {
+                  description: item.description
+                }
+              }}
+            >
               <div
-                style={{ marginTop: "80px" }}
+                style={{ marginTop: "80px", marginBottom: "80px" }}
                 className="insp-template mt--2"
               >
                 <div
                   style={{ backgroundImage: `url(${item.banner})` }}
-                  className="insp-template-1--image"
+                  className="insp-template-3--image"
                 ></div>
                 <div className="insp-template-3--content">
-                  <div className="content--max-wd">
-                    <h2>Sub title</h2>
+                  <div className="content--max-wd" style={{ maxWidth: "70vw" }}>
+                    <h2 style={{ color: "#fff" }}>Inspirasi &amp; Ide</h2>
                     <h1>{item.title}</h1>
                   </div>
                 </div>
@@ -139,7 +164,7 @@ class Inspiration extends Component {
                   <div className="mt--2">
                     <div className="col-md-12">
                       <p
-                        style={{ textAlign: "right" }}
+                        style={{ textAlign: "right", paddingRight: "50px" }}
                         className="insp-1--desc"
                       >
                         {item.description}
@@ -148,7 +173,101 @@ class Inspiration extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
+          );
+        }
+
+        if (i == 3) {
+          return (
+            <Link
+              key={i}
+              to={{
+                pathname: `/inspiration/detail/${item.id}`,
+                state: {
+                  description: item.description
+                }
+              }}
+            >
+              <div className="insp-template">
+                <div
+                  style={{ backgroundImage: `url(${item.banner})` }}
+                  className="insp-template-1--image"
+                ></div>
+                <div className="insp-template-1--content">
+                  <div className="content--max-wd">
+                    <h2 style={{ color: "#333" }}>Inspirasi &amp; Ide</h2>
+                    <h1>{item.title}</h1>
+                  </div>
+                </div>
+                <div className="insp-right--content">
+                  <div style={{ display: "flex" }} className="mt--2">
+                    <div className="col-md-3">
+                      <p className="insp-1--desc">{item.description}</p>
+                    </div>
+                    <div className="col-md-3">
+                      <img
+                        className="insp-1--img-content-top mb--2"
+                        src={item.banner}
+                      />
+                      <img
+                        className="insp-1--img-content-top"
+                        src={item.banner}
+                      />
+                    </div>
+                    <div className="col-md-3">
+                      <img style={{ width: "100%" }} src={item.banner} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          );
+        }
+
+        if (i == 4) {
+          return (
+            <Link
+              key={i}
+              to={{
+                pathname: `/inspiration/detail/${item.id}`,
+                state: {
+                  description: item.description
+                }
+              }}
+            >
+              <div className="insp-template">
+                <div
+                  style={{ backgroundImage: `url(${item.banner})` }}
+                  className="insp-template-1--image"
+                ></div>
+                <div className="insp-template-1--content">
+                  <div className="content--max-wd">
+                    <h2>Inspirasi &amp; Ide</h2>
+                    <h1>{item.title}</h1>
+                  </div>
+                </div>
+                <div className="insp-right--content">
+                  <div style={{ display: "flex" }} className="mt--2">
+                    <div className="col-md-3">
+                      <p className="insp-1--desc">{item.description}</p>
+                    </div>
+                    <div className="col-md-3">
+                      <img
+                        className="insp-1--img-content-top mb--2"
+                        src={item.banner}
+                      />
+                      <img
+                        className="insp-1--img-content-top"
+                        src={item.banner}
+                      />
+                    </div>
+                    <div className="col-md-3">
+                      <img style={{ width: "100%" }} src={item.banner} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           );
         }
 
@@ -167,6 +286,21 @@ class Inspiration extends Component {
           <meta name="robots" content="index, nofollow" />
         </Helmet>
         <div className="content">
+          <div className="" style={{ margin: "0 50px", position: "absolute" }}>
+            <div className="mt--2">
+              <h2 style={{ fontWeight: "bold" }}>
+                <i>HIAS House</i>
+              </h2>
+              <h2 style={{ fontWeight: "bold" }}>Ide &amp; Inspirasi</h2>
+              <p style={{ maxWidth: "300px" }}>
+                HIAS House mempersembahkan ide &amp; inspirasi untuk
+                mempercantik hunian anda.
+              </p>
+            </div>
+            <div
+              style={{ width: "50%", height: "10px", backgroundColor: "#333" }}
+            />
+          </div>
           <div className="section-page">{this.renderInspiration()}</div>
         </div>
       </div>

@@ -73,7 +73,7 @@ const swiperInspiration = {
   },
   spaceBetween: 20,
   slidesPerView: 4,
-  loop: true,
+  // loop: true,
   autoplay: {
     delay: 3000,
     disableOnInteraction: false
@@ -250,6 +250,7 @@ class Home extends Component {
   renderInspiration = () => {
     const { inspiration } = this.state;
     if (inspiration !== undefined) {
+      console.log(inspiration, 'Total Insipration')
       if (inspiration.length !== 0) {
         return (
           <Swiper {...swiperInspiration}>

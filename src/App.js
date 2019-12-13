@@ -33,7 +33,9 @@ import OrderDetail from "./pages/product/OrderDetail";
 import AllProducts from './pages/product/AllProducts';
 import DetailNews from './pages/Articles/DetailNews'
 
+import ChangePassword from './pages/auth/ChangePassword';
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import SuccessVerify from "./pages/auth/SuccessVerify";
 
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -161,6 +163,8 @@ class App extends Component {
           <Route path="/review" component={Review} exact={true} />
           <Route path="/review/add" component={AddReview} />
           <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/changepassword" component={ChangePassword} exact={true} />
+          <Route path="/success-verif" component={SuccessVerify} exact={true} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
@@ -191,9 +195,9 @@ class App extends Component {
         </Modal>
         <Modal isOpen={modalLogout} onCloseModal={() => setModalLogout(false)}>
           <h3 className="text--center mb-2">Apakah anda yakin ingin keluar?</h3>
-          <div className="row align-items-center" style={{ justifyContent: "space-evenly" }}>
-            <button className="btn btn--blue" onClick={() => this.handleLogout()}>Iya</button>
-            <button className="btn btn--primary" onClick={() => setModalLogout(false)}>Tidak</button>
+          <div className="row align-items-center" style={{ justifyContent: "center" }}>
+            <button className="btn btn--blue mr--2" style={{ padding: "10px 50px" }} onClick={() => this.handleLogout()}>Iya</button>
+            <button className="btn btn--primary" style={{ padding: '10px 50px' }} onClick={() => setModalLogout(false)}>Tidak</button>
           </div>
         </Modal>
         <div

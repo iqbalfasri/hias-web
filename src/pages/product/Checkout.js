@@ -185,7 +185,7 @@ class Checkout extends Component {
             .post(
               "https://my.ipaymu.com/payment",
               {
-                key: "QbGcoO0Qds9sQFDmY0MWg1Tq.xtuh1",
+                key: "2BC703E2-DD4C-46F4-B9A5-67295C86AB71",
                 action: "payment",
                 product: "Hias House Products",
                 price: getSubTotal + this.state.hargaOngkir,
@@ -572,7 +572,7 @@ class Checkout extends Component {
         break;
 
       default:
-        this._handleCost(this.checkOngkir(this.state.listCourier[index]));
+        this._handleCost(this.checkOngkir(this.state.listCourier[0]));
         break;
     }
   }
@@ -580,7 +580,9 @@ class Checkout extends Component {
   _handleCost(data) {
     fetchOngkir(data)
       .then(ongkir => {
-        this.setState({ hargaOngkir: ongkir });
+        // console.log(ongkir.rajaongkir.results[0].costs[0].cost[0].value, 'Total Ongkir')
+        let cost_ongkir = ongkir.rajaongkir.results[0].costs[0].cost[0].value;
+        this.setState({ hargaOngkir: cost_ongkir });
       })
       .catch(error => {
         console.log(error);

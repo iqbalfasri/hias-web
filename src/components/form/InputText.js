@@ -41,7 +41,7 @@ class InputText extends Component {
     const { iconClicked } = this.state
     return (
       <div className="input-wrapper">
-        <input onChange={this.props.onChange} value={this.props.value} type={iconClicked ? 'text' : type} placeholder={placeholder} className={`form--input ${className}`} />
+        <input required={this.props.required} onChange={this.props.onChange} value={this.props.value} type={iconClicked ? 'text' : type} placeholder={placeholder} className={`form--input ${className}`} />
         { this.renderEye() }
       </div>
     )
