@@ -116,7 +116,9 @@ class Cart extends Component {
         console.log(err);
       })
       .finally(() => {
-        this.props.context.setIsLoading(false);
+        setTimeout(() => {
+          this.props.context.setIsLoading(false)
+        }, 2000);
       });
   }
 

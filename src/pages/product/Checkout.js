@@ -129,7 +129,9 @@ class Checkout extends Component {
       JSON.stringify(this.state.addresses[this.state.selectedIndexAddress])
     );
     this.setState({ activeSteps: 2 }, () =>
-      this.props.context.setIsLoading(false)
+      setTimeout(() => {
+        this.props.context.setIsLoading(false)
+      }, 2000);
     );
   }
 
@@ -180,7 +182,9 @@ class Checkout extends Component {
         };
 
         this.setState({ activeSteps: 3 }, () => {
-          this.props.context.setIsLoading(false);
+          setTimeout(() => {
+            this.props.context.setIsLoading(false)
+          }, 2000);;
           axios
             .post(
               "https://my.ipaymu.com/payment",
@@ -404,7 +408,9 @@ class Checkout extends Component {
       })
         .then(res => {
           console.log(res);
-          this.props.context.setIsLoading(false);
+          setTimeout(() => {
+            this.props.context.setIsLoading(false)
+          }, 2000);;
           this.setState({ isModalAddress: false });
         })
         .catch(error => {

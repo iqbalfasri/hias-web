@@ -350,7 +350,9 @@ class Detail extends Component {
                 console.log(err);
               })
               .finally(() => {
-                this.props.context.setIsLoading(false);
+                setTimeout(() => {
+                  this.props.context.setIsLoading(false)
+                }, 2000);;
               });
           }
         });
@@ -367,7 +369,9 @@ class Detail extends Component {
             console.log(err);
           })
           .finally(() => {
-            this.props.context.setIsLoading(false);
+            setTimeout(() => {
+              this.props.context.setIsLoading(false)
+            }, 2000);;
           });
       }
     } else {
