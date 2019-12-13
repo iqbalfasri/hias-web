@@ -31,9 +31,10 @@
 }
 
 .slide-container-home {
-  max-height: 450px;
-  min-height: 450px;
+  max-height: 500px;
+  min-height: 500px;
   position: relative;
+  overflow: hidden;
 }
 
 .slide-hero-cta {
