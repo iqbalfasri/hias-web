@@ -23,8 +23,8 @@ class ProductCard extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLovedLoading: true });
     if (isLogin()) {
+      this.setState({ isLovedLoading: true });
       fetchWishList(localStorage.getItem("userId")).then(res => {
         this.setState(
           { wishListItems: res.data, isLovedLoading: false },
