@@ -119,8 +119,34 @@ class ProductCard extends Component {
     );
   }
 
+  renderPriceWithDiscount(price, discount) {
+    // check discount
+    if (discount !== null) {
+      return (
+        <p
+          className="text--color-orange mb--0 mr--1"
+          style={{
+            textDecoration: "line-through",
+            marginBottom: "0",
+            fontSize: "12px"
+          }}
+        >
+          <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
+        </p>
+      );
+    }
+  }
+
   render() {
-    const { category, title, price, id, thumbnail, discount } = this.props;
+    const {
+      category,
+      title,
+      price,
+      id,
+      thumbnail,
+      discount,
+      itemStock
+    } = this.props;
 
     let wrappStyle = {
       display: "flex",
@@ -160,7 +186,11 @@ class ProductCard extends Component {
               </Link>
               {/* Create a simple loading, */}
               {this.state.isLovedLoading ? (
-                <span title="Loading..." className="text--size-1-5 pulse animated" style={{ color: "#ddd" }}>
+                <span
+                  title="Loading..."
+                  className="text--size-1-5 pulse animated"
+                  style={{ color: "#ddd" }}
+                >
                   <FontAwesomeIcon icon={fasHeart} />
                 </span>
               ) : (
@@ -169,25 +199,20 @@ class ProductCard extends Component {
             </div>
             <Link to={`/products/detail/${id}`}>
               <div style={this.props.isWrapPrice ? wrappStyle : noWrappStyle}>
-                {/* {discount !== null ? (
-                  <span
+                {/* {discount != null ? (
+                  <p
+                    className="text--color-orange mb--0 mr--1"
                     style={{
-                      width: "30px",
-                      height: "30px",
-                      color: "#fff",
-                      borderRadius: "15px",
-                      fontSize: "10px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: "#c2191f",
-                      marginRight: '10px'
+                      textDecoration: "line-through",
+                      marginBottom: "0",
+                      fontSize: "12px"
                     }}
                   >
-                    {`${discount}%`}
-                  </span>
+                    <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
+                  </p>
                 ) : null} */}
-                {discount != null ? (
+                {itemStock == null || itemStock < 1 || discount == null ? null : itemStock !== null ||
+                  (itemStock > 0 && discount !== null) ? (
                   <p
                     className="text--color-orange mb--0 mr--1"
                     style={{
@@ -199,17 +224,27 @@ class ProductCard extends Component {
                     <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
                   </p>
                 ) : null}
-                <p
-                  className="text--color-orange mb--0"
-                  style={{ margin: "0 0" }}
-                >
-                  <strong>
-                    IDR{" "}
-                    {formatMoneyWithoutSymbol(
-                      discount == null ? price : getDiscount(price, discount)
-                    )}
-                  </strong>
-                </p>
+
+                {itemStock == null || itemStock < 1 ? (
+                  <p
+                    className="text--color-orange mb--0"
+                    style={{ margin: "0 0", color: "#f96464" }}
+                  >
+                    <strong>Stok barang kosong</strong>
+                  </p>
+                ) : (
+                  <p
+                    className="text--color-orange mb--0"
+                    style={{ margin: "0 0" }}
+                  >
+                    <strong>
+                      IDR
+                      {formatMoneyWithoutSymbol(
+                        discount == null ? price : getDiscount(price, discount)
+                      )}
+                    </strong>
+                  </p>
+                )}
               </div>
             </Link>
           </div>

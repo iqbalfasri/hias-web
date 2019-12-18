@@ -888,7 +888,7 @@ class Header extends Component {
                             </Link>
                           </div>
                           <div className="sub-menu-item smi--parent align-items-center fx fx-no-wrap justify-content-between">
-                            <Link to="#">
+                            <Link to="/tips-trick">
                               <span className="mr--2">Tips & Trik</span>
                             </Link>
                           </div>

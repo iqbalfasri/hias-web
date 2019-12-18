@@ -57,6 +57,7 @@ class AllHotProducts extends Component {
               price={product.price}
               discount={product.discount}
               category={product.categoryName}
+              itemStock={product.itemStock}
             />
           </div>
         );

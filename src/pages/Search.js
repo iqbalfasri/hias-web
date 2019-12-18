@@ -73,6 +73,7 @@ class Search extends Component {
               title={product.productName}
               price={product.price}
               category={product.categoryName}
+              itemStock={product.itemStock}
             />
             {/* <ProductCard thumbnail={product.thumbnail ? 'https://via.placeholder.com/600x600' : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} /> */}
           </div>

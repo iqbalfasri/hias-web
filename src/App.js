@@ -52,6 +52,8 @@ import AllHotProducts from "./pages/product/AllHotProducts";
 import AllBestProducts from "./pages/product/AllBestProducts";
 
 import { getCart } from "./api";
+import TipsTrick from "./pages/TipsTrick";
+import TipsTrickDetail from './pages/TipsTrick/TipsTrickDetail'
 
 class App extends Component {
   constructor(props) {
@@ -134,6 +136,8 @@ class App extends Component {
           <Route path="/wishlist" component={Wishlist} />
           <Route path="/inspiration" component={Inspiration} exact={true} />
           <Route path="/inspiration/detail/:id" component={DetailInspiration} />
+          <Route path="/tips-trick" component={TipsTrick} exact={true} />
+          <Route path="/tips-trick/detail/:id" component={TipsTrickDetail} />
           <Route path="/wallet/dashboard" component={DashboardWallet} />
           <Route path="/products/hot" component={AllHotProducts} exact={true} />
           <Route path="/products/all" component={AllProducts} exact={true} />

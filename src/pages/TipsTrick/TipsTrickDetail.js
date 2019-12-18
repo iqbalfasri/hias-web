@@ -7,21 +7,21 @@ import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import StarRatings from "react-star-ratings";
 import ShowMoreText from "react-show-more-text";
 
-import "./DetailInspiration.scss";
+import "./TipsTrickDetail.scss";
 
 import ProductCard from "../../components/card/Product";
 import ColorSelector from "../../components/ColorSelector";
-import { fetchProductByInspirationId, fetchWishList } from "../../api";
+import { fetchProductByInspirationId, fetchWishList, fetchProductByTipsTrickId } from "../../api";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
-class DetailInspiration extends Component {
+class TipsTrickDetail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      inspiration: null,
+      tipsTrick: null,
       wishListItems: []
     };
   }
@@ -40,11 +40,10 @@ class DetailInspiration extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    console.log(this.props);
-    fetchProductByInspirationId(id).then(res => {
+    fetchProductByTipsTrickId(id).then(res => {
       console.log(res, "Data detail");
       this.setState({
-        inspiration: res.data
+        tipsTrick: res.data
       });
     });
 
@@ -58,9 +57,9 @@ class DetailInspiration extends Component {
   }
 
   renderProduct = () => {
-    const { inspiration } = this.state;
-    if (inspiration.product !== undefined) {
-      return inspiration.product.map(p => {
+    const { tipsTrick } = this.state;
+    if (tipsTrick.product !== undefined) {
+      return tipsTrick.product.map(p => {
         return (
           <div className="col-md-3" key={`product-${p.productId}`}>
             <ProductCard
@@ -83,13 +82,13 @@ class DetailInspiration extends Component {
   };
 
   render() {
-    const { inspiration } = this.state;
+    const { tipsTrick } = this.state;
     const { id } = this.props.match.params;
-    if (inspiration !== null) {
-      return inspiration.product !== undefined ? (
+    if (tipsTrick !== null) {
+      return tipsTrick.product !== undefined ? (
         <div>
           <Helmet key={Math.random()}>
-            <title>Inspiration Detail</title>
+            <title>Tips &amp; Trick</title>
             <meta property="og:title" content="Hias Homepage" />
             <meta name="description" content="Hias" />
             <meta name="robots" content="index, nofollow" />
@@ -99,13 +98,13 @@ class DetailInspiration extends Component {
               <div className="container">
                 <div
                   className="banner-inspiration"
-                  style={{ backgroundImage: `url(${inspiration.banner}` }}
+                  style={{ backgroundImage: `url(${tipsTrick.banner}` }}
                   alt=""
                 ></div>
               </div>
               <div className="container">
                 <h1 color="#333" style={{ textAlign: "center", fontSize: 32, margin: '30px 0 ' }}>
-                  {inspiration.title}
+                  {tipsTrick.title}
                 </h1>
                 <p style={{ textAlign: 'justify' }}>{this.props.location.state.description}</p>
               </div>
@@ -131,7 +130,7 @@ class DetailInspiration extends Component {
             <div className="container">
               <div className="row align-items-center mb--2">
                 <h3 className="section-title mb--0">
-                  Inspirasi tidak ditemukan{" "}
+                  Tips Trick tidak ditemukan{" "}
                 </h3>
               </div>
             </div>
@@ -144,4 +143,4 @@ class DetailInspiration extends Component {
   }
 }
 
-export default withContext(DetailInspiration);
+export default withContext(TipsTrickDetail);

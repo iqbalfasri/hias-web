@@ -44,7 +44,7 @@ class AllBestProducts extends Component {
             return product.map((product, i) => {
                 return (
                     <div className="col-md-3" key={i}>
-                        <ProductCard thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
+                        <ProductCard itemStock={product.itemStock} thumbnail={product.thumbnail ? product.thumbnail : 'https://via.placeholder.com/600x600'} loved={this.isProductWishlisted(product.id)} id={product.id} title={product.productName} price={product.price} category={product.categoryName} />
                     </div >
                 )
             })

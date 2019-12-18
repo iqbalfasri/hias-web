@@ -54,8 +54,7 @@ class ChangePassword extends Component {
           confirmationPassword: confirmNewPassword
         })
         .then(res => {
-          const status = res.data.status;
-          if (status) {
+          if (res.data.success) {
             window.location.href = '/';
           }
         })

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "https://api-core-hias.herokuapp.com";
+export const BASE_URL = "https://api-corehias.herokuapp.com";
 
 export const fetchBanner = () => {
   return axios.get(`${BASE_URL}/getAllBanner`).then(res => {
@@ -110,18 +110,13 @@ export const fetchColorById = id => {
   });
 };
 
-// export const getCart = (userId) => {
-//   return axios
-//     .get(`${BASE_URL}/product/${userId}/getCartByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-//     .then((res) => {
-//       return res.data
-//     })
-// }
-
 export const onPlaceOrder = value => {
   return axios
     .post(`${BASE_URL}/product/order`, value, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
+      }
     })
     .then(res => {
       return res.data;
@@ -157,22 +152,6 @@ export const addToCart = async value => {
       return res.data;
     });
 };
-
-// export const getVANumberBNI = price => {
-//   return axios
-//     .post(`${BASE_URL}/product/userAddress`, value, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-//     .then((res) => {
-//       return res.data
-//     })
-// }
-
-// export const getVANumberCIMB = price => {
-//   return axios
-//     .get(`${BASE_URL}/product/${userId}/getUserAddressByUserId`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-//     .then((res) => {
-//       return res.data
-//     })
-// }
 
 export const getVANumberBNI = price => {
   return axios
@@ -210,6 +189,12 @@ export const searchByName = productName => {
 
 export const fetchProductByInspirationId = id => {
   return axios.get(`${BASE_URL}/inspration/${id}/product`).then(res => {
+    return res.data;
+  });
+};
+
+export const fetchProductByTipsTrickId = id => {
+  return axios.get(`${BASE_URL}/tips/${id}/product`).then(res => {
     return res.data;
   });
 };
@@ -322,5 +307,17 @@ export const fetchProductPilihan = () => {
 export const fetchAllProductPilihan = () => {
   return axios.get(`${BASE_URL}/product/getAllProductPilihan`).then(res => {
     return res.data;
-  })
-}
+  });
+};
+
+export const getProductByColour = (idCategory, color) => {
+  return axios
+    .get(`${BASE_URL}/product/${idCategory}/${color}`)
+    .then(res => res.data);
+};
+
+export const getProductByDiscount = idCategory => {
+  return axios
+    .get(`${BASE_URL}/product/${idCategory}/diskon`)
+    .then(res => res.data);
+};

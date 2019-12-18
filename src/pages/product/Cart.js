@@ -40,7 +40,8 @@ class Cart extends Component {
             name: "Chair",
             id: 4
           },
-          productName: "AEGLE SOFA Aegle Sofa 1 seated"
+          productName: "AEGLE SOFA Aegle Sofa 1 seated",
+          itemStock: 2
         },
         {
           thumbnail:
@@ -51,7 +52,8 @@ class Cart extends Component {
             name: "Chair",
             id: 4
           },
-          productName: "Ainsley Sofa 2 seated"
+          productName: "Ainsley Sofa 2 seated",
+          itemStock: 2
         },
         {
           thumbnail:
@@ -62,7 +64,8 @@ class Cart extends Component {
             name: "Chair",
             id: 4
           },
-          productName: "Aveta Sofa Set Yellow 1 seated"
+          productName: "Aveta Sofa Set Yellow 1 seated",
+          itemStock: 32
         }
       ]
     };
@@ -260,14 +263,18 @@ class Cart extends Component {
   }
 
   onCheckout() {
-    onPlaceOrder({
-      cartId: localStorage.getItem("userId"),
-      subTotal: this.getTotalCartPrice(),
-      status: ""
-    }).then(res => {
-      this.props.history.push("/checkout");
-      localStorage.setItem("subTotal", this.getTotalCartPrice());
-    });
+    // onPlaceOrder({
+    //   cartId: localStorage.getItem("userId"),
+    //   subTotal: this.getTotalCartPrice(),
+    //   status: ""
+    // }).then(res => {
+    //   this.props.history.push("/checkout");
+    //   localStorage.setItem("subTotal", this.getTotalCartPrice());
+    // }).catch(error => {
+    //   console.log(error)
+    // })
+    this.props.history.push("/checkout");
+    localStorage.setItem("subTotal", this.getTotalCartPrice())
   }
 
   handlePopup() {
@@ -327,6 +334,7 @@ class Cart extends Component {
                   title={product.productName}
                   price={product.price}
                   category={product.categoryName}
+                  itemStock={product.itemStock}
                 />
               </div>
             );

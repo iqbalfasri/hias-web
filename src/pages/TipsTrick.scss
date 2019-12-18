@@ -1,0 +1,149 @@
+@import "../assets/scss/global/var";
+
+.inspiration-number {
+  width: 50px;
+  height: 50px;
+  background-color: $mainColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.5em;
+  border-radius: 50%;
+}
+
+.insp-template {
+  position: relative;
+}
+
+.insp-right--content {
+  margin-left: 25vw;
+  position: relative;
+
+  p {
+    padding: 0 0;
+    margin: 0 0;
+  }
+}
+
+// Template 1
+.insp-template-1--image {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  margin-left: 35vw;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.insp-template-1--content {
+  position: absolute;
+  top: 5vw;
+  left: 25vw;
+
+  h1 {
+    color: #222 !important;
+    font-size: 4.214em;
+    line-height: 0.95;
+    font-weight: bold;
+    letter-spacing: -0.04em;
+    word-spacing: -0.015em;
+    max-width: 30vw;
+  }
+
+  .content--max-wd {
+    max-width: 50vw;
+  }
+}
+
+.insp-1--desc {
+  color: #222222;
+  font-size: 16px;
+}
+.insp-1--img-content-top {
+  position: relative;
+  top: -100px;
+  overflow: hidden;
+}
+
+// Template 2
+.insp-2--desc {
+  color: #222222;
+  font-size: 16px;
+}
+.insp-template-2--content {
+  position: relative;
+
+  h1 {
+    color: #222 !important;
+    font-size: 3.214em;
+    line-height: 0.95;
+    font-weight: bold;
+    letter-spacing: -0.04em;
+    word-spacing: -0.015em;
+    // max-width: 30vw;
+  }
+
+  .content--max-wd {
+    max-width: 50vw;
+  }
+}
+
+.insp-tempate-2vertical--img {
+  top: -220px;
+  bottom: 0;
+  width: 20vw;
+  position: absolute;
+  // height: 20vh;
+  background-color: aquamarine;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+// Template 3
+.insp-template-3--image {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  margin-left: 25vw;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.insp-template-3--content {
+  position: absolute;
+  bottom: 15vh;
+  right: 0;
+
+  h1 {
+    color: #ffffff !important;
+    font-size: 4.214em;
+    line-height: 0.95;
+    font-weight: bold;
+    letter-spacing: -0.04em;
+    word-spacing: -0.015em;
+    max-width: 40vw;
+    text-shadow: 2px 0px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  h2 {
+    color: #fff;
+    text-shadow: 2px 0px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .content--max-wd {
+    max-width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .insp-template-3--content {
+    position: absolute;
+    bottom: 25vh;
+    right: 0;
+  }
+}

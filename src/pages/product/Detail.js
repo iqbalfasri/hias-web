@@ -46,7 +46,8 @@ class Detail extends Component {
       idProduct: null,
       picture: [],
       freeze: false,
-      isLoved: false
+      isLoved: false,
+      allPicts: []
     };
   }
 
@@ -181,6 +182,7 @@ class Detail extends Component {
               discount={hotProducts[i].discount}
               category={hotProducts[i].categoryName}
               needRefreshPage={true}
+              itemStock={hotProducts[i].itemStock}
             />
           </div>
         );
@@ -215,7 +217,9 @@ class Detail extends Component {
 
     return itemStock < 1 ? (
       <div className="pda--items">
-        <button disabled className="btn btn--gray">Barang sudah habis</button>
+        <button disabled className="btn btn--gray">
+          Barang sudah habis
+        </button>
       </div>
     ) : this.state.addToCartClicked ? (
       <div className="pda--items">
@@ -300,7 +304,7 @@ class Detail extends Component {
               </div>
               <div className="tab--detail-content">
                 <h4>Berat </h4>
-                <p>{product.weight} Kg</p>
+                <p>{product.weight} Gr</p>
               </div>
               <div className="tab--detail-content">
                 <h4>Deskripsi </h4>
@@ -351,8 +355,8 @@ class Detail extends Component {
               })
               .finally(() => {
                 setTimeout(() => {
-                  this.props.context.setIsLoading(false)
-                }, 2000);;
+                  this.props.context.setIsLoading(false);
+                }, 2000);
               });
           }
         });
@@ -370,8 +374,8 @@ class Detail extends Component {
           })
           .finally(() => {
             setTimeout(() => {
-              this.props.context.setIsLoading(false)
-            }, 2000);;
+              this.props.context.setIsLoading(false);
+            }, 2000);
           });
       }
     } else {
@@ -380,57 +384,47 @@ class Detail extends Component {
   }
 
   render() {
-    const { product, freeze } = this.state;
+    const { product } = this.state;
     const { id } = this.props.match.params;
-    const autoplay = {
-      delay: 3000,
-      disableOnInteraction: false
-    };
-    const swipperConfig = () => {
-      if (!freeze) {
-        return {
-          loop: true,
-          pagination: {
-            el: ".swiper-pagination"
-          },
-          renderPrevButton: () => (
-            <div className="swiper-button-prev">
-              <FontAwesomeIcon color="#4bc4df" size="2x" icon={faChevronLeft} />
-            </div>
-          ),
-          renderNextButton: () => (
-            <div className="swiper-button-next">
-              <FontAwesomeIcon
-                color="#4bc4df"
-                size="2x"
-                icon={faChevronRight}
-              />
-            </div>
-          ),
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-          },
-          autoplay: {
-            delay: 3000,
-            disableOnInteraction: false
-          }
-        };
-      } else {
-        return {
-          loop: true,
-          pagination: {
-            el: ".swiper-pagination"
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-          }
-        };
+
+    let swipperConfig = {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        type: "bullets",
+        clickable: true
+      },
+      renderPrevButton: () => (
+        <div className="swiper-button-prev">
+          <FontAwesomeIcon color="#4bc4df" size="2x" icon={faChevronLeft} />
+        </div>
+      ),
+      renderNextButton: () => (
+        <div className="swiper-button-next">
+          <FontAwesomeIcon color="#4bc4df" size="2x" icon={faChevronRight} />
+        </div>
+      ),
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
       }
     };
 
     let allPicts = product !== null ? [product.thumbnail] : [];
+
+    if (product !== null) {
+      product.picture.forEach(pic => {
+        if (pic !== null) {
+          allPicts.push(pic);
+        } else {
+        }
+      });
+    }
+
     return product !== null ? (
       <div>
         <Helmet key={Math.random()}>
@@ -474,7 +468,7 @@ class Detail extends Component {
                     </div>
                     <div>
                       <div className="mb--1">
-                        <Swiper {...swipperConfig()}>
+                        <Swiper {...swipperConfig}>
                           {allPicts.map((image, index) => {
                             return (
                               <img

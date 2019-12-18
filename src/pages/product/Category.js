@@ -12,7 +12,13 @@ import {
 
 import ProductCard from "../../components/card/Product";
 import Checkbox from "../../components/form/Checkbox";
-import { fetchHotProduct, fetchWishList, BASE_URL } from "../../api";
+import {
+  fetchHotProduct,
+  fetchWishList,
+  BASE_URL,
+  getProductByColour,
+  getProductByDiscount
+} from "../../api";
 import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
@@ -60,6 +66,7 @@ class Category extends Component {
               price={product.price}
               discount={product.discount}
               category={product.categoryName}
+              itemStock={product.itemStock}
             />
           </div>
         );
@@ -178,44 +185,22 @@ class Category extends Component {
       });
   }
 
-  handleRedColor(props) {
-    axios
-      .get(`${BASE_URL}/product/${props.match.params.category}/colorRed`)
+  handleDiscount(props) {
+    const idCategory = props.match.params.category;
+    getProductByDiscount(idCategory)
       .then(res => {
-        this.setState({ products: res.data.data });
-      });
+        this.setState({ products: res.data });
+      })
+      .catch(error => console.log(error));
   }
 
-  handleBlueColor(props) {
-    axios
-      .get(`${BASE_URL}/product/${props.match.params.category}/colorBlue`)
+  handleColour(color) {
+    const idCategory = this.props.match.params.category;
+    getProductByColour(idCategory, color)
       .then(res => {
-        this.setState({ products: res.data.data });
-      });
-  }
-
-  handleBlackColor(props) {
-    axios
-      .get(`${BASE_URL}/product/${props.match.params.category}/colorBlack`)
-      .then(res => {
-        this.setState({ products: res.data.data });
-      });
-  }
-
-  handleGreenColor(props) {
-    axios
-      .get(`${BASE_URL}/product/${props.match.params.category}/colorGreen`)
-      .then(res => {
-        this.setState({ products: res.data.data });
-      });
-  }
-
-  handleWhiteColor(props) {
-    axios
-      .get(`${BASE_URL}/product/${props.match.params.category}/colorWhite`)
-      .then(res => {
-        this.setState({ products: res.data.data });
-      });
+        this.setState({ products: res.data });
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
@@ -291,6 +276,28 @@ class Category extends Component {
                       <div className="cat--title">
                         <span className="text--color-gray">FILTER PRODUK</span>
                       </div>
+
+                      <div className="mb--1" style={{ marginBottom: "25px" }}>
+                        <div className="cat--sub-title">
+                          <span className="mr--1">
+                            <strong>BERDASARKAN DISKON</strong>
+                          </span>
+                        </div>
+                        <div>
+                          <div className="cat--items mb--1">
+                            <span className="mr--1">
+                              <input
+                                type="radio"
+                                name="sort-diskon"
+                                id="diskon"
+                                onClick={() => this.handleDiscount(this.props)}
+                              />
+                            </span>
+                            <label htmlFor="diskon">Produk Diskon</label>
+                          </div>
+                        </div>
+                      </div>
+
                       <div className="cat--sub-title">
                         <span className="mr--1">
                           <strong>BERDASARKAN WARNA</strong>
@@ -302,55 +309,143 @@ class Category extends Component {
                             <input
                               type="radio"
                               name="sort-clr"
-                              id="clr"
-                              onClick={() => this.handleRedColor(this.props)}
+                              id="clr-red"
+                              onClick={() => this.handleColour("red")}
                             />
                           </span>
-                          <label htmlFor="clr">Merah</label>
+                          <label htmlFor="clr-red">Merah</label>
                         </div>
                         <div className="cat--items">
                           <span className="mr--1">
                             <input
                               type="radio"
                               name="sort-clr"
-                              id="clr"
-                              onClick={() => this.handleBlueColor(this.props)}
+                              id="clr-blue"
+                              onClick={() => this.handleColour("blue")}
                             />
                           </span>
-                          <label htmlFor="clr">Biru</label>
+                          <label htmlFor="clr-blue">Biru</label>
                         </div>
                         <div className="cat--items">
                           <span className="mr--1">
                             <input
                               type="radio"
                               name="sort-clr"
-                              id="clr"
-                              onClick={() => this.handleGreenColor(this.props)}
+                              id="clr-green"
+                              onClick={() => this.handleColour("green")}
                             />
                           </span>
-                          <label htmlFor="clr">Hijau</label>
+                          <label htmlFor="clr-green">Hijau</label>
                         </div>
                         <div className="cat--items">
                           <span className="mr--1">
                             <input
                               type="radio"
                               name="sort-clr"
-                              id="clr"
-                              onClick={() => this.handleBlackColor(this.props)}
+                              id="clr-black"
+                              onClick={() => this.handleColour("black")}
                             />
                           </span>
-                          <label htmlFor="clr">Hitam</label>
+                          <label htmlFor="clr-black">Hitam</label>
                         </div>
                         <div className="cat--items">
                           <span className="mr--1">
                             <input
                               type="radio"
                               name="sort-clr"
-                              id="clr"
-                              onClick={() => this.handleWhiteColor(this.props)}
+                              id="clr-white"
+                              onClick={() => this.handleColour("white")}
                             />
                           </span>
-                          <label htmlFor="clr">Putih</label>
+                          <label htmlFor="clr-white">Putih</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-grey"
+                              onClick={() => this.handleColour("grey")}
+                            />
+                          </span>
+                          <label htmlFor="clr-grey">Abu - abu</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-silver"
+                              onClick={() => this.handleColour("silver")}
+                            />
+                          </span>
+                          <label htmlFor="clr-silver">Silver</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-gold"
+                              onClick={() => this.handleColour("gold")}
+                            />
+                          </span>
+                          <label htmlFor="clr-gold">Emas</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-brown"
+                              onClick={() => this.handleColour("brown")}
+                            />
+                          </span>
+                          <label htmlFor="clr-brown">Coklat</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-yellow"
+                              onClick={() => this.handleColour("yellow")}
+                            />
+                          </span>
+                          <label htmlFor="clr-yellow">Kuning</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-pink"
+                              onClick={() => this.handleColour("pink")}
+                            />
+                          </span>
+                          <label htmlFor="clr-pink">Merah Muda</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-purple"
+                              onClick={() => this.handleColour("purple")}
+                            />
+                          </span>
+                          <label htmlFor="clr-purple">Ungu</label>
+                        </div>
+                        <div className="cat--items">
+                          <span className="mr--1">
+                            <input
+                              type="radio"
+                              name="sort-clr"
+                              id="clr-orange"
+                              onClick={() => this.handleColour("orange")}
+                            />
+                          </span>
+                          <label htmlFor="clr-orange">Oranye</label>
                         </div>
                       </div>
                     </div>

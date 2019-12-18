@@ -1,52 +1,65 @@
 import React, { Component } from "react";
+import moment from "moment";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+
 import StarRatings from "react-star-ratings";
+
 import "./Review.scss";
 
+import { BASE_URL } from "../../api";
 class Review extends Component {
-  // state = {
-  //   review: []
-  // };
+  state = {
+    review: []
+  };
 
-  // componentDidMount() {
-  //   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  //   axios
-  //     .get(`${BASE_URL}/product/discussion/2`, {
-  //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-  //     })
-  //     .then(res => {
-  //       console.log(res);
-  //       if (res.data.length !== 0) {
-  //         this.setState({
-  //           review: res.data.data
-  //         });
-  //       }
-  //     });
-  // }
+  componentDidMount() {
+    axios.get(`${BASE_URL}/adm/product/getAllTestimoni`).then(res => {
+      if (res.data.data.listTestimoni.length !== 0) {
+        this.setState({
+          review: res.data.data.listTestimoni
+        });
+      }
+    });
+  }
 
-  // renderReview = () => {
-  //   const { review } = this.state;
-  //   if (review !== null) {
-  //     return review.map((item, i) => {
-  //       return (
-  //         <div class="review-item" key={i}>
-  //           <div className="icon">
-  //             <FontAwesomeIcon icon={faUserCircle} style={{ height: "24px" }} />
-  //           </div>
-  //           <div>
-  //             <h3>{item.user.fullName}</h3>
-  //             <p>{item.discussion !== null ? item.discussion : "-"}</p>
-  //           </div>
-  //         </div>
-  //       );
-  //     });
-  //   }
-  // };
+  renderReview() {
+    return this.state.review.map(r => (
+      <>
+        <div className="customer-review mb--1">
+          <div>
+            <span className="mr--1">
+              <strong>{r.fullName}</strong>
+            </span>
+            <span>
+              <StarRatings
+                rating={r.rating}
+                starDimension="15px"
+                starSpacing="5px"
+                starRatedColor="#4cc5e0"
+              />
+            </span>
+          </div>
+          <div>
+            <span className="text--color-gray">
+              {moment(r.date).format("LL")}
+            </span>
+          </div>
+        </div>
+        <div className="customer-review-container">
+          <div className="customer-review-wrapper">
+            <div>
+              <div className="cr-rating-head"></div>
+              <div>
+                <p>{r.comment}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    ));
+  }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="content">
         <div className="section-page">
@@ -58,68 +71,7 @@ class Review extends Component {
                   <p>Testimoni pelanggan yang telah belanja di hias house</p>
                 </div>
               </div>
-              <div className="col-md-8">
-                  <div className="customer-review mb--1">
-                    <div>
-                      <span className="mr--1"><strong>Naufal</strong></span>
-                      <span>
-                        <StarRatings
-                          rating={4}
-                          starDimension='15px'
-                          starSpacing='5px'
-                          starRatedColor='#ef8b67'
-                        />
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text--color-gray">Nov 15, 2019</span>
-                    </div>
-                  </div>
-                  <div className="customer-review-container">
-                    <div className="customer-review-wrapper">
-                      <div>
-                        <div className="cr-rating-head">
-                        </div>
-                        <div>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum animi perspiciatis velit assumenda suscipit in, fugiat porro expedita eveniet dolorum placeat cumque soluta, exercitationem recusandae error quaerat quos consectetur doloremque!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil animi voluptatum sequi dicta aspernatur praesentium harum assumenda! Iusto ullam obcaecati fugit, reiciendis, et at, porro laudantium autem alias aliquid nemo.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="customer-review mb--1">
-                    <div>
-                      <span className="mr--1"><strong>Naufal</strong></span>
-                      <span>
-                        <StarRatings
-                          rating={4}
-                          starDimension='15px'
-                          starSpacing='5px'
-                          starRatedColor='#ef8b67'
-                        />
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text--color-gray">Nov 15, 2019</span>
-                    </div>
-                  </div>
-                  <div className="customer-review-container">
-                    <div className="customer-review-wrapper">
-                      <div>
-                        <div className="cr-rating-head">
-                        </div>
-                        <div>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum animi perspiciatis velit assumenda suscipit in, fugiat porro expedita eveniet dolorum placeat cumque soluta, exercitationem recusandae error quaerat quos consectetur doloremque!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil animi voluptatum sequi dicta aspernatur praesentium harum assumenda! Iusto ullam obcaecati fugit, reiciendis, et at, porro laudantium autem alias aliquid nemo.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+              <div className="col-md-8">{this.renderReview()}</div>
             </div>
           </div>
         </div>

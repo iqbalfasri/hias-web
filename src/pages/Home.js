@@ -194,6 +194,7 @@ class Home extends Component {
               price={product.price}
               discount={product.discount}
               category={product.categoryName}
+              itemStock={product.itemStock}
             />
           </div>
         );
@@ -215,6 +216,7 @@ class Home extends Component {
               price={product.price}
               discount={product.discount}
               category={product.categoryName}
+              itemStock={product.itemStock}
             />
           </div>
         );
@@ -238,6 +240,7 @@ class Home extends Component {
                   price={product.price}
                   discount={product.discount}
                   category={product.categoryName}
+                  itemStock={product.itemStock}
                 />
               </div>
             );

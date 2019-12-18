@@ -131,7 +131,7 @@ class Checkout extends Component {
     this.setState({ activeSteps: 2 }, () =>
       setTimeout(() => {
         this.props.context.setIsLoading(false)
-      }, 2000);
+      }, 2000)
     );
   }
 
@@ -165,7 +165,8 @@ class Checkout extends Component {
       productTotal: getCart.length,
       paymentType: null,
       status: 0,
-      productItem: stringifyData
+      productItem: stringifyData,
+      email: JSON.parse(localStorage.getItem('userProfile')).email
     };
 
     // request data to server
@@ -410,7 +411,7 @@ class Checkout extends Component {
           console.log(res);
           setTimeout(() => {
             this.props.context.setIsLoading(false)
-          }, 2000);;
+          }, 2000);
           this.setState({ isModalAddress: false });
         })
         .catch(error => {

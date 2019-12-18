@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 import Helmet from "react-helmet";
 
+import Modal from "../../components/layout/Modal";
+
+import AddTestimoni from "../Review/AddReview";
+
 import { formatMoneyWithoutSymbol } from "../../utils/money";
 
 import { getOrderById } from "../../api/";
@@ -9,7 +13,8 @@ import { getOrderById } from "../../api/";
 class OrderDetail extends Component {
   state = {
     orderDetail: null,
-    orderProducts: []
+    orderProducts: [],
+    showModal: false
   };
   getParams = this.props.match.params.id;
 
@@ -62,9 +67,27 @@ class OrderDetail extends Component {
     }
   }
 
+  handlePopup() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+
+  renderModal() {
+    return (
+      <Modal
+        onCloseModal={() => this.handlePopup()}
+        isOpen={this.state.showModal}
+      >
+        <div className="col-md-12">
+          <AddTestimoni />
+        </div>
+      </Modal>
+    );
+  }
+
   render() {
     return (
       <>
+        {this.renderModal()}
         <div className="content">
           <Helmet key={Math.random()}>
             <title>Detail Pesanan - {this.getParams}</title>
@@ -93,7 +116,7 @@ class OrderDetail extends Component {
                     </div>
 
                     <div className="order-status-container">
-                    <div
+                      <div
                         className={`order-status-wrapper ${
                           this.state.orderDetail !== null &&
                           this.state.orderDetail.status < 1

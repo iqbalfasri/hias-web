@@ -30,19 +30,22 @@ class Signup extends Component {
   async onSignUp(e) {
     try {
       e.preventDefault();
-      this.setState({
-        isSigningUp: true
-      });
 
       const { name, email, phone, password, confirmPassword } = this.state;
 
       if (!phone || !password || !confirmPassword || !email || !name) {
         alert("Fill the field");
+        return;
       } else if (password !== confirmPassword) {
         alert("Password yang dimasukan tidak sama");
+        return;
       } else if (phone.length < 11) {
         alert("Harap masukan nomor telepon dengan benar");
+        return;
       } else {
+        this.setState({
+          isSigningUp: true
+        });
         const response = await axios.post(`${BASE_URL}/register`, {
           name,
           email,
