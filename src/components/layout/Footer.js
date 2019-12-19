@@ -408,28 +408,8 @@ class Footer extends Component {
                         Metode Cicilan 0%
                       </p>
                       <img
-                        style={{ width: 47.2, height: 15, marginRight: 10 }}
-                        src={require("../../assets/img/bca.png")}
-                        alt=""
-                      />
-                      <img
-                        style={{ width: 50, height: 15, marginRight: 10 }}
-                        src={require("../../assets/img/cimb.png")}
-                        alt=""
-                      />
-                      <img
-                        style={{ width: 30, height: 15, marginRight: 10 }}
-                        src={require("../../assets/img/home-credit-logo.png")}
-                        alt=""
-                      />
-                      <img
-                        style={{ width: 30, height: 20, marginRight: 10 }}
-                        src={require("../../assets/img/mastercard.svg")}
-                        alt=""
-                      />
-                      <img
-                        style={{ width: 30, height: 10 }}
-                        src={require("../../assets/img/visa.png")}
+                        style={{ width: "55%", height: 17, marginRight: 10 }}
+                        src={require("../../assets/img/logo-payment.png")}
                         alt=""
                       />
                     </div>

@@ -278,6 +278,7 @@ class Header extends Component {
             {this.renderCartCount()}
             <div
               className="header-top-icon--image"
+              style={{width: 20}}
               onClick={() => this.onClickCartIcon()}
               title="Cart"
             >
@@ -298,8 +299,8 @@ class Header extends Component {
             <div className="header-top-icon--profile">
               <div className="header-top-icon--image">
                 <img
-                  style={{ width: 26, height: 26 }}
-                  src={require("../../assets/img/DefaultAvatar.svg")}
+                  style={{ width: 23, height: 22 }}
+                  src={require("../../assets/img/user.png")}
                   alt=""
                 />
               </div>
@@ -610,11 +611,6 @@ class Header extends Component {
                                 <span>Selimut</span>
                               </Link>
                             </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/29">
-                                <span>Bantal</span>
-                              </Link>
-                            </div>
                           </div>
                           <div className="sub-menu-column">
                             <div className="sub-menu-item smi--parent">
@@ -684,7 +680,7 @@ class Header extends Component {
                             </div>
                             <div className="sub-menu-item">
                               <Link to="/products/37">
-                                <span>Peralatan Plastik</span>
+                                <span>Aksesoris Kamar Mandi</span>
                               </Link>
                             </div>
                             {/* <div className="sub-menu-item">
@@ -694,7 +690,7 @@ class Header extends Component {
                             </div> */}
                             <div className="sub-menu-item">
                               <Link to="/products/39">
-                                <span>Keranjang</span>
+                                <span>Keranjang Pakaian</span>
                               </Link>
                             </div>
                             <div className="sub-menu-item">
@@ -767,11 +763,6 @@ class Header extends Component {
                             <div className="sub-menu-item">
                               <Link to="/products/49">
                                 <span>Aksesoris</span>
-                              </Link>
-                            </div>
-                            <div className="sub-menu-item">
-                              <Link to="/products/50">
-                                <span>Peralatan Plastik</span>
                               </Link>
                             </div>
                           </div>
