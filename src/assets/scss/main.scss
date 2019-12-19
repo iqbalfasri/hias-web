@@ -1,8 +1,8 @@
 @import 'vendor/reboot';
-@import 'vendor/flex';
-@import 'vendor/table';
+// @import 'vendor/flex';
+// @import 'vendor/table';
 @import 'vendor/swiper';
-@import 'vendor/embed';
+// @import 'vendor/embed';
 
 @import 'global/var';
 @import 'global/font';
@@ -14,3 +14,5 @@
 // TEMP
 @import 'global/button';
 @import 'global/form';
+
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
