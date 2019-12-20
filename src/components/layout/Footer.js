@@ -19,7 +19,7 @@ class Footer extends Component {
       <footer>
         <div className="container footer-link-container">
           <div className="row">
-            <div className="col-md-3" style={{ maxWidth: "20%" }}>
+            <div className="col-md-3 col-6 block-1">
               <div className="footer-link">
                 <div className="footer-logo">
                   <Link to="/">
@@ -42,7 +42,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="col-md-3" style={{ maxWidth: "20%" }}>
+            <div className="col-md-3 col-6 block-2">
               <div className="footer-link">
                 <h3 className="footer-link-title">Kontak Kami</h3>
                 <ul>
@@ -106,7 +106,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="col-md-3" style={{ maxWidth: "20%" }}>
+            <div className="col-md-3 col-6 block-3">
               <div className="footer-link">
                 <h3 className="footer-link-title">Layanan Pelanggan</h3>
                 <ul>
@@ -163,7 +163,7 @@ class Footer extends Component {
                 </div>
               </div>
             </div> */}
-            <div className="col-md-3" style={{ minWidth: "40%" }}>
+            <div className="col-md-3 col-6 block-4">
               <div className="footer-link-address">
                 <h3 className="footer-link-title">Lokasi Kami</h3>
                 <div className="row">

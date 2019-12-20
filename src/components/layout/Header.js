@@ -7,7 +7,8 @@ import {
   faHeart,
   faShoppingCart,
   faUserCircle,
-  faEnvelope
+  faEnvelope,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 import { getCart } from "./../../api";
@@ -27,7 +28,8 @@ class Header extends Component {
       categoriesMain: [],
       categoriesSub: [],
       categoriesSecondSub: [],
-      totalCart: 0
+      totalCart: 0,
+      showMenuMobile: false
     };
 
     this.handleSticky = this.handleSticky.bind(this);
@@ -378,9 +380,79 @@ class Header extends Component {
     );
   }
 
+  renderMenuMobile(isShowMenu) {
+    return isShowMenu ? (
+      <div className="main--menu-content">
+        <div className="main--menu">
+          <div className="main-menu--main-content">
+            <div className="main-menu--cat">
+              <ul>
+                <li>
+                  <div className="cat--menu">
+                    <button
+                      data-toggle="collapse"
+                      data-target="#ruangTamu"
+                      aria-expanded="false"
+                      aria-controls="ruangTamu"
+                    >
+                      <h6>RUANG TAMU</h6>
+                    </button>
+
+                    <div class="collapse" id="ruangTamu">
+                      <ul>
+                        <li>
+                          <a href="/products/1">
+                            <span>Sofa</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>Kamar tidur</h6>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>Kamar mandi</h6>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>Ruang Makan</h6>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>Dapur</h6>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>Inspirasi</h6>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>TESTIMONI</h6>
+                  </div>
+                  <div className="cat--menu">
+                    <h6>Berita Acara</h6>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    ) : null;
+  }
+
   render() {
     return (
       <header className={this.state.isSticky ? "sticky-header" : null}>
+        {/* Menu mobile */}
+        <div className="menu--mobile">
+          <button
+            onClick={() =>
+              this.setState({ showMenuMobile: !this.state.showMenuMobile })
+            }
+          >
+            <FontAwesomeIcon icon={faBars} size="2x" color="#6c6e70" />
+          </button>
+        </div>
+        {this.renderMenuMobile(this.state.showMenuMobile)}
+        {/* End: Menu Mobile */}
         <div className="container-fluid">
           <div className="top-header">
             <div className="row align-items-center">

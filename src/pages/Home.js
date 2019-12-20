@@ -19,6 +19,7 @@ import {
   fetchProductPilihan
 } from "../api";
 import { isLogin } from "../utils/auth";
+import detectMobile from "../utils/window";
 import "./Home.scss";
 
 const params = {
@@ -28,10 +29,10 @@ const params = {
     type: "bullets",
     clickable: true
   },
-  spaceBetween: 50,
+  spaceBetween: detectMobile() ? 20 : 50,
   slidesPerGroup: 1,
-  slidesPerView: 3,
-  centeredSlides: true,
+  slidesPerView: detectMobile() ? 1 : 3,
+  centeredSlides: detectMobile() ? false : true,
   loop: true,
   autoplay: {
     delay: 3000,
@@ -72,7 +73,7 @@ const swiperInspiration = {
     clickable: true
   },
   spaceBetween: 20,
-  slidesPerView: 4,
+  slidesPerView: detectMobile() ? 1 : 4,
   // loop: true,
   autoplay: {
     delay: 3000,
@@ -130,7 +131,7 @@ class Home extends Component {
       });
 
     fetchProductPilihan().then(res => {
-      this.setState({ productPilihan: res.data })
+      this.setState({ productPilihan: res.data });
     });
 
     if (isLogin()) {
@@ -253,7 +254,7 @@ class Home extends Component {
   renderInspiration = () => {
     const { inspiration } = this.state;
     if (inspiration !== undefined) {
-      console.log(inspiration, 'Total Insipration')
+      console.log(inspiration, "Total Insipration");
       if (inspiration.length !== 0) {
         return (
           <Swiper {...swiperInspiration}>
@@ -371,7 +372,9 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col">{this.renderBestProduct()}</div>
+              <div className="row">
+                <div className="col">{this.renderBestProduct()}</div>
+              </div>
             </div>
           </section>
           <section className="section-page">

@@ -277,7 +277,7 @@ class Detail extends Component {
     switch (activeDetailTab) {
       case 1:
         return (
-          <div>
+          <div className="tab--detail">
             <ShowMoreText
               lines={8}
               more="Show more"
@@ -292,30 +292,28 @@ class Detail extends Component {
         );
       case 2:
         return (
-          <div>
-            <div className="tab--detail">
-              <div className="tab--detail-content">
-                <h4>SKU </h4>
-                <p>{product.productCode}</p>
-              </div>
-              <div className="tab--detail-content">
-                <h4>Ukuran </h4>
-                <p>{product.dimensions}</p>
-              </div>
-              <div className="tab--detail-content">
-                <h4>Berat </h4>
-                <p>{product.weight} Gr</p>
-              </div>
-              <div className="tab--detail-content">
-                <h4>Deskripsi </h4>
-                <p>{product.description}</p>
-              </div>
+          <div className="tab--detail">
+            <div className="tab--detail-content">
+              <h4>SKU </h4>
+              <p>{product.productCode}</p>
+            </div>
+            <div className="tab--detail-content">
+              <h4>Ukuran </h4>
+              <p>{product.dimensions}</p>
+            </div>
+            <div className="tab--detail-content">
+              <h4>Berat </h4>
+              <p>{product.weight} Gr</p>
+            </div>
+            <div className="tab--detail-content">
+              <h4>Deskripsi </h4>
+              <p>{product.description}</p>
             </div>
           </div>
         );
       case 3:
         return (
-          <div
+          <div className="tab--detail"
             style={{
               display: "flex",
               padding: "0 10px",
@@ -440,7 +438,7 @@ class Detail extends Component {
                 <div className="col-md-8">
                   <div>
                     <div>
-                      <h1 style={{ color: "#6c6e70" }}>
+                      <h1 style={{ color: "#6c6e70", fontSize: 18, fontWeight: 'bold' }}>
                         {product.productName}
                       </h1>
                       <div style={{ display: "flex", alignItems: "center" }}>
