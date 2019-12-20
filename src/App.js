@@ -188,7 +188,7 @@ class App extends Component {
         </Modal>
         <Modal bgTransparent={true} isOpen={isLoading}>
           <center>
-            <img style={{ width: 150, height: 150 }} src={require('./assets/img/loading.gif')} />
+            <img style={{ width: 150, height: 150 }} src={require('./assets/img/loading2.gif')} />
           </center>
         </Modal>
         <Modal

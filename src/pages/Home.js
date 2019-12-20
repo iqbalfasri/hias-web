@@ -335,19 +335,19 @@ class Home extends Component {
                       style={{ color: "#6c6e70" }}
                       className="section-title mb--0"
                     >
-                      Produk
+                      Produk <span className="text--color-orange">Pilihan</span>
                     </h3>
                   </div>
                 </div>
                 <div className="col">
                   <div className="text--right">
-                    <Link className="text--size-12" to="/products/all">
+                    <Link className="text--size-12" to="/products/hot">
                       Lihat semua
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className="row">{this.renderOnlyProduct()}</div>
+              <div className="row">{this.renderProduct()}</div>
             </div>
           </section>
           <section className="section-page">
@@ -379,30 +379,6 @@ class Home extends Component {
           </section>
           <section className="section-page">
             <div className="container">
-              <div className="row align-items-center mb--2">
-                <div className="col">
-                  <div>
-                    <h3
-                      style={{ color: "#6c6e70" }}
-                      className="section-title mb--0"
-                    >
-                      Produk <span className="text--color-orange">Pilihan</span>
-                    </h3>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="text--right">
-                    <Link className="text--size-12" to="/products/hot">
-                      Lihat semua
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="row">{this.renderProduct()}</div>
-            </div>
-          </section>
-          <section className="section-page">
-            <div className="container">
               <div className="row align-items-center justify-content-center">
                 <div className="col">
                   <img
@@ -416,6 +392,30 @@ class Home extends Component {
                   />
                 </div>
               </div>
+            </div>
+          </section>
+          <section className="section-page">
+            <div className="container">
+              <div className="row align-items-center mb--2">
+                <div className="col">
+                  <div>
+                    <h3
+                      style={{ color: "#6c6e70" }}
+                      className="section-title mb--0"
+                    >
+                      Produk
+                    </h3>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="text--right">
+                    <Link className="text--size-12" to="/products/all">
+                      Lihat semua
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="row">{this.renderOnlyProduct()}</div>
             </div>
           </section>
           <section className="section-page">
