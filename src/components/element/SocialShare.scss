@@ -1,0 +1,10 @@
+.social-share--wrapper {
+  display: flex;
+  flex: 1;
+  max-width: 5vw;
+  justify-content: space-between;
+
+  div[role="button"] {
+    cursor: pointer;
+  }
+}
