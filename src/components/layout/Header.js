@@ -280,7 +280,7 @@ class Header extends Component {
             {this.renderCartCount()}
             <div
               className="header-top-icon--image"
-              style={{width: 20}}
+              style={{ width: 20 }}
               onClick={() => this.onClickCartIcon()}
               title="Cart"
             >
@@ -390,20 +390,55 @@ class Header extends Component {
               <ul>
                 <li>
                   <div className="cat--menu">
-                    <button
+                    <a
                       data-toggle="collapse"
                       data-target="#ruangTamu"
                       aria-expanded="false"
                       aria-controls="ruangTamu"
                     >
                       <h6>RUANG TAMU</h6>
-                    </button>
+                    </a>
 
-                    <div class="collapse" id="ruangTamu">
+                    <div className="collapse" id="ruangTamu">
                       <ul>
                         <li>
                           <a href="/products/1">
                             <span>Sofa</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/products/2">
+                            <span>Sofa Bed</span>
+                          </a>
+                        </li>
+                        <li>
+                          <Link to="/products/3">
+                            <span>Sofa Modular</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/products/4">
+                            <span>Kursi</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/products/5">
+                            <span>Kursi Santai</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/products/6">
+                            <span>Meja</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/products/7">
+                            <span>Penyangga TV</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <a href="/products/2">
+                            <span>Sofa Bed</span>
                           </a>
                         </li>
                       </ul>
@@ -1025,6 +1060,9 @@ class Header extends Component {
                           </div>
                         </div>
                       </div>
+                    </li>
+                    <li className="menu-header-border has-sub hs--right-edge">
+                      <Link to="/product/discount">DISKON</Link>
                     </li>
                   </ul>
                 </nav>

@@ -34,13 +34,13 @@ class Order extends Component {
       <>
         <div className="row-order">
           <div className="content">
-            <h4>ID PESANAN</h4>
+            <h6>ID PESANAN</h6>
           </div>
           {/* <div className="content">
             <h4>TOTAL PRODUCT</h4>
           </div> */}
           <div className="content">
-            <h4>STATUS</h4>
+            <h6>STATUS</h6>
           </div>
         </div>
 

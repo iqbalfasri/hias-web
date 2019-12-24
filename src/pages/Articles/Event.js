@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import {Timeline, TimelineEvent} from 'react-event-timeline'
+import { Timeline, TimelineEvent } from "react-event-timeline";
+
+import SocialShare from "../../components/element/SocialShare";
 
 class Event extends Component {
   render() {
@@ -20,50 +22,77 @@ class Event extends Component {
             </div>
           </div>
         </div>
-        <div className="container" style={{width: "50%"}}>
-        <Timeline>
-            <TimelineEvent title="Bazaar Sampoerna Strategic"
-                           createdAt="26 – 29 November 2019"
-                           lineColor="#46C5E2"
-                           bubbleStyle={{borderColor:"#46C5E2" }}
-                           titleStyle={{fontWeight: "bold", fontSize: 14}}
+        <div className="container" style={{ width: "50%" }}>
+          <Timeline>
+            <TimelineEvent
+              title="Bazaar Sampoerna Strategic"
+              createdAt="26 – 29 November 2019"
+              lineColor="#46C5E2"
+              bubbleStyle={{ borderColor: "#46C5E2" }}
+              titleStyle={{ fontWeight: "bold", fontSize: 14 }}
             >
-                Acara diselenggarakan di Sampoerna Strategic, Ayo datang ke booth HIAS House!
+              <p>
+                Acara diselenggarakan di Sampoerna Strategic, Ayo datang ke
+                booth HIAS House!
+              </p>
+
+              <SocialShare url={window.location.href} />
             </TimelineEvent>
             <TimelineEvent
-                title="Bazaar Elevenia"
-                createdAt="27 – 28 November 2019"
-                lineColor="#46C5E2"
-                bubbleStyle={{borderColor:"#46C5E2" }}
-                titleStyle={{fontWeight: "bold", fontSize: 14}}
+              title="Bazaar Elevenia"
+              createdAt="27 – 28 November 2019"
+              lineColor="#46C5E2"
+              bubbleStyle={{ borderColor: "#46C5E2" }}
+              titleStyle={{ fontWeight: "bold", fontSize: 14 }}
             >
-                Acara diselenggarakan di Elevenia Tower, Ayo datang ke booth HIAS House!
+              <p>
+                Acara diselenggarakan di Elevenia Tower, Ayo datang ke booth
+                HIAS House!
+              </p>
+
+              <SocialShare url={window.location.href} />
             </TimelineEvent>
             <TimelineEvent
-                title="Kantor Wali Kota Jakarta Selatan"
-                createdAt="27 – 28 November 2019"
-                lineColor="#46C5E2"
-                bubbleStyle={{borderColor:"#46C5E2" }}
-                titleStyle={{fontWeight: "bold", fontSize: 14}}
+              title="Kantor Wali Kota Jakarta Selatan"
+              createdAt="27 – 28 November 2019"
+              lineColor="#46C5E2"
+              bubbleStyle={{ borderColor: "#46C5E2" }}
+              titleStyle={{ fontWeight: "bold", fontSize: 14 }}
             >
-                Acara diselenggarakan di Kantor Wali Kota Jakarta Selatan, Ayo datang ke booth HIAS House!
-            </TimelineEvent>
-            <TimelineEvent title="Gedung Merdeka"
-                           createdAt="27 – 29 November 2019"
-                           lineColor="#46C5E2"
-                           bubbleStyle={{borderColor:"#46C5E2" }}
-                           titleStyle={{fontWeight: "bold", fontSize: 14}}
-            >
-                Acara diselenggarakan di Gedung Merdeka, Ayo datang ke booth HIAS House!
+              <p>
+                Acara diselenggarakan di Kantor Wali Kota Jakarta Selatan, Ayo
+                datang ke booth HIAS House!
+              </p>
+
+              <SocialShare url={window.location.href} />
             </TimelineEvent>
             <TimelineEvent
-                title="Pasar Pantai Indah Kapuk"
-                createdAt="27 – 3 Desember 2019"
-                lineColor="#46C5E2"
-                bubbleStyle={{borderColor:"#46C5E2" }}
-                titleStyle={{fontWeight: "bold", fontSize: 14}}
+              title="Gedung Merdeka"
+              createdAt="27 – 29 November 2019"
+              lineColor="#46C5E2"
+              bubbleStyle={{ borderColor: "#46C5E2" }}
+              titleStyle={{ fontWeight: "bold", fontSize: 14 }}
             >
-                Acara diselenggarakan di Pasar Pantai Indah Kapuk, Ayo datang ke booth HIAS House!
+              <p>
+                Acara diselenggarakan di Gedung Merdeka, Ayo datang ke booth
+                HIAS House!
+              </p>
+
+              <SocialShare url={window.location.href} />
+            </TimelineEvent>
+            <TimelineEvent
+              title="Pasar Pantai Indah Kapuk"
+              createdAt="27 – 3 Desember 2019"
+              lineColor="#46C5E2"
+              bubbleStyle={{ borderColor: "#46C5E2" }}
+              titleStyle={{ fontWeight: "bold", fontSize: 14 }}
+            >
+              <p>
+                Acara diselenggarakan di Pasar Pantai Indah Kapuk, Ayo datang ke
+                booth HIAS House!
+              </p>
+
+              <SocialShare url={window.location.href} />
             </TimelineEvent>
           </Timeline>
         </div>

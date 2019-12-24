@@ -42,6 +42,10 @@ class Refund extends Component {
       {
         label: 'HIAS House Level 21 Mall Bali',
         value: 'HIAS House Level 21 Mall Bali'
+      },
+      {
+        label: 'Lainnya',
+        value: 'Lainnya'
       }
     ]
   }

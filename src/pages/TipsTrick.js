@@ -6,6 +6,8 @@ import ShowMoreText from "react-show-more-text";
 
 import "./TipsTrick.scss";
 
+import SocialShare from "../components/element/SocialShare";
+
 import { BASE_URL } from "../../src/api";
 
 class TipsTrick extends Component {
@@ -55,6 +57,24 @@ class TipsTrick extends Component {
                   <div style={{ display: "flex" }} className="mt--2">
                     <div className="col-md-3">
                       <p className="insp-1--desc">{item.description}</p>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          maxWidth: "9vw",
+                          justifyContent: "space-between",
+                          alignItems: "center"
+                        }}
+                        className="mt--1"
+                      >
+                        <p style={{ color: "#111", fontWeight: "bold" }}>
+                          Bagikan:{" "}
+                        </p>
+                        <SocialShare
+                          buttonSize={26}
+                          url={window.location.href}
+                        />
+                      </div>
                     </div>
                     <div className="col-md-3">
                       <img
@@ -128,6 +148,24 @@ class TipsTrick extends Component {
                             {item.description}
                           </ShowMoreText>
                         </p>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            maxWidth: "9vw",
+                            justifyContent: "space-between",
+                            alignItems: "center"
+                          }}
+                          className="mt--1"
+                        >
+                          <p style={{ color: "#111", fontWeight: "bold" }}>
+                            Bagikan:{" "}
+                          </p>
+                          <SocialShare
+                            buttonSize={26}
+                            url={window.location.href}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -172,6 +210,24 @@ class TipsTrick extends Component {
                       >
                         {item.description}
                       </p>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          maxWidth: "9vw",
+                          justifyContent: "space-between",
+                          alignItems: "center"
+                        }}
+                        className="mt--1"
+                      >
+                        <p style={{ color: "#111", fontWeight: "bold" }}>
+                          Bagikan:{" "}
+                        </p>
+                        <SocialShare
+                          buttonSize={26}
+                          url={window.location.href}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -296,8 +352,8 @@ class TipsTrick extends Component {
               </h2>
               <h2 style={{ fontWeight: "bold" }}>Tips &amp; Trick</h2>
               <p style={{ maxWidth: "300px" }}>
-                HIAS House mempersembahkan tips &amp; trick untuk
-                mempercantik hunian anda.
+                HIAS House mempersembahkan tips &amp; trick untuk mempercantik
+                hunian anda.
               </p>
             </div>
             <div

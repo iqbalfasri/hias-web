@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./Inspiration.scss";
 import { fetchAllInspiration } from "../../src/api";
+import SocialShare from "../components/element/SocialShare";
 
 class Inspiration extends Component {
   state = {
@@ -125,6 +126,22 @@ class Inspiration extends Component {
                             {item.description}
                           </ShowMoreText>
                         </p>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            maxWidth: "9vw",
+                            justifyContent: "space-between",
+                            alignItems: 'center'
+                          }}
+                          className="mt--1"
+                        >
+                          <p style={{ color: "#111", fontWeight: "bold" }}>
+                            Bagikan:{" "}
+                          </p>
+                          <SocialShare buttonSize={26} url={window.location.href} />
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -203,6 +220,20 @@ class Inspiration extends Component {
                   <div style={{ display: "flex" }} className="mt--2">
                     <div className="col-md-3">
                       <p className="insp-1--desc">{item.description}</p>
+                      <div
+                          style={{
+                            display: "flex",
+                            maxWidth: "9vw",
+                            justifyContent: "space-between",
+                            alignItems: 'center'
+                          }}
+                          className="mt--1"
+                        >
+                          <p style={{ color: "#111", fontWeight: "bold" }}>
+                            Bagikan:{" "}
+                          </p>
+                          <SocialShare buttonSize={26} url={window.location.href} />
+                        </div>
                     </div>
                     <div className="col-md-3">
                       <img

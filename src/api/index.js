@@ -321,3 +321,15 @@ export const getProductByDiscount = idCategory => {
     .get(`${BASE_URL}/product/${idCategory}/diskon`)
     .then(res => res.data);
 };
+
+export const fetchRelatedProductCart = () => {
+  return axios.get(`${BASE_URL}/product/popup`).then(res => res.data);
+};
+
+export const fetchProductDiscount = () => {
+  return axios.get(`${BASE_URL}/product/getAllDiscount`).then(res => res.data);
+};
+
+export const fetchRelatedProductById = productId => {
+  return axios.get(`${BASE_URL}/product/detail/${productId}/related`).then(res => res.data)
+}

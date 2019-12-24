@@ -11,7 +11,8 @@ import {
   getCart,
   removeProductOnCart,
   onPlaceOrder,
-  requestCoupon
+  requestCoupon,
+  fetchRelatedProductCart
 } from "../../api";
 import { isLogin } from "../../utils/auth";
 import { formatMoneyWithoutSymbol } from "../../utils/money";
@@ -30,44 +31,7 @@ class Cart extends Component {
       relatedPopup: false,
       couponCode: "",
       priceCoupon: 0,
-      relatedItems: [
-        {
-          thumbnail:
-            "https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/HIAS%20House%20AEGLE%20SOFA%20%202%20Seated%20P046326%20%20(1).jpg?alt=media&token=d965f902-4e73-4ede-9b47-d6d43cf1f991",
-          productId: 4,
-          price: 2949000.0,
-          category: {
-            name: "Chair",
-            id: 4
-          },
-          productName: "AEGLE SOFA Aegle Sofa 1 seated",
-          itemStock: 2
-        },
-        {
-          thumbnail:
-            "https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/HIAS%20House%20Ainsley%20Sofa%202%20seated%20P046015.jpg?alt=media&token=187c32c5-0639-4655-8871-c1307fd31444",
-          productId: 9,
-          price: 3039000.0,
-          category: {
-            name: "Chair",
-            id: 4
-          },
-          productName: "Ainsley Sofa 2 seated",
-          itemStock: 2
-        },
-        {
-          thumbnail:
-            "https://firebasestorage.googleapis.com/v0/b/hias-apps.appspot.com/o/HIAS%20House%20Aveta%20Sofa%20Set%20Yellow%201%20seated%20P045998.jpg?alt=media&token=664621cb-26e7-480d-8d00-cfee934ce363",
-          productId: 20,
-          price: 3219000.0,
-          category: {
-            name: "Chair",
-            id: 4
-          },
-          productName: "Aveta Sofa Set Yellow 1 seated",
-          itemStock: 32
-        }
-      ]
+      relatedItems: []
     };
   }
 
@@ -87,6 +51,11 @@ class Cart extends Component {
       .catch(err => {
         console.log(err);
       });
+
+    // fetch related product
+    fetchRelatedProductCart().then(res => {
+      this.setState({ relatedItems: res.data });
+    });
   }
 
   // componentWillUnmount() {
@@ -120,7 +89,7 @@ class Cart extends Component {
       })
       .finally(() => {
         setTimeout(() => {
-          this.props.context.setIsLoading(false)
+          this.props.context.setIsLoading(false);
         }, 2000);
       });
   }
@@ -152,10 +121,10 @@ class Cart extends Component {
   getTotal(discount, cart) {
     let priceWithoutDiscount = cart.qty * cart.price;
     if (discount == null) {
-      return priceWithoutDiscount
+      return priceWithoutDiscount;
     }
 
-    return getDiscount(priceWithoutDiscount, discount)
+    return getDiscount(priceWithoutDiscount, discount);
   }
 
   renderCart() {
@@ -183,7 +152,12 @@ class Cart extends Component {
             </th>
             <td>
               {cart.discount !== null ? (
-                <span style={{ textDecoration: 'line-through' }} className="mr--1">IDR {formatMoneyWithoutSymbol(cart.price)}</span>
+                <span
+                  style={{ textDecoration: "line-through" }}
+                  className="mr--1"
+                >
+                  IDR {formatMoneyWithoutSymbol(cart.price)}
+                </span>
               ) : null}
               <span>
                 IDR{" "}
@@ -219,7 +193,8 @@ class Cart extends Component {
             <td>
               <span>
                 <strong>
-                  IDR {formatMoneyWithoutSymbol(this.getTotal(cart.discount, cart))}
+                  IDR{" "}
+                  {formatMoneyWithoutSymbol(this.getTotal(cart.discount, cart))}
                 </strong>
               </span>
             </td>
@@ -237,7 +212,8 @@ class Cart extends Component {
       if (carts[i].discount == null) {
         total = total + itemAmount * carts[i].price;
       } else {
-        total = total + itemAmount * getDiscount(carts[i].price, carts[i].discount);
+        total =
+          total + itemAmount * getDiscount(carts[i].price, carts[i].discount);
       }
     }
 
@@ -254,7 +230,8 @@ class Cart extends Component {
       if (carts[i].discount == null) {
         total = total + itemAmount * carts[i].price;
       } else {
-        total = total + itemAmount * getDiscount(carts[i].price, carts[i].discount);
+        total =
+          total + itemAmount * getDiscount(carts[i].price, carts[i].discount);
       }
     }
 
@@ -274,7 +251,7 @@ class Cart extends Component {
     //   console.log(error)
     // })
     this.props.history.push("/checkout");
-    localStorage.setItem("subTotal", this.getTotalCartPrice())
+    localStorage.setItem("subTotal", this.getTotalCartPrice());
   }
 
   handlePopup() {

@@ -44,14 +44,17 @@ class ProductCard extends Component {
   }
 
   componentDidUpdate(prevState) {
-    if (prevState && prevState.wishListItems !== this.state.wishListItems) {
-      fetchWishList(localStorage.getItem("userId"))
-        .then(res => {
-          this.setState({ wishListItems: res.data });
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    // fetch when user login
+    if (isLogin()) {
+      if (prevState && prevState.wishListItems !== this.state.wishListItems) {
+        fetchWishList(localStorage.getItem("userId"))
+          .then(res => {
+            this.setState({ wishListItems: res.data });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     }
   }
 

@@ -22,7 +22,8 @@ import {
   fetchVariantById,
   fetchColorById,
   updateWishList,
-  removeWishlist
+  removeWishlist,
+  fetchRelatedProductById
 } from "../../api";
 import { formatMoneyWithoutSymbol, getDiscount } from "../../utils/money";
 import { withContext } from "../../context/withContext";
@@ -47,7 +48,8 @@ class Detail extends Component {
       picture: [],
       freeze: false,
       isLoved: false,
-      allPicts: []
+      allPicts: [],
+      relatedProduct: []
     };
   }
 
@@ -56,6 +58,10 @@ class Detail extends Component {
     fetchProductById(id).then(res => {
       this.setState({
         product: res.data[0]
+      });
+
+      fetchRelatedProductById(id).then(res => {
+        this.setState({ relatedProduct: res.data });
       });
     });
 
@@ -159,36 +165,43 @@ class Detail extends Component {
   }
 
   renderRelatedProduct() {
-    const hotProducts = this.props.context.hotProducts;
-    const products = [];
-    if (hotProducts.length !== 0) {
-      for (let i = 0; i < 4; i++) {
-        products.push(
+    const { relatedProduct } = this.state;
+
+    if (relatedProduct.length !== 0) {
+      return relatedProduct.map((product, i) => {
+        return (
           <div
             className="col-md-3"
-            key={`product-${hotProducts[i]}`}
+            key={`product-${product}`}
             key={`related-${i}`}
           >
             <ProductCard
               thumbnail={
-                hotProducts[i].thumbnail
-                  ? hotProducts[i].thumbnail
+                product.thumbnail
+                  ? product.thumbnail
                   : "https://via.placeholder.com/600x600"
               }
-              loved={this.isProductWishlisted(hotProducts[i].productId)}
-              id={hotProducts[i].productId}
-              title={hotProducts[i].productName}
-              price={hotProducts[i].price}
-              discount={hotProducts[i].discount}
-              category={hotProducts[i].categoryName}
+              loved={this.isProductWishlisted(product.productId)}
+              id={product.productId || product.id}
+              title={product.productName}
+              price={product.price}
+              discount={product.discount}
+              category={product.categoryName}
               needRefreshPage={true}
-              itemStock={hotProducts[i].itemStock}
+              itemStock={product.itemStock}
             />
           </div>
         );
-      }
+      });
     }
-    return products;
+
+    return (
+      <div className="col">
+        <div>
+          <span>Tidak tersedia.</span>
+        </div>
+      </div>
+    );
   }
 
   onClickAddToCart(product) {
@@ -313,7 +326,8 @@ class Detail extends Component {
         );
       case 3:
         return (
-          <div className="tab--detail"
+          <div
+            className="tab--detail"
             style={{
               display: "flex",
               padding: "0 10px",
@@ -438,7 +452,13 @@ class Detail extends Component {
                 <div className="col-md-8">
                   <div>
                     <div>
-                      <h1 style={{ color: "#6c6e70", fontSize: 18, fontWeight: 'bold' }}>
+                      <h1
+                        style={{
+                          color: "#6c6e70",
+                          fontSize: 18,
+                          fontWeight: "bold"
+                        }}
+                      >
                         {product.productName}
                       </h1>
                       <div style={{ display: "flex", alignItems: "center" }}>
@@ -604,7 +624,7 @@ class Detail extends Component {
                     </div>
                     {this.state.variant !== null ? (
                       <div className="product-detail-variant">
-                        <h3 style={{ color: "#6c6e70" }}>Varian Lainnya</h3>
+                        <h3 style={{ color: "#6c6e70", fontSize: '16px', fontWeight: 'bold' }}>Varian Lainnya</h3>
                         <div className="row" style={{ paddingLeft: "1.3em" }}>
                           {this.state.variant.map((p, index) => {
                             return (
@@ -641,7 +661,7 @@ class Detail extends Component {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="product-detail-variant">
-                          <h3 style={{ color: "#6c6e70" }}>Pilihan Warna</h3>
+                          <h3 style={{ color: "#6c6e70", fontSize: '16px', fontWeight: 'bold' }}>Pilihan Warna</h3>
                           <div>
                             <ColorSelector colors={this.state.colors} />
                           </div>

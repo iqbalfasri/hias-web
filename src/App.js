@@ -54,6 +54,7 @@ import AllBestProducts from "./pages/product/AllBestProducts";
 import { getCart } from "./api";
 import TipsTrick from "./pages/TipsTrick";
 import TipsTrickDetail from './pages/TipsTrick/TipsTrickDetail'
+import AllProductDiscount from "./pages/product/AllProductDiscount";
 
 class App extends Component {
   constructor(props) {
@@ -169,6 +170,7 @@ class App extends Component {
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/changepassword" component={ChangePassword} exact={true} />
           <Route path="/success-verif" component={SuccessVerify} exact={true} />
+          <Route path="/product/discount" component={AllProductDiscount} exact={true} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
