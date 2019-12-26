@@ -6,6 +6,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import StarRatings from "react-star-ratings";
 import ShowMoreText from "react-show-more-text";
+import SocialShare from "../../components/element/SocialShare";
 
 import "./DetailInspiration.scss";
 
@@ -104,11 +105,28 @@ class DetailInspiration extends Component {
                 ></div>
               </div>
               <div className="container">
-                <h1 color="#333" style={{ textAlign: "center", fontSize: 32, margin: '30px 0 ' }}>
+                <h1
+                  color="#333"
+                  style={{
+                    textAlign: "center",
+                    fontSize: 32,
+                    margin: "30px 0 "
+                  }}
+                >
                   {inspiration.title}
                 </h1>
-                <p style={{ textAlign: 'justify' }}>{this.props.location.state.description}</p>
+                <p style={{ textAlign: "justify" }}>
+                  {this.props.location.state.description}
+                </p>
               </div>
+
+              <div className="container">
+                <div className="d-flex">
+                  <p style={{ color: "#111", fontWeight: "bold" }}>Bagikan: </p>&nbsp;
+                  <SocialShare buttonSize={26} url={window.location.href} />
+                </div>
+              </div>
+
               <section className="section-page">
                 <div className="container">
                   <div className="row align-items-center mb--2">
