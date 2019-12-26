@@ -214,7 +214,9 @@ class ProductCard extends Component {
                     <strong>IDR {formatMoneyWithoutSymbol(price)}</strong>
                   </p>
                 ) : null} */}
-                {itemStock == null || itemStock < 1 || discount == null ? null : itemStock !== null ||
+                {itemStock == null ||
+                itemStock < 1 ||
+                discount == null ? null : itemStock !== null ||
                   (itemStock > 0 && discount !== null) ? (
                   <p
                     className="text--color-orange mb--0 mr--1"
@@ -241,7 +243,7 @@ class ProductCard extends Component {
                     style={{ margin: "0 0" }}
                   >
                     <strong>
-                      IDR
+                        IDR {" "}
                       {formatMoneyWithoutSymbol(
                         discount == null ? price : getDiscount(price, discount)
                       )}
