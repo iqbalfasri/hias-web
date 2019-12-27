@@ -333,3 +333,7 @@ export const fetchProductDiscount = () => {
 export const fetchRelatedProductById = productId => {
   return axios.get(`${BASE_URL}/product/detail/${productId}/related`).then(res => res.data)
 }
+
+export const fetchRelatedProductByCatId = catId => {
+  return axios.get(`${BASE_URL}/product/relatedCategoryId/${catId}`).then(res => res.data)
+}

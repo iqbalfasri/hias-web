@@ -23,13 +23,14 @@ import {
   fetchColorById,
   updateWishList,
   removeWishlist,
-  fetchRelatedProductById
+  fetchRelatedProductByCatId
 } from "../../api";
 import { formatMoneyWithoutSymbol, getDiscount } from "../../utils/money";
 import { withContext } from "../../context/withContext";
 import { isLogin } from "../../utils/auth";
 
 import "./Detail.scss";
+import detectMobile from "../../utils/window";
 
 class Detail extends Component {
   constructor(props) {
@@ -56,13 +57,18 @@ class Detail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     fetchProductById(id).then(res => {
-      this.setState({
-        product: res.data[0]
-      });
-
-      fetchRelatedProductById(id).then(res => {
-        this.setState({ relatedProduct: res.data });
-      });
+      this.setState(
+        {
+          product: res.data[0]
+        },
+        () => {
+          // get related product by category id
+          let { product } = this.state;
+          fetchRelatedProductByCatId(product.category.id).then(res => {
+            this.setState({ relatedProduct: res.data });
+          });
+        }
+      );
     });
 
     fetchVariantById(id).then(res => {
@@ -165,34 +171,77 @@ class Detail extends Component {
   }
 
   renderRelatedProduct() {
+    let swiperConfig = {
+      pagination: {
+        el: ".swiper-pagination",
+        type: "bullets",
+        clickable: true
+      },
+      slidesPerView: detectMobile() ? 1 : 4
+    };
+
     const { relatedProduct } = this.state;
 
     if (relatedProduct.length !== 0) {
-      return relatedProduct.map((product, i) => {
+      // if related product more than 4,
+      // use swiper
+      if (relatedProduct.length > 4) {
         return (
-          <div
-            className="col-md-3"
-            key={`product-${product}`}
-            key={`related-${i}`}
-          >
-            <ProductCard
-              thumbnail={
-                product.thumbnail
-                  ? product.thumbnail
-                  : "https://via.placeholder.com/600x600"
-              }
-              loved={this.isProductWishlisted(product.productId)}
-              id={product.productId || product.id}
-              title={product.productName}
-              price={product.price}
-              discount={product.discount}
-              category={product.categoryName}
-              needRefreshPage={true}
-              itemStock={product.itemStock}
-            />
+          <div className="col">
+            <Swiper {...swiperConfig}>
+              {relatedProduct.map((product, index) => (
+                <div className="col-md-3">
+                  <ProductCard
+                    thumbnail={
+                      product.thumbnail
+                        ? product.thumbnail
+                        : "https://via.placeholder.com/600x600"
+                    }
+                    loved={this.isProductWishlisted(product.productId)}
+                    id={product.productId || product.id}
+                    title={product.productName}
+                    price={product.price}
+                    discount={product.discount}
+                    category={product.categoryName}
+                    needRefreshPage={true}
+                    itemStock={product.itemStock}
+                  />
+                </div>
+              ))}
+            </Swiper>
           </div>
         );
-      });
+      }
+
+      return (
+        <div className="row">
+          {relatedProduct.map((product, i) => {
+            return (
+              <div
+                className="col-md-3"
+                key={`product-${product}`}
+                key={`related-${i}`}
+              >
+                <ProductCard
+                  thumbnail={
+                    product.thumbnail
+                      ? product.thumbnail
+                      : "https://via.placeholder.com/600x600"
+                  }
+                  loved={this.isProductWishlisted(product.productId)}
+                  id={product.productId || product.id}
+                  title={product.productName}
+                  price={product.price}
+                  discount={product.discount}
+                  category={product.categoryName}
+                  needRefreshPage={true}
+                  itemStock={product.itemStock}
+                />
+              </div>
+            );
+          })}
+        </div>
+      );
     }
 
     return (
@@ -426,6 +475,16 @@ class Detail extends Component {
       }
     };
 
+    let swipperConfigRelated = {
+      pagination: {
+        el: ".swiper-pagination",
+        type: "bullets",
+        clickable: true
+      },
+      spaceBetween: 20,
+      slidesPerView: 4
+    };
+
     let allPicts = product !== null ? [product.thumbnail] : [];
 
     if (product !== null) {
@@ -624,7 +683,15 @@ class Detail extends Component {
                     </div>
                     {this.state.variant !== null ? (
                       <div className="product-detail-variant">
-                        <h3 style={{ color: "#6c6e70", fontSize: '16px', fontWeight: 'bold' }}>Varian Lainnya</h3>
+                        <h3
+                          style={{
+                            color: "#6c6e70",
+                            fontSize: "16px",
+                            fontWeight: "bold"
+                          }}
+                        >
+                          Varian Lainnya
+                        </h3>
                         <div className="row" style={{ paddingLeft: "1.3em" }}>
                           {this.state.variant.map((p, index) => {
                             return (
@@ -661,7 +728,15 @@ class Detail extends Component {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="product-detail-variant">
-                          <h3 style={{ color: "#6c6e70", fontSize: '16px', fontWeight: 'bold' }}>Pilihan Warna</h3>
+                          <h3
+                            style={{
+                              color: "#6c6e70",
+                              fontSize: "16px",
+                              fontWeight: "bold"
+                            }}
+                          >
+                            Pilihan Warna
+                          </h3>
                           <div>
                             <ColorSelector colors={this.state.colors} />
                           </div>
@@ -682,7 +757,7 @@ class Detail extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row">{this.renderRelatedProduct()}</div>
+              {this.renderRelatedProduct()}
             </div>
           </section>
           {/* <section className="section-page">
