@@ -437,11 +437,11 @@ class Cart extends Component {
           isOpen={this.state.relatedPopup}
           onCloseModal={() => this.handlePopup()}
         >
-          <div>
-            <h3 style={{ textAlign: "center" }}>
+          <div style={{ textAlign: 'center' }} className="mb--2">
+            <span style={{ fontSize: '18px', fontWeight: "bold" }}>
               Kamu yakin tidak mau item ini?
               {/* Are you sure you don’t want this item? */}
-            </h3>
+            </span>
           </div>
           {this.renderRelatedItems()}
           <button
