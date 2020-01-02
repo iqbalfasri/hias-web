@@ -99,6 +99,9 @@ class App extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
     localStorage.removeItem("userProfile");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("subTotal");
+    localStorage.removeItem("userAddress");
     window.location.href = "/";
   }
 
