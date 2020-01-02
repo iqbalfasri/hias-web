@@ -288,7 +288,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort-diskon"
+                                name="sort-clr"
                                 id="diskon"
                                 onClick={() => this.handleDiscount(this.props)}
                               />
@@ -464,7 +464,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort"
+                                name="sort-clr"
                                 id="lth"
                                 onClick={() => this.handleLowToHigh(this.props)}
                               />
@@ -479,7 +479,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort"
+                                name="sort-clr"
                                 id="htl"
                                 onClick={() => this.handleHighToLow(this.props)}
                               />
@@ -492,7 +492,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort"
+                                name="sort-clr"
                                 id="az"
                                 onClick={() => this.handleAtoZ(this.props)}
                               />
@@ -505,7 +505,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort"
+                                name="sort-clr"
                                 id="za"
                                 onClick={() => this.handleZtoA(this.props)}
                               />
@@ -518,7 +518,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort"
+                                name="sort-clr"
                                 id="ne"
                                 onClick={() => this.handleLast(this.props)}
                               />
@@ -531,7 +531,7 @@ class Category extends Component {
                             <span className="mr--1">
                               <input
                                 type="radio"
-                                name="sort"
+                                name="sort-clr"
                                 id="en"
                                 onClick={() => this.handleNewest(this.props)}
                               />
