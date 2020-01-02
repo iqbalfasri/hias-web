@@ -121,7 +121,7 @@ class Wishlist extends Component {
             </div>
             <br />
             <p>{this.state.isLoading ? 'Loading...' : null}</p>
-            <h3>{this.state.emptyMessage}</h3>
+            <span>{this.state.emptyMessage}</span>
             <div className="contianer-review-list">{this.renderProduct()}</div>
           </div>
         </div>
