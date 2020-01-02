@@ -376,17 +376,17 @@ class Cart extends Component {
                         {this.state.priceCoupon > 0 ? (
                           <>
                             <div className="fx justify-content-between">
-                              <h3>Potongan</h3>
-                              <h3>
+                              <span>Potongan</span>
+                              <span>
                                 IDR{" "}
                                 {formatMoneyWithoutSymbol(
                                   this.state.priceCoupon
                                 )}
-                              </h3>
+                              </span>
                             </div>
                             <div className="fx justify-content-between">
-                              <h3>Diskon</h3>
-                              <h3
+                              <span>Diskon</span>
+                              <span
                                 style={{ textDecoration: "line-through" }}
                                 className="mr--1"
                               >
@@ -394,26 +394,26 @@ class Cart extends Component {
                                 {formatMoneyWithoutSymbol(
                                   this.getTotalCartPricBeforeCoupon()
                                 )}
-                              </h3>
+                              </span>
                             </div>
                           </>
                         ) : null}
                         <div className="fx justify-content-between">
-                          <h3 className="mr--1">Subtotal</h3>
-                          <h3>
+                          <span className="mr--1" style={{ fontWeight: 'bold', fontSize: '16px' }}>Subtotal</span>
+                          <span style={{ fontWeight: 'bold', fontSize: '16px' }}>
                             IDR{" "}
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
-                          </h3>
+                          </span>
                         </div>
                       </div>
                     </div>
                     <div className="total-card-cart-wrapper">
                       <div className="total-card-cart">
-                        <div>
-                          <h3>
+                        <div className="mb--1">
+                          <span style={{ fontWeight: 'bold', fontSize: '18px' }}>
                             Jumlah Total IDR{" "}
                             {formatMoneyWithoutSymbol(this.getTotalCartPrice())}
-                          </h3>
+                          </span>
                         </div>
                         <div>
                           <button
